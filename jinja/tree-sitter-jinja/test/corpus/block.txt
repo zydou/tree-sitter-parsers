@@ -1,0 +1,31 @@
+=============
+block
+=============
+
+{% block foo %}<Test>{% endblock %}{{ self.foo() }}
+
+---
+
+(source
+  (words)
+  (control
+    (statement
+      (block_statement
+        (identifier))))
+  (words)
+  (control
+    (statement))
+  (render_expression
+    (expression
+      (expression
+        (binary_expression
+          (unary_expression
+            (primary_expression
+              (identifier)))))
+      (expression
+        (binary_expression
+          (unary_expression
+            (primary_expression
+              (function_call
+                (identifier))))))))
+  (words))

@@ -1,0 +1,37 @@
+{
+  "grammars": [
+    {
+      "name": "dot",
+      "camelcase": "Dot",
+      "scope": "source.dot",
+      "path": ".",
+      "file-types": [
+        "dot",
+        "gv"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.1.5",
+    "license": "MIT",
+    "description": "DOT grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "rydesun",
+        "email": "rydesun@gmail.com",
+        "url": "https://github.com/rydesun"
+      }
+    ],
+    "links": {
+      "repository": "git+https://github.com/rydesun/tree-sitter-dot.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

@@ -1,0 +1,134 @@
+==========================
+field access from variable
+==========================
+
+void Test() {
+    a.member;
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (expression_statement
+        (field_access
+          target: (identifier)
+          field: (identifier)
+        )
+      )
+    )
+  )
+)
+
+
+======================
+field access from this
+======================
+
+enum struct Rectangle
+{
+    int width;
+
+    int GetWidth() {
+        return this.width;
+    }
+}
+
+---
+
+(source_file
+  (enum_struct
+    name: (identifier)
+    (enum_struct_field
+      type: (type
+        (builtin_type)
+      )
+      name: (identifier)
+    )
+    (enum_struct_method
+      returnType: (type
+        (builtin_type)
+      )
+      name: (identifier)
+      parameters: (parameter_declarations)
+      body: (block
+        (return_statement
+          expression: (field_access
+            target: (this)
+            field: (identifier)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+======================================
+field access from indexed array access
+======================================
+
+void Test() {
+    things[0].member;
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (expression_statement
+        (field_access
+          target: (array_indexed_access
+            array: (identifier)
+            index: (int_literal)
+          )
+          field: (identifier)
+        )
+      )
+    )
+  )
+)
+
+
+===============================
+field access from function call
+===============================
+
+void Test() {
+    CreateInstance().member;
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (expression_statement
+        (field_access
+          target: (call_expression
+            function: (identifier)
+            arguments: (call_arguments)
+          )
+          field: (identifier)
+        )
+      )
+    )
+  )
+)

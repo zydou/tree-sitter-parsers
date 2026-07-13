@@ -1,0 +1,185 @@
+=============
+do while loop
+=============
+
+public void OnPluginStart() {
+    do {
+    } while(true);
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (do_while_statement
+        body: (block)
+        condition: (bool_literal)
+      )
+    )
+  )
+)
+
+
+=======================
+do while loop statement
+=======================
+
+public void OnPluginStart() {
+    do true; while(true);
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (do_while_statement
+        body: (expression_statement
+          (bool_literal)
+        )
+        condition: (bool_literal)
+      )
+    )
+  )
+)
+
+
+=======================================
+do while loop - expression as condition
+=======================================
+
+public void OnPluginStart() {
+    do {
+    } while(20 > 10);
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (do_while_statement
+        body: (block)
+        condition: (binary_expression
+          left: (int_literal)
+          right: (int_literal)
+        )
+      )
+    )
+  )
+)
+
+
+=====================
+do while loop - break
+=====================
+
+public void OnPluginStart() {
+    do {
+        break;
+    } while(true);
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (do_while_statement
+        body: (block
+          (break_statement)
+        )
+        condition: (bool_literal)
+      )
+    )
+  )
+)
+
+
+========================
+do while loop - continue
+========================
+
+public void OnPluginStart() {
+    do {
+        continue;
+    } while(true);
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (do_while_statement
+        body: (block
+          (continue_statement)
+        )
+        condition: (bool_literal)
+      )
+    )
+  )
+)
+
+
+==================================
+do while loop - optional semicolon
+==================================
+
+public void OnPluginStart() {
+    do {
+        continue;
+    } while(true)
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (do_while_statement
+        body: (block
+          (continue_statement)
+        )
+        condition: (bool_literal)
+      )
+    )
+  )
+)

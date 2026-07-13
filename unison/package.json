@@ -1,0 +1,92 @@
+{
+  "name": "tree-sitter-unison",
+  "license": "MIT",
+  "author": "Kyle Goetz <kylegoetz@gmail.com>",
+  "contributors": [
+    {
+      "name": "Felipe Guerrero",
+      "url": "https://github.com/fmguerreiro"
+    },
+    {
+      "name": "Anton Parkhomenko",
+      "url": "https://github.com/chuwy"
+    },
+    {
+      "name": "zetashift",
+      "url": "https://github.com/zetashift"
+    }
+  ],
+  "version": "2.0.1",
+  "description": "Unison grammar for tree-sitter",
+  "repository": "github:kylegoetz/tree-sitter-unison",
+  "main": "bindings/node",
+  "types": "bindings/node",
+  "keywords": [
+    "parsing",
+    "parser",
+    "unisonlang",
+    "unison"
+  ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ],
+  "dependencies": {
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.1"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.2.2",
+    "@commitlint/config-conventional": "^19.2.2",
+    "tree-sitter-cli": "^0.22.5",
+    "web-tree-sitter": "^0.22.5",
+    "prebuildify": "^6.0.0"
+  },
+  "scripts": {
+    "start": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "examples": "script/parse-examples",
+    "examples-wasm": "script/parse-examples wasm",
+    "scratch": "tree-sitter parse scratch.u -d",
+    "visual": "tree-sitter parse -D scratch-2.u",
+    "ci": "tree-sitter generate && tree-sitter build-wasm && tree-sitter test",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip",
+    "watch": "fswatch -o ./grammar ./grammar.js | xargs -n1 -I{} tree-sitter generate",
+    "parse": "tree-sitter parse scratch-2.u --debug 2>&1 | less",
+    "report": "tree-sitter test | ~/Documents/workspace/tree-sitter-test-report/src/main.js"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "subject-case": [
+        2,
+        "never",
+        [
+          "start-case",
+          "pascal-case"
+        ]
+      ]
+    }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.unison",
+      "injection-regex": "^unison$"
+    }
+  ]
+}

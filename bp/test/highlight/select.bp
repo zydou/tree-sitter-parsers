@@ -1,0 +1,18 @@
+foo = select(soong_config_variable("my_namespace", "my_var"), {
+    // ^ keyword.conditional
+    "foo": unset,
+    any @ foo: unset,
+    //  ^ operator
+    //    ^ variable
+    default: "bar",
+})
+
+// It can still be used as a normal variable name
+select = 42
+// <- variable
+
+// Or module property
+foo {
+    select: 42,
+    // <- variable.parameter
+}

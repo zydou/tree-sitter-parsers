@@ -1,0 +1,1526 @@
+================================================================================
+Can parse an empty module
+================================================================================
+
+module my-module-name {
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    module_name: (identifier)
+    module_block: (block)))
+
+================================================================================
+Can parse a module with a string name
+================================================================================
+
+module "my-module-name" {
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    module_name: (string
+      (string_fragment))
+    module_block: (block)))
+
+================================================================================
+Can parse an empty submodule
+================================================================================
+
+submodule my-module-name {
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (submodule
+    submodule_name: (identifier)
+    submodule_block: (block)))
+
+================================================================================
+Can parse a submodule with a string name
+================================================================================
+
+submodule "my-module-name" {
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (submodule
+    submodule_name: (string
+      (string_fragment))
+    submodule_block: (block)))
+
+================================================================================
+Can parse a module with statements
+================================================================================
+
+submodule my-module-name {
+    yang-version 1.1;
+    namespace "https://foo.bar.com/my-module-name";
+    prefix mymod;
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (submodule
+    submodule_name: (identifier)
+    submodule_block: (block
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (statement
+        (statement_keyword)
+        (argument
+          (string
+            (string_fragment))))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))))))
+
+================================================================================
+Can parse a submodule with statements
+================================================================================
+
+submodule my-module-name {
+    yang-version 1.1;
+    namespace "https://foo.bar.com/my-module-name";
+    prefix mymod;
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (submodule
+    submodule_name: (identifier)
+    submodule_block: (block
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (statement
+        (statement_keyword)
+        (argument
+          (string
+            (string_fragment))))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))))))
+
+================================================================================
+Can parse multiple statements on one line
+================================================================================
+
+submodule my-module-name {
+    yang-version 1.1;
+    namespace "https://foo.bar.com/my-module-name";
+    prefix mymod;
+
+    import config { prefix config; revision-date 2013-04-05; }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (submodule
+    submodule_name: (identifier)
+    submodule_block: (block
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (statement
+        (statement_keyword)
+        (argument
+          (string
+            (string_fragment))))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier)))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier)))
+          (statement
+            (statement_keyword)
+            (argument
+              (date))))))))
+
+================================================================================
+Can parse comments
+================================================================================
+
+// Comments are valid even outside the top level module
+module my-module-name {   // And on the same line
+    // And here
+    yang-version 1.1; // And here
+    namespace "https://foo.bar.com/my-module-name";
+    prefix mymod;
+
+    import config { prefix config; /* And even here */ revision-date 2013-04-05; }
+
+    /* And whole blocks can be commented out
+    container foo {
+        leaf bar {
+           type uint32;
+           default 100;
+        }
+    }
+    */
+
+    // TODO: This test currently fails!
+    // foo "A comment // inside a string is not parsed as a comment";
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (comment)
+  (module
+    module_name: (identifier)
+    module_block: (block
+      (comment)
+      (comment)
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (comment)
+      (statement
+        (statement_keyword)
+        (argument
+          (string
+            (string_fragment))))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier)))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier)))
+          (comment)
+          (statement
+            (statement_keyword)
+            (argument
+              (date)))))
+      (comment)
+      (comment)
+      (comment))))
+
+================================================================================
+Can parse YANG-version arguments
+================================================================================
+
+module my-module-name {
+    yang-version 1.1;
+    yang-version "1.1";
+    yang-version '1.1';
+    yang-version 1;
+    yang-version "1";
+    yang-version '1';
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    module_name: (identifier)
+    module_block: (block
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version))))))
+
+================================================================================
+Can parse numbers
+================================================================================
+
+module my-module-name {
+    container regular {
+        leaf positive {
+           type uint32;
+           default 100;
+           default 0;
+           default -5;
+           default +5;
+
+           default 5.0;
+           default +3.14159265359;
+           default -13.37;
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (built_in_type)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number))))))))))
+
+================================================================================
+Can parse hex numbers
+================================================================================
+
+module my-module-name {
+    container hex {
+        leaf positive {
+           type uint32;
+           default 0xff;
+        }
+
+        leaf zero {
+           type uint32;
+           default 0x0;
+        }
+
+        leaf negative {
+           type uint32;
+           default -0XFF0123456;
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (built_in_type)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number)))))
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (built_in_type)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number)))))
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (built_in_type)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (number))))))))))
+
+================================================================================
+Can parse booleans
+================================================================================
+
+module my-module-name {
+    container boolean-test {
+        leaf foo {
+           type string;
+           mandatory true;
+        }
+
+        leaf bar {
+           type string;
+           mandatory false;
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (built_in_type)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (boolean)))))
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (built_in_type)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (boolean))))))))))
+
+================================================================================
+Can parse simple strings
+================================================================================
+
+module my-string-testing-module {
+    container lets-test-some-strings {
+        description "Regular, boring, double quoted string";
+        description 'Single tick stings!';
+
+        description "Can contain \"escaped\" double quotes";
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment))))
+          (statement
+            (statement_keyword)
+            (argument
+              (string)))
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment)
+                (escape_sequence)
+                (string_fragment)
+                (escape_sequence)
+                (string_fragment)))))))))
+
+================================================================================
+Can parse strings with escape sequences
+================================================================================
+
+module my-string-testing-module {
+    container lets-test-some-strings {
+        description "Can contain escape sequences like \n and \t";
+        description 'Cannot contain escape sequences like \n and \t';
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment)
+                (escape_sequence)
+                (string_fragment)
+                (escape_sequence))))
+          (statement
+            (statement_keyword)
+            (argument
+              (string))))))))
+
+================================================================================
+Can parse multi-line strings
+================================================================================
+
+module my-string-testing-module {
+    container lets-test-some-strings {
+        description "Multi-line, multi paragraph string.
+
+                     More here,
+
+                     Even more here.";
+
+        description 'Multi-line, multi paragraph string.
+
+                     More here,
+
+                     Even more here.';
+
+        description
+          "Multi-line, multi paragraph string, starting on the next line.
+
+           More here,
+
+           Even more here.";
+
+        description
+          'Multi-line, multi paragraph string.
+
+           More here,
+
+           Even more here.';
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment))))
+          (statement
+            (statement_keyword)
+            (argument
+              (string)))
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment))))
+          (statement
+            (statement_keyword)
+            (argument
+              (string))))))))
+
+================================================================================
+Can parse string concatenations
+================================================================================
+
+module my-string-testing-module {
+    container lets-test-some-strings {
+        description "String split "
+                  + "over multiple lines "
+                  + "is also normal. "
+                  + 'Mixed tick strings is not really normal, but '
+                  + "is none the less syntactically valid.";
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (string_concatenation
+                (string
+                  (string_fragment))
+                (plus_symbol)
+                (string
+                  (string_fragment))
+                (plus_symbol)
+                (string
+                  (string_fragment))
+                (plus_symbol)
+                (string)
+                (plus_symbol)
+                (string
+                  (string_fragment))))))))))
+
+================================================================================
+Can parse unquoted strings
+================================================================================
+
+// The "unquoted string" argument is poorly documented in the YANG ABNF syntax,
+// so this test case contains a bunch of examples found in the
+// https://github.com/YangModels/yang repository.
+module my-string-testing-module {
+    container unquoted-string-madness {
+        must .=not(../some-time);
+
+        leaf tests {
+            type string;
+
+            default FOO;
+            default BAR;
+            default FOO&BAR;
+            default 00:00:15.0;
+            default 1.2.3.4;
+            default 0x1234_foo;
+            default true&fair;
+            default 1..100..1000;
+            default meter/second^2;
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (comment)
+  (comment)
+  (comment)
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (unquoted_string)))
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (built_in_type)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (node_identifier)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (node_identifier)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (unquoted_string)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (unquoted_string)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (unquoted_string)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (unquoted_string)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (unquoted_string)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (unquoted_string)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (unquoted_string))))))))))
+
+================================================================================
+Can parse range arguments
+================================================================================
+
+module my-module-name {
+    typedef foo {
+        type string {
+            length "0..100";
+            length "0..33";
+            length "-7174..-831";
+            length -48..1999;
+            length -10 .. 10;
+            length min..max;
+            length -20..max;
+            length min..93182;
+            length "min..max";
+            length "min .. max";
+            length 'min..max';
+            length 'min .. max';
+
+            // Length should also accept integers and strings
+            length 123;
+            length "123";
+            length '123';
+        }
+    }
+
+    typedef bar {
+        type uint32 {
+            range "0..100";
+            range "-7174..-831";
+            range -48..1999;
+            range -10 .. 10;
+            range min..max;
+            range -20..max;
+            range min..93182;
+            range "min..max";
+            range "min .. max";
+
+            // Range can have a block
+            range min..123 {
+                description "This is valid.";
+            }
+
+            // Ranges can have multiple segments
+            range "min..100 | 105..max";
+            range "min .. 100 | 105 .. max";
+            range 'min..100|105..400';
+            range '10|105..400';
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (built_in_type))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (comment)
+              (statement
+                (statement_keyword)
+                (argument
+                  (number)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (number)))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (number)))))))))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (built_in_type))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (comment)
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (unquoted_range
+                      (start
+                        (number))
+                      (end
+                        (number)))))
+                (block
+                  (statement
+                    (statement_keyword)
+                    (argument
+                      (string
+                        (string_fragment))))))
+              (comment)
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))
+                      (start
+                        (number))
+                      (end
+                        (number))))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (number)
+                      (start
+                        (number))
+                      (end
+                        (number)))))))))))))
+
+================================================================================
+Can parse enumerations
+================================================================================
+
+module my-module-name {
+    typedef foo {
+        // Enums can contain any value of any type, which can make them an
+        // eyesore when syntax highlighted. For that reason, the value for an
+        // enum statement should always just be an "enum_value".
+        type enumeration {
+            enum *;
+            enum 123;
+            enum 1*2;
+            enum foo;
+            enum FOO&BAR;
+            enum 00:00:15.0;
+            enum 1.2.3.4;
+            enum 0x1234_foo;
+            enum true&fair;
+            enum 1..100..1000;
+
+            enum meter/second^2 {
+                value 1;
+            }
+
+            enum "meter/second^2" {
+                value 1;
+            }
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    module_name: (identifier)
+    module_block: (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (comment)
+          (comment)
+          (comment)
+          (statement
+            (statement_keyword)
+            (argument
+              (built_in_type))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value)))
+              (statement
+                (statement_keyword)
+                (argument
+                  (enum_value))
+                (block
+                  (statement
+                    (statement_keyword)
+                    (argument
+                      (number)))))
+              (statement
+                (statement_keyword)
+                (argument
+                  (string
+                    (string_fragment)))
+                (block
+                  (statement
+                    (statement_keyword)
+                    (argument
+                      (number))))))))))))
+
+================================================================================
+Can parse extension statements
+================================================================================
+
+module my-module-name {
+    container foo {
+        my-extension:foo "called with an argument";
+
+        custom-extensions:can-be-used-without-argument;
+
+        tailf:action foobar {
+            // With a block
+        }
+
+        // Should be parsed as an extension keyword, even though "config" is a
+        // built-in keyword
+        config:my-custom-stuff ArgumentHere;
+
+        description "Extension statements should:not be matched inside strings.";
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (extension_statement
+            (extension_keyword)
+            (argument
+              (string
+                (string_fragment))))
+          (extension_statement
+            (extension_keyword))
+          (extension_statement
+            (extension_keyword)
+            (argument
+              (node_identifier))
+            (block
+              (comment)))
+          (comment)
+          (comment)
+          (extension_statement
+            (extension_keyword)
+            (argument
+              (node_identifier)))
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment)))))))))
+
+================================================================================
+Lots of diverse grammar used together
+================================================================================
+
+// Contains various syntax that previously broke the parser. Serves as an extra
+// regression test.
+module my-module-name {
+    yang-version 1.1;
+    namespace "https://foo.bar.com/my-module-name";
+    prefix mymod;
+
+    // Comment!
+    import ietf-inet-types {
+        prefix inet;
+    }
+
+    organization "Foo";
+    contact "Foo post <post@foo.com>";
+
+    description
+        "I am a very long, multi-line string.
+
+         This is entirely valid syntax and is a very common way to provide
+         string arguments to description statements.
+
+         It doesn't matter how long it is or how many paragraphs it contains,
+         and it should even be able to contain escaped quotes like \"this\".
+
+         It usually ends like this.";
+
+    revision 2019-11-16 {
+        description
+            "This description starts on the next line!";
+        reference
+            "So does this reference statement!";
+    }
+
+    identity my-identity {
+        description "This is a YANG identity.";
+        reference "Foobar!";
+    }
+
+    augment /ncs:devices/device {
+        container new-container {
+            tailf:action add-device {
+                tailf:actionpoint my-module-name-add-device;
+                tailf:info // A comment between a keyword and its argument!
+                    "Add a device!";
+                input {
+                    uses inventory-actions:device-input;
+                }
+                output {
+                    leaf result {
+                        type string;
+                        description "Action result.";
+                    }
+                }
+                /* This entire block is commented out and should only produce a
+                   comment node in the syntax tree
+                output {
+                    leaf result {
+                        type string;
+                        description "Action result.";
+                    }
+                }
+                */
+            }
+        }
+    }
+
+    container various-strings {
+        must "boolean(/foo/bar) = false "
+           + "&& boolean(/bar/baz) = false" {
+            error-message 'Oh no!';
+        }
+    }
+
+    typedef vlan-index-type {
+        type uint32 {
+            range "1..4094 | 4096..4294967295";
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(yang
+  (comment)
+  (comment)
+  (module
+    (identifier)
+    (block
+      (statement
+        (statement_keyword)
+        (argument
+          (yang_version)))
+      (statement
+        (statement_keyword)
+        (argument
+          (string
+            (string_fragment))))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier)))
+      (comment)
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier)))))
+      (statement
+        (statement_keyword)
+        (argument
+          (string
+            (string_fragment))))
+      (statement
+        (statement_keyword)
+        (argument
+          (string
+            (string_fragment))))
+      (statement
+        (statement_keyword)
+        (argument
+          (string
+            (string_fragment)
+            (escape_sequence)
+            (string_fragment)
+            (escape_sequence)
+            (string_fragment))))
+      (statement
+        (statement_keyword)
+        (argument
+          (date))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment))))
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment))))))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment))))
+          (statement
+            (statement_keyword)
+            (argument
+              (string
+                (string_fragment))))))
+      (statement
+        (statement_keyword)
+        (argument
+          (keypath))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (node_identifier))
+            (block
+              (extension_statement
+                (extension_keyword)
+                (argument
+                  (node_identifier))
+                (block
+                  (extension_statement
+                    (extension_keyword)
+                    (argument
+                      (node_identifier)))
+                  (extension_statement
+                    (extension_keyword)
+                    (comment)
+                    (argument
+                      (string
+                        (string_fragment))))
+                  (statement
+                    (statement_keyword)
+                    (block
+                      (statement
+                        (statement_keyword)
+                        (argument
+                          (node_identifier)))))
+                  (statement
+                    (statement_keyword)
+                    (block
+                      (statement
+                        (statement_keyword)
+                        (argument
+                          (node_identifier))
+                        (block
+                          (statement
+                            (statement_keyword)
+                            (argument
+                              (built_in_type)))
+                          (statement
+                            (statement_keyword)
+                            (argument
+                              (string
+                                (string_fragment))))))))
+                  (comment)))))))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (string_concatenation
+                (string
+                  (string_fragment))
+                (plus_symbol)
+                (string
+                  (string_fragment))))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (string)))))))
+      (statement
+        (statement_keyword)
+        (argument
+          (node_identifier))
+        (block
+          (statement
+            (statement_keyword)
+            (argument
+              (built_in_type))
+            (block
+              (statement
+                (statement_keyword)
+                (argument
+                  (range
+                    (quoted_range
+                      (start
+                        (number))
+                      (end
+                        (number))
+                      (start
+                        (number))
+                      (end
+                        (number)))))))))))))

@@ -1,0 +1,39 @@
+==================
+For statements
+==================
+
+{% for letter in name %}
+  {% if loop.index % 2 == 0 %}
+    <span style="color:red">{{ letter }}</span>
+  {% else %}
+    <span style="color:blue">{{ letter }}</span>
+  {% endif %}
+{% endfor %}
+
+---
+
+(source_file
+  (content)
+  (for_statement
+    left: (identifier)
+    right: (identifier)
+    body: (content)
+    body: (if_statement
+      condition: (binary_expression
+        left: (binary_expression
+          left: (member_expression
+            value: (identifier)
+            property: (identifier))
+          right: (number))
+        right: (number))
+      consequence: (content)
+      consequence: (expression_tag
+        (identifier))
+      consequence: (content)
+      alternative: (else_clause
+        consequence: (content)
+        consequence: (expression_tag
+          (identifier))
+        consequence: (content)))
+    body: (content))
+  (content))

@@ -1,0 +1,15 @@
+def "foo" (
+    specializes = <../../parent/another/thing>
+    # <- variable
+    #             ^ string.special
+)
+{
+}
+
+def "foo" (
+    specializes = [</foo>, </bar>, ]
+    # <- variable
+    #              ^ string.special
+)
+{
+}

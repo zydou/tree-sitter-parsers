@@ -1,0 +1,381 @@
+================================================================================
+Complex filter with variables and ordering
+================================================================================
+
+*[_type == $type && title in ['a', "b", 'c']] | order(_createdAt desc) [0...10] {
+  ...,
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pipe_expression
+    (expression
+      (attribute_access
+        (expression
+          (star))
+        (binary_expression
+          (expression
+            (binary_expression
+              (expression
+                (identifier))
+              (expression
+                (parameter
+                  (identifier)))))
+          (expression
+            (binary_expression
+              (expression
+                (identifier))
+              (expression
+                (array
+                  (literal
+                    (string))
+                  (literal
+                    (string))
+                  (literal
+                    (string)))))))))
+    (expression
+      (attribute_access
+        (expression
+          (attribute_access
+            (expression
+              (function_call
+                (order_function
+                  (identifier))))
+            (binary_expression
+              (expression
+                (literal
+                  (number)))
+              (expression
+                (literal
+                  (number))))))
+        (projection
+          (spread_operator))))))
+
+================================================================================
+Reference expansion with complex projection
+================================================================================
+
+*[_type == "book" && defined(author)] [0...10] {
+  title,
+  coverImage {
+    asset->{url, mimeType},
+    crop
+  },
+  author->,
+  "publisher": publisher->title,
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute_access
+    (expression
+      (attribute_access
+        (expression
+          (attribute_access
+            (expression
+              (star))
+            (binary_expression
+              (expression
+                (binary_expression
+                  (expression
+                    (identifier))
+                  (expression
+                    (literal
+                      (string)))))
+              (expression
+                (function_call
+                  (identifier)
+                  (identifier))))))
+        (binary_expression
+          (expression
+            (literal
+              (number)))
+          (expression
+            (literal
+              (number))))))
+    (projection
+      (identifier)
+      (attribute_access
+        (expression
+          (identifier))
+        (projection
+          (attribute_access
+            (expression
+              (attribute_access
+                (expression
+                  (identifier))))
+            (projection
+              (identifier)
+              (identifier)))
+          (identifier)))
+      (attribute_access
+        (expression
+          (identifier)))
+      (pair
+        (literal
+          (string))
+        (attribute_access
+          (expression
+            (identifier))
+          (identifier))))))
+
+================================================================================
+Array dereferencing
+================================================================================
+
+tags[]->
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute_access
+    (expression
+      (attribute_access
+        (expression
+          (identifier))))))
+
+================================================================================
+Conditional projection
+================================================================================
+
+*[_type=='movie']{
+  ...,
+  releaseDate >= '2018-06-01' => {
+    "screenings": *[_type == 'screening' && movie._ref == ^._id],
+    "news": *[_type == 'news' && movie._ref == ^._id],
+  },
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute_access
+    (expression
+      (attribute_access
+        (expression
+          (star))
+        (binary_expression
+          (expression
+            (identifier))
+          (expression
+            (literal
+              (string))))))
+    (projection
+      (spread_operator)
+      (conditional_projection
+        (binary_expression
+          (expression
+            (identifier))
+          (expression
+            (literal
+              (string))))
+        (projection
+          (pair
+            (literal
+              (string))
+            (attribute_access
+              (expression
+                (star))
+              (binary_expression
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (expression
+                      (literal
+                        (string)))))
+                (expression
+                  (binary_expression
+                    (expression
+                      (attribute_access
+                        (expression
+                          (identifier))
+                        (identifier)))
+                    (expression
+                      (attribute_access
+                        (expression
+                          (parent))
+                        (identifier))))))))
+          (pair
+            (literal
+              (string))
+            (attribute_access
+              (expression
+                (star))
+              (binary_expression
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (expression
+                      (literal
+                        (string)))))
+                (expression
+                  (binary_expression
+                    (expression
+                      (attribute_access
+                        (expression
+                          (identifier))
+                        (identifier)))
+                    (expression
+                      (attribute_access
+                        (expression
+                          (parent))
+                        (identifier)))))))))))))
+
+================================================================================
+Select statement
+================================================================================
+
+...select(popularity > 20 => {
+  "featured": true
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (binary_expression
+      (expression
+        (identifier))
+      (expression
+        (literal
+          (number))))
+    (projection
+      (pair
+        (literal
+          (string))
+        (literal
+          (true))))))
+
+================================================================================
+Range with exclusive end
+================================================================================
+
+1...3
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (binary_expression
+    (expression
+      (literal
+        (number)))
+    (expression
+      (literal
+        (number)))))
+
+================================================================================
+Match operator
+================================================================================
+
+title match "hello*"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (binary_expression
+    (expression
+      (identifier))
+    (expression
+      (literal
+        (string)))))
+
+================================================================================
+Parameter expression
+================================================================================
+
+$paramName
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (parameter
+    (identifier)))
+
+================================================================================
+Spread in arrays (disabled due to parsing complexity)
+================================================================================
+
+["espen", 'bjørge', "simen", "even"]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (array
+    (literal
+      (string))
+    (literal
+      (string))
+    (literal
+      (string))
+    (literal
+      (string))))
+
+================================================================================
+Mathematical operations
+================================================================================
+
+index % 2 == 0
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (binary_expression
+    (expression
+      (binary_expression
+        (expression
+          (identifier))
+        (expression
+          (literal
+            (number)))))
+    (expression
+      (literal
+        (number)))))
+
+================================================================================
+Power operator
+================================================================================
+
+base ** exponent
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (binary_expression
+    (expression
+      (identifier))
+    (expression
+      (identifier))))
+
+================================================================================
+Nested function calls
+================================================================================
+
+count(*[_type == 'movie' && rating == 'R'])
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_call
+    (identifier)
+    (attribute_access
+      (expression
+        (star))
+      (binary_expression
+        (expression
+          (binary_expression
+            (expression
+              (identifier))
+            (expression
+              (literal
+                (string)))))
+        (expression
+          (binary_expression
+            (expression
+              (identifier))
+            (expression
+              (literal
+                (string)))))))))

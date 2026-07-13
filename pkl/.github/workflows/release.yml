@@ -1,0 +1,67 @@
+# Generated from Workflow.pkl. DO NOT EDIT.
+name: Release
+'on':
+  push:
+    branches-ignore:
+    - '**'
+    tags:
+    - '**'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  npm-publish:
+    name: Publish to npm
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      with:
+        persist-credentials: false
+    - name: Setup Node.js
+      uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
+      with:
+        node-version: 24.x
+        registry-url: https://registry.npmjs.org
+        package-manager-cache: false
+    - name: Build
+      run: npm ci
+    - name: Test
+      run: npm test
+    - name: Publish to npm
+      run: npm publish --provenance
+  github-release:
+    name: Create GitHub Release
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      with:
+        persist-credentials: false
+    - name: Publish release to GitHub
+      env:
+        GH_TOKEN: ${{ github.token }}
+        GH_REPO: ${{ github.repository }}
+        GIT_TAG: ${{ github.ref_name }}
+      run: |-
+        # strip preceding "v"
+        VERSION="${GIT_TAG:1}"
+        EXPECTED_VERSION=$(jq -r .version package.json)
+
+        if [ "${EXPECTED_VERSION}" != "${VERSION}" ]; then
+          echo "Mismatching versions!"
+          echo "package.json has ${EXPECTED_VERSION}"
+          echo "Inferred version from Git tag is ${VERSION}"
+          echo "Use 'tree-sitter version ${VERSION}' to match the tag, and re-tag."
+          exit 1
+        fi
+
+        gh release create "${GIT_TAG}" \
+          --title "${GIT_TAG}" \
+          --verify-tag \
+          --notes ""

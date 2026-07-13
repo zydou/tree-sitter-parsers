@@ -1,0 +1,188 @@
+===========================================================================================
+string_single_line
+===========================================================================================
+
+'hello'
+"goodbye"
+'#'
+'"'
+"'"
+
+---
+
+(module
+  (string)
+  (string)
+  (string)
+  (string)
+  (string)
+)
+
+===========================================================================================
+string_multi_line
+===========================================================================================
+
+'multi
+line
+string'
+"another
+long
+string"
+
+---
+
+(module
+  (string)
+  (string)
+)
+
+===========================================================================================
+string_interpolated
+===========================================================================================
+
+'foo is {foo}'
+'foo, bar is {foo, bar}'
+'inline comment in expression {foo, #- bar -# bar}'
+
+---
+
+(module
+  (string
+    (interpolation (identifier))
+  )
+  (string
+    (interpolation    
+      (expressions
+        (identifier)
+        (identifier)
+      )
+    ) 
+  )
+  (string
+    (interpolation
+      (expressions
+        (identifier)
+        (comment)
+        (identifier)
+      )
+    )
+  )
+)
+
+===========================================================================================
+format_string_in_interpolated_expression
+===========================================================================================
+
+'{foo:.2}'
+'{foo:>9.1}'
+'{foo:_^8.2}'
+
+---
+
+(module
+  (string
+    (interpolation
+      (identifier)
+      (format
+        (number)
+      )
+    )
+  )
+  (string
+    (interpolation
+      (identifier)
+      (format
+        (alignment)
+        (number)
+      )
+    )
+  )
+  (string
+    (interpolation
+      (identifier)
+      (format
+        (fill_char)
+        (alignment)
+        (number)
+      )
+    )
+  )
+)
+
+
+===========================================================================================
+escapes
+===========================================================================================
+
+'foo\n\t\r\\\{bar'
+'\'\'\''
+"\"''\""
+'\x4e foo \xF9'
+'foo \u{100abc} \u{f} bar'
+'foo \
+ bar
+'
+
+---
+
+(module
+  (string
+    (escape)
+    (escape)
+    (escape)
+    (escape)
+    (escape)
+  )
+  (string
+    (escape)
+    (escape)
+    (escape)
+  )
+  (string
+    (escape)
+    (escape)
+  )
+  (string
+    (escape)
+    (escape)
+  )
+  (string
+    (escape)
+    (escape)
+  )
+  (string
+    (escape)
+  )
+)
+
+===========================================================================================
+raw_strings
+===========================================================================================
+
+r'{foo}\r\n'
+r"'\#"
+r#""bar""#
+r##"#"hi"#"##
+
+---
+
+(module
+  (string)
+  (string)
+  (string)
+  (string)
+)
+
+===========================================================================================
+incomplete_string_interpolation
+===========================================================================================
+
+'{} x'
+'y {'
+
+---
+
+(ERROR
+  (string (interpolation))
+  (ERROR)
+)

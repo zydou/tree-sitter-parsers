@@ -1,0 +1,17 @@
+{
+  "solution": {
+    "tree-sitter-glimmer-javascript": {
+      "impact": "minor",
+      "oldVersion": "0.1.0",
+      "newVersion": "0.2.0",
+      "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        }
+      ],
+      "pkgJSONPath": "./package.json"
+    }
+  },
+  "description": "## Release (2025-03-17)\n\ntree-sitter-glimmer-javascript 0.2.0 (minor)\n\n#### :rocket: Enhancement\n* `tree-sitter-glimmer-javascript`\n  * [#13](https://github.com/NullVoxPopuli/tree-sitter-glimmer-javascript/pull/13) Expose template content as `raw_text` ([@mogstad](https://github.com/mogstad))\n\n#### Committers: 1\n- Bjarne Mogstad ([@mogstad](https://github.com/mogstad))\n"
+}

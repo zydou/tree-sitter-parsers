@@ -1,0 +1,254 @@
+============================================
+Software event
+============================================
+software:page-faults:1e8 { }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (software_event_provider)
+        event: (identifier_with_dash)
+        count: (integer_literal)))
+    (action)))
+
+============================================
+Hardware event
+============================================
+hardware:cache-misses { }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (hardware_event_provider)
+        event: (identifier_with_dash)))
+    (action)))
+
+============================================
+Iterator
+============================================
+iter:task { printf("comm: %s\n", ctx.task.comm) }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (iter_provider)
+        object: (identifier)))
+    (action
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          arguments: (arguments
+            (string_literal
+              (string_content)
+              (escape_sequence))
+            (field_expression
+              argument: (field_expression
+                argument: (identifier)
+                field: (identifier))
+              field: (identifier))))))))
+
+============================================
+Tracepoint
+============================================
+tracepoint:skb:kfree_skb {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (tracepoint_provider)
+        subsys: (wildcard_identifier)
+        event: (wildcard_identifier)))
+    (action)))
+
+============================================
+Profile with time
+============================================
+profile:ms:100 {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (profile_interval_provider)
+        unit: (time_unit)
+        count: (integer_literal)))
+    (action)))
+
+============================================
+Profile with rate
+============================================
+profile:hz:99 {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (profile_interval_provider)
+        rate: (integer_literal)))
+    (action)))
+
+============================================
+User-level probe
+============================================
+uprobe:/bin/bash:readline {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (uprobe_uretprobe_provider)
+        binary: (file_identifier)
+        function: (identifier)))
+    (action)))
+
+============================================
+User-level statically defined tracepoints
+============================================
+usdt:/usr/bin/nvim:neovim:eval__call_func__entry {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (ustd_provider)
+        binary: (file_identifier)
+        namespace: (identifier)
+        function: (identifier)))
+    (action)))
+
+============================================
+Benchmark probe
+============================================
+bench:count {
+    @b = count();
+}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (bench_test_provider)
+        function: (identifier)))
+    (action
+      (assignment_statement
+        left: (map_variable)
+        right: (call_expression
+          function: (identifier)
+          arguments: (arguments))))))
+
+============================================
+Function exit
+============================================
+fexit:fget {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (fentry_fexit_provider)
+        function: (wildcard_identifier)))
+    (action)))
+
+============================================
+Watchpoint function
+============================================
+watchpoint:increment+arg1:4:w { }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (watchpoint_provider)
+        function: (identifier)
+        argn: (argn_identifier)
+        length: (integer_literal)
+        mode: (watchpoint_mode)))
+    (action)))
+
+============================================
+Watchpoint address
+============================================
+watchpoint:0x10000000:4:x {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (watchpoint_provider)
+        address: (integer_literal)
+        length: (integer_literal)
+        mode: (watchpoint_mode)))
+    (action)))
+
+============================================
+Fentry BPF program name
+============================================
+fentry:bpf:interval_us_* {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (fentry_fexit_provider)
+        subprovider: (bpf_identifier)
+        program_name: (wildcard_identifier)))
+    (action)))
+
+============================================
+Fentry BPF program id
+============================================
+fentry:bpf:123:* {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (fentry_fexit_provider)
+        subprovider: (bpf_identifier)
+        program_id: (decimal_number)
+        program_name: (wildcard_identifier)))
+    (action)))
+
+============================================
+Probes list
+============================================
+fentry:mac80211:minstrel_ht_alloc_sta,
+fentry:rt2800lib:rt2800_sta_add
+{ }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (fentry_fexit_provider)
+        module: (wildcard_identifier)
+        function: (wildcard_identifier))
+      (probe
+        provider: (fentry_fexit_provider)
+        module: (wildcard_identifier)
+        function: (wildcard_identifier)))
+    (action)))
+
+============================================
+Probes list with comma
+============================================
+fentry:mac80211:minstrel_ht_alloc_sta,
+fentry:rt2800lib:rt2800_sta_add,
+{ }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (fentry_fexit_provider)
+        module: (wildcard_identifier)
+        function: (wildcard_identifier))
+      (probe
+        provider: (fentry_fexit_provider)
+        module: (wildcard_identifier)
+        function: (wildcard_identifier)))
+    (action)))

@@ -1,0 +1,40 @@
+name: Build & Test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Setup MS build tools on Windows
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: 'latest'
+
+      - run: npm install
+
+      - run: mv -force test/corpus_windows/* test/corpus/
+        if: ${{ matrix.os == 'windows-latest' }}
+      - run: node_modules/.bin/tree-sitter test
+
+      - uses: docker-practice/actions-setup-docker@master
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+      - run: node_modules/.bin/tree-sitter build --wasm
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+      - uses: actions/upload-artifact@v3
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          name: wasm-file
+          path: tree-sitter-foam.wasm

@@ -1,0 +1,282 @@
+=======
+view as
+=======
+
+void Test() {
+    view_as<bool>(1);
+    view_as < Action > ( 1 );
+    view_as<bool>(Plugin_Handled);
+    view_as<bool>(this.foo);
+    view_as<bool>(new AdtArray());
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (expression_statement
+        (view_as
+          type: (type
+            (builtin_type)
+          )
+          value: (int_literal)
+        )
+      )
+      (expression_statement
+        (view_as
+          type: (type
+            (identifier)
+          )
+          value: (int_literal)
+        )
+      )
+      (expression_statement
+        (view_as
+          type: (type
+            (builtin_type)
+          )
+          value: (identifier)
+        )
+      )
+      (expression_statement
+        (view_as
+          type: (type
+            (builtin_type)
+          )
+          value: (field_access
+            target: (this)
+            field: (identifier)
+          )
+        )
+      )
+      (expression_statement
+        (view_as
+          type: (type
+            (builtin_type)
+          )
+          value: (new_expression
+            class: (identifier)
+            arguments: (call_arguments)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+============================
+view as - complex expression
+============================
+
+int test = view_as<int>(2 < 5 && 10 > 8);
+
+---
+
+(source_file
+  (global_variable_declaration
+    type: (type
+      (builtin_type)
+    )
+    (variable_declaration
+      name: (identifier)
+      initialValue: (view_as
+        type: (type
+          (builtin_type)
+        )
+        value: (binary_expression
+          left: (binary_expression
+            left: (int_literal)
+            right: (int_literal)
+          )
+          right: (binary_expression
+            left: (int_literal)
+            right: (int_literal)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+======================
+view as inside view as
+======================
+
+bool test = view_as<bool>(view_as<int>(Plugin_Handled));
+
+---
+
+(source_file
+  (global_variable_declaration
+    type: (type
+      (builtin_type)
+    )
+    (variable_declaration
+      name: (identifier)
+      initialValue: (view_as
+        type: (type
+          (builtin_type)
+        )
+        value: (view_as
+          type: (type
+            (builtin_type)
+          )
+          value: (identifier)
+        )
+      )
+    )
+  )
+)
+
+
+=====================
+view_as as assignment
+=====================
+
+void foo(){
+    view_as<bool>(foo) = foo & (bar);
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (expression_statement
+        (assignment_expression
+          left: (view_as
+            type: (type
+              (builtin_type)
+            )
+            value: (identifier)
+          )
+          right: (binary_expression
+            left: (identifier)
+            right: (parenthesized_expression
+              expression: (identifier)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+
+=============
+old style tag
+=============
+
+WormDirection:GetOppositeDirection() {
+    _:0.2;
+    Float:2;
+    bool:3;
+    String:mychar;
+    return WormDirection:1337;
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (old_type
+      (identifier)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (expression_statement
+        (old_type_cast
+          type: (old_type
+            (old_builtin_type)
+          )
+          value: (float_literal)
+        )
+      )
+      (expression_statement
+        (old_type_cast
+          type: (old_type
+            (old_builtin_type)
+          )
+          value: (int_literal)
+        )
+      )
+      (expression_statement
+        (old_type_cast
+          type: (old_type
+            (old_builtin_type)
+          )
+          value: (int_literal)
+        )
+      )
+      (expression_statement
+        (old_type_cast
+          type: (old_type
+            (old_builtin_type)
+          )
+          value: (identifier)
+        )
+      )
+      (return_statement
+        expression: (old_type_cast
+          type: (old_type
+            (identifier)
+          )
+          value: (int_literal)
+        )
+      )
+    )
+  )
+)
+
+
+=====================================
+old style tag - expression with casts
+=====================================
+
+Float:GetOppositeDirection() {
+    return Float:1337 + Float:4;
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (binary_expression
+          left: (old_type_cast
+            type: (old_type
+              (old_builtin_type)
+            )
+            value: (int_literal)
+          )
+          right: (old_type_cast
+            type: (old_type
+              (old_builtin_type)
+            )
+            value: (int_literal)
+          )
+        )
+      )
+    )
+  )
+)

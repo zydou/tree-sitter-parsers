@@ -1,0 +1,13 @@
+
+# Build output and dependencies
+/bindings/
+/binding.gyp
+/build/
+/Cargo.toml
+/node_modules/
+
+# Direnv / Devenv
+.direnv
+.devenv*
+devenv.local.nix
+.pre-commit-config.yaml

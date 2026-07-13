@@ -1,0 +1,153 @@
+===============
+render
+===============
+
+{{ }}
+{{ "foo" if false }}
+{{ var[42].foo }}
+{{ async_func() + normal_func() }}
+{{ outer("FOO") }}
+{{ users()|selectattr("is_active")|map(attribute="name")|join("|") }}
+
+{%+ if something +%}yay{%+ endif +%}
+{{+ something +}}
+
+--------
+
+(source
+  (words)
+  (render_expression)
+  (words)
+  (render_expression
+    (expression
+      (binary_expression
+        (unary_expression
+          (primary_expression
+            (literal
+              (string_literal))))))
+    (ternary_expression
+      (expression
+        (binary_expression
+          (unary_expression
+            (primary_expression
+              (literal
+                (boolean_literal))))))))
+  (words)
+  (render_expression
+    (expression
+      (expression
+        (expression
+          (binary_expression
+            (unary_expression
+              (primary_expression
+                (identifier)))))
+        (expression
+          (binary_expression
+            (unary_expression
+              (primary_expression
+                (literal
+                  (number_literal
+                    (dec_literal))))))))
+      (expression
+        (binary_expression
+          (unary_expression
+            (primary_expression
+              (identifier)))))))
+  (words)
+  (render_expression
+    (expression
+      (binary_expression
+        (binary_expression
+          (unary_expression
+            (primary_expression
+              (function_call
+                (identifier)))))
+        (binary_operator)
+        (unary_expression
+          (primary_expression
+            (function_call
+              (identifier)))))))
+  (words)
+  (render_expression
+    (expression
+      (binary_expression
+        (unary_expression
+          (primary_expression
+            (function_call
+              (identifier)
+              (arg
+                (expression
+                  (binary_expression
+                    (unary_expression
+                      (primary_expression
+                        (literal
+                          (string_literal)))))))))))))
+  (words)
+  (render_expression
+    (expression
+      (binary_expression
+        (binary_expression
+          (binary_expression
+            (binary_expression
+              (unary_expression
+                (primary_expression
+                  (function_call
+                    (identifier)))))
+            (binary_operator)
+            (unary_expression
+              (primary_expression
+                (function_call
+                  (identifier)
+                  (arg
+                    (expression
+                      (binary_expression
+                        (unary_expression
+                          (primary_expression
+                            (literal
+                              (string_literal)))))))))))
+          (binary_operator)
+          (unary_expression
+            (primary_expression
+              (function_call
+                (identifier)
+                (arg
+                  (identifier)
+                  (binary_operator)
+                  (expression
+                    (binary_expression
+                      (unary_expression
+                        (primary_expression
+                          (literal
+                            (string_literal)))))))))))
+        (binary_operator)
+        (unary_expression
+          (primary_expression
+            (function_call
+              (identifier)
+              (arg
+                (expression
+                  (binary_expression
+                    (unary_expression
+                      (primary_expression
+                        (literal
+                          (string_literal)))))))))))))
+  (words)
+  (control
+    (statement
+      (if_expression
+        (expression
+          (binary_expression
+            (unary_expression
+              (primary_expression
+                (identifier))))))))
+  (words)
+  (control
+    (statement))
+  (words)
+  (render_expression
+    (expression
+      (binary_expression
+        (unary_expression
+          (primary_expression
+            (identifier))))))
+  (words))

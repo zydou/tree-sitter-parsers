@@ -1,0 +1,137 @@
+========================================================================
+Preprocessor macro definition
+========================================================================
+
+@define p %( q %)
+/* @define p %( q %) */
+@define p(x, i) %( (@x->q[@i]$$) /* */ %)
+
+---
+
+(program
+  (preprocessor_macro_definition
+    name: (identifier)
+    body: (preprocessor_tokens))
+  (comment)
+  (preprocessor_macro_definition
+    name: (identifier)
+    parameter: (identifier)
+    parameter: (identifier)
+    body: (preprocessor_tokens)))
+
+========================================================================
+Preprocessor macro expansion in or as a top-level construct
+========================================================================
+
+@m
+global @m(s)
+function @m(s, t) {}
+probe @m {}
+
+---
+
+(program
+  (preprocessor_macro_expansion)
+  (variable_declaration
+    (preprocessor_macro_expansion
+      argument: (identifier)))
+  (function_definition
+    (preprocessor_macro_expansion
+      argument: (identifier)
+      argument: (identifier))
+    body: (statement_block))
+  (probe_point_definition
+    probe_point: (preprocessor_macro_expansion)
+    body: (statement_block)))
+
+========================================================================
+Preprocessor macro definition and expansion inside strings
+========================================================================
+
+global s = "@string" "@define m %( string %)"
+
+---
+
+(program
+  (variable_declaration
+    (init_declarator
+      name: (identifier)
+      value: (literal
+        (concatenated_string
+          (string)
+          (string))))))
+
+========================================================================
+Conditional preprocessing
+========================================================================
+
+%( 0 == 1 %? UNREACHABLE %)
+
+@define m %( %( 0 == 1 %? UNREACHABLE %) %)
+
+global is_x86 = %(
+    arch == "i386" || arch == "i686" || arch == "x86_64" %? 1 %: 0
+%)
+
+%( CONFIG_SECURITY_SELINUX == "y"
+    && CONFIG_SECURITY_SELINUX_DISABLE != "y"
+    %? %( kernel_v >= "4.17"
+        %? probe kernel.function("sel_make_policycap") {}
+    %)
+%)
+
+---
+
+(program
+  (conditional_preprocessing
+    condition: (preprocessor_condition
+      left: (literal
+          (number))
+      right: (literal
+        (number)))
+    consequence: (preprocessor_tokens))
+  (preprocessor_macro_definition
+    name: (identifier)
+    body: (conditional_preprocessing
+      condition: (preprocessor_condition
+        left: (literal
+            (number))
+        right: (literal
+          (number)))
+      consequence: (preprocessor_tokens)))
+  (variable_declaration
+    (init_declarator
+      name: (identifier)
+      value: (conditional_preprocessing
+        condition: (preprocessor_logical_expression
+          left: (preprocessor_logical_expression
+            left: (preprocessor_condition
+              left: (preprocessor_constant)
+              right: (literal
+                (string)))
+            right: (preprocessor_condition
+              left: (preprocessor_constant)
+              right: (literal
+                (string))))
+          right: (preprocessor_condition
+            left: (preprocessor_constant)
+            right: (literal
+              (string))))
+        consequence: (preprocessor_tokens)
+        alternative: (preprocessor_tokens))))
+  (conditional_preprocessing
+    condition: (preprocessor_logical_expression
+      left: (preprocessor_condition
+        left: (preprocessor_constant)
+        right: (literal
+          (string)))
+      right: (preprocessor_condition
+        left: (preprocessor_constant)
+        right: (literal
+          (string))))
+    consequence: (conditional_preprocessing
+      condition: (preprocessor_condition
+        left: (preprocessor_constant)
+        right: (literal
+          (string)))
+      consequence: (preprocessor_tokens))))

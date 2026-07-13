@@ -1,0 +1,155 @@
+============================================
+Simple
+============================================
+
+const Named = <template>
+  {{ (doubled foo) }}
+</template>
+
+----
+
+(program
+  (lexical_declaration
+    (variable_declarator
+      (identifier)
+      (glimmer_template
+        (glimmer_opening_tag
+          (glimmer_template_tag_name))
+        (raw_text)
+        (glimmer_closing_tag
+          (glimmer_template_tag_name))))))
+
+============================================
+Empty
+============================================
+
+<template></template>
+
+----
+
+(program
+  (expression_statement
+    (glimmer_template
+      (glimmer_opening_tag
+        (glimmer_template_tag_name))
+      (glimmer_closing_tag
+        (glimmer_template_tag_name)))))
+
+============================================
+Two Components
+============================================
+
+const WithSemi = <template>
+  {{ (doubled foo) }}
+</template>;
+
+<template>
+  <WithSemi />
+</template>;
+
+----
+
+(program
+  (lexical_declaration
+    (variable_declarator
+      (identifier)
+      (glimmer_template
+        (glimmer_opening_tag
+          (glimmer_template_tag_name))
+        (raw_text)
+        (glimmer_closing_tag
+          (glimmer_template_tag_name)))))
+  (expression_statement
+    (glimmer_template
+      (glimmer_opening_tag
+        (glimmer_template_tag_name))
+      (raw_text)
+      (glimmer_closing_tag
+        (glimmer_template_tag_name)))))
+
+============================================
+Multiple Assignment
+============================================
+
+const Empty = <template></template>
+
+const WithSemi = <template>
+  <Empty />
+  {{ (doubled foo) }}
+</template>;
+
+
+<template>
+  <WithSemi />
+</template>;
+
+----
+
+(program
+  (lexical_declaration
+    (variable_declarator
+      (identifier)
+      (glimmer_template
+        (glimmer_opening_tag
+          (glimmer_template_tag_name))
+        (glimmer_closing_tag
+          (glimmer_template_tag_name)))))
+  (lexical_declaration
+    (variable_declarator
+      (identifier)
+      (glimmer_template
+        (glimmer_opening_tag
+          (glimmer_template_tag_name))
+        (raw_text)
+        (glimmer_closing_tag
+          (glimmer_template_tag_name)))))
+  (expression_statement
+    (glimmer_template
+      (glimmer_opening_tag
+        (glimmer_template_tag_name))
+      (raw_text)
+      (glimmer_closing_tag
+        (glimmer_template_tag_name)))))
+
+============================================
+Class Component
+============================================
+
+class InClass {
+  <template>
+    {{this.whatever}}
+  </template>
+}
+
+----
+
+(program
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (glimmer_template
+        (glimmer_opening_tag
+          (glimmer_template_tag_name))
+        (raw_text)
+        (glimmer_closing_tag
+          (glimmer_template_tag_name))))))
+
+============================================
+JS Regex Evasion
+============================================
+
+<template>
+  {{#if true}}
+  {{/if}}
+</template>
+
+----
+
+(program
+  (expression_statement
+    (glimmer_template
+      (glimmer_opening_tag
+        (glimmer_template_tag_name))
+      (raw_text)
+      (glimmer_closing_tag
+        (glimmer_template_tag_name)))))

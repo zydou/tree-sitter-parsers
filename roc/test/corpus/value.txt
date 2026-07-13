@@ -1,0 +1,318 @@
+================================================================================
+value_decl
+================================================================================
+var= a
+my_var= a
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (variable_expr
+        (identifier))))
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (variable_expr
+        (identifier)))))
+
+================================================================================
+value_decl_nested
+================================================================================
+var= a
+var= 
+	b=10
+	b
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (variable_expr
+        (identifier))))
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (value_declaration
+        (decl_left
+          (identifier_pattern
+            (identifier)))
+        (expr_body
+          (const
+            (int))))
+      (variable_expr
+        (identifier)))))
+
+================================================================================
+value_decl_typed
+================================================================================
+var:Int
+var= a
+var =
+  p:Int
+  p=10
+  p
+var =
+  p:Int
+  p=
+    10
+  p
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (annotation_type_def
+      (annotation_pre_colon
+        (identifier))
+      (apply_type
+        (concrete_type)))
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (variable_expr
+        (identifier))))
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (value_declaration
+        (annotation_type_def
+          (annotation_pre_colon
+            (identifier))
+          (apply_type
+            (concrete_type)))
+        (decl_left
+          (identifier_pattern
+            (identifier)))
+        (expr_body
+          (const
+            (int))))
+      (variable_expr
+        (identifier))))
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (value_declaration
+        (annotation_type_def
+          (annotation_pre_colon
+            (identifier))
+          (apply_type
+            (concrete_type)))
+        (decl_left
+          (identifier_pattern
+            (identifier)))
+        (expr_body
+          (const
+            (int))))
+      (variable_expr
+        (identifier)))))
+
+================================================================================
+value_record
+================================================================================
+
+{ result: commaResult, rest: nextBytes } = comma( beforeCommaOrBreak)
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (record_pattern
+        (record_field_pattern
+          (field_name)
+          (identifier_pattern
+            (identifier)))
+        (record_field_pattern
+          (field_name)
+          (identifier_pattern
+            (identifier)))))
+    (expr_body
+      (function_call_pnc_expr
+        (variable_expr
+          (identifier))
+        (variable_expr
+          (identifier))))))
+
+================================================================================
+value_field
+================================================================================
+a= Bool.field
+a= My.Module.field
+a= {a}.field
+a= ({a}).field
+a= a.field.b.c.d
+b=10
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (variable_expr
+        (module)
+        (identifier))))
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (variable_expr
+        (module)
+        (module)
+        (identifier))))
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (field_access_expr
+        (record_expr
+          (record_field_expr
+            (field_name)))
+        (identifier))))
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (field_access_expr
+        (parenthesized_expr
+          (expr_body
+            (record_expr
+              (record_field_expr
+                (field_name)))))
+        (identifier))))
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (field_access_expr
+        (variable_expr
+          (identifier))
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier))))
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (const
+        (int)))))
+
+================================================================================
+value_ignore
+================================================================================
+_= a
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (wildcard_pattern))
+    (expr_body
+      (variable_expr
+        (identifier)))))
+
+================================================================================
+value_shadowable
+================================================================================
+_shadow= a
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (variable_expr
+        (identifier)))))
+
+================================================================================
+value_effectful
+================================================================================
+effect! = |a| doThing!( a)
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (anon_fun_expr
+        (argument_patterns
+          (identifier_pattern
+            (identifier)))
+        (expr_body
+          (function_call_pnc_expr
+            (variable_expr
+              (identifier))
+            (variable_expr
+              (identifier))))))))
+
+================================================================================
+value_effectful_shadowable
+================================================================================
+_effect! = |a| doThing!(a)
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (anon_fun_expr
+        (argument_patterns
+          (identifier_pattern
+            (identifier)))
+        (expr_body
+          (function_call_pnc_expr
+            (variable_expr
+              (identifier))
+            (variable_expr
+              (identifier))))))))
+
+================================================================================
+value_error
+================================================================================
+effect! = |a| _ doThing!( a)
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (anon_fun_expr
+        (argument_patterns
+          (identifier_pattern
+            (identifier)))
+        (expr_body
+          (function_call_pnc_expr
+            (variable_expr
+              (identifier))
+            (variable_expr
+              (identifier))))))))

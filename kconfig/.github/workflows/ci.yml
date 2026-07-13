@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - binding.gyp
+  pull_request:
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - binding.gyp
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test parser
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-14]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up tree-sitter
+        uses: tree-sitter/setup-action/cli@v2
+      - name: Run tests
+        uses: tree-sitter/parser-test-action@v2
+        with:
+          test-rust: true
+          test-node: true
+          test-python: true
+          test-go: true
+          test-swift: true
+      - name: Set up examples
+        if: matrix.os != 'windows-latest'
+        run: |-
+          git clone https://github.com/torvalds/linux            examples/linux  --single-branch --depth=1 --filter=blob:none
+          git clone https://github.com/zephyrproject-rtos/zephyr examples/zephyr --single-branch --depth=1 --filter=blob:none
+        # TODO: Fix parsing on windows, case-insensitive fs leads to folders named `kconfig` being parsed
+      - name: Parse examples
+        uses: tree-sitter/parse-action@v4
+        if: matrix.os != 'windows-latest'
+        with:
+          files: |
+            examples/**/Kconfig*
+            !examples/linux/scripts/Kconfig.include
+            !examples/linux/scripts/kconfig/tests/preprocess/builtin_func/Kconfig
+            !examples/linux/scripts/kconfig/tests/preprocess/circular_expansion/Kconfig
+            !examples/linux/scripts/kconfig/tests/preprocess/escape/Kconfig
+            !examples/linux/scripts/kconfig/tests/preprocess/variable/Kconfig

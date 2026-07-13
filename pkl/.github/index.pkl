@@ -1,0 +1,160 @@
+//===----------------------------------------------------------------------===//
+// Copyright © 2025-2026 Apple Inc. and the Pkl project authors. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//   https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//===----------------------------------------------------------------------===//
+
+amends "@pkl.impl.ghactions/PklCI.pkl"
+
+import "@com.github.actions/catalog.pkl"
+import "@com.github.actions/context.pkl"
+import "@com.github.actions/Workflow.pkl"
+
+build = buildAndTest
+
+prb = buildAndTest
+
+main = buildAndTest
+
+release = new {
+  jobs {
+    ["npm-publish"] = npmPublishJob
+    ["github-release"] = releaseToGithubJob
+  }
+}
+
+local baseJob: Workflow.Job = new {
+  `runs-on` = "ubuntu-latest"
+  steps {
+    (catalog.`actions/checkout@v6`) {}
+    (catalog.`actions/setup-node@v6`) {
+      name = "Setup nodejs"
+      with {
+        `node-version` = "24.x"
+      }
+    }
+    new {
+      name = "Build"
+      run = "npm ci"
+    }
+    new {
+      name = "Test"
+      run = "npm test"
+    }
+  }
+}
+
+local testLicenses: Workflow.Job = new {
+  name = "Test license headers"
+  `runs-on` = "ubuntu-latest"
+  steps {
+    (catalog.`actions/checkout@v6`) {
+      with {
+        `fetch-depth` = 0
+      }
+    }
+    new {
+      name = "Install hawkeye"
+      // language=bash
+      run =
+        """
+        curl -L -o hawkeye.tar.xz https://github.com/korandoru/hawkeye/releases/download/v6.3.0/hawkeye-x86_64-unknown-linux-gnu.tar.xz
+        tar xf hawkeye.tar.xz
+        cp hawkeye-x86_64-unknown-linux-gnu/hawkeye .
+        """
+    }
+    new {
+      name = "Check licenses"
+      run = "./hawkeye check --fail-if-unknown"
+    }
+  }
+}
+
+local buildAndTest: Workflow = new {
+  jobs {
+    ["test-licenses"] = testLicenses
+    ["build-and-test"] = (baseJob) {
+      name = "Build and test"
+    }
+  }
+}
+
+local releaseToGithubJob: Workflow.Job = new {
+  name = "Create GitHub Release"
+  `runs-on` = "ubuntu-latest"
+  permissions {
+    contents = "write"
+  }
+  steps {
+    (catalog.`actions/checkout@v6`) {}
+    new {
+      name = "Publish release to GitHub"
+      env {
+        ["GH_TOKEN"] = context.github.token
+        ["GH_REPO"] = context.github.repository
+        ["GIT_TAG"] = context.github.refName
+      }
+      run =
+        #"""
+        # strip preceding "v"
+        VERSION="${GIT_TAG:1}"
+        EXPECTED_VERSION=$(jq -r .version package.json)
+
+        if [ "${EXPECTED_VERSION}" != "${VERSION}" ]; then
+          echo "Mismatching versions!"
+          echo "package.json has ${EXPECTED_VERSION}"
+          echo "Inferred version from Git tag is ${VERSION}"
+          echo "Use 'tree-sitter version ${VERSION}' to match the tag, and re-tag."
+          exit 1
+        fi
+
+        gh release create "${GIT_TAG}" \
+          --title "${GIT_TAG}" \
+          --verify-tag \
+          --notes ""
+        """#
+    }
+  }
+}
+
+local npmPublishJob: Workflow.Job = new {
+  name = "Publish to npm"
+  `runs-on` = "ubuntu-latest"
+  permissions {
+    contents = "read"
+    `id-token` = "write"
+  }
+  steps {
+    (catalog.`actions/checkout@v6`) {}
+    (catalog.`actions/setup-node@v6`) {
+      name = "Setup Node.js"
+      with {
+        `node-version` = "24.x"
+        `registry-url` = "https://registry.npmjs.org"
+        `package-manager-cache` = false
+      }
+    }
+    new {
+      name = "Build"
+      run = "npm ci"
+    }
+    new {
+      name = "Test"
+      run = "npm test"
+    }
+    new {
+      name = "Publish to npm"
+      run = "npm publish --provenance"
+    }
+  }
+}

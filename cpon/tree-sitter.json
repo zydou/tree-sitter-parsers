@@ -1,0 +1,39 @@
+{
+  "grammars": [
+    {
+      "name": "cpon",
+      "camelcase": "Cpon",
+      "scope": "source.cpon",
+      "path": ".",
+      "file-types": [
+        "cpon"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "cpon"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "ChainPack Object Notation (CPON) grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Fanda Vacek",
+        "email": "fvacek@elektroline.cz"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/amaanq/tree-sitter-cpon"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

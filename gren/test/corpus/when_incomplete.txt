@@ -1,0 +1,396 @@
+================================================================================
+When without branches followed by newline
+================================================================================
+
+-- Works in v4.5.0
+update msg =
+    when msg is
+
+--------------------------------------------------------------------------------
+
+(file
+  (line_comment)
+  (ERROR
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when)
+    (value_expr
+      (value_qid
+        (lower_case_identifier)))
+    (is)))
+
+================================================================================
+When without branches directly on file end without comment before update - Hangs in v4.5.0
+================================================================================
+
+update msg =
+    when msg is
+--------------------------------------------------------------------------------
+
+(file
+  (ERROR
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when)
+    (value_expr
+      (value_qid
+        (lower_case_identifier)))
+    (is)))
+
+================================================================================
+When without branches directly on file end with comment before update
+================================================================================
+
+-- Works in v4.5.0
+update msg =
+    when msg is
+--------------------------------------------------------------------------------
+
+(file
+  (line_comment)
+  (ERROR
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when)
+    (value_expr
+      (value_qid
+        (lower_case_identifier)))
+    (is)))
+
+================================================================================
+When without branches leading with one line comment at file end
+================================================================================
+
+-- Hangs in v4.5.0
+update msg =
+    -- one line comment
+    when msg is
+--------------------------------------------------------------------------------
+
+(file
+  (line_comment)
+  (ERROR
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (line_comment)
+    (when)
+    (value_expr
+      (value_qid
+        (lower_case_identifier)))
+    (is)))
+
+================================================================================
+When without branches leading with one line comment + newline
+================================================================================
+
+-- Works in v4.5.0
+update msg =
+    -- one line comment
+    when msg is
+
+--------------------------------------------------------------------------------
+
+(file
+  (line_comment)
+  (ERROR
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (line_comment)
+    (when)
+    (value_expr
+      (value_qid
+        (lower_case_identifier)))
+    (is)))
+
+================================================================================
+When without branches followed by new line + space + comment
+================================================================================
+
+-- Hangs in v4.5.0
+update msg =
+    when msg is
+ -- Need to use a comment with leading space, because testsuite is removing trailing spaces
+--------------------------------------------------------------------------------
+
+(file
+  (line_comment)
+  (ERROR
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when)
+    (value_expr
+      (value_qid
+        (lower_case_identifier)))
+    (is))
+  (line_comment))
+
+================================================================================
+When without branches followed by new line + without space + last line comment
+================================================================================
+
+-- Works in v4.5.0
+update msg =
+    when msg is
+        -- With the comment in the last line, now you can have as much
+        -- spaces as you want!
+-- Workaround: Add an one line comment without leading space at the end of file
+--------------------------------------------------------------------------------
+
+(file
+  (line_comment)
+  (ERROR
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when)
+    (value_expr
+      (value_qid
+        (lower_case_identifier)))
+    (is))
+  (line_comment)
+  (line_comment)
+  (line_comment))
+
+================================================================================
+When followed by comment: not fully indented
+================================================================================
+
+update msg =
+    when msg is
+        Ok _ ->
+            "Ok!"
+
+        Err _ ->
+            "Error!"
+
+-- This comment is not part of the when block
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (anything_pattern
+              (underscore))))
+        (arrow)
+        (string_constant_expr
+          (open_quote)
+          (regular_string_part)
+          (close_quote)))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (anything_pattern
+              (underscore))))
+        (arrow)
+        (string_constant_expr
+          (open_quote)
+          (regular_string_part)
+          (close_quote)))))
+  (line_comment))
+
+================================================================================
+When followed by comment: indented as sibling
+================================================================================
+
+update msg =
+    when msg is
+        Ok _ ->
+            "Ok!"
+
+        Err _ ->
+            "Error!"
+
+    -- This comment is parsed as a top-level comment.
+    -- gren-format too will format it to a toplevel comment.
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (anything_pattern
+              (underscore))))
+        (arrow)
+        (string_constant_expr
+          (open_quote)
+          (regular_string_part)
+          (close_quote)))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (anything_pattern
+              (underscore))))
+        (arrow)
+        (string_constant_expr
+          (open_quote)
+          (regular_string_part)
+          (close_quote)))))
+  (line_comment)
+  (line_comment))
+
+================================================================================
+When followed by comment: indented inside when
+================================================================================
+
+-- Correct in v4.5.0
+update msg =
+    when msg is
+        Ok _ ->
+            "Ok!"
+
+        Err _ ->
+            "Error!"
+
+        -- This comment is parsed as a top-level comment.
+        -- gren-format too will format it to a toplevel comment.
+--------------------------------------------------------------------------------
+
+(file
+  (line_comment)
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (anything_pattern
+              (underscore))))
+        (arrow)
+        (string_constant_expr
+          (open_quote)
+          (regular_string_part)
+          (close_quote)))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (anything_pattern
+              (underscore))))
+        (arrow)
+        (string_constant_expr
+          (open_quote)
+          (regular_string_part)
+          (close_quote)))))
+  (line_comment)
+  (line_comment))
+
+================================================================================
+When followed by comment: indented inside when branch
+================================================================================
+
+update msg =
+    when msg is
+        Ok _ ->
+            "Ok!"
+
+        Err _ ->
+            "Error!"
+
+            -- This comment is parsed as a top-level comment.
+            -- gren-format too will format it to a toplevel comment.
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (anything_pattern
+              (underscore))))
+        (arrow)
+        (string_constant_expr
+          (open_quote)
+          (regular_string_part)
+          (close_quote)))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (anything_pattern
+              (underscore))))
+        (arrow)
+        (string_constant_expr
+          (open_quote)
+          (regular_string_part)
+          (close_quote)))))
+  (line_comment)
+  (line_comment))

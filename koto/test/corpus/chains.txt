@@ -1,0 +1,278 @@
+===========================================================================================
+simple_dot_chain
+===========================================================================================
+
+a.b
+a.b.c.d.e.f
+
+---
+
+(module
+  (chain
+    start: (identifier)
+    lookup: (identifier)
+  )
+  (chain
+    start: (identifier)
+    lookup: (identifier)
+    lookup: (identifier)
+    lookup: (identifier)
+    lookup: (identifier)
+    lookup: (identifier)
+  )
+)
+
+===========================================================================================
+index_chain_1
+===========================================================================================
+
+a[1]
+a[1..]
+
+---
+
+(module
+  (chain
+    start: (identifier)
+    index: (number)
+  )
+  (chain
+    start: (identifier)
+    index: (range_from (number))
+  )
+)
+
+
+===========================================================================================
+index_chain_3
+===========================================================================================
+
+a[1][2][3]
+
+---
+
+(module
+  (chain
+    start: (identifier)
+    index: (number)
+    index: (number)
+    index: (number)
+  )
+)
+
+===========================================================================================
+call_without_parens_1
+===========================================================================================
+
+f x
+
+---
+
+(module
+  (call
+    function: (identifier)
+    (call_arg (identifier))
+  )
+)
+
+===========================================================================================
+call_without_parens_2
+===========================================================================================
+
+f x, y
+
+---
+
+(module
+  (call
+    function: (identifier)
+    (call_arg (identifier)) (call_arg (identifier))
+  )
+)
+
+===========================================================================================
+call_without_parens_3
+===========================================================================================
+
+f 1, 2, 3
+
+---
+
+(module
+  (call
+    function: (identifier)
+    (call_arg (number)) (call_arg (number)) (call_arg (number))
+  )
+)
+
+===========================================================================================
+call_without_parens_1_indented
+===========================================================================================
+
+f
+  x
+
+---
+
+(module
+  (call
+    function: (identifier)
+    (call_arg (identifier))
+  )
+)
+
+===========================================================================================
+call_without_parens_3_indented
+===========================================================================================
+
+f
+  1,
+  2,
+  3
+
+---
+
+(module
+  (call
+    function: (identifier)
+    (call_arg (number)) (call_arg (number)) (call_arg (number))
+  )
+)
+
+
+===========================================================================================
+call_without_parens_nested
+===========================================================================================
+
+f g 1, 2
+
+---
+
+(module
+  (call
+    function: (identifier)
+    (call_arg
+      (call
+        function: (identifier)
+        (call_arg (number)) (call_arg (number))
+      )
+    )
+  )
+)
+
+===========================================================================================
+call_with_parens
+===========================================================================================
+
+f(x)
+f(g(1, 2))
+
+---
+
+(module
+  (chain
+    start: (identifier)
+    call: (tuple (element (identifier)))
+  )
+  (chain
+    start: (identifier)
+    call: (tuple
+      (element
+        (chain
+          start: (identifier)
+          call: (tuple
+            (element (number))
+            (element (number))
+          )
+        )
+      )
+    )
+  )
+)
+
+===========================================================================================
+call_after_lookup
+===========================================================================================
+
+f.g x
+f.g.h x, y, z
+
+---
+
+(module
+  (chain
+    start: (identifier)
+    lookup: (identifier)
+    (call_arg (identifier))
+  )
+  (chain
+    start: (identifier)
+    lookup: (identifier)
+    lookup: (identifier)
+    (call_arg (identifier)) (call_arg (identifier)) (call_arg (identifier))
+  )
+)
+
+===========================================================================================
+dots_and_calls_single_line
+===========================================================================================
+
+a.b()
+a.b().c
+a.b().c()
+
+---
+
+(module
+  (chain
+    start: (identifier)
+    lookup: (identifier)
+    call: (tuple)
+  )
+  (chain
+    start: (identifier)
+    lookup: (identifier)
+    call: (tuple)
+    lookup: (identifier)
+  )
+  (chain
+    start: (identifier)
+    lookup: (identifier)
+    call: (tuple)
+    lookup: (identifier)
+    call: (tuple)
+  )
+)
+
+===========================================================================================
+dots_and_calls_multi_line
+===========================================================================================
+
+foo
+  .bar()
+
+---
+
+(module
+  (chain
+    start: (identifier)
+    lookup: (identifier)
+    call: (tuple)
+  )
+)
+
+===========================================================================================
+null_check
+===========================================================================================
+
+foo?.bar
+
+---
+
+(module
+  (chain
+    start: (identifier)
+    (null_check)
+    lookup: (identifier)
+  )
+)

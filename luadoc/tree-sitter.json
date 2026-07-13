@@ -1,0 +1,39 @@
+{
+  "grammars": [
+    {
+      "name": "luadoc",
+      "camelcase": "Luadoc",
+      "scope": "source.luadoc",
+      "path": ".",
+      "file-types": [
+        "luadoc"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "luadoc"
+    }
+  ],
+  "metadata": {
+    "version": "1.1.0",
+    "license": "MIT",
+    "description": "Luadoc grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Amaan Qureshi",
+        "email": "amaanq12@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/amaanq/tree-sitter-luadoc"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

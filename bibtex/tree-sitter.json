@@ -1,0 +1,36 @@
+{
+  "grammars": [
+    {
+      "name": "bibtex",
+      "camelcase": "Bibtex",
+      "scope": "source.bibtex",
+      "path": ".",
+      "file-types": [
+        "bib"
+      ],
+      "injection-regex": "bibtex"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter Grammar for BibTeX",
+    "authors": [
+      {
+        "name": "Patrick Förster",
+        "email": "patrick.foerster@outlook.de"
+      }
+    ],
+    "links": {
+      "repository": "git+https://github.com/latex-lsp/tree-sitter-bibtex.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

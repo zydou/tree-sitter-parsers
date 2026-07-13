@@ -1,0 +1,103 @@
+================================
+string concatenation - backslash
+================================
+
+char text[1028] = "This is a really long string of text that should be \
+    split over multiple lines for the sake of readability.";
+
+---
+
+(source_file
+  (global_variable_declaration
+    type: (type
+      (builtin_type)
+    )
+    (variable_declaration
+      name: (identifier)
+      (fixed_dimension
+        (int_literal)
+      )
+      initialValue: (string_literal)
+    )
+  )
+)
+
+
+===============================
+string concatenation - operator
+===============================
+
+char text[1028] = "a" ... 
+    "b";
+char text[1028] = "a"
+    ... "b";
+char text[1028] = "Version: " ... PLUGIN_VERSION;
+char text[1028] = "Version: " ... PLUGIN_VERSION ... " in development";
+
+---
+
+(source_file
+  (global_variable_declaration
+    type: (type
+      (builtin_type)
+    )
+    (variable_declaration
+      name: (identifier)
+      (fixed_dimension
+        (int_literal)
+      )
+      initialValue: (binary_expression
+        left: (string_literal)
+        right: (string_literal)
+      )
+    )
+  )
+  (global_variable_declaration
+    type: (type
+      (builtin_type)
+    )
+    (variable_declaration
+      name: (identifier)
+      (fixed_dimension
+        (int_literal)
+      )
+      initialValue: (binary_expression
+        left: (string_literal)
+        right: (string_literal)
+      )
+    )
+  )
+  (global_variable_declaration
+    type: (type
+      (builtin_type)
+    )
+    (variable_declaration
+      name: (identifier)
+      (fixed_dimension
+        (int_literal)
+      )
+      initialValue: (binary_expression
+        left: (string_literal)
+        right: (identifier)
+      )
+    )
+  )
+  (global_variable_declaration
+    type: (type
+      (builtin_type)
+    )
+    (variable_declaration
+      name: (identifier)
+      (fixed_dimension
+        (int_literal)
+      )
+      initialValue: (binary_expression
+        left: (binary_expression
+          left: (string_literal)
+          right: (identifier)
+        )
+        right: (string_literal)
+      )
+    )
+  )
+)

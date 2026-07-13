@@ -1,0 +1,67 @@
+# This workflow will
+# - test tree sitter grammar
+# - upload build native binaries as an artifact for each major platform
+# - download artifacts for each major platform and bundle them to be published
+#   to npm
+# when a new version tag is pushed to the master branch.
+name: Test Build Publish
+
+on:
+  push:
+    tags: [v*]
+
+jobs:
+
+  build_native_binaries:
+    strategy:
+      matrix:
+        # Use macos-14 for arm, however the artifact upload name conflicts with
+        # macos-latest. There's probably a way to crossbuild for arm with
+        # prebuildify.
+        #
+        # Disable windows for now.
+        #os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          node --version
+          npm --version
+          npm ci
+      - run: npm test
+      - run: npm run prebuild
+      # upload-artifact@v4 requires each artifact name to be unique.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prebuilds-${{ matrix.os }}
+          path: prebuilds
+          retention-days: 1
+
+
+  publish_npm:
+    needs: build_native_binaries
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          node --version
+          npm --version
+          npm ci
+      - run: npm test
+      # Download all artifacts and merge into prebuilds dir.
+      - uses: actions/download-artifact@v4
+        with:
+          path: prebuilds
+          pattern: prebuilds-*
+          merge-multiple: true
+      - run: ls -R prebuilds
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

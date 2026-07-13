@@ -1,0 +1,36 @@
+{
+  "grammars": [
+    {
+      "name": "awk",
+      "camelcase": "Awk",
+      "scope": "source.awk",
+      "path": ".",
+      "file-types": [
+        "awk",
+        "gawk"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.7.2",
+    "license": "MIT",
+    "description": "awk grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Beaglefoot",
+        "email": "ch-e-st@yandex.ru"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/Beaglefoot/tree-sitter-awk.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

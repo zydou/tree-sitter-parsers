@@ -1,0 +1,39 @@
+{
+  "grammars": [
+    {
+      "name": "inko",
+      "camelcase": "Inko",
+      "scope": "source.inko",
+      "path": ".",
+      "file-types": [
+        "inko"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "locals": [
+        "queries/locals.scm"
+      ],
+      "tags": [
+        "queries/tags.scm"
+      ],
+      "injection-regex": "^inko$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MPL-2.0",
+    "description": "Inko grammar for tree-sitter",
+    "links": {
+      "repository": "https://github.com/inko-lang/tree-sitter-inko"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

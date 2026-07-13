@@ -1,0 +1,247 @@
+=================
+struct definition
+=================
+
+struct Plugin
+{
+   public const char[] name;
+   public const char[] description;
+   public const char[] author;
+   public const char[] version;
+   public char[] url;
+};
+
+---
+
+(source_file
+  (struct
+    name: (identifier)
+    (struct_field
+      type: (type
+        (builtin_type)
+      )
+      type: (dimension)
+      name: (identifier)
+    )
+    (struct_field
+      type: (type
+        (builtin_type)
+      )
+      type: (dimension)
+      name: (identifier)
+    )
+    (struct_field
+      type: (type
+        (builtin_type)
+      )
+      type: (dimension)
+      name: (identifier)
+    )
+    (struct_field
+      type: (type
+        (builtin_type)
+      )
+      type: (dimension)
+      name: (identifier)
+    )
+    (struct_field
+      type: (type
+        (builtin_type)
+      )
+      type: (dimension)
+      name: (identifier)
+    )
+  )
+)
+
+
+=====================
+struct initialization
+=====================
+
+public Plugin myinfo =
+{
+    name = "Test",
+    author = "Developer",
+    description = "demonstrating parser" ... "with expressions",
+    version = PLUGIN_VERSION,
+    url = "http://forums.alliedmods.net"
+};
+
+---
+
+(source_file
+  (struct_declaration
+    type: (identifier)
+    name: (identifier)
+    value: (struct_constructor
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (binary_expression
+          left: (string_literal)
+          right: (string_literal)
+        )
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (identifier)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+    )
+  )
+)
+
+
+=================================
+struct initialization - old style
+=================================
+
+public Plugin:myinfo =
+{
+    name = "Test",
+    author = "Developer",
+    description = "demonstrating parser" ... "with expressions",
+    version = PLUGIN_VERSION,
+    url = "http://forums.alliedmods.net"
+};
+
+---
+
+(source_file
+  (struct_declaration
+    type: (identifier)
+    name: (identifier)
+    value: (struct_constructor
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (binary_expression
+          left: (string_literal)
+          right: (string_literal)
+        )
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (identifier)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+    )
+  )
+)
+
+
+==========================================
+struct initialization - optional semicolon
+==========================================
+
+public Plugin myinfo =
+{
+    name = "Test",
+    author = "Developer",
+    description = "demonstrating parser" ... "with expressions",
+    version = PLUGIN_VERSION,
+    url = "http://forums.alliedmods.net"
+}
+
+---
+
+(source_file
+  (struct_declaration
+    type: (identifier)
+    name: (identifier)
+    value: (struct_constructor
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (binary_expression
+          left: (string_literal)
+          right: (string_literal)
+        )
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (identifier)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+    )
+  )
+)
+
+
+======================================
+struct initialization - trailing comma
+======================================
+
+public Plugin myinfo =
+{
+    name = "Test",
+    author = "Developer",
+    description = "demonstrating parser" ... "with expressions",
+    version = PLUGIN_VERSION,
+    url = "http://forums.alliedmods.net",
+}
+
+---
+
+(source_file
+  (struct_declaration
+    type: (identifier)
+    name: (identifier)
+    value: (struct_constructor
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (binary_expression
+          left: (string_literal)
+          right: (string_literal)
+        )
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (identifier)
+      )
+      (struct_field_value
+        field: (identifier)
+        value: (string_literal)
+      )
+    )
+  )
+)

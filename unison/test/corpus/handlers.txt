@@ -1,0 +1,67 @@
+===
+[Handlers] one line
+===
+a = handle x with foo
+---
+(unison (term_declaration (term_definition (regular_identifier) (kw_equals) (handler (handle) (regular_identifier) (with) (regular_identifier)))))
+===
+[Handlers] multiline 1
+===
+a = handle
+      x = 23 + 42
+      x + foo 8 102.0 +4
+    with foo
+---
+(unison
+      (term_declaration
+        (term_definition
+            (regular_identifier)
+            (kw_equals)
+            (handler
+                (handle)
+                (term_declaration
+                    (term_definition
+                        (regular_identifier)
+                        (kw_equals)
+                        (nat)
+                        (operator)
+                        (nat)))
+                (regular_identifier)
+                (operator)
+                (regular_identifier)
+                (nat)
+                (float)
+                (int)
+                (with)
+                (regular_identifier)))))
+===
+[Handlers] multiline 2
+===
+a = handle
+      x = 1
+      x
+    with foo
+---
+(unison
+      (term_declaration (term_definition (regular_identifier) (kw_equals)
+            (handler (handle)
+                  (term_declaration (term_definition (regular_identifier) (kw_equals) (nat)))
+                  (regular_identifier)
+            (with) (regular_identifier)))))
+===
+[Handlers] with cases
+===
+a = handle foo with cases
+     { x } -> x
+---
+(unison
+      (term_declaration
+            (term_definition
+                  (regular_identifier)
+                  (kw_equals)
+                  (handler
+                        (handle)
+                        (regular_identifier)
+                        (with)
+                        (cases)
+                        (pattern (effect_pattern (effect_pure (var_or_nullary_ctor))) (arrow_symbol) (regular_identifier))))))

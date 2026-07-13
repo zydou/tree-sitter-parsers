@@ -1,0 +1,1367 @@
+========================================================
+local function with no arguments, no return inline block
+========================================================
+
+void MyFunc() {}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+=========================================================
+local function with no arguments, no return newline block
+=========================================================
+
+void MyFunc()
+{
+
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+==============
+stock function
+==============
+
+stock void MyFunc() {}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+===============
+static function
+===============
+
+static void MyFunc() {}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+=====================
+static stock function
+=====================
+
+static stock void MyFunc1() {}
+static      stock void MyFunc2() {}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+=====================
+stock static function
+=====================
+
+stock static void MyFunc1() {}
+stock     static void MyFunc2() {}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+====================
+builtin return types
+====================
+
+void MyFunc() { return; }
+int MyFunc1() { return 0; }
+float MyFunc2() { return 0.0; }
+char MyFunc3() { return 'a'; }
+bool MyFunc4() { return true; }
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement)
+    )
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (int_literal)
+      )
+    )
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (float_literal)
+      )
+    )
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (char_literal
+          (character)
+        )
+      )
+    )
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (bool_literal)
+      )
+    )
+  )
+)
+
+
+=================
+array return type
+=================
+
+int[] MyFunc() { return; }
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    returnType: (dimension)
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement)
+    )
+  )
+)
+
+
+==============================
+old style builtin return types
+==============================
+
+MyFunc0() { return 0; }
+_:MyFunc1() { return 0; }
+Float:MyFunc2() { return 0.0; }
+String:MyFunc3() { return 'a'; }
+bool:MyFunc4() { return true; }
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (int_literal)
+      )
+    )
+  )
+  (function_definition
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (int_literal)
+      )
+    )
+  )
+  (function_definition
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (float_literal)
+      )
+    )
+  )
+  (function_definition
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (char_literal
+          (character)
+        )
+      )
+    )
+  )
+  (function_definition
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (bool_literal)
+      )
+    )
+  )
+)
+
+
+======================
+identifier return type
+======================
+
+Handle MyFunc() { return INVALID_HANDLE; }
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (identifier)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (identifier)
+      )
+    )
+  )
+)
+
+
+==========================
+function with one argument
+==========================
+
+void MyFunc1(int args) {}
+void MyFunc2(float args) {}
+void MyFunc3(char args) {}
+void MyFunc4(bool args) {}
+void MyFunc4(Handle args) {}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (identifier)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+============================================
+function with one argument and default value
+============================================
+
+void MyFunc1(int args = 4) {}
+void MyFunc2(float args = 0.0) {}
+void MyFunc3(char args = 'a') {}
+void MyFunc4(bool args = false) {}
+void MyFunc5(Action args = Plugin_Handled) {}
+void MyFunc6(float vec[3] = {0.0, 0.0, 0.0}) {}
+void MyFunc7(int mode=FOO|BAR|BAZ) {}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (int_literal)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (float_literal)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (char_literal
+          (character)
+        )
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (bool_literal)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (identifier)
+        )
+        name: (identifier)
+        defaultValue: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (int_literal)
+        )
+        defaultValue: (array_literal
+          (float_literal)
+          (float_literal)
+          (float_literal)
+        )
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (binary_expression
+          left: (binary_expression
+            left: (identifier)
+            right: (identifier)
+          )
+          right: (identifier)
+        )
+      )
+    )
+    body: (block)
+  )
+)
+
+
+==================================================
+old - function with one argument and default value
+==================================================
+
+MyFunc0(args = 4) {}
+MyFunc1(_:args = 4) {}
+MyFunc2(Float:args = 0.0) {}
+MyFunc3(String:args = 'a') {}
+MyFunc4(bool:args = false) {}
+MyFunc5(Action:args = Plugin_Handled) {}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+        defaultValue: (int_literal)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (int_literal)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (float_literal)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (char_literal
+          (character)
+        )
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (bool_literal)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (identifier)
+        )
+        name: (identifier)
+        defaultValue: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+=============================================
+old - function with type casted default value
+=============================================
+
+MyFunc(bool:args = bool:4) {}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (old_type_cast
+          type: (old_type
+            (old_builtin_type)
+          )
+          value: (int_literal)
+        )
+      )
+    )
+    body: (block)
+  )
+)
+
+
+================================
+function with one array argument
+================================
+
+void MyFunc1(const int[] a) {}
+void MyFunc2(float[] a) {}
+void MyFunc3(const Handle[] a) {}
+void MyFunc4(Handle[] a) {}
+void MyFunc5(bool[][] a) {}
+void MyFunc6(const Handle[][] a) {}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (array_type
+          (type
+            (identifier)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (identifier)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (array_type
+          (type
+            (identifier)
+          )
+          (dimension)
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+===========================================
+function with argument passing by reference
+===========================================
+
+void MyFunc(int &a) {}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+=================================================
+old - function with argument passing by reference
+=================================================
+
+MyFunc(&a) {}
+MyFunc(&Float:a) {}
+static stock MD5Transform(buf[], input[]) {}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+        (dimension)
+      )
+      (parameter_declaration
+        name: (identifier)
+        (dimension)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+=======================================
+function with fixed size array argument
+=======================================
+
+void MyFunc(float vec[3]) {}
+void MyFunc(float vec[3][3]) {}
+void MyFunc(char vec[MAX_PATH]) {}
+void MyFunc(char vec[MAX_PATH][3]) {}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (int_literal)
+        )
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (int_literal)
+        )
+        (fixed_dimension
+          (int_literal)
+        )
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (identifier)
+        )
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (identifier)
+        )
+        (fixed_dimension
+          (int_literal)
+        )
+      )
+    )
+    body: (block)
+  )
+)
+
+
+================================
+old - function with one argument
+================================
+
+MyFunc0(args) {}
+MyFunc1(_:args) {}
+MyFunc2(Float:val) {}
+MyFunc3(String:char) {}
+MyFunc4(bool:condition) {}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+================================
+old - function with any argument
+================================
+
+MyFunc0(any:data) {}
+MyFunc1(args, any:data) {}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (any_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (any_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+================================
+function with multiple arguments
+================================
+
+void MyFunc(int a, float b, char c, bool d) {}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+======================================
+old - function with multiple arguments
+======================================
+
+void MyFunc(a, _:b, Float:c, String:d, bool:e) {}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+===========================
+function with rest argument
+===========================
+
+void MyFunc1(any ...) {}
+void MyFunc2(const char[] format, any ...) {}
+void MyFunc3(const char[] ...) {}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (rest_parameter
+        type: (type
+          (any_type)
+        )
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+      (rest_parameter
+        type: (type
+          (any_type)
+        )
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (rest_parameter
+        storage_class: (variable_storage_class)
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+      )
+    )
+    body: (block)
+  )
+)
+
+
+=================================
+old - function with rest argument
+=================================
+
+MyFunc1(any:...) {}
+MyFunc2(const String:format[], any:...) {}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (rest_parameter
+        type: (old_type
+          (any_type)
+        )
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        (dimension)
+      )
+      (rest_parameter
+        type: (old_type
+          (any_type)
+        )
+      )
+    )
+    body: (block)
+  )
+)
+
+
+=============================================
+old - function with fixed size array argument
+=============================================
+
+MyFunc2(const color[4]={255, 255, 255, 255}) {}
+public MyFunc2(color[4]) {}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_declarations
+      (parameter_declaration
+        (variable_storage_class)
+        (identifier)
+        (fixed_dimension
+          (int_literal)
+        )
+        (array_literal
+          (int_literal)
+          (int_literal)
+          (int_literal)
+          (int_literal)
+        )
+      )
+    )
+    (block)
+  )
+  (function_definition
+    (visibility)
+    (identifier)
+    (parameter_declarations
+      (parameter_declaration
+        (identifier)
+        (fixed_dimension
+          (int_literal)
+        )
+      )
+    )
+    (block)
+  )
+)

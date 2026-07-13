@@ -1,0 +1,8 @@
+*             text=auto
+
+bindings/**   linguist-generated=true
+src/**        linguist-generated=true
+Makefile      linguist-generated=true
+Package.swift linguist-generated=true
+binding.gyp   linguist-generated=true
+setup.py      linguist-generated=true

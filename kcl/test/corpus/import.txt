@@ -1,0 +1,90 @@
+================================================================================
+import statements
+================================================================================
+
+import k8s.api
+
+--------------------------------------------------------------------------------
+
+(module
+  (import_stmt
+    (dotted_name
+      (identifier)
+      (identifier))))
+
+================================================================================
+import statements with leading dot
+================================================================================
+
+import ..local.api
+
+--------------------------------------------------------------------------------
+
+(module
+  (import_stmt
+    (import_prefix)
+    (dotted_name
+      (identifier)
+      (identifier))))
+
+================================================================================
+import statements with as name
+================================================================================
+
+import k8s.api as k8s
+
+--------------------------------------------------------------------------------
+
+(module
+  (import_stmt
+    (dotted_name
+      (identifier)
+      (identifier))
+    (identifier)))
+
+================================================================================
+import statements with as name and leading dots
+================================================================================
+
+import ..local.api as local
+
+--------------------------------------------------------------------------------
+
+(module
+  (import_stmt
+    (import_prefix)
+    (dotted_name
+      (identifier)
+      (identifier))
+    (identifier)))
+
+================================================================================
+import statements with multiple files
+================================================================================
+
+import pkg1
+a = pkg1.foo + pkg1.bar + pkg1.baz
+
+--------------------------------------------------------------------------------
+
+(module
+  (import_stmt
+    (dotted_name
+      (identifier)))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (binary_expr
+      (binary_expr
+        (selector_expr
+          (identifier)
+          (select_suffix
+            (identifier)))
+        (selector_expr
+          (identifier)
+          (select_suffix
+            (identifier))))
+      (selector_expr
+        (identifier)
+        (select_suffix
+          (identifier))))))

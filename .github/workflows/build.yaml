@@ -1,0 +1,50 @@
+---
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions: write-all
+concurrency:
+  group: ${{inputs.name}}-${{inputs.target}}-${{inputs.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
+      - name: Download tree-sitter CLI
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          curl -o tree-sitter.tar.xz -L https://github.com/zydou/cli-tools/releases/download/tree-sitter/tree-sitter-x86_64-unknown-linux-musl-5e8760b.tar.xz
+          tar -xf tree-sitter.tar.xz -C "$HOME/.local/bin"
+          rm tree-sitter.tar.xz
+
+      - name: Download Neovim
+        run: |
+          mkdir -p "$HOME/.local/neovim"
+          curl -o nvim.tar.gz -L https://github.com/neovim/neovim-releases/releases/download/v0.10.4/nvim-linux-x86_64.tar.gz
+          tar -xf nvim.tar.gz -C "$HOME/.local/neovim" --strip-components=1
+          rm nvim.tar.gz
+
+      - name: Build Parsers
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 build.py
+          cd dist
+          tar czf parsers.tar.gz *
+          cd ..
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |-
+          gh release create "parsers" --notes "parsers" --title "parsers" --repo "${{github.repository}}" || true
+          gh release edit "parsers" --notes "parsers" --title "parsers" --repo "${{github.repository}}" || true
+          gh release upload "parsers" "./dist/*" --repo "${{github.repository}}" --clobber || true

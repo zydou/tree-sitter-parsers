@@ -1,0 +1,295 @@
+======
+Import
+======
+
+import base
+import base.print
+import base.range;;
+import base: print, range
+import base.*
+;
+print(42)
+
+---
+
+(source_file
+    (import
+        module: (identifier))
+    (import
+        module: (identifier)
+        symbol: (identifier))
+    (import
+        module: (identifier)
+        symbol: (identifier))
+    (import
+        module: (identifier)
+        symbol: (identifier)
+        symbol: (identifier))
+    (import
+        module: (identifier))
+    (expression
+        (invocation
+            name: (identifier)
+            arguments: (argument_list
+                (number)))))
+
+==============
+Invalid import
+==============
+
+import base.print
+print()
+import base.range
+
+---
+
+(source_file
+    (import
+        module: (identifier)
+        symbol: (identifier))
+    (expression
+        (invocation
+            name: (identifier)))
+    (expression
+        name: (identifier))
+    (expression
+        (refinement
+            name: (identifier)
+            property: (property_identifier))))
+
+======
+Return
+======
+
+fun test
+{
+    return 2
+    return
+    return; 2
+    return
+    2
+}
+
+---
+
+(source_file
+    (function_decl
+        (identifier)
+        (compound_statement
+            (return_statement
+                (number))
+            (return_statement)
+            (return_statement)
+            (expression
+                (number))
+            (return_statement
+                (number)))))
+
+=========================
+Single keyword statements
+=========================
+
+continue
+break
+fallthrough
+
+---
+
+(source_file
+    (continue_statement)
+    (break_statement)
+    (fallthrough_statement))
+
+===
+Do
+===
+
+do { }
+do { ; 1 }
+
+---
+
+(source_file
+    (do_statement
+        (compound_statement))
+    (do_statement
+        (compound_statement
+            (expression
+                (number)))))
+
+=====
+Defer
+=====
+
+defer { }
+defer { ; 1 }
+
+---
+
+(source_file
+    (defer_statement
+        (compound_statement))
+    (defer_statement
+        (compound_statement
+            (expression
+                (number)))))
+
+=====
+While
+=====
+
+while true {
+    break
+}
+
+---
+
+(source_file
+    (while_statement
+        (true)
+        (compound_statement
+            (break_statement))))
+
+====
+Loop
+====
+
+loop {
+    print(2/*hello*/)
+}
+
+---
+
+(source_file
+    (loop_statement
+        (compound_statement
+            (expression
+                (invocation
+                    (identifier)
+                    (argument_list
+                        (number))
+                    (comment))))))
+
+======
+Repeat
+======
+
+repeat {
+    const a = 1
+} while 2 < 3 * 4
+
+---
+
+(source_file
+    (repeat_statement
+        (compound_statement
+            (expression
+                (variable_definition
+                    (const_list
+                        (variable_decl (identifier)))
+                        (number))))
+        (binary_expression
+            (number)
+            (comparison_operator)
+            (binary_expression
+                (number)
+                (multiplicative_operator)
+                (number)))))
+
+===
+Try
+===
+
+try {
+    print()
+}
+catch const e {
+    print(e)
+}
+
+---
+
+(source_file
+    (try_statement
+        (compound_statement
+            (expression
+                (invocation
+                    (identifier))))
+        (catch_clause
+            (variable_decl (identifier))
+            (compound_statement
+                (expression
+                    (invocation
+                        (identifier)
+                        (argument_list
+                            (identifier))))))))
+
+===
+For
+===
+
+for const x in range() {
+    print(x)
+}
+
+---
+
+(source_file
+    (for_statement
+        (const_list
+            (variable_decl (identifier)))
+        (invocation
+            (identifier))
+        (compound_statement
+            (expression
+                (invocation
+                    (identifier)
+                    (argument_list
+                        (identifier)))))))
+
+====
+With
+====
+
+with const f = open() {
+    print(f)
+}
+
+---
+
+(source_file
+    (with_statement
+        (with_object_expression
+            (variable_decl (identifier))
+            (invocation
+                (identifier)))
+        (compound_statement
+            (expression
+                (invocation
+                    (identifier)
+                    (argument_list
+                        (identifier)))))))
+
+======
+Switch
+======
+
+switch 1 {
+    case 2 { fallthrough }
+    default { break }
+    case 3 { break }
+}
+
+---
+
+(source_file
+    (switch_statement
+        (number)
+        (switch_case
+            (number)
+            (fallthrough_statement))
+        (default_case
+            (break_statement))
+        (switch_case
+            (number)
+            (break_statement))))

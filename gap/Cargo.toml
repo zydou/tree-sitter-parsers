@@ -1,0 +1,32 @@
+[package]
+name = "tree-sitter-gap"
+description = "gap grammar for tree-sitter"
+version = "0.3.1"
+authors = ["Max Horn", "Reinis Cirpons <rc234@st-andrews.ac.uk>"]
+keywords = ["incremental", "parsing", "gap", "gap-system"]
+categories = ["parsing", "text-editors"]
+repository = "https://github.com/gap-system/tree-sitter-gap"
+edition = "2021"
+license = "MIT"
+readme = "README.md"
+
+build = "bindings/rust/build.rs"
+include = [
+  "bindings/rust/*",
+  "grammar.js",
+  "queries/*",
+  "src/*",
+  "tree-sitter.json"
+]
+
+[lib]
+path = "bindings/rust/lib.rs"
+
+[dependencies]
+tree-sitter-language = "0.1"
+
+[build-dependencies]
+cc = "1.0"
+
+[dev-dependencies]
+tree-sitter = "0.23"

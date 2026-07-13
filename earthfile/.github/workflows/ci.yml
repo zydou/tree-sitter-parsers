@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+  schedule:
+    - cron: '20 7 * * *'
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-14]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: tree-sitter/setup-action/cli@v1
+      - uses: tree-sitter/parser-test-action@v2
+        with:
+          test-node: true
+          test-rust: ${{ matrix.os != 'windows-latest' }}
+          test-python: true
+      - uses: tree-sitter/parse-action@v3
+        with:
+          files: |-
+            test/earthly/**

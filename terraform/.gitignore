@@ -1,0 +1,9 @@
+node_modules
+queries
+build
+target
+npm-debug.log
+log.html
+.env
+.DS_Store
+/.build

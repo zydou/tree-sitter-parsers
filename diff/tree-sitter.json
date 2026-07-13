@@ -1,0 +1,34 @@
+{
+  "grammars": [
+    {
+      "name": "diff",
+      "camelcase": "Diff",
+      "scope": "source.diff",
+      "path": ".",
+      "file-types": [
+        "diff"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "A tree-sitter grammar for diffs",
+    "authors": [
+      {
+        "name": "the-mikedavis"
+      }
+    ],
+    "links": {
+      "repository": "git+https://github.com/the-mikedavis/tree-sitter-diff.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

@@ -1,0 +1,36 @@
+rel material:binding:collection:Erasers
+# <- type
+#   ^ namespace
+#           ^ punctuation.delimiter
+#            ^ namespace
+#                   ^ punctuation.delimiter
+#                    ^ namespace
+#                              ^ punctuation.delimiter
+#                               ^ variable
+
+rel material:binding:collection:Erasers = None
+# <- type
+#   ^ namespace
+#           ^ punctuation.delimiter
+#            ^ namespace
+#                   ^ punctuation.delimiter
+#                    ^ namespace
+#                              ^ punctuation.delimiter
+#                               ^ variable
+#                                         ^ constant.builtin
+
+rel foo = </foo/child>
+# <- type
+#   ^ variable
+#         ^ string.special
+
+rel material:binding:collection:Erasers = [
+# <- type
+#   ^ namespace
+    </foo/child>,
+#   ^ string.special
+    <../relative_1/thing>,
+#   ^ string.special
+    <relative_2/thing>
+#   ^ string.special
+]

@@ -1,0 +1,39 @@
+{
+  "grammars": [
+    {
+      "name": "firrtl",
+      "camelcase": "Firrtl",
+      "scope": "source.firrtl",
+      "path": ".",
+      "file-types": [
+        "fir"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "firrtl"
+    }
+  ],
+  "metadata": {
+    "version": "0.8.0",
+    "license": "Apache-2.0",
+    "description": "FIRRTL grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Aliaksei Chapyzhenka",
+        "email": "alex.drom@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/chipsalliance/tree-sitter-firrtl"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

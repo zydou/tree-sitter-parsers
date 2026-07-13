@@ -1,0 +1,357 @@
+===============================================================================
+Directive parameters on one line
+===============================================================================
+
+rule:
+  input: 1, 2, "a"
+  "docstring"
+
+-------------------------------------------------------------------------------
+
+(module
+  (rule_definition
+    (rule_body
+      (directive
+        (directive_parameters
+          (integer)
+          (integer)
+          (string (string_start) (string_content) (string_end))))
+      (string (string_start) (string_content) (string_end)))))
+
+
+===============================================================================
+Directive parameters indented
+===============================================================================
+
+rule:
+  input:
+    1, 2,
+    "a"
+  "docstring"
+
+-------------------------------------------------------------------------------
+
+(module
+  (rule_definition
+    (rule_body
+      (directive
+        (directive_parameters
+          (integer)
+          (integer)
+          (string (string_start) (string_content) (string_end))))
+      (string (string_start) (string_content) (string_end)))))
+
+
+===============================================================================
+Directive parameters with continued indented line
+===============================================================================
+
+rule:
+  input: 1, 2,
+    3,
+    "a"
+  "docstring"
+  output: 1, 2,,  # no trailing comma allowed with this form
+    3
+
+-------------------------------------------------------------------------------
+
+(module
+  (rule_definition
+    (rule_body
+      (directive
+        (directive_parameters
+          (integer)
+          (integer)
+          (integer)
+          (string (string_start) (string_content) (string_end))))
+    (string (string_start) (string_content) (string_end))
+      (directive
+        (directive_parameters
+          (integer) (integer) (ERROR) (comment) (integer)))
+)))
+
+
+===============================================================================
+Directive parameters with trailing comma
+===============================================================================
+
+rule:
+  input: 1, "a",
+  "docstring"
+  input: 1,
+    2,
+  input:
+    1, 2,
+  input:
+    1, 2,
+    3,
+
+-------------------------------------------------------------------------------
+
+(module
+  (rule_definition
+    (rule_body
+      (directive
+       (directive_parameters
+        (integer)
+        (string (string_start) (string_content) (string_end))))
+    (string (string_start) (string_content) (string_end))
+      (directive
+       (directive_parameters
+        (integer)
+        (integer)))
+      (directive
+       (directive_parameters
+        (integer)
+        (integer)))
+      (directive
+       (directive_parameters
+        (integer)
+        (integer)
+        (integer)))
+)))
+
+
+===============================================================================
+Directive parameters can not contain multiple trailing commas
+:error
+===============================================================================
+
+rule:
+  input: 1, 2, ,
+
+
+===============================================================================
+Concatenated docstring
+===============================================================================
+
+rule:
+  "docstring1" "docstring2"
+  input: "a"
+
+-------------------------------------------------------------------------------
+
+(module
+  (rule_definition
+    (rule_body
+      (concatenated_string
+        (string (string_start) (string_content) (string_end))
+        (string (string_start) (string_content) (string_end)))
+      (directive
+       (directive_parameters
+         (string (string_start) (string_content) (string_end)))))))
+
+
+===============================================================================
+Rule definition
+===============================================================================
+
+rule all:
+  "Docstring"
+  input: a, b
+  output: b,c
+  params: a = 1
+  log: a
+  benchmark: a
+  cache: a
+  message: a
+  threads: a
+  resources: a
+  conda: a
+  container: a
+  singularity: a
+  run:
+    if a:
+      pass
+  shell: a
+  script: a
+  notebook: a
+  shadow: a
+  priority: 1
+  retries: 2
+  cwl: a
+  localrule: False
+  handover: True
+  wrapper: a
+  wildcard_constraints:
+    a = "x"
+  template_engine:
+    "jinja2"
+  default_target: True
+  envmodules: "a"
+  group: "a"
+
+-------------------------------------------------------------------------------
+
+(module
+  (rule_definition
+    name: (identifier)
+    body: (rule_body
+      (string (string_start) (string_content) (string_end))
+      (directive
+        arguments: (directive_parameters
+          (identifier)
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (keyword_argument
+            name: (identifier)
+            value: (integer))))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        body: (block
+          (if_statement
+            condition: (identifier)
+            consequence: (block
+              (pass_statement)))))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (integer)))
+      (directive
+        arguments: (directive_parameters
+          (integer)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (false)))
+      (directive
+        arguments: (directive_parameters
+          (true)))
+      (directive
+        arguments: (directive_parameters
+          (identifier)))
+      (directive
+        arguments: (directive_parameters
+          (keyword_argument
+            name: (identifier)
+            value: (string (string_start) (string_content) (string_end)))))
+      (directive
+        arguments: (directive_parameters
+          (string (string_start) (string_content) (string_end))))
+      (directive
+        arguments: (directive_parameters
+          (true)))
+      (directive
+        arguments: (directive_parameters
+          (string (string_start) (string_content) (string_end))))
+      (directive
+        arguments: (directive_parameters
+          (string (string_start) (string_content) (string_end))))
+    )
+  )
+)
+
+
+===============================================================================
+Checkpoint definition
+===============================================================================
+
+checkpoint a:
+  output: "b"
+
+-------------------------------------------------------------------------------
+
+(module
+ (checkpoint_definition
+  (identifier)
+  (rule_body
+   (directive
+    (directive_parameters
+     (string (string_start) (string_content) (string_end)))))))
+
+
+===============================================================================
+Rule with comments
+===============================================================================
+
+rule:
+# comment
+  input: 1, 2, "a"
+  # comment
+  "docstring"
+  output: #comment
+    # comment
+    1
+  params:
+# comment
+  #comment
+    # comment
+    1
+  output: "a", "b",
+# comment
+    9
+
+-------------------------------------------------------------------------------
+
+(module
+  (rule_definition
+    (comment)
+    (rule_body
+      (directive
+        (directive_parameters
+          (integer)
+          (integer)
+          (string (string_start) (string_content) (string_end))))
+      (comment)
+      (string (string_start) (string_content) (string_end))
+      (directive
+        (directive_parameters
+          (comment) (comment)
+          (integer)))
+      (directive
+        (directive_parameters
+          (comment) (comment) (comment)
+          (integer)))
+      (directive
+        (directive_parameters
+          (string (string_start) (string_content) (string_end))
+          (string (string_start) (string_content) (string_end))
+          (comment)
+          (integer)))
+    )
+))

@@ -1,0 +1,160 @@
+===========================================================================================
+function_without_body
+===========================================================================================
+
+||
+|a, b|
+|| -> Bool
+
+---
+
+(module
+  (function (args))
+  (function
+    (args
+      (arg (variable (identifier)))
+      (arg (variable (identifier)))
+    )
+  )
+  (function
+    (args)
+    (type (identifier))
+  )
+)
+
+===========================================================================================
+function_inline
+===========================================================================================
+
+|| null
+|a, b, c| 1 + 2
+
+---
+
+(module
+  (function
+    (args)
+    body: (null)
+  )
+  (function
+    (args
+      (arg (variable (identifier)))
+      (arg (variable (identifier)))
+      (arg (variable (identifier)))
+    )
+    body: (binary_op (number) (number))
+  )
+)
+
+===========================================================================================
+function_with_default_arg
+===========================================================================================
+
+|a = 1| null
+|a = [], b = 'hello', c = true, d = 1..2| null
+
+---
+
+(module
+  (function
+    (args
+      (arg (variable (identifier)) (default (number)))
+    )
+    body: (null)
+  )
+  (function
+    (args
+      (arg (variable (identifier)) (default (list)))
+      (arg (variable (identifier)) (default (string)))
+      (arg (variable (identifier)) (default (true)))
+      (arg (variable (identifier)) (default (range (number) (number))))
+    )
+    body: (null)
+  )
+)
+
+===========================================================================================
+function_block
+===========================================================================================
+
+||
+  true
+|a, b| -> Number
+  a + b
+|x| -> Number?
+  x * x
+
+---
+
+(module
+  (function
+    (args)
+    body: (block (true))
+  )
+  (function
+    (args
+      (arg (variable (identifier)))
+      (arg (variable (identifier)))
+    )
+    (type (identifier))
+    body: (block (binary_op (identifier) (identifier)))
+  )
+  (function
+    (args
+      (arg (variable (identifier)))
+    )
+    (type (identifier))
+    body: (block (binary_op (identifier) (identifier)))
+  )
+)
+
+===========================================================================================
+function_arg_unpacking
+===========================================================================================
+
+|a, b, ...| true
+|a, (b, c...) = (1, 2)| true
+|[...x, (...y)]| true
+
+---
+
+(module
+  (function
+    (args
+      (arg (variable (identifier)))
+      (arg (variable (identifier)))
+      (arg (ellipsis))
+    )
+    body: (true)
+  )
+  (function
+    (args
+      (arg (variable (identifier)))
+      (arg
+        (tuple
+          (arg (variable (identifier)))
+          (arg (identifier) (ellipsis))
+        )
+        (default
+          (tuple
+            (element (number))
+            (element (number))
+          )
+        )
+      )
+    )
+    body: (true)
+  )
+  (function
+    (args
+      (arg (list
+        (arg (ellipsis) (identifier))
+        (arg (tuple
+          (arg (ellipsis) (identifier))
+        ))
+      ))
+    )
+    body: (true)
+  )
+)
+

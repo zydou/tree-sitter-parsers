@@ -1,0 +1,42 @@
+# SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+#
+# SPDX-License-Identifier: MIT
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tree-sitter-t32"
+description = "Lauterbach TRACE32® script language grammar for Tree-sitter"
+version = "5.0.3"
+keywords = [
+  "lexer",
+  "incremental",
+  "parsing",
+  "tree-sitter",
+  "trace32",
+  "t32",
+  "lauterbach",
+  "practice"
+]
+classifiers = [
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Software Development :: Compilers",
+  "Topic :: Text Processing :: Linguistic",
+  "Typing :: Typed"
+]
+requires-python = ">=3.8"
+license.text = "MIT"
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://codeberg.org/xasc/tree-sitter-t32"
+
+[project.optional-dependencies]
+core = ["tree-sitter~=0.24"]
+
+[tool.cibuildwheel]
+build = "cp38-*"
+build-frontend = "build"

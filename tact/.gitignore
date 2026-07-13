@@ -1,0 +1,74 @@
+# Rust artifacts
+/target/
+
+# Node artifacts
+/build/
+/prebuilds/
+/node_modules/
+
+# Swift artifacts
+/.build/
+
+# Go artifacts
+_obj/
+
+# Python artifacts
+/dist/
+.venv/
+*.egg-info
+*.whl
+
+# Zig artifacts
+/zig-cache/
+/zig-out/
+
+# C artifacts
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.pc
+*.exp
+*.lib
+
+# Zig artifacts
+.zig-cache/
+zig-cache/
+zig-out/
+
+# Grammar volatiles
+*.wasm
+*.obj
+*.o
+
+# Archives
+*.tar.gz
+*.tgz
+*.zip
+
+# Example dirs
+/examples/*/
+
+# tree-sitter
+tree-sitter-cli
+tree-sitter
+
+# misc
+log.html
+/*.tact
+!/test/sample/*.tact
+!/test/highlight/*.tact
+!/test/tags/*.tact
+
+# for formatting queries for Neovim
+/nvim-treesitter
+
+# Editors
+.vscode/
+.idea/
+.helix/
+.vim/
+
+# Emscripten SDK
+/emsdk

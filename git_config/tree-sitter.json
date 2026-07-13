@@ -1,0 +1,35 @@
+{
+  "grammars": [
+    {
+      "name": "git-config",
+      "camelcase": "GitConfig",
+      "scope": "source.git-config",
+      "path": ".",
+      "file-types": [
+        "gitconfig",
+        ".gitmodules"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "A tree-sitter grammar for git's configuration language",
+    "authors": [
+      {
+        "name": "the-mikedavis"
+      }
+    ],
+    "links": {
+      "repository": "git+https://github.com/the-mikedavis/tree-sitter-git-config.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

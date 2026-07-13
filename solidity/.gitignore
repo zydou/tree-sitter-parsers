@@ -1,0 +1,13 @@
+# Yarn Integrity file
+.yarn-integrity
+
+
+# Dependency directories
+node_modules/
+
+.vscode/
+
+# Rust
+Cargo.lock
+target
+build

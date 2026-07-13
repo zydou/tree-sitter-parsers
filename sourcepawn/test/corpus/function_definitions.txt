@@ -1,0 +1,732 @@
+========
+forwards
+========
+
+forward void MyFunc1();
+forward int MyFunc2();
+forward float MyFunc3();
+forward char MyFunc4();
+forward bool MyFunc5();
+forward Action MyFunc6();
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (identifier)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+)
+
+
+================================
+forward functions with arguments
+================================
+
+forward void MyFunc1(int a);
+forward void MyFunc2(int a, float b, char c, bool d);
+forward void MyFunc3(Handle a);
+forward void MyFunc4(const char[] a);
+forward void MyFunc5(int &a);
+forward void MyFunc6(int a = 0);
+forward void MyFunc7(float a[3]);
+forward void MyFunc8(char a[MAX_PATH]);
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (identifier)
+        )
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        defaultValue: (int_literal)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (int_literal)
+        )
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (identifier)
+        )
+      )
+    )
+  )
+)
+
+
+============================
+forward functions - oldstyle
+============================
+
+forward MyFunc1();
+forward _:MyFunc2();
+forward Float:MyFunc3();
+forward String:MyFunc4();
+forward bool:MyFunc5();
+forward Action:MyFunc6();
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (identifier)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+)
+
+
+======================================
+old - forward functions with arguments
+======================================
+
+forward MyFunc1(a);
+forward MyFunc2(_:a, Float:b, String:c, bool:d);
+forward MyFunc3(Handle:a);
+forward MyFunc4(const String:a[]);
+forward MyFunc5(&a);
+forward MyFunc6(&Float:a);
+forward MyFunc7(a = 0);
+forward MyFunc8(Float:a[3]);
+forward MyFunc9(String:a[MAX_PATH]);
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (identifier)
+        )
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        (dimension)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+        defaultValue: (int_literal)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (int_literal)
+        )
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (identifier)
+        )
+      )
+    )
+  )
+)
+
+
+=========================================
+old - forward functions with any argument
+=========================================
+
+forward void MyFunc1(any:data);
+forward void MyFunc2(_:client, any:data);
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (any_type)
+        )
+        name: (identifier)
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (any_type)
+        )
+        name: (identifier)
+      )
+    )
+  )
+)
+
+
+=================================
+forward functions - rest argument
+=================================
+
+forward void MyFunc(any ...);
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (rest_parameter
+        type: (type
+          (any_type)
+        )
+      )
+    )
+  )
+)
+
+
+======================================
+forward functions - optional semicolon
+======================================
+
+forward void MyFunc()
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+)
+
+
+================
+native functions
+================
+
+native void MyFunc1();
+native int MyFunc2();
+native float MyFunc3();
+native char MyFunc4();
+native bool MyFunc5();
+native Action MyFunc6();
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (identifier)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+)
+
+
+======================
+old - native functions
+======================
+
+native MyFunc1();
+native _:MyFunc2();
+native Float:MyFunc3();
+native String:MyFunc4();
+native bool:MyFunc5();
+native Action:MyFunc6();
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (old_type
+      (identifier)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+)
+
+
+================================
+native functions - rest argument
+================================
+
+native void MyFunc1(int ...);
+native void MyFunc2(const char[] format, any ...);
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (rest_parameter
+        type: (type
+          (builtin_type)
+        )
+      )
+    )
+  )
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+      (rest_parameter
+        type: (type
+          (any_type)
+        )
+      )
+    )
+  )
+)
+
+
+=====================================
+native functions - optional semicolon
+=====================================
+
+native void MyFunc()
+
+---
+
+(source_file
+  (function_declaration
+    kind: (function_declaration_kind)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+  )
+)

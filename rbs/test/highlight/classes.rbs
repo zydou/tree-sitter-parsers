@@ -1,0 +1,79 @@
+use RBS::TypeName as TN
+ # <- keyword
+     # <- namespace
+           # <- type
+                   # <- keyword
+
+class Foo[A]
+  # <- keyword
+        # <- type
+          # <- constant
+  def foo: (String) -> String
+   # <- keyword.function
+      # <- method
+              # <- type
+                        # <- type
+
+  include Mod1
+    # <- function.method
+  extend Mod2
+    # <- function.method
+  prepend Mod3
+    # <- function.method
+
+  attr_reader id: Integer | nil
+    # <- keyword
+              # <- method
+                    # <- type
+                          # <- operator
+  @ids: Array[Integer]
+   # <- property
+                # <- type
+  @sym: :foo
+          # <- symbol
+  @str: "foo"
+          # <- string
+  @escape: "foo\nbar"
+              # <- string
+                # <- string.escape
+                  # <- string
+  @int: 42
+         # <- number
+
+  @record: { foo: String, "hoge" => Integer }
+             # <- symbol
+
+  def success?: () -> bool
+      # <- method
+
+  %a{pure} def self.bar: (String string) -> String
+      # <- attribute
+                # <- variable.builtin
+                                   # <- parameter
+                                          # <- operator
+
+  def keyword_arg: (a: bool, b: untyped, **Hash opts) -> void
+                    # <- parameter
+                        # <- type.builtin
+                                  # <- type.builtin
+                                                 # <- parameter
+                                                          # <- type.builtin
+end
+ # <- keyword
+
+$global: boolean
+  # <- property
+              # <- type
+
+type newString = String
+  # <- keyword
+      # <- type
+               # <- operator
+
+CONST: String
+ # <- constant
+
+interface _Bar
+  # <- keyword
+          # <- type
+end

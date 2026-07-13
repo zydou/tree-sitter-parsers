@@ -1,0 +1,34 @@
+{
+  "grammars": [
+    {
+      "name": "http",
+      "camelcase": "Http",
+      "scope": "source_file.http",
+      "path": ".",
+      "file-types": [
+        "http"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "3.0.0",
+    "license": "MIT",
+    "description": "Treesitter parser for http files",
+    "authors": [
+      {
+        "name": "NTBBloodbath"
+      }
+    ],
+    "links": {
+      "repository": "git+https://github.com/rest-nvim/tree-sitter-http.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

@@ -1,0 +1,51 @@
+==================
+Complex list rendering
+==================
+
+<view
+  wx:for="{{items}}"
+  wx:for-item="row"
+  wx:for-index="idx"
+  wx:key="id"
+>
+  <text>{{idx}}: {{row.title}}</text>
+</view>
+
+---
+
+(document
+  (element
+    (start_tag
+      (tag_name)
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (interpolation
+            (interpolation_start)
+            (expression)
+            (interpolation_end))))
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value))
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value))
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value)))
+    (element
+      (start_tag
+        (tag_name))
+      (interpolation
+        (interpolation_start)
+        (expression)
+        (interpolation_end))
+      (text)
+      (interpolation
+        (interpolation_start)
+        (expression)
+        (interpolation_end))
+      (end_tag
+        (tag_name)))
+    (end_tag
+      (tag_name))))

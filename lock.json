@@ -1,0 +1,2939 @@
+{
+  "description": "Pinned tree-sitter parser sources. Each entry locks a commit hash for reproducible builds.",
+  "parsers": {
+    "ada": {
+      "owner": "briot",
+      "repo": "tree-sitter-ada",
+      "host": "github.com",
+      "commit": "e8e2515465cc2d7c444498e68bdb9f1d86767f95",
+      "location": "",
+      "url": "https://github.com/briot/tree-sitter-ada",
+      "source": "https://github.com/briot/tree-sitter-ada/archive/e8e2515465cc2d7c444498e68bdb9f1d86767f95.tar.gz"
+    },
+    "agda": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-agda",
+      "host": "github.com",
+      "commit": "b9b32fa042c2952a7bfca86847ea325e44ccc897",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-agda",
+      "source": "https://github.com/tree-sitter/tree-sitter-agda/archive/b9b32fa042c2952a7bfca86847ea325e44ccc897.tar.gz"
+    },
+    "angular": {
+      "owner": "dlvandenberg",
+      "repo": "tree-sitter-angular",
+      "host": "github.com",
+      "commit": "843525141575e397541e119698f0532755e959f6",
+      "location": "",
+      "url": "https://github.com/dlvandenberg/tree-sitter-angular",
+      "source": "https://github.com/dlvandenberg/tree-sitter-angular/archive/843525141575e397541e119698f0532755e959f6.tar.gz"
+    },
+    "apex": {
+      "owner": "aheber",
+      "repo": "tree-sitter-sfapex",
+      "host": "github.com",
+      "commit": "3597575a429766dd7ecce9f5bb97f6fec4419d5d",
+      "location": "apex",
+      "url": "https://github.com/aheber/tree-sitter-sfapex",
+      "source": "https://github.com/aheber/tree-sitter-sfapex/archive/3597575a429766dd7ecce9f5bb97f6fec4419d5d.tar.gz"
+    },
+    "arduino": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-arduino",
+      "host": "github.com",
+      "commit": "017696bdf47ca2b10948c5a511f9ab387722d0f3",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-arduino",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-arduino/archive/017696bdf47ca2b10948c5a511f9ab387722d0f3.tar.gz"
+    },
+    "asm": {
+      "owner": "RubixDev",
+      "repo": "tree-sitter-asm",
+      "host": "github.com",
+      "commit": "04962e15f6b464cf1d75eada59506dc25090e186",
+      "location": "",
+      "url": "https://github.com/RubixDev/tree-sitter-asm",
+      "source": "https://github.com/RubixDev/tree-sitter-asm/archive/04962e15f6b464cf1d75eada59506dc25090e186.tar.gz"
+    },
+    "astro": {
+      "owner": "virchau13",
+      "repo": "tree-sitter-astro",
+      "host": "github.com",
+      "commit": "0ad33e32ae9726e151d16ca20ba3e507ff65e01f",
+      "location": "",
+      "url": "https://github.com/virchau13/tree-sitter-astro",
+      "source": "https://github.com/virchau13/tree-sitter-astro/archive/0ad33e32ae9726e151d16ca20ba3e507ff65e01f.tar.gz"
+    },
+    "authzed": {
+      "owner": "mleonidas",
+      "repo": "tree-sitter-authzed",
+      "host": "github.com",
+      "commit": "1dec7e1af96c56924e3322cd85fdce15d0a31d00",
+      "location": "",
+      "url": "https://github.com/mleonidas/tree-sitter-authzed",
+      "source": "https://github.com/mleonidas/tree-sitter-authzed/archive/1dec7e1af96c56924e3322cd85fdce15d0a31d00.tar.gz"
+    },
+    "awk": {
+      "owner": "Beaglefoot",
+      "repo": "tree-sitter-awk",
+      "host": "github.com",
+      "commit": "34bbdc7cce8e803096f47b625979e34c1be38127",
+      "location": "",
+      "url": "https://github.com/Beaglefoot/tree-sitter-awk",
+      "source": "https://github.com/Beaglefoot/tree-sitter-awk/archive/34bbdc7cce8e803096f47b625979e34c1be38127.tar.gz"
+    },
+    "bash": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-bash",
+      "host": "github.com",
+      "commit": "0c46d792d54c536be5ff7eb18eb95c70fccdb232",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-bash",
+      "source": "https://github.com/tree-sitter/tree-sitter-bash/archive/0c46d792d54c536be5ff7eb18eb95c70fccdb232.tar.gz"
+    },
+    "bass": {
+      "owner": "vito",
+      "repo": "tree-sitter-bass",
+      "host": "github.com",
+      "commit": "28dc7059722be090d04cd751aed915b2fee2f89a",
+      "location": "",
+      "url": "https://github.com/vito/tree-sitter-bass",
+      "source": "https://github.com/vito/tree-sitter-bass/archive/28dc7059722be090d04cd751aed915b2fee2f89a.tar.gz"
+    },
+    "beancount": {
+      "owner": "polarmutex",
+      "repo": "tree-sitter-beancount",
+      "host": "github.com",
+      "commit": "9bc460a05b5f096d69568b5fb36105032ff4ff97",
+      "location": "",
+      "url": "https://github.com/polarmutex/tree-sitter-beancount",
+      "source": "https://github.com/polarmutex/tree-sitter-beancount/archive/9bc460a05b5f096d69568b5fb36105032ff4ff97.tar.gz"
+    },
+    "bibtex": {
+      "owner": "latex-lsp",
+      "repo": "tree-sitter-bibtex",
+      "host": "github.com",
+      "commit": "ccfd77db0ed799b6c22c214fe9d2937f47bc8b34",
+      "location": "",
+      "url": "https://github.com/latex-lsp/tree-sitter-bibtex",
+      "source": "https://github.com/latex-lsp/tree-sitter-bibtex/archive/ccfd77db0ed799b6c22c214fe9d2937f47bc8b34.tar.gz"
+    },
+    "bicep": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-bicep",
+      "host": "github.com",
+      "commit": "bff59884307c0ab009bd5e81afd9324b46a6c0f9",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-bicep",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-bicep/archive/bff59884307c0ab009bd5e81afd9324b46a6c0f9.tar.gz"
+    },
+    "bitbake": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-bitbake",
+      "host": "github.com",
+      "commit": "a5d04fdb5a69a02b8fa8eb5525a60dfb5309b73b",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-bitbake",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-bitbake/archive/a5d04fdb5a69a02b8fa8eb5525a60dfb5309b73b.tar.gz"
+    },
+    "blade": {
+      "owner": "EmranMR",
+      "repo": "tree-sitter-blade",
+      "host": "github.com",
+      "commit": "bcdc4b01827cac21205f7453e9be02f906943128",
+      "location": "",
+      "url": "https://github.com/EmranMR/tree-sitter-blade",
+      "source": "https://github.com/EmranMR/tree-sitter-blade/archive/bcdc4b01827cac21205f7453e9be02f906943128.tar.gz"
+    },
+    "bp": {
+      "owner": "ambroisie",
+      "repo": "tree-sitter-bp",
+      "host": "github.com",
+      "commit": "16c43068ec30828c5aed11e87262c56f36782595",
+      "location": "",
+      "url": "https://github.com/ambroisie/tree-sitter-bp",
+      "source": "https://github.com/ambroisie/tree-sitter-bp/archive/16c43068ec30828c5aed11e87262c56f36782595.tar.gz"
+    },
+    "bpftrace": {
+      "owner": "sgruszka",
+      "repo": "tree-sitter-bpftrace",
+      "host": "github.com",
+      "commit": "774f4458ad39691336ead1ee361b22434c4cdec7",
+      "location": "",
+      "url": "https://github.com/sgruszka/tree-sitter-bpftrace",
+      "source": "https://github.com/sgruszka/tree-sitter-bpftrace/archive/774f4458ad39691336ead1ee361b22434c4cdec7.tar.gz"
+    },
+    "brightscript": {
+      "owner": "ajdelcimmuto",
+      "repo": "tree-sitter-brightscript",
+      "host": "github.com",
+      "commit": "48ce1687125c6dfefcc7a1bef19fa0f0f00426cc",
+      "location": "",
+      "url": "https://github.com/ajdelcimmuto/tree-sitter-brightscript",
+      "source": "https://github.com/ajdelcimmuto/tree-sitter-brightscript/archive/48ce1687125c6dfefcc7a1bef19fa0f0f00426cc.tar.gz"
+    },
+    "c_sharp": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-c-sharp",
+      "host": "github.com",
+      "commit": "b5eb5742f6a7e9438bee22ce8026d6b927be2cd7",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-c-sharp",
+      "source": "https://github.com/tree-sitter/tree-sitter-c-sharp/archive/b5eb5742f6a7e9438bee22ce8026d6b927be2cd7.tar.gz"
+    },
+    "c": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-c",
+      "host": "github.com",
+      "commit": "2a265d69a4caf57108a73ad2ed1e6922dd2f998c",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-c",
+      "source": "https://github.com/tree-sitter/tree-sitter-c/archive/2a265d69a4caf57108a73ad2ed1e6922dd2f998c.tar.gz"
+    },
+    "c3": {
+      "owner": "c3lang",
+      "repo": "tree-sitter-c3",
+      "host": "github.com",
+      "commit": "78e2ae9cff29ef8ca6666006abe80f1236d42996",
+      "location": "",
+      "url": "https://github.com/c3lang/tree-sitter-c3",
+      "source": "https://github.com/c3lang/tree-sitter-c3/archive/78e2ae9cff29ef8ca6666006abe80f1236d42996.tar.gz"
+    },
+    "caddy": {
+      "owner": "opa-oz",
+      "repo": "tree-sitter-caddy",
+      "host": "github.com",
+      "commit": "2686186edb61be47960431c93a204fb249681360",
+      "location": "",
+      "url": "https://github.com/opa-oz/tree-sitter-caddy",
+      "source": "https://github.com/opa-oz/tree-sitter-caddy/archive/2686186edb61be47960431c93a204fb249681360.tar.gz"
+    },
+    "cairo": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-cairo",
+      "host": "github.com",
+      "commit": "6238f609bea233040fe927858156dee5515a0745",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-cairo",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-cairo/archive/6238f609bea233040fe927858156dee5515a0745.tar.gz"
+    },
+    "capnp": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-capnp",
+      "host": "github.com",
+      "commit": "7b0883c03e5edd34ef7bcf703194204299d7099f",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-capnp",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-capnp/archive/7b0883c03e5edd34ef7bcf703194204299d7099f.tar.gz"
+    },
+    "chatito": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-chatito",
+      "host": "github.com",
+      "commit": "b4cbe9ab7672d5106e9550d8413835395a1be362",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-chatito",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-chatito/archive/b4cbe9ab7672d5106e9550d8413835395a1be362.tar.gz"
+    },
+    "circom": {
+      "owner": "Decurity",
+      "repo": "tree-sitter-circom",
+      "host": "github.com",
+      "commit": "02150524228b1e6afef96949f2d6b7cc0aaf999e",
+      "location": "",
+      "url": "https://github.com/Decurity/tree-sitter-circom",
+      "source": "https://github.com/Decurity/tree-sitter-circom/archive/02150524228b1e6afef96949f2d6b7cc0aaf999e.tar.gz"
+    },
+    "clojure": {
+      "owner": "sogaiu",
+      "repo": "tree-sitter-clojure",
+      "host": "github.com",
+      "commit": "f4236d4da8aa92bc105d9c118746474c608e6af7",
+      "location": "",
+      "url": "https://github.com/sogaiu/tree-sitter-clojure",
+      "source": "https://github.com/sogaiu/tree-sitter-clojure/archive/f4236d4da8aa92bc105d9c118746474c608e6af7.tar.gz"
+    },
+    "cmake": {
+      "owner": "uyha",
+      "repo": "tree-sitter-cmake",
+      "host": "github.com",
+      "commit": "fe48221d4d9842d916d66b5e71ab3c6307ec28b3",
+      "location": "",
+      "url": "https://github.com/uyha/tree-sitter-cmake",
+      "source": "https://github.com/uyha/tree-sitter-cmake/archive/fe48221d4d9842d916d66b5e71ab3c6307ec28b3.tar.gz"
+    },
+    "comment": {
+      "owner": "stsewd",
+      "repo": "tree-sitter-comment",
+      "host": "github.com",
+      "commit": "3555706cef8b98d3e4c7379d7260548ff03ad363",
+      "location": "",
+      "url": "https://github.com/stsewd/tree-sitter-comment",
+      "source": "https://github.com/stsewd/tree-sitter-comment/archive/3555706cef8b98d3e4c7379d7260548ff03ad363.tar.gz"
+    },
+    "commonlisp": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-commonlisp",
+      "host": "github.com",
+      "commit": "32323509b3d9fe96607d151c2da2c9009eb13a2f",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-commonlisp",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-commonlisp/archive/32323509b3d9fe96607d151c2da2c9009eb13a2f.tar.gz"
+    },
+    "cooklang": {
+      "owner": "addcninblue",
+      "repo": "tree-sitter-cooklang",
+      "host": "github.com",
+      "commit": "4ebe237c1cf64cf3826fc249e9ec0988fe07e58e",
+      "location": "",
+      "url": "https://github.com/addcninblue/tree-sitter-cooklang",
+      "source": "https://github.com/addcninblue/tree-sitter-cooklang/archive/4ebe237c1cf64cf3826fc249e9ec0988fe07e58e.tar.gz"
+    },
+    "corn": {
+      "owner": "jakestanger",
+      "repo": "tree-sitter-corn",
+      "host": "github.com",
+      "commit": "464654742cbfd3a3de560aba120998f1d5dfa844",
+      "location": "",
+      "url": "https://github.com/jakestanger/tree-sitter-corn",
+      "source": "https://github.com/jakestanger/tree-sitter-corn/archive/464654742cbfd3a3de560aba120998f1d5dfa844.tar.gz"
+    },
+    "cpon": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-cpon",
+      "host": "github.com",
+      "commit": "594289eadfec719198e560f9d7fd243c4db678d5",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-cpon",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-cpon/archive/594289eadfec719198e560f9d7fd243c4db678d5.tar.gz"
+    },
+    "cpp": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-cpp",
+      "host": "github.com",
+      "commit": "e5cea0ec884c5c3d2d1e41a741a66ce13da4d945",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-cpp",
+      "source": "https://github.com/tree-sitter/tree-sitter-cpp/archive/e5cea0ec884c5c3d2d1e41a741a66ce13da4d945.tar.gz"
+    },
+    "css": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-css",
+      "host": "github.com",
+      "commit": "6e327db434fec0ee90f006697782e43ec855adf5",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-css",
+      "source": "https://github.com/tree-sitter/tree-sitter-css/archive/6e327db434fec0ee90f006697782e43ec855adf5.tar.gz"
+    },
+    "csv": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-csv",
+      "host": "github.com",
+      "commit": "7eb7297823605392d2bbcc4c09b1cd18d6fa9529",
+      "location": "csv",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-csv",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-csv/archive/7eb7297823605392d2bbcc4c09b1cd18d6fa9529.tar.gz"
+    },
+    "cuda": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-cuda",
+      "host": "github.com",
+      "commit": "014628ae8d2df391b88ddb9fa0260fd97f770829",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-cuda",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-cuda/archive/014628ae8d2df391b88ddb9fa0260fd97f770829.tar.gz"
+    },
+    "cue": {
+      "owner": "eonpatapon",
+      "repo": "tree-sitter-cue",
+      "host": "github.com",
+      "commit": "770737bcff2c4aa3f624d439e32b07dbb07102d3",
+      "location": "",
+      "url": "https://github.com/eonpatapon/tree-sitter-cue",
+      "source": "https://github.com/eonpatapon/tree-sitter-cue/archive/770737bcff2c4aa3f624d439e32b07dbb07102d3.tar.gz"
+    },
+    "cylc": {
+      "owner": "elliotfontaine",
+      "repo": "tree-sitter-cylc",
+      "host": "github.com",
+      "commit": "8b895c278f98d05e67997f5e3a43fb5531933023",
+      "location": "",
+      "url": "https://github.com/elliotfontaine/tree-sitter-cylc",
+      "source": "https://github.com/elliotfontaine/tree-sitter-cylc/archive/8b895c278f98d05e67997f5e3a43fb5531933023.tar.gz"
+    },
+    "d": {
+      "owner": "gdamore",
+      "repo": "tree-sitter-d",
+      "host": "github.com",
+      "commit": "45e5f1e9d6de2c68591bc8e5ec662cf18e950b4a",
+      "location": "",
+      "url": "https://github.com/gdamore/tree-sitter-d",
+      "source": "https://github.com/gdamore/tree-sitter-d/archive/45e5f1e9d6de2c68591bc8e5ec662cf18e950b4a.tar.gz"
+    },
+    "dart": {
+      "owner": "UserNobody14",
+      "repo": "tree-sitter-dart",
+      "host": "github.com",
+      "commit": "80e23c07b64494f7e21090bb3450223ef0b192f4",
+      "location": "",
+      "url": "https://github.com/UserNobody14/tree-sitter-dart",
+      "source": "https://github.com/UserNobody14/tree-sitter-dart/archive/80e23c07b64494f7e21090bb3450223ef0b192f4.tar.gz"
+    },
+    "desktop": {
+      "owner": "ValdezFOmar",
+      "repo": "tree-sitter-desktop",
+      "host": "github.com",
+      "commit": "6d66eea37afa1d6bc1e25ef457113743df42416d",
+      "location": "",
+      "url": "https://github.com/ValdezFOmar/tree-sitter-desktop",
+      "source": "https://github.com/ValdezFOmar/tree-sitter-desktop/archive/6d66eea37afa1d6bc1e25ef457113743df42416d.tar.gz"
+    },
+    "devicetree": {
+      "owner": "joelspadin",
+      "repo": "tree-sitter-devicetree",
+      "host": "github.com",
+      "commit": "16f640f3c59117c9e749d581634afdb00e004f4c",
+      "location": "",
+      "url": "https://github.com/joelspadin/tree-sitter-devicetree",
+      "source": "https://github.com/joelspadin/tree-sitter-devicetree/archive/16f640f3c59117c9e749d581634afdb00e004f4c.tar.gz"
+    },
+    "dhall": {
+      "owner": "jbellerb",
+      "repo": "tree-sitter-dhall",
+      "host": "github.com",
+      "commit": "4a6c08abfb54827db4e722d6cdca81b093898988",
+      "location": "",
+      "url": "https://github.com/jbellerb/tree-sitter-dhall",
+      "source": "https://github.com/jbellerb/tree-sitter-dhall/archive/4a6c08abfb54827db4e722d6cdca81b093898988.tar.gz"
+    },
+    "diff": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-diff",
+      "host": "github.com",
+      "commit": "e42b8def4f75633568f1aecfe01817bf15164928",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-diff",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-diff/archive/e42b8def4f75633568f1aecfe01817bf15164928.tar.gz"
+    },
+    "disassembly": {
+      "owner": "ColinKennedy",
+      "repo": "tree-sitter-disassembly",
+      "host": "github.com",
+      "commit": "0229c0211dba909c5d45129ac784a3f4d49c243a",
+      "location": "",
+      "url": "https://github.com/ColinKennedy/tree-sitter-disassembly",
+      "source": "https://github.com/ColinKennedy/tree-sitter-disassembly/archive/0229c0211dba909c5d45129ac784a3f4d49c243a.tar.gz"
+    },
+    "djot": {
+      "owner": "treeman",
+      "repo": "tree-sitter-djot",
+      "host": "github.com",
+      "commit": "eb31845d59b9ee8c1b2098e78e9ca72004bd1579",
+      "location": "",
+      "url": "https://github.com/treeman/tree-sitter-djot",
+      "source": "https://github.com/treeman/tree-sitter-djot/archive/eb31845d59b9ee8c1b2098e78e9ca72004bd1579.tar.gz"
+    },
+    "dockerfile": {
+      "owner": "camdencheek",
+      "repo": "tree-sitter-dockerfile",
+      "host": "github.com",
+      "commit": "971acdd908568b4531b0ba28a445bf0bb720aba5",
+      "location": "",
+      "url": "https://github.com/camdencheek/tree-sitter-dockerfile",
+      "source": "https://github.com/camdencheek/tree-sitter-dockerfile/archive/971acdd908568b4531b0ba28a445bf0bb720aba5.tar.gz"
+    },
+    "dot": {
+      "owner": "rydesun",
+      "repo": "tree-sitter-dot",
+      "host": "github.com",
+      "commit": "9ab85550c896d8b294d9b9ca1e30698736f08cea",
+      "location": "",
+      "url": "https://github.com/rydesun/tree-sitter-dot",
+      "source": "https://github.com/rydesun/tree-sitter-dot/archive/9ab85550c896d8b294d9b9ca1e30698736f08cea.tar.gz"
+    },
+    "doxygen": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-doxygen",
+      "host": "github.com",
+      "commit": "ccd998f378c3f9345ea4eeb223f56d7b84d16687",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-doxygen",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-doxygen/archive/ccd998f378c3f9345ea4eeb223f56d7b84d16687.tar.gz"
+    },
+    "dtd": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-xml",
+      "host": "github.com",
+      "commit": "0d9a8099c963ed53e183425c1b47fa2622c8eaf7",
+      "location": "dtd",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-xml",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-xml/archive/0d9a8099c963ed53e183425c1b47fa2622c8eaf7.tar.gz"
+    },
+    "earthfile": {
+      "owner": "glehmann",
+      "repo": "tree-sitter-earthfile",
+      "host": "github.com",
+      "commit": "ae378d9d1306e9a967698516041f6f8803db5592",
+      "location": "",
+      "url": "https://github.com/glehmann/tree-sitter-earthfile",
+      "source": "https://github.com/glehmann/tree-sitter-earthfile/archive/ae378d9d1306e9a967698516041f6f8803db5592.tar.gz"
+    },
+    "ebnf": {
+      "owner": "RubixDev",
+      "repo": "ebnf",
+      "host": "github.com",
+      "commit": "8e635b0b723c620774dfb8abf382a7f531894b40",
+      "location": "crates/tree-sitter-ebnf",
+      "url": "https://github.com/RubixDev/ebnf",
+      "source": "https://github.com/RubixDev/ebnf/archive/8e635b0b723c620774dfb8abf382a7f531894b40.tar.gz"
+    },
+    "editorconfig": {
+      "owner": "ValdezFOmar",
+      "repo": "tree-sitter-editorconfig",
+      "host": "github.com",
+      "commit": "3f2b371537355f6e53cc3af37f79ba450efb5132",
+      "location": "",
+      "url": "https://github.com/ValdezFOmar/tree-sitter-editorconfig",
+      "source": "https://github.com/ValdezFOmar/tree-sitter-editorconfig/archive/3f2b371537355f6e53cc3af37f79ba450efb5132.tar.gz"
+    },
+    "eds": {
+      "owner": "uyha",
+      "repo": "tree-sitter-eds",
+      "host": "github.com",
+      "commit": "26d529e6cfecde391a03c21d1474eb51e0285805",
+      "location": "",
+      "url": "https://github.com/uyha/tree-sitter-eds",
+      "source": "https://github.com/uyha/tree-sitter-eds/archive/26d529e6cfecde391a03c21d1474eb51e0285805.tar.gz"
+    },
+    "eex": {
+      "owner": "connorlay",
+      "repo": "tree-sitter-eex",
+      "host": "github.com",
+      "commit": "f742f2fe327463335e8671a87c0b9b396905d1d1",
+      "location": "",
+      "url": "https://github.com/connorlay/tree-sitter-eex",
+      "source": "https://github.com/connorlay/tree-sitter-eex/archive/f742f2fe327463335e8671a87c0b9b396905d1d1.tar.gz"
+    },
+    "elixir": {
+      "owner": "elixir-lang",
+      "repo": "tree-sitter-elixir",
+      "host": "github.com",
+      "commit": "450a8194f5a66561135962cfc8d7545a27b61c4c",
+      "location": "",
+      "url": "https://github.com/elixir-lang/tree-sitter-elixir",
+      "source": "https://github.com/elixir-lang/tree-sitter-elixir/archive/450a8194f5a66561135962cfc8d7545a27b61c4c.tar.gz"
+    },
+    "elm": {
+      "owner": "elm-tooling",
+      "repo": "tree-sitter-elm",
+      "host": "github.com",
+      "commit": "e34bdc5c512918628b05b48e633f711123204e45",
+      "location": "",
+      "url": "https://github.com/elm-tooling/tree-sitter-elm",
+      "source": "https://github.com/elm-tooling/tree-sitter-elm/archive/e34bdc5c512918628b05b48e633f711123204e45.tar.gz"
+    },
+    "elsa": {
+      "owner": "glapa-grossklag",
+      "repo": "tree-sitter-elsa",
+      "host": "github.com",
+      "commit": "0a66b2b3f3c1915e67ad2ef9f7dbd2a84820d9d7",
+      "location": "",
+      "url": "https://github.com/glapa-grossklag/tree-sitter-elsa",
+      "source": "https://github.com/glapa-grossklag/tree-sitter-elsa/archive/0a66b2b3f3c1915e67ad2ef9f7dbd2a84820d9d7.tar.gz"
+    },
+    "elvish": {
+      "owner": "elves",
+      "repo": "tree-sitter-elvish",
+      "host": "github.com",
+      "commit": "5e7210d945425b77f82cbaebc5af4dd3e1ad40f5",
+      "location": "",
+      "url": "https://github.com/elves/tree-sitter-elvish",
+      "source": "https://github.com/elves/tree-sitter-elvish/archive/5e7210d945425b77f82cbaebc5af4dd3e1ad40f5.tar.gz"
+    },
+    "embedded_template": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-embedded-template",
+      "host": "github.com",
+      "commit": "8495d106154741e6d35d37064f864758ece75de6",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-embedded-template",
+      "source": "https://github.com/tree-sitter/tree-sitter-embedded-template/archive/8495d106154741e6d35d37064f864758ece75de6.tar.gz"
+    },
+    "enforce": {
+      "owner": "simonvic",
+      "repo": "tree-sitter-enforce",
+      "host": "github.com",
+      "commit": "aedd0bbab9dcc9caec9cc4e32bd303e86509522b",
+      "location": "",
+      "url": "https://github.com/simonvic/tree-sitter-enforce",
+      "source": "https://github.com/simonvic/tree-sitter-enforce/archive/aedd0bbab9dcc9caec9cc4e32bd303e86509522b.tar.gz"
+    },
+    "erlang": {
+      "owner": "WhatsApp",
+      "repo": "tree-sitter-erlang",
+      "host": "github.com",
+      "commit": "416ca60d7d2a824c0d346163541153e230710780",
+      "location": "",
+      "url": "https://github.com/WhatsApp/tree-sitter-erlang",
+      "source": "https://github.com/WhatsApp/tree-sitter-erlang/archive/416ca60d7d2a824c0d346163541153e230710780.tar.gz"
+    },
+    "facility": {
+      "owner": "FacilityApi",
+      "repo": "tree-sitter-facility",
+      "host": "github.com",
+      "commit": "e4bfd3e960de9f4b4648acb1c92e9b95b47d8cfb",
+      "location": "",
+      "url": "https://github.com/FacilityApi/tree-sitter-facility",
+      "source": "https://github.com/FacilityApi/tree-sitter-facility/archive/e4bfd3e960de9f4b4648acb1c92e9b95b47d8cfb.tar.gz"
+    },
+    "faust": {
+      "owner": "khiner",
+      "repo": "tree-sitter-faust",
+      "host": "github.com",
+      "commit": "f3b9274514b5f9bf6b0dd4a01c30f9cc15c58bc4",
+      "location": "",
+      "url": "https://github.com/khiner/tree-sitter-faust",
+      "source": "https://github.com/khiner/tree-sitter-faust/archive/f3b9274514b5f9bf6b0dd4a01c30f9cc15c58bc4.tar.gz"
+    },
+    "fennel": {
+      "owner": "alexmozaidze",
+      "repo": "tree-sitter-fennel",
+      "host": "github.com",
+      "commit": "cfbfa478dc2dbef267ee94ae4323d9c886f45e94",
+      "location": "",
+      "url": "https://github.com/alexmozaidze/tree-sitter-fennel",
+      "source": "https://github.com/alexmozaidze/tree-sitter-fennel/archive/cfbfa478dc2dbef267ee94ae4323d9c886f45e94.tar.gz"
+    },
+    "fidl": {
+      "owner": "google",
+      "repo": "tree-sitter-fidl",
+      "host": "github.com",
+      "commit": "0a8910f293268e27ff554357c229ba172b0eaed2",
+      "location": "",
+      "url": "https://github.com/google/tree-sitter-fidl",
+      "source": "https://github.com/google/tree-sitter-fidl/archive/0a8910f293268e27ff554357c229ba172b0eaed2.tar.gz"
+    },
+    "firrtl": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-firrtl",
+      "host": "github.com",
+      "commit": "8503d3a0fe0f9e427863cb0055699ff2d29ae5f5",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-firrtl",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-firrtl/archive/8503d3a0fe0f9e427863cb0055699ff2d29ae5f5.tar.gz"
+    },
+    "fish": {
+      "owner": "ram02z",
+      "repo": "tree-sitter-fish",
+      "host": "github.com",
+      "commit": "70640c0696abde32622afc43291a385681afbd32",
+      "location": "",
+      "url": "https://github.com/ram02z/tree-sitter-fish",
+      "source": "https://github.com/ram02z/tree-sitter-fish/archive/70640c0696abde32622afc43291a385681afbd32.tar.gz"
+    },
+    "foam": {
+      "owner": "FoamScience",
+      "repo": "tree-sitter-foam",
+      "host": "github.com",
+      "commit": "f08bb76892b93e5b23c45ac3bd6b1eea5df323cc",
+      "location": "",
+      "url": "https://github.com/FoamScience/tree-sitter-foam",
+      "source": "https://github.com/FoamScience/tree-sitter-foam/archive/f08bb76892b93e5b23c45ac3bd6b1eea5df323cc.tar.gz"
+    },
+    "forth": {
+      "owner": "AlexanderBrevig",
+      "repo": "tree-sitter-forth",
+      "host": "github.com",
+      "commit": "90189238385cf636b9ee99ce548b9e5b5e569d48",
+      "location": "",
+      "url": "https://github.com/AlexanderBrevig/tree-sitter-forth",
+      "source": "https://github.com/AlexanderBrevig/tree-sitter-forth/archive/90189238385cf636b9ee99ce548b9e5b5e569d48.tar.gz"
+    },
+    "fortran": {
+      "owner": "stadelmanma",
+      "repo": "tree-sitter-fortran",
+      "host": "github.com",
+      "commit": "d738334e4a21866a1ab81fb3f27f9b0b2ad2e515",
+      "location": "",
+      "url": "https://github.com/stadelmanma/tree-sitter-fortran",
+      "source": "https://github.com/stadelmanma/tree-sitter-fortran/archive/d738334e4a21866a1ab81fb3f27f9b0b2ad2e515.tar.gz"
+    },
+    "fsh": {
+      "owner": "mgramigna",
+      "repo": "tree-sitter-fsh",
+      "host": "github.com",
+      "commit": "fad2e175099a45efbc98f000cc196d3674cc45e0",
+      "location": "",
+      "url": "https://github.com/mgramigna/tree-sitter-fsh",
+      "source": "https://github.com/mgramigna/tree-sitter-fsh/archive/fad2e175099a45efbc98f000cc196d3674cc45e0.tar.gz"
+    },
+    "fsharp": {
+      "owner": "ionide",
+      "repo": "tree-sitter-fsharp",
+      "host": "github.com",
+      "commit": "02929f084726db969e5b916d144436f248146824",
+      "location": "fsharp",
+      "url": "https://github.com/ionide/tree-sitter-fsharp",
+      "source": "https://github.com/ionide/tree-sitter-fsharp/archive/02929f084726db969e5b916d144436f248146824.tar.gz"
+    },
+    "func": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-func",
+      "host": "github.com",
+      "commit": "f780ca55e65e7d7360d0229331763e16c452fc98",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-func",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-func/archive/f780ca55e65e7d7360d0229331763e16c452fc98.tar.gz"
+    },
+    "gap": {
+      "owner": "gap-system",
+      "repo": "tree-sitter-gap",
+      "host": "github.com",
+      "commit": "7db79590d2f8b0e0246008ecfd569b4bfca587a9",
+      "location": "",
+      "url": "https://github.com/gap-system/tree-sitter-gap",
+      "source": "https://github.com/gap-system/tree-sitter-gap/archive/7db79590d2f8b0e0246008ecfd569b4bfca587a9.tar.gz"
+    },
+    "gaptst": {
+      "owner": "gap-system",
+      "repo": "tree-sitter-gaptst",
+      "host": "github.com",
+      "commit": "69086d7627c03e1f4baf766bcef14c60d9e92331",
+      "location": "",
+      "url": "https://github.com/gap-system/tree-sitter-gaptst",
+      "source": "https://github.com/gap-system/tree-sitter-gaptst/archive/69086d7627c03e1f4baf766bcef14c60d9e92331.tar.gz"
+    },
+    "gdscript": {
+      "owner": "PrestonKnopp",
+      "repo": "tree-sitter-gdscript",
+      "host": "github.com",
+      "commit": "48b49330888a4669b48619b211cc8da573827725",
+      "location": "",
+      "url": "https://github.com/PrestonKnopp/tree-sitter-gdscript",
+      "source": "https://github.com/PrestonKnopp/tree-sitter-gdscript/archive/48b49330888a4669b48619b211cc8da573827725.tar.gz"
+    },
+    "gdshader": {
+      "owner": "airblast-dev",
+      "repo": "tree-sitter-gdshader",
+      "host": "github.com",
+      "commit": "68268631c8b6dc093985f1246b099f81b30ea7d1",
+      "location": "",
+      "url": "https://github.com/airblast-dev/tree-sitter-gdshader",
+      "source": "https://github.com/airblast-dev/tree-sitter-gdshader/archive/68268631c8b6dc093985f1246b099f81b30ea7d1.tar.gz"
+    },
+    "git_config": {
+      "owner": "the-mikedavis",
+      "repo": "tree-sitter-git-config",
+      "host": "github.com",
+      "commit": "9c2a1b7894e6d9eedfe99805b829b4ecd871375e",
+      "location": "",
+      "url": "https://github.com/the-mikedavis/tree-sitter-git-config",
+      "source": "https://github.com/the-mikedavis/tree-sitter-git-config/archive/9c2a1b7894e6d9eedfe99805b829b4ecd871375e.tar.gz"
+    },
+    "git_rebase": {
+      "owner": "the-mikedavis",
+      "repo": "tree-sitter-git-rebase",
+      "host": "github.com",
+      "commit": "bff4b66b44b020d918d67e2828eada1974a966aa",
+      "location": "",
+      "url": "https://github.com/the-mikedavis/tree-sitter-git-rebase",
+      "source": "https://github.com/the-mikedavis/tree-sitter-git-rebase/archive/bff4b66b44b020d918d67e2828eada1974a966aa.tar.gz"
+    },
+    "gitattributes": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-gitattributes",
+      "host": "github.com",
+      "commit": "5425944fd61bf2b3bad2c17c2dc9f53172b0f01d",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-gitattributes",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-gitattributes/archive/5425944fd61bf2b3bad2c17c2dc9f53172b0f01d.tar.gz"
+    },
+    "gitcommit": {
+      "owner": "gbprod",
+      "repo": "tree-sitter-gitcommit",
+      "host": "github.com",
+      "commit": "a716678c0f00645fed1e6f1d0eb221481dbd6f6d",
+      "location": "",
+      "url": "https://github.com/gbprod/tree-sitter-gitcommit",
+      "source": "https://github.com/gbprod/tree-sitter-gitcommit/archive/a716678c0f00645fed1e6f1d0eb221481dbd6f6d.tar.gz"
+    },
+    "gitignore": {
+      "owner": "shunsambongi",
+      "repo": "tree-sitter-gitignore",
+      "host": "github.com",
+      "commit": "f4685bf11ac466dd278449bcfe5fd014e94aa504",
+      "location": "",
+      "url": "https://github.com/shunsambongi/tree-sitter-gitignore",
+      "source": "https://github.com/shunsambongi/tree-sitter-gitignore/archive/f4685bf11ac466dd278449bcfe5fd014e94aa504.tar.gz"
+    },
+    "gleam": {
+      "owner": "gleam-lang",
+      "repo": "tree-sitter-gleam",
+      "host": "github.com",
+      "commit": "99ec4101504452c488b7c835fb65cfef75b090b7",
+      "location": "",
+      "url": "https://github.com/gleam-lang/tree-sitter-gleam",
+      "source": "https://github.com/gleam-lang/tree-sitter-gleam/archive/99ec4101504452c488b7c835fb65cfef75b090b7.tar.gz"
+    },
+    "glimmer_javascript": {
+      "owner": "NullVoxPopuli",
+      "repo": "tree-sitter-glimmer-javascript",
+      "host": "github.com",
+      "commit": "5cc865a2a0a77cbfaf5062c8fcf2a9919bd54f87",
+      "location": "",
+      "url": "https://github.com/NullVoxPopuli/tree-sitter-glimmer-javascript",
+      "source": "https://github.com/NullVoxPopuli/tree-sitter-glimmer-javascript/archive/5cc865a2a0a77cbfaf5062c8fcf2a9919bd54f87.tar.gz"
+    },
+    "glimmer_typescript": {
+      "owner": "NullVoxPopuli",
+      "repo": "tree-sitter-glimmer-typescript",
+      "host": "github.com",
+      "commit": "12d98944c1d5077b957cbdb90d663a7c4d50118c",
+      "location": "",
+      "url": "https://github.com/NullVoxPopuli/tree-sitter-glimmer-typescript",
+      "source": "https://github.com/NullVoxPopuli/tree-sitter-glimmer-typescript/archive/12d98944c1d5077b957cbdb90d663a7c4d50118c.tar.gz"
+    },
+    "glimmer": {
+      "owner": "ember-tooling",
+      "repo": "tree-sitter-glimmer",
+      "host": "github.com",
+      "commit": "da605af8c5999b43e6839b575eae5e6cafabb06f",
+      "location": "",
+      "url": "https://github.com/ember-tooling/tree-sitter-glimmer",
+      "source": "https://github.com/ember-tooling/tree-sitter-glimmer/archive/da605af8c5999b43e6839b575eae5e6cafabb06f.tar.gz"
+    },
+    "glsl": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-glsl",
+      "host": "github.com",
+      "commit": "24a6c8ef698e4480fecf8340d771fbcb5de8fbb4",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-glsl",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-glsl/archive/24a6c8ef698e4480fecf8340d771fbcb5de8fbb4.tar.gz"
+    },
+    "gn": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-gn",
+      "host": "github.com",
+      "commit": "bc06955bc1e3c9ff8e9b2b2a55b38b94da923c05",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-gn",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-gn/archive/bc06955bc1e3c9ff8e9b2b2a55b38b94da923c05.tar.gz"
+    },
+    "gnuplot": {
+      "owner": "dpezto",
+      "repo": "tree-sitter-gnuplot",
+      "host": "github.com",
+      "commit": "8923c1e38b9634a688a6c0dce7c18c8ffb823e79",
+      "location": "",
+      "url": "https://github.com/dpezto/tree-sitter-gnuplot",
+      "source": "https://github.com/dpezto/tree-sitter-gnuplot/archive/8923c1e38b9634a688a6c0dce7c18c8ffb823e79.tar.gz"
+    },
+    "go": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-go",
+      "host": "github.com",
+      "commit": "5e73f476efafe5c768eda19bbe877f188ded6144",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-go",
+      "source": "https://github.com/tree-sitter/tree-sitter-go/archive/5e73f476efafe5c768eda19bbe877f188ded6144.tar.gz"
+    },
+    "goctl": {
+      "owner": "chaozwn",
+      "repo": "tree-sitter-goctl",
+      "host": "github.com",
+      "commit": "49c43532689fe1f53e8b9e009d0521cab02c432b",
+      "location": "",
+      "url": "https://github.com/chaozwn/tree-sitter-goctl",
+      "source": "https://github.com/chaozwn/tree-sitter-goctl/archive/49c43532689fe1f53e8b9e009d0521cab02c432b.tar.gz"
+    },
+    "godot_resource": {
+      "owner": "PrestonKnopp",
+      "repo": "tree-sitter-godot-resource",
+      "host": "github.com",
+      "commit": "91c55fdf325a832659e59cdf4a02bfe8a423f14c",
+      "location": "",
+      "url": "https://github.com/PrestonKnopp/tree-sitter-godot-resource",
+      "source": "https://github.com/PrestonKnopp/tree-sitter-godot-resource/archive/91c55fdf325a832659e59cdf4a02bfe8a423f14c.tar.gz"
+    },
+    "gomod": {
+      "owner": "camdencheek",
+      "repo": "tree-sitter-go-mod",
+      "host": "github.com",
+      "commit": "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c",
+      "location": "",
+      "url": "https://github.com/camdencheek/tree-sitter-go-mod",
+      "source": "https://github.com/camdencheek/tree-sitter-go-mod/archive/6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c.tar.gz"
+    },
+    "gosum": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-go-sum",
+      "host": "github.com",
+      "commit": "e2ac513b2240c7ff1069ae33b2df29ce90777c11",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-go-sum",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-go-sum/archive/e2ac513b2240c7ff1069ae33b2df29ce90777c11.tar.gz"
+    },
+    "gotmpl": {
+      "owner": "ngalaiko",
+      "repo": "tree-sitter-go-template",
+      "host": "github.com",
+      "commit": "5f19a36bb1eebb30454e277b222b278ceafed0dd",
+      "location": "",
+      "url": "https://github.com/ngalaiko/tree-sitter-go-template",
+      "source": "https://github.com/ngalaiko/tree-sitter-go-template/archive/5f19a36bb1eebb30454e277b222b278ceafed0dd.tar.gz"
+    },
+    "gowork": {
+      "owner": "omertuc",
+      "repo": "tree-sitter-go-work",
+      "host": "github.com",
+      "commit": "949a8a470559543857a62102c84700d291fc984c",
+      "location": "",
+      "url": "https://github.com/omertuc/tree-sitter-go-work",
+      "source": "https://github.com/omertuc/tree-sitter-go-work/archive/949a8a470559543857a62102c84700d291fc984c.tar.gz"
+    },
+    "gpg": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-gpg-config",
+      "host": "github.com",
+      "commit": "63e80cfe1302da9f9c7ee8d9df295f47d7d181bf",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-gpg-config",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-gpg-config/archive/63e80cfe1302da9f9c7ee8d9df295f47d7d181bf.tar.gz"
+    },
+    "graphql": {
+      "owner": "bkegley",
+      "repo": "tree-sitter-graphql",
+      "host": "github.com",
+      "commit": "5e66e961eee421786bdda8495ed1db045e06b5fe",
+      "location": "",
+      "url": "https://github.com/bkegley/tree-sitter-graphql",
+      "source": "https://github.com/bkegley/tree-sitter-graphql/archive/5e66e961eee421786bdda8495ed1db045e06b5fe.tar.gz"
+    },
+    "gren": {
+      "owner": "MaeBrooks",
+      "repo": "tree-sitter-gren",
+      "host": "github.com",
+      "commit": "06389ece5bc7344ed3931dc516bb609d8864dd2a",
+      "location": "",
+      "url": "https://github.com/MaeBrooks/tree-sitter-gren",
+      "source": "https://github.com/MaeBrooks/tree-sitter-gren/archive/06389ece5bc7344ed3931dc516bb609d8864dd2a.tar.gz"
+    },
+    "groovy": {
+      "owner": "murtaza64",
+      "repo": "tree-sitter-groovy",
+      "host": "github.com",
+      "commit": "86911590a8e46d71301c66468e5620d9faa5b6af",
+      "location": "",
+      "url": "https://github.com/murtaza64/tree-sitter-groovy",
+      "source": "https://github.com/murtaza64/tree-sitter-groovy/archive/86911590a8e46d71301c66468e5620d9faa5b6af.tar.gz"
+    },
+    "groq": {
+      "owner": "ajrussellaudio",
+      "repo": "tree-sitter-groq",
+      "host": "github.com",
+      "commit": "1fa1ab0eb391a270957e8ad8c731b492e3645649",
+      "location": "",
+      "url": "https://github.com/ajrussellaudio/tree-sitter-groq",
+      "source": "https://github.com/ajrussellaudio/tree-sitter-groq/archive/1fa1ab0eb391a270957e8ad8c731b492e3645649.tar.gz"
+    },
+    "gstlaunch": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-gstlaunch",
+      "host": "github.com",
+      "commit": "549aef253fd38a53995cda1bf55c501174372bf7",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-gstlaunch",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-gstlaunch/archive/549aef253fd38a53995cda1bf55c501174372bf7.tar.gz"
+    },
+    "hack": {
+      "owner": "slackhq",
+      "repo": "tree-sitter-hack",
+      "host": "github.com",
+      "commit": "bc5b3a10d6d27e8220a113a9a7fe9bec0a1574b0",
+      "location": "",
+      "url": "https://github.com/slackhq/tree-sitter-hack",
+      "source": "https://github.com/slackhq/tree-sitter-hack/archive/bc5b3a10d6d27e8220a113a9a7fe9bec0a1574b0.tar.gz"
+    },
+    "hare": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-hare",
+      "host": "github.com",
+      "commit": "4af5d82cf9ec39f67cb1db5b7a9269d337406592",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-hare",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-hare/archive/4af5d82cf9ec39f67cb1db5b7a9269d337406592.tar.gz"
+    },
+    "haskell_persistent": {
+      "owner": "MercuryTechnologies",
+      "repo": "tree-sitter-haskell-persistent",
+      "host": "github.com",
+      "commit": "577259b4068b2c281c9ebf94c109bd50a74d5857",
+      "location": "",
+      "url": "https://github.com/MercuryTechnologies/tree-sitter-haskell-persistent",
+      "source": "https://github.com/MercuryTechnologies/tree-sitter-haskell-persistent/archive/577259b4068b2c281c9ebf94c109bd50a74d5857.tar.gz"
+    },
+    "haskell": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-haskell",
+      "host": "github.com",
+      "commit": "0975ef72fc3c47b530309ca93937d7d143523628",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-haskell",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-haskell/archive/0975ef72fc3c47b530309ca93937d7d143523628.tar.gz"
+    },
+    "hcl": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-hcl",
+      "host": "github.com",
+      "commit": "de10d494dbd6b71cdf07a678fecbf404dbfe4398",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-hcl",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-hcl/archive/de10d494dbd6b71cdf07a678fecbf404dbfe4398.tar.gz"
+    },
+    "heex": {
+      "owner": "connorlay",
+      "repo": "tree-sitter-heex",
+      "host": "github.com",
+      "commit": "008626a3fad379d17c81d5ed576edd9bd7a4fbf7",
+      "location": "",
+      "url": "https://github.com/connorlay/tree-sitter-heex",
+      "source": "https://github.com/connorlay/tree-sitter-heex/archive/008626a3fad379d17c81d5ed576edd9bd7a4fbf7.tar.gz"
+    },
+    "helm": {
+      "owner": "ngalaiko",
+      "repo": "tree-sitter-go-template",
+      "host": "github.com",
+      "commit": "5f19a36bb1eebb30454e277b222b278ceafed0dd",
+      "location": "dialects/helm",
+      "url": "https://github.com/ngalaiko/tree-sitter-go-template",
+      "source": "https://github.com/ngalaiko/tree-sitter-go-template/archive/5f19a36bb1eebb30454e277b222b278ceafed0dd.tar.gz"
+    },
+    "hjson": {
+      "owner": "winston0410",
+      "repo": "tree-sitter-hjson",
+      "host": "github.com",
+      "commit": "02fa3b79b3ff9a296066da6277adfc3f26cbc9e0",
+      "location": "",
+      "url": "https://github.com/winston0410/tree-sitter-hjson",
+      "source": "https://github.com/winston0410/tree-sitter-hjson/archive/02fa3b79b3ff9a296066da6277adfc3f26cbc9e0.tar.gz"
+    },
+    "hlsl": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-hlsl",
+      "host": "github.com",
+      "commit": "bab9111922d53d43668fabb61869bec51bbcb915",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-hlsl",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-hlsl/archive/bab9111922d53d43668fabb61869bec51bbcb915.tar.gz"
+    },
+    "hlsplaylist": {
+      "owner": "Freed-Wu",
+      "repo": "tree-sitter-hlsplaylist",
+      "host": "github.com",
+      "commit": "3bfda9271e3adb08d35f47a2102fe957009e1c55",
+      "location": "",
+      "url": "https://github.com/Freed-Wu/tree-sitter-hlsplaylist",
+      "source": "https://github.com/Freed-Wu/tree-sitter-hlsplaylist/archive/3bfda9271e3adb08d35f47a2102fe957009e1c55.tar.gz"
+    },
+    "hocon": {
+      "owner": "antosha417",
+      "repo": "tree-sitter-hocon",
+      "host": "github.com",
+      "commit": "c390f10519ae69fdb03b3e5764f5592fb6924bcc",
+      "location": "",
+      "url": "https://github.com/antosha417/tree-sitter-hocon",
+      "source": "https://github.com/antosha417/tree-sitter-hocon/archive/c390f10519ae69fdb03b3e5764f5592fb6924bcc.tar.gz"
+    },
+    "hoon": {
+      "owner": "urbit-pilled",
+      "repo": "tree-sitter-hoon",
+      "host": "github.com",
+      "commit": "1545137aadcc63660c47db9ad98d02fa602655d0",
+      "location": "",
+      "url": "https://github.com/urbit-pilled/tree-sitter-hoon",
+      "source": "https://github.com/urbit-pilled/tree-sitter-hoon/archive/1545137aadcc63660c47db9ad98d02fa602655d0.tar.gz"
+    },
+    "html": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-html",
+      "host": "github.com",
+      "commit": "cbb91a0ff3621245e890d1c50cc811bffb77a26b",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-html",
+      "source": "https://github.com/tree-sitter/tree-sitter-html/archive/cbb91a0ff3621245e890d1c50cc811bffb77a26b.tar.gz"
+    },
+    "htmldjango": {
+      "owner": "interdependence",
+      "repo": "tree-sitter-htmldjango",
+      "host": "github.com",
+      "commit": "ea71012d3fe14dd0b69f36be4f96bdfe9155ebae",
+      "location": "",
+      "url": "https://github.com/interdependence/tree-sitter-htmldjango",
+      "source": "https://github.com/interdependence/tree-sitter-htmldjango/archive/ea71012d3fe14dd0b69f36be4f96bdfe9155ebae.tar.gz"
+    },
+    "http": {
+      "owner": "rest-nvim",
+      "repo": "tree-sitter-http",
+      "host": "github.com",
+      "commit": "db8b4398de90b6d0b6c780aba96aaa2cd8e9202c",
+      "location": "",
+      "url": "https://github.com/rest-nvim/tree-sitter-http",
+      "source": "https://github.com/rest-nvim/tree-sitter-http/archive/db8b4398de90b6d0b6c780aba96aaa2cd8e9202c.tar.gz"
+    },
+    "hurl": {
+      "owner": "pfeiferj",
+      "repo": "tree-sitter-hurl",
+      "host": "github.com",
+      "commit": "ff07a42d9ec95443b5c1b57ed793414bf7b79be5",
+      "location": "",
+      "url": "https://github.com/pfeiferj/tree-sitter-hurl",
+      "source": "https://github.com/pfeiferj/tree-sitter-hurl/archive/ff07a42d9ec95443b5c1b57ed793414bf7b79be5.tar.gz"
+    },
+    "hyprlang": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-hyprlang",
+      "host": "github.com",
+      "commit": "d719158abe537b1916daaea6fa03287089f0b601",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-hyprlang",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-hyprlang/archive/d719158abe537b1916daaea6fa03287089f0b601.tar.gz"
+    },
+    "idl": {
+      "owner": "cathaysia",
+      "repo": "tree-sitter-idl",
+      "host": "github.com",
+      "commit": "b14e7971cfbd64fa0ebcdeaa4dfbb3cb0bfabd7c",
+      "location": "",
+      "url": "https://github.com/cathaysia/tree-sitter-idl",
+      "source": "https://github.com/cathaysia/tree-sitter-idl/archive/b14e7971cfbd64fa0ebcdeaa4dfbb3cb0bfabd7c.tar.gz"
+    },
+    "idris": {
+      "owner": "kayhide",
+      "repo": "tree-sitter-idris",
+      "host": "github.com",
+      "commit": "c56a25cf57c68ff929356db25505c1cc4c7820f6",
+      "location": "",
+      "url": "https://github.com/kayhide/tree-sitter-idris",
+      "source": "https://github.com/kayhide/tree-sitter-idris/archive/c56a25cf57c68ff929356db25505c1cc4c7820f6.tar.gz"
+    },
+    "ini": {
+      "owner": "justinmk",
+      "repo": "tree-sitter-ini",
+      "host": "github.com",
+      "commit": "32b31863f222bf22eb43b07d4e9be8017e36fb31",
+      "location": "",
+      "url": "https://github.com/justinmk/tree-sitter-ini",
+      "source": "https://github.com/justinmk/tree-sitter-ini/archive/32b31863f222bf22eb43b07d4e9be8017e36fb31.tar.gz"
+    },
+    "inko": {
+      "owner": "inko-lang",
+      "repo": "tree-sitter-inko",
+      "host": "github.com",
+      "commit": "f58a87ac4dc6a7955c64c9e4408fbd693e804686",
+      "location": "",
+      "url": "https://github.com/inko-lang/tree-sitter-inko",
+      "source": "https://github.com/inko-lang/tree-sitter-inko/archive/f58a87ac4dc6a7955c64c9e4408fbd693e804686.tar.gz"
+    },
+    "ispc": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-ispc",
+      "host": "github.com",
+      "commit": "9b2f9aec2106b94b4e099fe75e73ebd8ae707c04",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-ispc",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-ispc/archive/9b2f9aec2106b94b4e099fe75e73ebd8ae707c04.tar.gz"
+    },
+    "janet_simple": {
+      "owner": "sogaiu",
+      "repo": "tree-sitter-janet-simple",
+      "host": "github.com",
+      "commit": "b08b402207fba0037d5152ce7c521351147f4388",
+      "location": "",
+      "url": "https://github.com/sogaiu/tree-sitter-janet-simple",
+      "source": "https://github.com/sogaiu/tree-sitter-janet-simple/archive/b08b402207fba0037d5152ce7c521351147f4388.tar.gz"
+    },
+    "java": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-java",
+      "host": "github.com",
+      "commit": "a7db5227ec40fcfe94489559d8c9bc7c8181e25a",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-java",
+      "source": "https://github.com/tree-sitter/tree-sitter-java/archive/a7db5227ec40fcfe94489559d8c9bc7c8181e25a.tar.gz"
+    },
+    "javadoc": {
+      "owner": "rmuir",
+      "repo": "tree-sitter-javadoc",
+      "host": "github.com",
+      "commit": "330cc9cb4f33545f7bfce6c3b6aa77fe6db1b537",
+      "location": "",
+      "url": "https://github.com/rmuir/tree-sitter-javadoc",
+      "source": "https://github.com/rmuir/tree-sitter-javadoc/archive/330cc9cb4f33545f7bfce6c3b6aa77fe6db1b537.tar.gz"
+    },
+    "javascript": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-javascript",
+      "host": "github.com",
+      "commit": "6fbef40512dcd9f0a61ce03a4c9ae7597b36ab5c",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-javascript",
+      "source": "https://github.com/tree-sitter/tree-sitter-javascript/archive/6fbef40512dcd9f0a61ce03a4c9ae7597b36ab5c.tar.gz"
+    },
+    "jinja_inline": {
+      "owner": "cathaysia",
+      "repo": "tree-sitter-jinja",
+      "host": "github.com",
+      "commit": "9af6ce9380fabd3d5b19d0254b8c8936e879c471",
+      "location": "tree-sitter-jinja_inline",
+      "url": "https://github.com/cathaysia/tree-sitter-jinja",
+      "source": "https://github.com/cathaysia/tree-sitter-jinja/archive/9af6ce9380fabd3d5b19d0254b8c8936e879c471.tar.gz"
+    },
+    "jinja": {
+      "owner": "cathaysia",
+      "repo": "tree-sitter-jinja",
+      "host": "github.com",
+      "commit": "9af6ce9380fabd3d5b19d0254b8c8936e879c471",
+      "location": "tree-sitter-jinja",
+      "url": "https://github.com/cathaysia/tree-sitter-jinja",
+      "source": "https://github.com/cathaysia/tree-sitter-jinja/archive/9af6ce9380fabd3d5b19d0254b8c8936e879c471.tar.gz"
+    },
+    "jjdescription": {
+      "owner": "ribru17",
+      "repo": "tree-sitter-jjdescription",
+      "host": "github.com",
+      "commit": "964941cff90d0556f46160bb018755943962c67f",
+      "location": "",
+      "url": "https://github.com/ribru17/tree-sitter-jjdescription",
+      "source": "https://github.com/ribru17/tree-sitter-jjdescription/archive/964941cff90d0556f46160bb018755943962c67f.tar.gz"
+    },
+    "jq": {
+      "owner": "flurie",
+      "repo": "tree-sitter-jq",
+      "host": "github.com",
+      "commit": "13990f530e8e6709b7978503da9bc8701d366791",
+      "location": "",
+      "url": "https://github.com/flurie/tree-sitter-jq",
+      "source": "https://github.com/flurie/tree-sitter-jq/archive/13990f530e8e6709b7978503da9bc8701d366791.tar.gz"
+    },
+    "jsdoc": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-jsdoc",
+      "host": "github.com",
+      "commit": "a417db5dbdd869fccb6a8b75ec04459e1d4ccd2c",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-jsdoc",
+      "source": "https://github.com/tree-sitter/tree-sitter-jsdoc/archive/a417db5dbdd869fccb6a8b75ec04459e1d4ccd2c.tar.gz"
+    },
+    "json": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-json",
+      "host": "github.com",
+      "commit": "46aa487b3ade14b7b05ef92507fdaa3915a662a3",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-json",
+      "source": "https://github.com/tree-sitter/tree-sitter-json/archive/46aa487b3ade14b7b05ef92507fdaa3915a662a3.tar.gz"
+    },
+    "jsonc": {
+      "owner": "sunilunnithan",
+      "repo": "tree-sitter-jsonc",
+      "host": "github.com",
+      "commit": "02b01653c8a1c198ae7287d566efa86a135b30d5",
+      "location": "",
+      "url": "https://github.com/sunilunnithan/tree-sitter-jsonc",
+      "source": "https://github.com/sunilunnithan/tree-sitter-jsonc/archive/02b01653c8a1c198ae7287d566efa86a135b30d5.tar.gz"
+    },
+    "json5": {
+      "owner": "Joakker",
+      "repo": "tree-sitter-json5",
+      "host": "github.com",
+      "commit": "ab0ba8229d639ec4f3fa5f674c9133477f4b77bd",
+      "location": "",
+      "url": "https://github.com/Joakker/tree-sitter-json5",
+      "source": "https://github.com/Joakker/tree-sitter-json5/archive/ab0ba8229d639ec4f3fa5f674c9133477f4b77bd.tar.gz"
+    },
+    "jsonnet": {
+      "owner": "sourcegraph",
+      "repo": "tree-sitter-jsonnet",
+      "host": "github.com",
+      "commit": "ddd075f1939aed8147b7aa67f042eda3fce22790",
+      "location": "",
+      "url": "https://github.com/sourcegraph/tree-sitter-jsonnet",
+      "source": "https://github.com/sourcegraph/tree-sitter-jsonnet/archive/ddd075f1939aed8147b7aa67f042eda3fce22790.tar.gz"
+    },
+    "julia": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-julia",
+      "host": "github.com",
+      "commit": "12a3aede757bc7fbdfb1909507c7a6fddd31df37",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-julia",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-julia/archive/12a3aede757bc7fbdfb1909507c7a6fddd31df37.tar.gz"
+    },
+    "just": {
+      "owner": "IndianBoy42",
+      "repo": "tree-sitter-just",
+      "host": "github.com",
+      "commit": "bb0c898a80644de438e6efe5d88d30bf092935cd",
+      "location": "",
+      "url": "https://github.com/IndianBoy42/tree-sitter-just",
+      "source": "https://github.com/IndianBoy42/tree-sitter-just/archive/bb0c898a80644de438e6efe5d88d30bf092935cd.tar.gz"
+    },
+    "kcl": {
+      "owner": "kcl-lang",
+      "repo": "tree-sitter-kcl",
+      "host": "github.com",
+      "commit": "b0b2eb38009e04035a6e266c7e11e541f3caab7c",
+      "location": "",
+      "url": "https://github.com/kcl-lang/tree-sitter-kcl",
+      "source": "https://github.com/kcl-lang/tree-sitter-kcl/archive/b0b2eb38009e04035a6e266c7e11e541f3caab7c.tar.gz"
+    },
+    "kconfig": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-kconfig",
+      "host": "github.com",
+      "commit": "9ac99fe4c0c27a35dc6f757cef534c646e944881",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-kconfig",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-kconfig/archive/9ac99fe4c0c27a35dc6f757cef534c646e944881.tar.gz"
+    },
+    "kdl": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-kdl",
+      "host": "github.com",
+      "commit": "b37e3d58e5c5cf8d739b315d6114e02d42e66664",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-kdl",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-kdl/archive/b37e3d58e5c5cf8d739b315d6114e02d42e66664.tar.gz"
+    },
+    "kitty": {
+      "owner": "OXY2DEV",
+      "repo": "tree-sitter-kitty",
+      "host": "github.com",
+      "commit": "fa6ab3fd32d890a0217495c96b35761e6d2dcb5b",
+      "location": "",
+      "url": "https://github.com/OXY2DEV/tree-sitter-kitty",
+      "source": "https://github.com/OXY2DEV/tree-sitter-kitty/archive/fa6ab3fd32d890a0217495c96b35761e6d2dcb5b.tar.gz"
+    },
+    "kos": {
+      "owner": "kos-lang",
+      "repo": "tree-sitter-kos",
+      "host": "github.com",
+      "commit": "03b261c1a78b71c38cf4616497f253c4a4ce118b",
+      "location": "",
+      "url": "https://github.com/kos-lang/tree-sitter-kos",
+      "source": "https://github.com/kos-lang/tree-sitter-kos/archive/03b261c1a78b71c38cf4616497f253c4a4ce118b.tar.gz"
+    },
+    "kotlin": {
+      "owner": "fwcd",
+      "repo": "tree-sitter-kotlin",
+      "host": "github.com",
+      "commit": "c4ddea359a7ff4d92360b2efcd6cfce5dc25afe6",
+      "location": "",
+      "url": "https://github.com/fwcd/tree-sitter-kotlin",
+      "source": "https://github.com/fwcd/tree-sitter-kotlin/archive/c4ddea359a7ff4d92360b2efcd6cfce5dc25afe6.tar.gz"
+    },
+    "koto": {
+      "owner": "koto-lang",
+      "repo": "tree-sitter-koto",
+      "host": "github.com",
+      "commit": "46770abba021e2ddd2c51d9fa3087fd1ab6b2aea",
+      "location": "",
+      "url": "https://github.com/koto-lang/tree-sitter-koto",
+      "source": "https://github.com/koto-lang/tree-sitter-koto/archive/46770abba021e2ddd2c51d9fa3087fd1ab6b2aea.tar.gz"
+    },
+    "kusto": {
+      "owner": "Willem-J-an",
+      "repo": "tree-sitter-kusto",
+      "host": "github.com",
+      "commit": "8353a1296607d6ba33db7c7e312226e5fc83e8ce",
+      "location": "",
+      "url": "https://github.com/Willem-J-an/tree-sitter-kusto",
+      "source": "https://github.com/Willem-J-an/tree-sitter-kusto/archive/8353a1296607d6ba33db7c7e312226e5fc83e8ce.tar.gz"
+    },
+    "lalrpop": {
+      "owner": "traxys",
+      "repo": "tree-sitter-lalrpop",
+      "host": "github.com",
+      "commit": "8d38e9755c05d37df8a24dadb0fc64f6588ac188",
+      "location": "",
+      "url": "https://github.com/traxys/tree-sitter-lalrpop",
+      "source": "https://github.com/traxys/tree-sitter-lalrpop/archive/8d38e9755c05d37df8a24dadb0fc64f6588ac188.tar.gz"
+    },
+    "latex": {
+      "owner": "latex-lsp",
+      "repo": "tree-sitter-latex",
+      "host": "github.com",
+      "commit": "a6c812704b3d3e1541b0853aa0d6d561301320e1",
+      "location": "",
+      "url": "https://github.com/latex-lsp/tree-sitter-latex",
+      "source": "https://github.com/latex-lsp/tree-sitter-latex/archive/a6c812704b3d3e1541b0853aa0d6d561301320e1.tar.gz"
+    },
+    "ledger": {
+      "owner": "cbarrete",
+      "repo": "tree-sitter-ledger",
+      "host": "github.com",
+      "commit": "d313153eef68c557ba4538b20de2d0e92f3ef6f8",
+      "location": "",
+      "url": "https://github.com/cbarrete/tree-sitter-ledger",
+      "source": "https://github.com/cbarrete/tree-sitter-ledger/archive/d313153eef68c557ba4538b20de2d0e92f3ef6f8.tar.gz"
+    },
+    "leo": {
+      "owner": "r001",
+      "repo": "tree-sitter-leo",
+      "host": "github.com",
+      "commit": "6bc5564917edacd070afc4d33cf5e2e677831ea9",
+      "location": "",
+      "url": "https://github.com/r001/tree-sitter-leo",
+      "source": "https://github.com/r001/tree-sitter-leo/archive/6bc5564917edacd070afc4d33cf5e2e677831ea9.tar.gz"
+    },
+    "linkerscript": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-linkerscript",
+      "host": "github.com",
+      "commit": "f99011a3554213b654985a4b0a65b3b032ec4621",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-linkerscript",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-linkerscript/archive/f99011a3554213b654985a4b0a65b3b032ec4621.tar.gz"
+    },
+    "liquid": {
+      "owner": "hankthetank27",
+      "repo": "tree-sitter-liquid",
+      "host": "github.com",
+      "commit": "d269f4d52cd08f6cbc6636ee23cc30a9f6c32e42",
+      "location": "",
+      "url": "https://github.com/hankthetank27/tree-sitter-liquid",
+      "source": "https://github.com/hankthetank27/tree-sitter-liquid/archive/d269f4d52cd08f6cbc6636ee23cc30a9f6c32e42.tar.gz"
+    },
+    "liquidsoap": {
+      "owner": "savonet",
+      "repo": "tree-sitter-liquidsoap",
+      "host": "github.com",
+      "commit": "8e51fa63ddb93ac179d4e34a311d3d3f03780b42",
+      "location": "",
+      "url": "https://github.com/savonet/tree-sitter-liquidsoap",
+      "source": "https://github.com/savonet/tree-sitter-liquidsoap/archive/8e51fa63ddb93ac179d4e34a311d3d3f03780b42.tar.gz"
+    },
+    "llvm": {
+      "owner": "benwilliamgraham",
+      "repo": "tree-sitter-llvm",
+      "host": "github.com",
+      "commit": "c14cb839003348692158b845db9edda201374548",
+      "location": "",
+      "url": "https://github.com/benwilliamgraham/tree-sitter-llvm",
+      "source": "https://github.com/benwilliamgraham/tree-sitter-llvm/archive/c14cb839003348692158b845db9edda201374548.tar.gz"
+    },
+    "lua": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-lua",
+      "host": "github.com",
+      "commit": "db16e76558122e834ee214c8dc755b4a3edc82a9",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-lua",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-lua/archive/db16e76558122e834ee214c8dc755b4a3edc82a9.tar.gz"
+    },
+    "luadoc": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-luadoc",
+      "host": "github.com",
+      "commit": "873612aadd3f684dd4e631bdf42ea8990c57634e",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-luadoc",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-luadoc/archive/873612aadd3f684dd4e631bdf42ea8990c57634e.tar.gz"
+    },
+    "luap": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-luap",
+      "host": "github.com",
+      "commit": "c134aaec6acf4fa95fe4aa0dc9aba3eacdbbe55a",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-luap",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-luap/archive/c134aaec6acf4fa95fe4aa0dc9aba3eacdbbe55a.tar.gz"
+    },
+    "luau": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-luau",
+      "host": "github.com",
+      "commit": "a8914d6c1fc5131f8e1c13f769fa704c9f5eb02f",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-luau",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-luau/archive/a8914d6c1fc5131f8e1c13f769fa704c9f5eb02f.tar.gz"
+    },
+    "m68k": {
+      "owner": "grahambates",
+      "repo": "tree-sitter-m68k",
+      "host": "github.com",
+      "commit": "e128454c2210c0e0c10b68fe45ddb8fee80182a3",
+      "location": "",
+      "url": "https://github.com/grahambates/tree-sitter-m68k",
+      "source": "https://github.com/grahambates/tree-sitter-m68k/archive/e128454c2210c0e0c10b68fe45ddb8fee80182a3.tar.gz"
+    },
+    "make": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-make",
+      "host": "github.com",
+      "commit": "a4b9187417d6be349ee5fd4b6e77b4172c6827dd",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-make",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-make/archive/a4b9187417d6be349ee5fd4b6e77b4172c6827dd.tar.gz"
+    },
+    "markdown_inline": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-markdown",
+      "host": "github.com",
+      "commit": "413285231ce8fa8b11e7074bbe265b48aa7277f9",
+      "location": "tree-sitter-markdown-inline",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-markdown/archive/413285231ce8fa8b11e7074bbe265b48aa7277f9.tar.gz"
+    },
+    "markdown": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-markdown",
+      "host": "github.com",
+      "commit": "413285231ce8fa8b11e7074bbe265b48aa7277f9",
+      "location": "tree-sitter-markdown",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-markdown/archive/413285231ce8fa8b11e7074bbe265b48aa7277f9.tar.gz"
+    },
+    "matlab": {
+      "owner": "acristoffers",
+      "repo": "tree-sitter-matlab",
+      "host": "github.com",
+      "commit": "bbf1b3f0bd7417c1efb8958fe95be3d0d540207a",
+      "location": "",
+      "url": "https://github.com/acristoffers/tree-sitter-matlab",
+      "source": "https://github.com/acristoffers/tree-sitter-matlab/archive/bbf1b3f0bd7417c1efb8958fe95be3d0d540207a.tar.gz"
+    },
+    "menhir": {
+      "owner": "Kerl13",
+      "repo": "tree-sitter-menhir",
+      "host": "github.com",
+      "commit": "be8866a6bcc2b563ab0de895af69daeffa88fe70",
+      "location": "",
+      "url": "https://github.com/Kerl13/tree-sitter-menhir",
+      "source": "https://github.com/Kerl13/tree-sitter-menhir/archive/be8866a6bcc2b563ab0de895af69daeffa88fe70.tar.gz"
+    },
+    "mermaid": {
+      "owner": "monaqa",
+      "repo": "tree-sitter-mermaid",
+      "host": "github.com",
+      "commit": "90ae195b31933ceb9d079abfa8a3ad0a36fee4cc",
+      "location": "",
+      "url": "https://github.com/monaqa/tree-sitter-mermaid",
+      "source": "https://github.com/monaqa/tree-sitter-mermaid/archive/90ae195b31933ceb9d079abfa8a3ad0a36fee4cc.tar.gz"
+    },
+    "meson": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-meson",
+      "host": "github.com",
+      "commit": "a56af662e8540412fed5e40cc20435b2b9a20502",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-meson",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-meson/archive/a56af662e8540412fed5e40cc20435b2b9a20502.tar.gz"
+    },
+    "mlir": {
+      "owner": "artagnon",
+      "repo": "tree-sitter-mlir",
+      "host": "github.com",
+      "commit": "922cbb97f3d20044e6b4362b3d7af5e530ed8f34",
+      "location": "",
+      "url": "https://github.com/artagnon/tree-sitter-mlir",
+      "source": "https://github.com/artagnon/tree-sitter-mlir/archive/922cbb97f3d20044e6b4362b3d7af5e530ed8f34.tar.gz"
+    },
+    "muttrc": {
+      "owner": "neomutt",
+      "repo": "tree-sitter-muttrc",
+      "host": "github.com",
+      "commit": "173b0ab53a9c07962c9777189c4c70e90f1c1837",
+      "location": "",
+      "url": "https://github.com/neomutt/tree-sitter-muttrc",
+      "source": "https://github.com/neomutt/tree-sitter-muttrc/archive/173b0ab53a9c07962c9777189c4c70e90f1c1837.tar.gz"
+    },
+    "nasm": {
+      "owner": "naclsn",
+      "repo": "tree-sitter-nasm",
+      "host": "github.com",
+      "commit": "d1b3638d017f2a8585e26dcfc66fe1df94185e30",
+      "location": "",
+      "url": "https://github.com/naclsn/tree-sitter-nasm",
+      "source": "https://github.com/naclsn/tree-sitter-nasm/archive/d1b3638d017f2a8585e26dcfc66fe1df94185e30.tar.gz"
+    },
+    "nginx": {
+      "owner": "opa-oz",
+      "repo": "tree-sitter-nginx",
+      "host": "github.com",
+      "commit": "989da760be05a3334af3ec88705cbf57e6a9c41d",
+      "location": "",
+      "url": "https://github.com/opa-oz/tree-sitter-nginx",
+      "source": "https://github.com/opa-oz/tree-sitter-nginx/archive/989da760be05a3334af3ec88705cbf57e6a9c41d.tar.gz"
+    },
+    "nickel": {
+      "owner": "nickel-lang",
+      "repo": "tree-sitter-nickel",
+      "host": "github.com",
+      "commit": "25464b33522c3f609fa512aa9651707c0b66d48b",
+      "location": "",
+      "url": "https://github.com/nickel-lang/tree-sitter-nickel",
+      "source": "https://github.com/nickel-lang/tree-sitter-nickel/archive/25464b33522c3f609fa512aa9651707c0b66d48b.tar.gz"
+    },
+    "nim_format_string": {
+      "owner": "aMOPel",
+      "repo": "tree-sitter-nim-format-string",
+      "host": "github.com",
+      "commit": "d45f75022d147cda056e98bfba68222c9c8eca3a",
+      "location": "",
+      "url": "https://github.com/aMOPel/tree-sitter-nim-format-string",
+      "source": "https://github.com/aMOPel/tree-sitter-nim-format-string/archive/d45f75022d147cda056e98bfba68222c9c8eca3a.tar.gz"
+    },
+    "nim": {
+      "owner": "alaviss",
+      "repo": "tree-sitter-nim",
+      "host": "github.com",
+      "commit": "897e5d346f0b59ed62b517cfb0f1a845ad8f0ab7",
+      "location": "",
+      "url": "https://github.com/alaviss/tree-sitter-nim",
+      "source": "https://github.com/alaviss/tree-sitter-nim/archive/897e5d346f0b59ed62b517cfb0f1a845ad8f0ab7.tar.gz"
+    },
+    "ninja": {
+      "owner": "alemuller",
+      "repo": "tree-sitter-ninja",
+      "host": "github.com",
+      "commit": "0a95cfdc0745b6ae82f60d3a339b37f19b7b9267",
+      "location": "",
+      "url": "https://github.com/alemuller/tree-sitter-ninja",
+      "source": "https://github.com/alemuller/tree-sitter-ninja/archive/0a95cfdc0745b6ae82f60d3a339b37f19b7b9267.tar.gz"
+    },
+    "nix": {
+      "owner": "nix-community",
+      "repo": "tree-sitter-nix",
+      "host": "github.com",
+      "commit": "cfc53fd287d23ab7281440a8526c73542984669b",
+      "location": "",
+      "url": "https://github.com/nix-community/tree-sitter-nix",
+      "source": "https://github.com/nix-community/tree-sitter-nix/archive/cfc53fd287d23ab7281440a8526c73542984669b.tar.gz"
+    },
+    "nqc": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-nqc",
+      "host": "github.com",
+      "commit": "14e6da1627aaef21d2b2aa0c37d04269766dcc1d",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-nqc",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-nqc/archive/14e6da1627aaef21d2b2aa0c37d04269766dcc1d.tar.gz"
+    },
+    "nu": {
+      "owner": "nushell",
+      "repo": "tree-sitter-nu",
+      "host": "github.com",
+      "commit": "d5c71a10b4d1b02e38967b05f8de70e847448dd1",
+      "location": "",
+      "url": "https://github.com/nushell/tree-sitter-nu",
+      "source": "https://github.com/nushell/tree-sitter-nu/archive/d5c71a10b4d1b02e38967b05f8de70e847448dd1.tar.gz"
+    },
+    "objc": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-objc",
+      "host": "github.com",
+      "commit": "181a81b8f23a2d593e7ab4259981f50122909fda",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-objc",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-objc/archive/181a81b8f23a2d593e7ab4259981f50122909fda.tar.gz"
+    },
+    "objdump": {
+      "owner": "ColinKennedy",
+      "repo": "tree-sitter-objdump",
+      "host": "github.com",
+      "commit": "28d3b2e25a0b1881d1b47ed1924ca276c7003d45",
+      "location": "",
+      "url": "https://github.com/ColinKennedy/tree-sitter-objdump",
+      "source": "https://github.com/ColinKennedy/tree-sitter-objdump/archive/28d3b2e25a0b1881d1b47ed1924ca276c7003d45.tar.gz"
+    },
+    "ocaml_interface": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-ocaml",
+      "host": "github.com",
+      "commit": "91708deb10cb4fe68ab3c50891426b9967dbf35a",
+      "location": "grammars/interface",
+      "url": "https://github.com/tree-sitter/tree-sitter-ocaml",
+      "source": "https://github.com/tree-sitter/tree-sitter-ocaml/archive/91708deb10cb4fe68ab3c50891426b9967dbf35a.tar.gz"
+    },
+    "ocaml": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-ocaml",
+      "host": "github.com",
+      "commit": "91708deb10cb4fe68ab3c50891426b9967dbf35a",
+      "location": "grammars/ocaml",
+      "url": "https://github.com/tree-sitter/tree-sitter-ocaml",
+      "source": "https://github.com/tree-sitter/tree-sitter-ocaml/archive/91708deb10cb4fe68ab3c50891426b9967dbf35a.tar.gz"
+    },
+    "ocamllex": {
+      "owner": "atom-ocaml",
+      "repo": "tree-sitter-ocamllex",
+      "host": "github.com",
+      "commit": "c5cf996c23e38a1537069fbe2d4bb83a75fc7b2f",
+      "location": "",
+      "url": "https://github.com/atom-ocaml/tree-sitter-ocamllex",
+      "source": "https://github.com/atom-ocaml/tree-sitter-ocamllex/archive/c5cf996c23e38a1537069fbe2d4bb83a75fc7b2f.tar.gz"
+    },
+    "odin": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-odin",
+      "host": "github.com",
+      "commit": "d2ca8efb4487e156a60d5bd6db2598b872629403",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-odin",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-odin/archive/d2ca8efb4487e156a60d5bd6db2598b872629403.tar.gz"
+    },
+    "pascal": {
+      "owner": "Isopod",
+      "repo": "tree-sitter-pascal",
+      "host": "github.com",
+      "commit": "78426d96bde7114af979e314283e45d087603428",
+      "location": "",
+      "url": "https://github.com/Isopod/tree-sitter-pascal",
+      "source": "https://github.com/Isopod/tree-sitter-pascal/archive/78426d96bde7114af979e314283e45d087603428.tar.gz"
+    },
+    "passwd": {
+      "owner": "ath3",
+      "repo": "tree-sitter-passwd",
+      "host": "github.com",
+      "commit": "20239395eacdc2e0923a7e5683ad3605aee7b716",
+      "location": "",
+      "url": "https://github.com/ath3/tree-sitter-passwd",
+      "source": "https://github.com/ath3/tree-sitter-passwd/archive/20239395eacdc2e0923a7e5683ad3605aee7b716.tar.gz"
+    },
+    "pem": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-pem",
+      "host": "github.com",
+      "commit": "1d16b8e063fdf4385e389096c4bc4999eaaef05f",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-pem",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-pem/archive/1d16b8e063fdf4385e389096c4bc4999eaaef05f.tar.gz"
+    },
+    "perl": {
+      "owner": "tree-sitter-perl",
+      "repo": "tree-sitter-perl",
+      "host": "github.com",
+      "commit": "ecd90bd8b381bcc7219fed4fe351903630e761c6",
+      "location": "",
+      "url": "https://github.com/tree-sitter-perl/tree-sitter-perl",
+      "source": "https://github.com/tree-sitter-perl/tree-sitter-perl/archive/ecd90bd8b381bcc7219fed4fe351903630e761c6.tar.gz"
+    },
+    "php_only": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-php",
+      "host": "github.com",
+      "commit": "576a56fa7f8b68c91524cdd211eb2ffc43e7bb11",
+      "location": "php_only",
+      "url": "https://github.com/tree-sitter/tree-sitter-php",
+      "source": "https://github.com/tree-sitter/tree-sitter-php/archive/576a56fa7f8b68c91524cdd211eb2ffc43e7bb11.tar.gz"
+    },
+    "php": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-php",
+      "host": "github.com",
+      "commit": "576a56fa7f8b68c91524cdd211eb2ffc43e7bb11",
+      "location": "php",
+      "url": "https://github.com/tree-sitter/tree-sitter-php",
+      "source": "https://github.com/tree-sitter/tree-sitter-php/archive/576a56fa7f8b68c91524cdd211eb2ffc43e7bb11.tar.gz"
+    },
+    "phpdoc": {
+      "owner": "claytonrcarter",
+      "repo": "tree-sitter-phpdoc",
+      "host": "github.com",
+      "commit": "fe3202e468bc17332bec8969f2b50ff1f1da3a46",
+      "location": "",
+      "url": "https://github.com/claytonrcarter/tree-sitter-phpdoc",
+      "source": "https://github.com/claytonrcarter/tree-sitter-phpdoc/archive/fe3202e468bc17332bec8969f2b50ff1f1da3a46.tar.gz"
+    },
+    "pioasm": {
+      "owner": "leo60228",
+      "repo": "tree-sitter-pioasm",
+      "host": "github.com",
+      "commit": "afece58efdb30440bddd151ef1347fa8d6f744a9",
+      "location": "",
+      "url": "https://github.com/leo60228/tree-sitter-pioasm",
+      "source": "https://github.com/leo60228/tree-sitter-pioasm/archive/afece58efdb30440bddd151ef1347fa8d6f744a9.tar.gz"
+    },
+    "pkl": {
+      "owner": "apple",
+      "repo": "tree-sitter-pkl",
+      "host": "github.com",
+      "commit": "f5beed1da8e5fc856a1a11e29a929d0b7cdcfe3c",
+      "location": "",
+      "url": "https://github.com/apple/tree-sitter-pkl",
+      "source": "https://github.com/apple/tree-sitter-pkl/archive/f5beed1da8e5fc856a1a11e29a929d0b7cdcfe3c.tar.gz"
+    },
+    "po": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-po",
+      "host": "github.com",
+      "commit": "bd860a0f57f697162bf28e576674be9c1500db5e",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-po",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-po/archive/bd860a0f57f697162bf28e576674be9c1500db5e.tar.gz"
+    },
+    "pod": {
+      "owner": "tree-sitter-perl",
+      "repo": "tree-sitter-pod",
+      "host": "github.com",
+      "commit": "0bf8387987c21bf2f8ed41d2575a8f22b139687f",
+      "location": "",
+      "url": "https://github.com/tree-sitter-perl/tree-sitter-pod",
+      "source": "https://github.com/tree-sitter-perl/tree-sitter-pod/archive/0bf8387987c21bf2f8ed41d2575a8f22b139687f.tar.gz"
+    },
+    "poe_filter": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-poe-filter",
+      "host": "github.com",
+      "commit": "2902dc45439125b9386812c1089a8e9b5f71c4ab",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-poe-filter",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-poe-filter/archive/2902dc45439125b9386812c1089a8e9b5f71c4ab.tar.gz"
+    },
+    "pony": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-pony",
+      "host": "github.com",
+      "commit": "73ff874ae4c9e9b45462673cbc0a1e350e2522a7",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-pony",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-pony/archive/73ff874ae4c9e9b45462673cbc0a1e350e2522a7.tar.gz"
+    },
+    "powershell": {
+      "owner": "airbus-cert",
+      "repo": "tree-sitter-powershell",
+      "host": "github.com",
+      "commit": "66d5e61126989c0aca57ff77d19b2064919b51e1",
+      "location": "",
+      "url": "https://github.com/airbus-cert/tree-sitter-powershell",
+      "source": "https://github.com/airbus-cert/tree-sitter-powershell/archive/66d5e61126989c0aca57ff77d19b2064919b51e1.tar.gz"
+    },
+    "printf": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-printf",
+      "host": "github.com",
+      "commit": "df6b69967db7d74ab338a86a9ab45c0966c5ee3c",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-printf",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-printf/archive/df6b69967db7d74ab338a86a9ab45c0966c5ee3c.tar.gz"
+    },
+    "prisma": {
+      "owner": "victorhqc",
+      "repo": "tree-sitter-prisma",
+      "host": "github.com",
+      "commit": "73f39a6d5401cfdcd143951e499336cf5ab2ffaa",
+      "location": "",
+      "url": "https://github.com/victorhqc/tree-sitter-prisma",
+      "source": "https://github.com/victorhqc/tree-sitter-prisma/archive/73f39a6d5401cfdcd143951e499336cf5ab2ffaa.tar.gz"
+    },
+    "problog": {
+      "owner": "foxyseta",
+      "repo": "tree-sitter-prolog",
+      "host": "github.com",
+      "commit": "d8d415f6a1cf80ca138524bcc395810b176d40fa",
+      "location": "grammars/problog",
+      "url": "https://github.com/foxyseta/tree-sitter-prolog",
+      "source": "https://github.com/foxyseta/tree-sitter-prolog/archive/d8d415f6a1cf80ca138524bcc395810b176d40fa.tar.gz"
+    },
+    "prolog": {
+      "owner": "foxyseta",
+      "repo": "tree-sitter-prolog",
+      "host": "github.com",
+      "commit": "d8d415f6a1cf80ca138524bcc395810b176d40fa",
+      "location": "grammars/prolog",
+      "url": "https://github.com/foxyseta/tree-sitter-prolog",
+      "source": "https://github.com/foxyseta/tree-sitter-prolog/archive/d8d415f6a1cf80ca138524bcc395810b176d40fa.tar.gz"
+    },
+    "promql": {
+      "owner": "MichaHoffmann",
+      "repo": "tree-sitter-promql",
+      "host": "github.com",
+      "commit": "77625d78eebc3ffc44d114a07b2f348dff3061b0",
+      "location": "",
+      "url": "https://github.com/MichaHoffmann/tree-sitter-promql",
+      "source": "https://github.com/MichaHoffmann/tree-sitter-promql/archive/77625d78eebc3ffc44d114a07b2f348dff3061b0.tar.gz"
+    },
+    "properties": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-properties",
+      "host": "github.com",
+      "commit": "579b62f5ad8d96c2bb331f07d1408c92767531d9",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-properties",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-properties/archive/579b62f5ad8d96c2bb331f07d1408c92767531d9.tar.gz"
+    },
+    "proto": {
+      "owner": "coder3101",
+      "repo": "tree-sitter-proto",
+      "host": "github.com",
+      "commit": "d65a18ce7c2242801f702770114ad08056c7f8c9",
+      "location": "",
+      "url": "https://github.com/coder3101/tree-sitter-proto",
+      "source": "https://github.com/coder3101/tree-sitter-proto/archive/d65a18ce7c2242801f702770114ad08056c7f8c9.tar.gz"
+    },
+    "prql": {
+      "owner": "PRQL",
+      "repo": "tree-sitter-prql",
+      "host": "github.com",
+      "commit": "09e158cd3650581c0af4c49c2e5b10c4834c8646",
+      "location": "",
+      "url": "https://github.com/PRQL/tree-sitter-prql",
+      "source": "https://github.com/PRQL/tree-sitter-prql/archive/09e158cd3650581c0af4c49c2e5b10c4834c8646.tar.gz"
+    },
+    "psv": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-csv",
+      "host": "github.com",
+      "commit": "7eb7297823605392d2bbcc4c09b1cd18d6fa9529",
+      "location": "psv",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-csv",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-csv/archive/7eb7297823605392d2bbcc4c09b1cd18d6fa9529.tar.gz"
+    },
+    "pug": {
+      "owner": "zealot128",
+      "repo": "tree-sitter-pug",
+      "host": "github.com",
+      "commit": "13e9195370172c86a8b88184cc358b23b677cc46",
+      "location": "",
+      "url": "https://github.com/zealot128/tree-sitter-pug",
+      "source": "https://github.com/zealot128/tree-sitter-pug/archive/13e9195370172c86a8b88184cc358b23b677cc46.tar.gz"
+    },
+    "puppet": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-puppet",
+      "host": "github.com",
+      "commit": "15f192929b7d317f5914de2b4accd37b349182a6",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-puppet",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-puppet/archive/15f192929b7d317f5914de2b4accd37b349182a6.tar.gz"
+    },
+    "purescript": {
+      "owner": "postsolar",
+      "repo": "tree-sitter-purescript",
+      "host": "github.com",
+      "commit": "daf9b3e2be18b0b2996a1281f7783e0d041d8b80",
+      "location": "",
+      "url": "https://github.com/postsolar/tree-sitter-purescript",
+      "source": "https://github.com/postsolar/tree-sitter-purescript/archive/daf9b3e2be18b0b2996a1281f7783e0d041d8b80.tar.gz"
+    },
+    "pymanifest": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-pymanifest",
+      "host": "github.com",
+      "commit": "be062582956165019d3253794b4d712f66dfeaaa",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-pymanifest",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-pymanifest/archive/be062582956165019d3253794b4d712f66dfeaaa.tar.gz"
+    },
+    "python": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-python",
+      "host": "github.com",
+      "commit": "710796b8b877a970297106e5bbc8e2afa47f86ec",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-python",
+      "source": "https://github.com/tree-sitter/tree-sitter-python/archive/710796b8b877a970297106e5bbc8e2afa47f86ec.tar.gz"
+    },
+    "ql": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-ql",
+      "host": "github.com",
+      "commit": "1fd627a4e8bff8c24c11987474bd33112bead857",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-ql",
+      "source": "https://github.com/tree-sitter/tree-sitter-ql/archive/1fd627a4e8bff8c24c11987474bd33112bead857.tar.gz"
+    },
+    "qmldir": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-qmldir",
+      "host": "github.com",
+      "commit": "6b2b5e41734bd6f07ea4c36ac20fb6f14061c841",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-qmldir",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-qmldir/archive/6b2b5e41734bd6f07ea4c36ac20fb6f14061c841.tar.gz"
+    },
+    "qmljs": {
+      "owner": "yuja",
+      "repo": "tree-sitter-qmljs",
+      "host": "github.com",
+      "commit": "0889da4632bba3ec6f39ef4102625654890c15c1",
+      "location": "",
+      "url": "https://github.com/yuja/tree-sitter-qmljs",
+      "source": "https://github.com/yuja/tree-sitter-qmljs/archive/0889da4632bba3ec6f39ef4102625654890c15c1.tar.gz"
+    },
+    "query": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-query",
+      "host": "github.com",
+      "commit": "930202c2a80965a7a9ca018b5b2a08b25dfa7f12",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-query",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-query/archive/930202c2a80965a7a9ca018b5b2a08b25dfa7f12.tar.gz"
+    },
+    "r": {
+      "owner": "r-lib",
+      "repo": "tree-sitter-r",
+      "host": "github.com",
+      "commit": "a0d3e3307489c3ca54da8c7b5b4e0c5f5fd6953a",
+      "location": "",
+      "url": "https://github.com/r-lib/tree-sitter-r",
+      "source": "https://github.com/r-lib/tree-sitter-r/archive/a0d3e3307489c3ca54da8c7b5b4e0c5f5fd6953a.tar.gz"
+    },
+    "racket": {
+      "owner": "6cdh",
+      "repo": "tree-sitter-racket",
+      "host": "github.com",
+      "commit": "5b211bf93021d1c45f39aa96898be9f794f087e4",
+      "location": "",
+      "url": "https://github.com/6cdh/tree-sitter-racket",
+      "source": "https://github.com/6cdh/tree-sitter-racket/archive/5b211bf93021d1c45f39aa96898be9f794f087e4.tar.gz"
+    },
+    "ralph": {
+      "owner": "alephium",
+      "repo": "tree-sitter-ralph",
+      "host": "github.com",
+      "commit": "f6d81bf7a4599c77388035439cf5801cd461ff77",
+      "location": "",
+      "url": "https://github.com/alephium/tree-sitter-ralph",
+      "source": "https://github.com/alephium/tree-sitter-ralph/archive/f6d81bf7a4599c77388035439cf5801cd461ff77.tar.gz"
+    },
+    "rasi": {
+      "owner": "Fymyte",
+      "repo": "tree-sitter-rasi",
+      "host": "github.com",
+      "commit": "6c9bbcfdf5f0f553d9ebc01750a3aa247a37b8aa",
+      "location": "",
+      "url": "https://github.com/Fymyte/tree-sitter-rasi",
+      "source": "https://github.com/Fymyte/tree-sitter-rasi/archive/6c9bbcfdf5f0f553d9ebc01750a3aa247a37b8aa.tar.gz"
+    },
+    "razor": {
+      "owner": "tris203",
+      "repo": "tree-sitter-razor",
+      "host": "github.com",
+      "commit": "fe46ce5ea7d844e53d59bc96f2175d33691c61c5",
+      "location": "",
+      "url": "https://github.com/tris203/tree-sitter-razor",
+      "source": "https://github.com/tris203/tree-sitter-razor/archive/fe46ce5ea7d844e53d59bc96f2175d33691c61c5.tar.gz"
+    },
+    "rbs": {
+      "owner": "joker1007",
+      "repo": "tree-sitter-rbs",
+      "host": "github.com",
+      "commit": "de893b166476205b09e79cd3689f95831269579a",
+      "location": "",
+      "url": "https://github.com/joker1007/tree-sitter-rbs",
+      "source": "https://github.com/joker1007/tree-sitter-rbs/archive/de893b166476205b09e79cd3689f95831269579a.tar.gz"
+    },
+    "re2c": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-re2c",
+      "host": "github.com",
+      "commit": "c18a3c2f4b6665e35b7e50d6048ea3cff770c572",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-re2c",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-re2c/archive/c18a3c2f4b6665e35b7e50d6048ea3cff770c572.tar.gz"
+    },
+    "readline": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-readline",
+      "host": "github.com",
+      "commit": "74addc90fc539d31d413c0c7cf7581997a7fa46e",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-readline",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-readline/archive/74addc90fc539d31d413c0c7cf7581997a7fa46e.tar.gz"
+    },
+    "regex": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-regex",
+      "host": "github.com",
+      "commit": "b638d29335ef41215b86732dd51be34c701ef683",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-regex",
+      "source": "https://github.com/tree-sitter/tree-sitter-regex/archive/b638d29335ef41215b86732dd51be34c701ef683.tar.gz"
+    },
+    "rego": {
+      "owner": "FallenAngel97",
+      "repo": "tree-sitter-rego",
+      "host": "github.com",
+      "commit": "20b5a5958c837bc9f74b231022a68a594a313f6d",
+      "location": "",
+      "url": "https://github.com/FallenAngel97/tree-sitter-rego",
+      "source": "https://github.com/FallenAngel97/tree-sitter-rego/archive/20b5a5958c837bc9f74b231022a68a594a313f6d.tar.gz"
+    },
+    "requirements": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-requirements",
+      "host": "github.com",
+      "commit": "728910099ddea7f1f94ea95a35a70d1ea76a1639",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-requirements",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-requirements/archive/728910099ddea7f1f94ea95a35a70d1ea76a1639.tar.gz"
+    },
+    "rescript": {
+      "owner": "rescript-lang",
+      "repo": "tree-sitter-rescript",
+      "host": "github.com",
+      "commit": "4606cd81c4c31d1d02390fee530858323410a74c",
+      "location": "",
+      "url": "https://github.com/rescript-lang/tree-sitter-rescript",
+      "source": "https://github.com/rescript-lang/tree-sitter-rescript/archive/4606cd81c4c31d1d02390fee530858323410a74c.tar.gz"
+    },
+    "rifleconf": {
+      "owner": "purarue",
+      "repo": "tree-sitter-rifleconf",
+      "host": "github.com",
+      "commit": "6389ef0fc0d48f0397ec233109c074a0cb685e36",
+      "location": "",
+      "url": "https://github.com/purarue/tree-sitter-rifleconf",
+      "source": "https://github.com/purarue/tree-sitter-rifleconf/archive/6389ef0fc0d48f0397ec233109c074a0cb685e36.tar.gz"
+    },
+    "rnoweb": {
+      "owner": "bamonroe",
+      "repo": "tree-sitter-rnoweb",
+      "host": "github.com",
+      "commit": "1a74dc0ed731ad07db39f063e2c5a6fe528cae7f",
+      "location": "",
+      "url": "https://github.com/bamonroe/tree-sitter-rnoweb",
+      "source": "https://github.com/bamonroe/tree-sitter-rnoweb/archive/1a74dc0ed731ad07db39f063e2c5a6fe528cae7f.tar.gz"
+    },
+    "robot": {
+      "owner": "Hubro",
+      "repo": "tree-sitter-robot",
+      "host": "github.com",
+      "commit": "17c2300e91fc9da4ba14c16558bf4292941dc074",
+      "location": "",
+      "url": "https://github.com/Hubro/tree-sitter-robot",
+      "source": "https://github.com/Hubro/tree-sitter-robot/archive/17c2300e91fc9da4ba14c16558bf4292941dc074.tar.gz"
+    },
+    "robots_txt": {
+      "owner": "opa-oz",
+      "repo": "tree-sitter-robots-txt",
+      "host": "github.com",
+      "commit": "0c066107e3548de79316a6a4ec771e2f7cf7c468",
+      "location": "",
+      "url": "https://github.com/opa-oz/tree-sitter-robots-txt",
+      "source": "https://github.com/opa-oz/tree-sitter-robots-txt/archive/0c066107e3548de79316a6a4ec771e2f7cf7c468.tar.gz"
+    },
+    "roc": {
+      "owner": "faldor20",
+      "repo": "tree-sitter-roc",
+      "host": "github.com",
+      "commit": "0b1afe88161cbd81f5ddea1bb4fa786314ed49a7",
+      "location": "",
+      "url": "https://github.com/faldor20/tree-sitter-roc",
+      "source": "https://github.com/faldor20/tree-sitter-roc/archive/0b1afe88161cbd81f5ddea1bb4fa786314ed49a7.tar.gz"
+    },
+    "ron": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-ron",
+      "host": "github.com",
+      "commit": "78938553b93075e638035f624973083451b29055",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-ron",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-ron/archive/78938553b93075e638035f624973083451b29055.tar.gz"
+    },
+    "rst": {
+      "owner": "stsewd",
+      "repo": "tree-sitter-rst",
+      "host": "github.com",
+      "commit": "4e562e1598b95b93db4f3f64fe40ddefbc677a15",
+      "location": "",
+      "url": "https://github.com/stsewd/tree-sitter-rst",
+      "source": "https://github.com/stsewd/tree-sitter-rst/archive/4e562e1598b95b93db4f3f64fe40ddefbc677a15.tar.gz"
+    },
+    "ruby": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-ruby",
+      "host": "github.com",
+      "commit": "89bd7a8e5450cb6a942418a619d30469f259e5d6",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-ruby",
+      "source": "https://github.com/tree-sitter/tree-sitter-ruby/archive/89bd7a8e5450cb6a942418a619d30469f259e5d6.tar.gz"
+    },
+    "runescript": {
+      "owner": "2004Scape",
+      "repo": "tree-sitter-runescript",
+      "host": "github.com",
+      "commit": "cf85bbd5da0c5ad243301d889c7f84d790a4cae4",
+      "location": "",
+      "url": "https://github.com/2004Scape/tree-sitter-runescript",
+      "source": "https://github.com/2004Scape/tree-sitter-runescript/archive/cf85bbd5da0c5ad243301d889c7f84d790a4cae4.tar.gz"
+    },
+    "rust": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-rust",
+      "host": "github.com",
+      "commit": "e86119bdb4968b9799f6a014ca2401c178d54b5f",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-rust",
+      "source": "https://github.com/tree-sitter/tree-sitter-rust/archive/e86119bdb4968b9799f6a014ca2401c178d54b5f.tar.gz"
+    },
+    "scala": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-scala",
+      "host": "github.com",
+      "commit": "c1189954df854977c3a52003ca8a247c5f4729ba",
+      "location": "",
+      "url": "https://github.com/tree-sitter/tree-sitter-scala",
+      "source": "https://github.com/tree-sitter/tree-sitter-scala/archive/c1189954df854977c3a52003ca8a247c5f4729ba.tar.gz"
+    },
+    "scfg": {
+      "owner": "rockorager",
+      "repo": "tree-sitter-scfg",
+      "host": "github.com",
+      "commit": "2f3709e7656fa2c443f92041c91a9f843f8cd625",
+      "location": "",
+      "url": "https://github.com/rockorager/tree-sitter-scfg",
+      "source": "https://github.com/rockorager/tree-sitter-scfg/archive/2f3709e7656fa2c443f92041c91a9f843f8cd625.tar.gz"
+    },
+    "scheme": {
+      "owner": "6cdh",
+      "repo": "tree-sitter-scheme",
+      "host": "github.com",
+      "commit": "63e25a4a84142ae7ee0ee01fe3a32c985ca16745",
+      "location": "",
+      "url": "https://github.com/6cdh/tree-sitter-scheme",
+      "source": "https://github.com/6cdh/tree-sitter-scheme/archive/63e25a4a84142ae7ee0ee01fe3a32c985ca16745.tar.gz"
+    },
+    "scss": {
+      "owner": "serenadeai",
+      "repo": "tree-sitter-scss",
+      "host": "github.com",
+      "commit": "c478c6868648eff49eb04a4df90d703dc45b312a",
+      "location": "",
+      "url": "https://github.com/serenadeai/tree-sitter-scss",
+      "source": "https://github.com/serenadeai/tree-sitter-scss/archive/c478c6868648eff49eb04a4df90d703dc45b312a.tar.gz"
+    },
+    "sflog": {
+      "owner": "aheber",
+      "repo": "tree-sitter-sfapex",
+      "host": "github.com",
+      "commit": "3597575a429766dd7ecce9f5bb97f6fec4419d5d",
+      "location": "sflog",
+      "url": "https://github.com/aheber/tree-sitter-sfapex",
+      "source": "https://github.com/aheber/tree-sitter-sfapex/archive/3597575a429766dd7ecce9f5bb97f6fec4419d5d.tar.gz"
+    },
+    "slang": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-slang",
+      "host": "github.com",
+      "commit": "3ed23c04a412a0559162d9cadf96dfff7cb36079",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-slang",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-slang/archive/3ed23c04a412a0559162d9cadf96dfff7cb36079.tar.gz"
+    },
+    "slim": {
+      "owner": "theoo",
+      "repo": "tree-sitter-slim",
+      "host": "github.com",
+      "commit": "546e3aa1af8a3b355c7734efccd9a759ffc0b43a",
+      "location": "",
+      "url": "https://github.com/theoo/tree-sitter-slim",
+      "source": "https://github.com/theoo/tree-sitter-slim/archive/546e3aa1af8a3b355c7734efccd9a759ffc0b43a.tar.gz"
+    },
+    "slint": {
+      "owner": "slint-ui",
+      "repo": "tree-sitter-slint",
+      "host": "github.com",
+      "commit": "f11da7e62051ba8b9d4faa299c26de8aeedfc1cd",
+      "location": "",
+      "url": "https://github.com/slint-ui/tree-sitter-slint",
+      "source": "https://github.com/slint-ui/tree-sitter-slint/archive/f11da7e62051ba8b9d4faa299c26de8aeedfc1cd.tar.gz"
+    },
+    "smali": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-smali",
+      "host": "github.com",
+      "commit": "fdfa6a1febc43c7467aa7e937b87b607956f2346",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-smali",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-smali/archive/fdfa6a1febc43c7467aa7e937b87b607956f2346.tar.gz"
+    },
+    "smithy": {
+      "owner": "indoorvivants",
+      "repo": "tree-sitter-smithy",
+      "host": "github.com",
+      "commit": "fa898ac0885d1da9a253695c3e0e91f5efc587cd",
+      "location": "",
+      "url": "https://github.com/indoorvivants/tree-sitter-smithy",
+      "source": "https://github.com/indoorvivants/tree-sitter-smithy/archive/fa898ac0885d1da9a253695c3e0e91f5efc587cd.tar.gz"
+    },
+    "snakemake": {
+      "owner": "osthomas",
+      "repo": "tree-sitter-snakemake",
+      "host": "github.com",
+      "commit": "f36c1587624d6d84376c82a357c20fc319cbf02c",
+      "location": "",
+      "url": "https://github.com/osthomas/tree-sitter-snakemake",
+      "source": "https://github.com/osthomas/tree-sitter-snakemake/archive/f36c1587624d6d84376c82a357c20fc319cbf02c.tar.gz"
+    },
+    "snl": {
+      "owner": "minijackson",
+      "repo": "tree-sitter-snl",
+      "host": "github.com",
+      "commit": "846e2d6809ac5863a15b5494f20fd267c21221c8",
+      "location": "",
+      "url": "https://github.com/minijackson/tree-sitter-snl",
+      "source": "https://github.com/minijackson/tree-sitter-snl/archive/846e2d6809ac5863a15b5494f20fd267c21221c8.tar.gz"
+    },
+    "solidity": {
+      "owner": "JoranHonig",
+      "repo": "tree-sitter-solidity",
+      "host": "github.com",
+      "commit": "d38dcd0b58b223c43e3f9265914fb3167dc624c6",
+      "location": "",
+      "url": "https://github.com/JoranHonig/tree-sitter-solidity",
+      "source": "https://github.com/JoranHonig/tree-sitter-solidity/archive/d38dcd0b58b223c43e3f9265914fb3167dc624c6.tar.gz"
+    },
+    "soql": {
+      "owner": "aheber",
+      "repo": "tree-sitter-sfapex",
+      "host": "github.com",
+      "commit": "3597575a429766dd7ecce9f5bb97f6fec4419d5d",
+      "location": "soql",
+      "url": "https://github.com/aheber/tree-sitter-sfapex",
+      "source": "https://github.com/aheber/tree-sitter-sfapex/archive/3597575a429766dd7ecce9f5bb97f6fec4419d5d.tar.gz"
+    },
+    "sosl": {
+      "owner": "aheber",
+      "repo": "tree-sitter-sfapex",
+      "host": "github.com",
+      "commit": "3597575a429766dd7ecce9f5bb97f6fec4419d5d",
+      "location": "sosl",
+      "url": "https://github.com/aheber/tree-sitter-sfapex",
+      "source": "https://github.com/aheber/tree-sitter-sfapex/archive/3597575a429766dd7ecce9f5bb97f6fec4419d5d.tar.gz"
+    },
+    "sourcepawn": {
+      "owner": "nilshelmig",
+      "repo": "tree-sitter-sourcepawn",
+      "host": "github.com",
+      "commit": "f2af8d0dc14c6790130cceb2a20027eb41a8297c",
+      "location": "",
+      "url": "https://github.com/nilshelmig/tree-sitter-sourcepawn",
+      "source": "https://github.com/nilshelmig/tree-sitter-sourcepawn/archive/f2af8d0dc14c6790130cceb2a20027eb41a8297c.tar.gz"
+    },
+    "sparql": {
+      "owner": "GordianDziwis",
+      "repo": "tree-sitter-sparql",
+      "host": "github.com",
+      "commit": "d853661ca680d8ff7f8d800182d5782b61d0dd58",
+      "location": "",
+      "url": "https://github.com/GordianDziwis/tree-sitter-sparql",
+      "source": "https://github.com/GordianDziwis/tree-sitter-sparql/archive/d853661ca680d8ff7f8d800182d5782b61d0dd58.tar.gz"
+    },
+    "sproto": {
+      "owner": "hanxi",
+      "repo": "tree-sitter-sproto",
+      "host": "github.com",
+      "commit": "d554c1456e35e7b2690552d52921c987d0cf6799",
+      "location": "",
+      "url": "https://github.com/hanxi/tree-sitter-sproto",
+      "source": "https://github.com/hanxi/tree-sitter-sproto/archive/d554c1456e35e7b2690552d52921c987d0cf6799.tar.gz"
+    },
+    "sql": {
+      "owner": "derekstride",
+      "repo": "tree-sitter-sql",
+      "host": "github.com",
+      "commit": "b9d109588d5b5ed986c857464830c2f0bef53f18",
+      "location": "",
+      "url": "https://github.com/derekstride/tree-sitter-sql",
+      "source": "https://github.com/derekstride/tree-sitter-sql/archive/b9d109588d5b5ed986c857464830c2f0bef53f18.tar.gz"
+    },
+    "squirrel": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-squirrel",
+      "host": "github.com",
+      "commit": "072c969749e66f000dba35a33c387650e203e96e",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-squirrel",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-squirrel/archive/072c969749e66f000dba35a33c387650e203e96e.tar.gz"
+    },
+    "ssh_config": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-ssh-config",
+      "host": "github.com",
+      "commit": "0dd3c7e9f301758f6c69a6efde43d3048deb4d8a",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-ssh-config",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-ssh-config/archive/0dd3c7e9f301758f6c69a6efde43d3048deb4d8a.tar.gz"
+    },
+    "starlark": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-starlark",
+      "host": "github.com",
+      "commit": "a453dbf3ba433db0e5ec621a38a7e59d72e4dc69",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-starlark",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-starlark/archive/a453dbf3ba433db0e5ec621a38a7e59d72e4dc69.tar.gz"
+    },
+    "strace": {
+      "owner": "sigmaSd",
+      "repo": "tree-sitter-strace",
+      "host": "github.com",
+      "commit": "d819cdd5dbe455bd3c859193633c8d91c0df7c36",
+      "location": "",
+      "url": "https://github.com/sigmaSd/tree-sitter-strace",
+      "source": "https://github.com/sigmaSd/tree-sitter-strace/archive/d819cdd5dbe455bd3c859193633c8d91c0df7c36.tar.gz"
+    },
+    "styled": {
+      "owner": "mskelton",
+      "repo": "tree-sitter-styled",
+      "host": "github.com",
+      "commit": "319cdcaa0346ba6db668a222d938e5c3569e2a51",
+      "location": "",
+      "url": "https://github.com/mskelton/tree-sitter-styled",
+      "source": "https://github.com/mskelton/tree-sitter-styled/archive/319cdcaa0346ba6db668a222d938e5c3569e2a51.tar.gz"
+    },
+    "supercollider": {
+      "owner": "madskjeldgaard",
+      "repo": "tree-sitter-supercollider",
+      "host": "github.com",
+      "commit": "1a8ee0da9a4f2df5a8a22f4d637ac863623a78a7",
+      "location": "",
+      "url": "https://github.com/madskjeldgaard/tree-sitter-supercollider",
+      "source": "https://github.com/madskjeldgaard/tree-sitter-supercollider/archive/1a8ee0da9a4f2df5a8a22f4d637ac863623a78a7.tar.gz"
+    },
+    "superhtml": {
+      "owner": "kristoff-it",
+      "repo": "superhtml",
+      "host": "github.com",
+      "commit": "16887e9fa3122c36a3d4942470e33c1c282fe859",
+      "location": "tree-sitter-superhtml",
+      "url": "https://github.com/kristoff-it/superhtml",
+      "source": "https://github.com/kristoff-it/superhtml/archive/16887e9fa3122c36a3d4942470e33c1c282fe859.tar.gz"
+    },
+    "surface": {
+      "owner": "connorlay",
+      "repo": "tree-sitter-surface",
+      "host": "github.com",
+      "commit": "f4586b35ac8548667a9aaa4eae44456c1f43d032",
+      "location": "",
+      "url": "https://github.com/connorlay/tree-sitter-surface",
+      "source": "https://github.com/connorlay/tree-sitter-surface/archive/f4586b35ac8548667a9aaa4eae44456c1f43d032.tar.gz"
+    },
+    "svelte": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-svelte",
+      "host": "github.com",
+      "commit": "ae5199db47757f785e43a14b332118a5474de1a2",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-svelte",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-svelte/archive/ae5199db47757f785e43a14b332118a5474de1a2.tar.gz"
+    },
+    "sway": {
+      "owner": "FuelLabs",
+      "repo": "tree-sitter-sway",
+      "host": "github.com",
+      "commit": "395006713db3bbb90d267ebdfcbf1881b399b05c",
+      "location": "",
+      "url": "https://github.com/FuelLabs/tree-sitter-sway",
+      "source": "https://github.com/FuelLabs/tree-sitter-sway/archive/395006713db3bbb90d267ebdfcbf1881b399b05c.tar.gz"
+    },
+    "swift": {
+      "owner": "alex-pinkus",
+      "repo": "tree-sitter-swift",
+      "host": "github.com",
+      "commit": "aca5a52aa3cab858944d3c02701ccf5b2d8fd0f9",
+      "location": "",
+      "url": "https://github.com/alex-pinkus/tree-sitter-swift",
+      "source": "https://github.com/alex-pinkus/tree-sitter-swift/archive/aca5a52aa3cab858944d3c02701ccf5b2d8fd0f9.tar.gz"
+    },
+    "sxhkdrc": {
+      "owner": "RaafatTurki",
+      "repo": "tree-sitter-sxhkdrc",
+      "host": "github.com",
+      "commit": "440d5f913d9465c9c776a1bd92334d32febcf065",
+      "location": "",
+      "url": "https://github.com/RaafatTurki/tree-sitter-sxhkdrc",
+      "source": "https://github.com/RaafatTurki/tree-sitter-sxhkdrc/archive/440d5f913d9465c9c776a1bd92334d32febcf065.tar.gz"
+    },
+    "systemtap": {
+      "owner": "ok-ryoko",
+      "repo": "tree-sitter-systemtap",
+      "host": "github.com",
+      "commit": "f2b378a9af0b7e1192cff67a5fb45508c927205d",
+      "location": "",
+      "url": "https://github.com/ok-ryoko/tree-sitter-systemtap",
+      "source": "https://github.com/ok-ryoko/tree-sitter-systemtap/archive/f2b378a9af0b7e1192cff67a5fb45508c927205d.tar.gz"
+    },
+    "t32": {
+      "owner": "xasc",
+      "repo": "tree-sitter-t32",
+      "host": "github.com",
+      "commit": "e5a12f798f056049642aa03fbb83786e3a5b95d4",
+      "location": "",
+      "url": "https://github.com/xasc/tree-sitter-t32",
+      "source": "https://github.com/xasc/tree-sitter-t32/archive/e5a12f798f056049642aa03fbb83786e3a5b95d4.tar.gz"
+    },
+    "tablegen": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-tablegen",
+      "host": "github.com",
+      "commit": "b1170880c61355aaf38fc06f4af7d3c55abdabc4",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-tablegen",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-tablegen/archive/b1170880c61355aaf38fc06f4af7d3c55abdabc4.tar.gz"
+    },
+    "tact": {
+      "owner": "tact-lang",
+      "repo": "tree-sitter-tact",
+      "host": "github.com",
+      "commit": "47af20264abbd24ea282ded0f8ee9cad3cf3bf2f",
+      "location": "",
+      "url": "https://github.com/tact-lang/tree-sitter-tact",
+      "source": "https://github.com/tact-lang/tree-sitter-tact/archive/47af20264abbd24ea282ded0f8ee9cad3cf3bf2f.tar.gz"
+    },
+    "tcl": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-tcl",
+      "host": "github.com",
+      "commit": "f15e711167661d1ba541d4f62b9dbfc4ce61ec56",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-tcl",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-tcl/archive/f15e711167661d1ba541d4f62b9dbfc4ce61ec56.tar.gz"
+    },
+    "teal": {
+      "owner": "euclidianAce",
+      "repo": "tree-sitter-teal",
+      "host": "github.com",
+      "commit": "3db655924b2ff1c54fdf6371b5425ea6b5dccefe",
+      "location": "",
+      "url": "https://github.com/euclidianAce/tree-sitter-teal",
+      "source": "https://github.com/euclidianAce/tree-sitter-teal/archive/3db655924b2ff1c54fdf6371b5425ea6b5dccefe.tar.gz"
+    },
+    "templ": {
+      "owner": "vrischmann",
+      "repo": "tree-sitter-templ",
+      "host": "github.com",
+      "commit": "def9849184de71a797c4e2b2837df85abeccf92c",
+      "location": "",
+      "url": "https://github.com/vrischmann/tree-sitter-templ",
+      "source": "https://github.com/vrischmann/tree-sitter-templ/archive/def9849184de71a797c4e2b2837df85abeccf92c.tar.gz"
+    },
+    "tera": {
+      "owner": "uncenter",
+      "repo": "tree-sitter-tera",
+      "host": "github.com",
+      "commit": "25a7c617192253bddfa65e378975d8c476419010",
+      "location": "",
+      "url": "https://github.com/uncenter/tree-sitter-tera",
+      "source": "https://github.com/uncenter/tree-sitter-tera/archive/25a7c617192253bddfa65e378975d8c476419010.tar.gz"
+    },
+    "terraform": {
+      "owner": "MichaHoffmann",
+      "repo": "tree-sitter-hcl",
+      "host": "github.com",
+      "commit": "de10d494dbd6b71cdf07a678fecbf404dbfe4398",
+      "location": "dialects/terraform",
+      "url": "https://github.com/MichaHoffmann/tree-sitter-hcl",
+      "source": "https://github.com/MichaHoffmann/tree-sitter-hcl/archive/de10d494dbd6b71cdf07a678fecbf404dbfe4398.tar.gz"
+    },
+    "textproto": {
+      "owner": "PorterAtGoogle",
+      "repo": "tree-sitter-textproto",
+      "host": "github.com",
+      "commit": "568471b80fd8793d37ed01865d8c2208a9fefd1b",
+      "location": "",
+      "url": "https://github.com/PorterAtGoogle/tree-sitter-textproto",
+      "source": "https://github.com/PorterAtGoogle/tree-sitter-textproto/archive/568471b80fd8793d37ed01865d8c2208a9fefd1b.tar.gz"
+    },
+    "thrift": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-thrift",
+      "host": "github.com",
+      "commit": "68fd0d80943a828d9e6f49c58a74be1e9ca142cf",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-thrift",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-thrift/archive/68fd0d80943a828d9e6f49c58a74be1e9ca142cf.tar.gz"
+    },
+    "tiger": {
+      "owner": "ambroisie",
+      "repo": "tree-sitter-tiger",
+      "host": "github.com",
+      "commit": "4a77b2d7a004587646bddc4e854779044b6db459",
+      "location": "",
+      "url": "https://github.com/ambroisie/tree-sitter-tiger",
+      "source": "https://github.com/ambroisie/tree-sitter-tiger/archive/4a77b2d7a004587646bddc4e854779044b6db459.tar.gz"
+    },
+    "tlaplus": {
+      "owner": "tlaplus-community",
+      "repo": "tree-sitter-tlaplus",
+      "host": "github.com",
+      "commit": "4ba91b07b97741a67f61221d0d50e6d962e4987e",
+      "location": "",
+      "url": "https://github.com/tlaplus-community/tree-sitter-tlaplus",
+      "source": "https://github.com/tlaplus-community/tree-sitter-tlaplus/archive/4ba91b07b97741a67f61221d0d50e6d962e4987e.tar.gz"
+    },
+    "tmux": {
+      "owner": "Freed-Wu",
+      "repo": "tree-sitter-tmux",
+      "host": "github.com",
+      "commit": "0252ecd080016e45e6305ef1a943388f5ae2f4b4",
+      "location": "",
+      "url": "https://github.com/Freed-Wu/tree-sitter-tmux",
+      "source": "https://github.com/Freed-Wu/tree-sitter-tmux/archive/0252ecd080016e45e6305ef1a943388f5ae2f4b4.tar.gz"
+    },
+    "todotxt": {
+      "owner": "arnarg",
+      "repo": "tree-sitter-todotxt",
+      "host": "github.com",
+      "commit": "3937c5cd105ec4127448651a21aef45f52d19609",
+      "location": "",
+      "url": "https://github.com/arnarg/tree-sitter-todotxt",
+      "source": "https://github.com/arnarg/tree-sitter-todotxt/archive/3937c5cd105ec4127448651a21aef45f52d19609.tar.gz"
+    },
+    "toml": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-toml",
+      "host": "github.com",
+      "commit": "64b56832c2cffe41758f28e05c756a3a98d16f41",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-toml",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-toml/archive/64b56832c2cffe41758f28e05c756a3a98d16f41.tar.gz"
+    },
+    "tsv": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-csv",
+      "host": "github.com",
+      "commit": "7eb7297823605392d2bbcc4c09b1cd18d6fa9529",
+      "location": "tsv",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-csv",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-csv/archive/7eb7297823605392d2bbcc4c09b1cd18d6fa9529.tar.gz"
+    },
+    "tsx": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-typescript",
+      "host": "github.com",
+      "commit": "75b3874edb2dc714fb1fd77a32013d0f8699989f",
+      "location": "tsx",
+      "url": "https://github.com/tree-sitter/tree-sitter-typescript",
+      "source": "https://github.com/tree-sitter/tree-sitter-typescript/archive/75b3874edb2dc714fb1fd77a32013d0f8699989f.tar.gz"
+    },
+    "turtle": {
+      "owner": "GordianDziwis",
+      "repo": "tree-sitter-turtle",
+      "host": "github.com",
+      "commit": "7f789ea7ef765080f71a298fc96b7c957fa24422",
+      "location": "",
+      "url": "https://github.com/GordianDziwis/tree-sitter-turtle",
+      "source": "https://github.com/GordianDziwis/tree-sitter-turtle/archive/7f789ea7ef765080f71a298fc96b7c957fa24422.tar.gz"
+    },
+    "twig": {
+      "owner": "gbprod",
+      "repo": "tree-sitter-twig",
+      "host": "github.com",
+      "commit": "085648e01d1422163a1702a44e72303b4e2a0bd1",
+      "location": "",
+      "url": "https://github.com/gbprod/tree-sitter-twig",
+      "source": "https://github.com/gbprod/tree-sitter-twig/archive/085648e01d1422163a1702a44e72303b4e2a0bd1.tar.gz"
+    },
+    "typescript": {
+      "owner": "tree-sitter",
+      "repo": "tree-sitter-typescript",
+      "host": "github.com",
+      "commit": "75b3874edb2dc714fb1fd77a32013d0f8699989f",
+      "location": "typescript",
+      "url": "https://github.com/tree-sitter/tree-sitter-typescript",
+      "source": "https://github.com/tree-sitter/tree-sitter-typescript/archive/75b3874edb2dc714fb1fd77a32013d0f8699989f.tar.gz"
+    },
+    "typespec": {
+      "owner": "happenslol",
+      "repo": "tree-sitter-typespec",
+      "host": "github.com",
+      "commit": "42fb163442ef2691b9b720fb4e4e846809415d18",
+      "location": "",
+      "url": "https://github.com/happenslol/tree-sitter-typespec",
+      "source": "https://github.com/happenslol/tree-sitter-typespec/archive/42fb163442ef2691b9b720fb4e4e846809415d18.tar.gz"
+    },
+    "typoscript": {
+      "owner": "Teddytrombone",
+      "repo": "tree-sitter-typoscript",
+      "host": "github.com",
+      "commit": "5d8fde870b0ded1f429ba5bb249a9d9f8589ff5f",
+      "location": "",
+      "url": "https://github.com/Teddytrombone/tree-sitter-typoscript",
+      "source": "https://github.com/Teddytrombone/tree-sitter-typoscript/archive/5d8fde870b0ded1f429ba5bb249a9d9f8589ff5f.tar.gz"
+    },
+    "typst": {
+      "owner": "uben0",
+      "repo": "tree-sitter-typst",
+      "host": "github.com",
+      "commit": "46cf4ded12ee974a70bf8457263b67ad7ee0379d",
+      "location": "",
+      "url": "https://github.com/uben0/tree-sitter-typst",
+      "source": "https://github.com/uben0/tree-sitter-typst/archive/46cf4ded12ee974a70bf8457263b67ad7ee0379d.tar.gz"
+    },
+    "udev": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-udev",
+      "host": "github.com",
+      "commit": "18a1d183c4c0cc40438bae2ebf8191aaf2dee8dc",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-udev",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-udev/archive/18a1d183c4c0cc40438bae2ebf8191aaf2dee8dc.tar.gz"
+    },
+    "ungrammar": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-ungrammar",
+      "host": "github.com",
+      "commit": "debd26fed283d80456ebafa33a06957b0c52e451",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-ungrammar",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-ungrammar/archive/debd26fed283d80456ebafa33a06957b0c52e451.tar.gz"
+    },
+    "unison": {
+      "owner": "kylegoetz",
+      "repo": "tree-sitter-unison",
+      "host": "github.com",
+      "commit": "169e7f748a540ec360c0cb086b448faad012caa4",
+      "location": "",
+      "url": "https://github.com/kylegoetz/tree-sitter-unison",
+      "source": "https://github.com/kylegoetz/tree-sitter-unison/archive/169e7f748a540ec360c0cb086b448faad012caa4.tar.gz"
+    },
+    "usd": {
+      "owner": "ColinKennedy",
+      "repo": "tree-sitter-usd",
+      "host": "github.com",
+      "commit": "4e0875f724d94d0c2ff36f9b8cb0b12f8b20d216",
+      "location": "",
+      "url": "https://github.com/ColinKennedy/tree-sitter-usd",
+      "source": "https://github.com/ColinKennedy/tree-sitter-usd/archive/4e0875f724d94d0c2ff36f9b8cb0b12f8b20d216.tar.gz"
+    },
+    "uxntal": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-uxntal",
+      "host": "github.com",
+      "commit": "ad9b638b914095320de85d59c49ab271603af048",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-uxntal",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-uxntal/archive/ad9b638b914095320de85d59c49ab271603af048.tar.gz"
+    },
+    "v": {
+      "owner": "vlang",
+      "repo": "v-analyzer",
+      "host": "github.com",
+      "commit": "26c2c4c2b3fb4f7a07ae78d298b36998b7ffa956",
+      "location": "tree_sitter_v",
+      "url": "https://github.com/vlang/v-analyzer",
+      "source": "https://github.com/vlang/v-analyzer/archive/26c2c4c2b3fb4f7a07ae78d298b36998b7ffa956.tar.gz"
+    },
+    "vala": {
+      "owner": "vala-lang",
+      "repo": "tree-sitter-vala",
+      "host": "github.com",
+      "commit": "97e6db3c8c73b15a9541a458d8e797a07f588ef4",
+      "location": "",
+      "url": "https://github.com/vala-lang/tree-sitter-vala",
+      "source": "https://github.com/vala-lang/tree-sitter-vala/archive/97e6db3c8c73b15a9541a458d8e797a07f588ef4.tar.gz"
+    },
+    "vento": {
+      "owner": "ventojs",
+      "repo": "tree-sitter-vento",
+      "host": "github.com",
+      "commit": "3b32474bc29584ea214e4e84b47102408263fe0e",
+      "location": "",
+      "url": "https://github.com/ventojs/tree-sitter-vento",
+      "source": "https://github.com/ventojs/tree-sitter-vento/archive/3b32474bc29584ea214e4e84b47102408263fe0e.tar.gz"
+    },
+    "vhdl": {
+      "owner": "jpt13653903",
+      "repo": "tree-sitter-vhdl",
+      "host": "github.com",
+      "commit": "35ed277d3e98836796bc764010dc3fb800d14ee4",
+      "location": "",
+      "url": "https://github.com/jpt13653903/tree-sitter-vhdl",
+      "source": "https://github.com/jpt13653903/tree-sitter-vhdl/archive/35ed277d3e98836796bc764010dc3fb800d14ee4.tar.gz"
+    },
+    "vhs": {
+      "owner": "charmbracelet",
+      "repo": "tree-sitter-vhs",
+      "host": "github.com",
+      "commit": "0c6fae9d2cfc5b217bfd1fe84a7678f5917116db",
+      "location": "",
+      "url": "https://github.com/charmbracelet/tree-sitter-vhs",
+      "source": "https://github.com/charmbracelet/tree-sitter-vhs/archive/0c6fae9d2cfc5b217bfd1fe84a7678f5917116db.tar.gz"
+    },
+    "vim": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-vim",
+      "host": "github.com",
+      "commit": "11b688a1f0e97c0c4e3dbabf4a38016335f4d237",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-vim",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-vim/archive/11b688a1f0e97c0c4e3dbabf4a38016335f4d237.tar.gz"
+    },
+    "vimdoc": {
+      "owner": "neovim",
+      "repo": "tree-sitter-vimdoc",
+      "host": "github.com",
+      "commit": "2694c3d27e2ca98a0ccde72f33887394300d524e",
+      "location": "",
+      "url": "https://github.com/neovim/tree-sitter-vimdoc",
+      "source": "https://github.com/neovim/tree-sitter-vimdoc/archive/2694c3d27e2ca98a0ccde72f33887394300d524e.tar.gz"
+    },
+    "vrl": {
+      "owner": "belltoy",
+      "repo": "tree-sitter-vrl",
+      "host": "github.com",
+      "commit": "274b3ce63f72aa8ffea18e7fc280d3062d28f0ba",
+      "location": "",
+      "url": "https://github.com/belltoy/tree-sitter-vrl",
+      "source": "https://github.com/belltoy/tree-sitter-vrl/archive/274b3ce63f72aa8ffea18e7fc280d3062d28f0ba.tar.gz"
+    },
+    "vue": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-vue",
+      "host": "github.com",
+      "commit": "22bdfa6c9fc0f5ffa44c6e938ec46869ac8a99ff",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-vue",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-vue/archive/22bdfa6c9fc0f5ffa44c6e938ec46869ac8a99ff.tar.gz"
+    },
+    "wgsl_bevy": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-wgsl-bevy",
+      "host": "github.com",
+      "commit": "47c1818d245a6156a488c4c4d06e9336714bae9b",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-wgsl-bevy",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-wgsl-bevy/archive/47c1818d245a6156a488c4c4d06e9336714bae9b.tar.gz"
+    },
+    "wgsl": {
+      "owner": "szebniok",
+      "repo": "tree-sitter-wgsl",
+      "host": "github.com",
+      "commit": "40259f3c77ea856841a4e0c4c807705f3e4a2b65",
+      "location": "",
+      "url": "https://github.com/szebniok/tree-sitter-wgsl",
+      "source": "https://github.com/szebniok/tree-sitter-wgsl/archive/40259f3c77ea856841a4e0c4c807705f3e4a2b65.tar.gz"
+    },
+    "wing": {
+      "owner": "winglang",
+      "repo": "tree-sitter-wing",
+      "host": "github.com",
+      "commit": "76e0c25844a66ebc6e866d690fcc5f4e90698947",
+      "location": "",
+      "url": "https://github.com/winglang/tree-sitter-wing",
+      "source": "https://github.com/winglang/tree-sitter-wing/archive/76e0c25844a66ebc6e866d690fcc5f4e90698947.tar.gz"
+    },
+    "wit": {
+      "owner": "bytecodealliance",
+      "repo": "tree-sitter-wit",
+      "host": "github.com",
+      "commit": "81490b4e74c792369e005f72b0d46fe082d3fed2",
+      "location": "",
+      "url": "https://github.com/bytecodealliance/tree-sitter-wit",
+      "source": "https://github.com/bytecodealliance/tree-sitter-wit/archive/81490b4e74c792369e005f72b0d46fe082d3fed2.tar.gz"
+    },
+    "wxml": {
+      "owner": "BlockLune",
+      "repo": "tree-sitter-wxml",
+      "host": "github.com",
+      "commit": "7b821c748dc410332f59496c0dea2632168c4e5a",
+      "location": "",
+      "url": "https://github.com/BlockLune/tree-sitter-wxml",
+      "source": "https://github.com/BlockLune/tree-sitter-wxml/archive/7b821c748dc410332f59496c0dea2632168c4e5a.tar.gz"
+    },
+    "xcompose": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-xcompose",
+      "host": "github.com",
+      "commit": "fff3e72242aa110ebba6441946ea4d12d200fa68",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-xcompose",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-xcompose/archive/fff3e72242aa110ebba6441946ea4d12d200fa68.tar.gz"
+    },
+    "xml": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-xml",
+      "host": "github.com",
+      "commit": "0d9a8099c963ed53e183425c1b47fa2622c8eaf7",
+      "location": "xml",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-xml",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-xml/archive/0d9a8099c963ed53e183425c1b47fa2622c8eaf7.tar.gz"
+    },
+    "xresources": {
+      "owner": "ValdezFOmar",
+      "repo": "tree-sitter-xresources",
+      "host": "github.com",
+      "commit": "d0f9dc7cec4dc15fc6f9d556bb4e9dd5050328a6",
+      "location": "",
+      "url": "https://github.com/ValdezFOmar/tree-sitter-xresources",
+      "source": "https://github.com/ValdezFOmar/tree-sitter-xresources/archive/d0f9dc7cec4dc15fc6f9d556bb4e9dd5050328a6.tar.gz"
+    },
+    "yaml": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-yaml",
+      "host": "github.com",
+      "commit": "1805917414a9a8ba2473717fd69447277a175fae",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-yaml",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-yaml/archive/1805917414a9a8ba2473717fd69447277a175fae.tar.gz"
+    },
+    "yang": {
+      "owner": "Hubro",
+      "repo": "tree-sitter-yang",
+      "host": "github.com",
+      "commit": "2c0e6be8dd4dcb961c345fa35c309ad4f5bd3502",
+      "location": "",
+      "url": "https://github.com/Hubro/tree-sitter-yang",
+      "source": "https://github.com/Hubro/tree-sitter-yang/archive/2c0e6be8dd4dcb961c345fa35c309ad4f5bd3502.tar.gz"
+    },
+    "yuck": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-yuck",
+      "host": "github.com",
+      "commit": "e877f6ade4b77d5ef8787075141053631ba12318",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-yuck",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-yuck/archive/e877f6ade4b77d5ef8787075141053631ba12318.tar.gz"
+    },
+    "zathurarc": {
+      "owner": "Freed-Wu",
+      "repo": "tree-sitter-zathurarc",
+      "host": "github.com",
+      "commit": "0554b4a5d313244b7fc000cbb41c04afae4f4e31",
+      "location": "",
+      "url": "https://github.com/Freed-Wu/tree-sitter-zathurarc",
+      "source": "https://github.com/Freed-Wu/tree-sitter-zathurarc/archive/0554b4a5d313244b7fc000cbb41c04afae4f4e31.tar.gz"
+    },
+    "zig": {
+      "owner": "tree-sitter-grammars",
+      "repo": "tree-sitter-zig",
+      "host": "github.com",
+      "commit": "b670c8df85a1568f498aa5c8cae42f51a90473c0",
+      "location": "",
+      "url": "https://github.com/tree-sitter-grammars/tree-sitter-zig",
+      "source": "https://github.com/tree-sitter-grammars/tree-sitter-zig/archive/b670c8df85a1568f498aa5c8cae42f51a90473c0.tar.gz"
+    },
+    "ziggy_schema": {
+      "owner": "kristoff-it",
+      "repo": "ziggy",
+      "host": "github.com",
+      "commit": "8a29017169f43dc2c3526817e98142eb9a335087",
+      "location": "tree-sitter-ziggy-schema",
+      "url": "https://github.com/kristoff-it/ziggy",
+      "source": "https://github.com/kristoff-it/ziggy/archive/8a29017169f43dc2c3526817e98142eb9a335087.tar.gz"
+    },
+    "ziggy": {
+      "owner": "kristoff-it",
+      "repo": "ziggy",
+      "host": "github.com",
+      "commit": "8a29017169f43dc2c3526817e98142eb9a335087",
+      "location": "tree-sitter-ziggy",
+      "url": "https://github.com/kristoff-it/ziggy",
+      "source": "https://github.com/kristoff-it/ziggy/archive/8a29017169f43dc2c3526817e98142eb9a335087.tar.gz"
+    },
+    "zsh": {
+      "owner": "georgeharker",
+      "repo": "tree-sitter-zsh",
+      "host": "github.com",
+      "commit": "bd344c23a7683e293d077c6648e88f209782fedb",
+      "location": "",
+      "url": "https://github.com/georgeharker/tree-sitter-zsh",
+      "source": "https://github.com/georgeharker/tree-sitter-zsh/archive/bd344c23a7683e293d077c6648e88f209782fedb.tar.gz"
+    }
+  }
+}

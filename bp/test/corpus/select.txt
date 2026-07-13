@@ -1,0 +1,433 @@
+================================================================================
+Select
+================================================================================
+
+foo = select(release_variable("RELEASE_TEST"), {
+    "d": "d2",
+    any: unset,
+    default: unset,
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (any))
+          (unset))
+        (select_case
+          (select_pattern
+            (default))
+          (unset))))))
+
+================================================================================
+Select (no trailing comma)
+================================================================================
+
+foo = select(release_variable("RELEASE_TEST"), {
+    default: unset
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (default))
+          (unset))))))
+
+================================================================================
+Select (soong config variable)
+================================================================================
+
+foo = select(soong_config_variable("my_namespace", "my_var"), {
+    "foo": unset,
+    "default": "bar",
+    any @ foo: unset,
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)
+          (interpreted_string_literal)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (unset))
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (pattern_binding
+              (any)
+              (operator)
+              (identifier)))
+          (unset))))))
+
+================================================================================
+Select (no default)
+================================================================================
+
+foo = select(variant("arch"), {
+    "x86": "my_x86",
+    "x86_64": "my_x86_64",
+    "arm": "my_arm",
+    "arm64": "my_arm64",
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))))))
+
+================================================================================
+Select (no values)
+================================================================================
+
+foo = select(variant("VARIANT"), {})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)))
+      (select_cases))))
+
+================================================================================
+Select (default in wrong order)
+================================================================================
+
+foo = select(variant("VARIANT"), {
+    "x86": "my_x86",
+    "x86_64": "my_x86_64",
+    default: unset,
+    "arm": "my_arm",
+    "arm64": "my_arm64",
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (default))
+          (unset))
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))))))
+
+================================================================================
+Select (no condition)
+================================================================================
+
+foo = select(variant(), {
+    "d": unset,
+    default: "f2",
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (unset))
+        (select_case
+          (select_pattern
+            (default))
+          (interpreted_string_literal))))))
+
+================================================================================
+Select (invalid type)
+================================================================================
+
+foo = select(some_unknown_type("CONDITION"), {
+    "d": "d2",
+    default: "f2",
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (default))
+          (interpreted_string_literal))))))
+
+================================================================================
+Select (multiple type arguments)
+================================================================================
+
+foo = select(release_variable("ONE", "TWO"), {
+    "d": "d2",
+    default: "f2",
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)
+          (interpreted_string_literal)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (interpreted_string_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (default))
+          (interpreted_string_literal))))))
+
+================================================================================
+Select (trailing comma in arguments)
+================================================================================
+
+foo = select(some_boolean("VALUE",), {
+    true: "true",
+    false: "false",
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)
+          (ERROR)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (boolean_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (boolean_literal))
+          (interpreted_string_literal))))))
+
+================================================================================
+Select (trailing comma in values)
+================================================================================
+
+foo = select((
+    arch(),
+    os(),
+), {
+    (default, default): "true",
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier))
+        (condition
+          (identifier)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (default)
+            (default))
+          (interpreted_string_literal))))))
+
+================================================================================
+Select (trailing comma in pattern)
+================================================================================
+
+foo = select((arch(), os()), {
+    (default, default,): "true",
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier))
+        (condition
+          (identifier)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (default)
+            (default))
+          (interpreted_string_literal))))))
+
+================================================================================
+Select (boolean typed)
+================================================================================
+
+foo = select(some_boolean("IS_TRUE"), {
+    true: "true",
+    false: "false",
+})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (select_expression
+      (select_value
+        (condition
+          (identifier)
+          (interpreted_string_literal)))
+      (select_cases
+        (select_case
+          (select_pattern
+            (boolean_literal))
+          (interpreted_string_literal))
+        (select_case
+          (select_pattern
+            (boolean_literal))
+          (interpreted_string_literal))))))
+
+================================================================================
+Select as an identifier
+================================================================================
+
+select = 42
+
+foo {
+    select: false,
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (operator)
+    (integer_literal))
+  (module
+    (identifier)
+    (property
+      (identifier)
+      (boolean_literal))))

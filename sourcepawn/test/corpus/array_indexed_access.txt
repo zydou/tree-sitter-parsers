@@ -1,0 +1,249 @@
+==============================
+access array member - constant
+==============================
+
+void MyFunc(int[] myvar) {
+    myvar[0];
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block
+      (expression_statement
+        (array_indexed_access
+          array: (identifier)
+          index: (int_literal)
+        )
+      )
+    )
+  )
+)
+
+
+==============================
+access array member - variable
+==============================
+
+void MyFunc(int[] myvar) {
+    myvar[MAXPLAYERS];
+    myvar[client];
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block
+      (expression_statement
+        (array_indexed_access
+          array: (identifier)
+          index: (identifier)
+        )
+      )
+      (expression_statement
+        (array_indexed_access
+          array: (identifier)
+          index: (identifier)
+        )
+      )
+    )
+  )
+)
+
+
+=================================
+access array member - computation
+=================================
+
+void MyFunc(int[] myvar) {
+    myvar[MAXPLAYERS+1];
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block
+      (expression_statement
+        (array_indexed_access
+          array: (identifier)
+          index: (binary_expression
+            left: (identifier)
+            right: (int_literal)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+==================================
+access array member - array member
+==================================
+
+int MyFunc(int[] myvar) {
+    return myvar[myvar[0]];
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block
+      (return_statement
+        expression: (array_indexed_access
+          array: (identifier)
+          index: (array_indexed_access
+            array: (identifier)
+            index: (int_literal)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+======================================
+access array member - multidimensional
+======================================
+
+int MyFunc(int[][] myvar) {
+    return myvar[0][client];
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block
+      (return_statement
+        expression: (array_indexed_access
+          array: (array_indexed_access
+            array: (identifier)
+            index: (int_literal)
+          )
+          index: (identifier)
+        )
+      )
+    )
+  )
+)
+
+
+======================================
+access array member - array from field
+======================================
+
+int MyFunc(File target) {
+    return target.buffer[0];
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (identifier)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block
+      (return_statement
+        expression: (array_indexed_access
+          array: (field_access
+            target: (identifier)
+            field: (identifier)
+          )
+          index: (int_literal)
+        )
+      )
+    )
+  )
+)

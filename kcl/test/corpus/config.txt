@@ -1,0 +1,109 @@
+================================================================================
+Config expression
+================================================================================
+
+data = {
+    key1 = "value1"
+    key2 = "value2"
+}
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (config_expr
+      (config_entries
+        (config_entry
+          (identifier)
+          (string
+            (string_start)
+            (string_content)
+            (string_end)))
+        (config_entry
+          (identifier)
+          (string
+            (string_start)
+            (string_content)
+            (string_end)))))))
+
+================================================================================
+Config Override
+================================================================================
+
+schema Data:
+    labels: {str:} = {key1 = "value1"}
+
+data = Data {
+    labels = {key2 = "value2"}
+}
+
+--------------------------------------------------------------------------------
+
+(module
+  (schema_stmt
+    (identifier)
+    (block
+      (assign_stmt
+        (dotted_name
+          (identifier))
+        (type
+          (dict_type
+            (type
+              (basic_type))))
+        (config_expr
+          (config_entries
+            (config_entry
+              (identifier)
+              (string
+                (string_start)
+                (string_content)
+                (string_end))))))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (schema_expr
+      (identifier)
+      (config_expr
+        (config_entries
+          (config_entry
+            (identifier)
+            (config_expr
+              (config_entries
+                (config_entry
+                  (identifier)
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end)))))))))))
+
+================================================================================
+Config Selector Expression
+================================================================================
+
+config = {
+    name = "me"
+    metadata.name = name
+}
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (config_expr
+      (config_entries
+        (config_entry
+          (identifier)
+          (string
+            (string_start)
+            (string_content)
+            (string_end)))
+        (config_entry
+          (selector_expr
+            (identifier)
+            (select_suffix
+              (identifier)))
+          (identifier))))))

@@ -1,0 +1,13 @@
+node_modules/
+.vscode/
+.idea/
+.circleci/
+docker/
+corpus/
+target/
+bindings/rust/
+build/
+*.wasm
+gradle/
+buildSrc/
+*.kts

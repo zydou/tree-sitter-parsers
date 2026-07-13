@@ -1,0 +1,8 @@
+AlignAfterOpenBracket: AlwaysBreak
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortFunctionsOnASingleLine: Inline
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeBinaryOperators: All
+ColumnLimit: 90
+PointerAlignment: Left

@@ -1,0 +1,16 @@
+=====
+Alias
+=====
+
+Alias: ex = value
+Alias: $EX = http://example.com
+
+---
+
+(doc
+  (alias
+    (alias_name)
+    (sequence))
+  (alias
+    (alias_name)
+    (sequence (url))))

@@ -1,0 +1,100 @@
+======================
+scope access in sizeof
+======================
+
+void Test() {
+    Foo bar;
+    Format(bar.baz, sizeof(Foo::baz), "%s", "lorem ipsum");
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (variable_declaration_statement
+        type: (type
+          (identifier)
+        )
+        (variable_declaration
+          name: (identifier)
+        )
+      )
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          arguments: (call_arguments
+            (field_access
+              target: (identifier)
+              field: (identifier)
+            )
+            (sizeof_expression
+              type: (scope_access
+                scope: (identifier)
+                field: (identifier)
+              )
+            )
+            (string_literal)
+            (string_literal)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+=======================
+scope access expression
+=======================
+
+void Test() {
+    ArrayList arr = new ArrayList();
+    arr.FindValue(0, EnumStruct::member);
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (variable_declaration_statement
+        type: (type
+          (identifier)
+        )
+        (variable_declaration
+          name: (identifier)
+          initialValue: (new_expression
+            class: (identifier)
+            arguments: (call_arguments)
+          )
+        )
+      )
+      (expression_statement
+        (call_expression
+          function: (field_access
+            target: (identifier)
+            field: (identifier)
+          )
+          arguments: (call_arguments
+            (int_literal)
+            (scope_access
+              scope: (identifier)
+              field: (identifier)
+            )
+          )
+        )
+      )
+    )
+  )
+)

@@ -1,0 +1,52 @@
+\documentclass[12pt,a4paper]{article}
+\include{packages}
+
+\title{Template Document}
+\author{Brian Albert Monroe${}^*$}
+
+\begin{document}
+\pagenumbering{arabic}
+\maketitle
+
+\begin{abstract}
+	Space for the abstract.
+\end{abstract}
+
+% Give affiliation at the bottom of the page
+\vspace{\fill}
+${}^\ast$ School of Economics, University of Cape Town, South Africa
+
+\break
+
+% Set it up so references in the main section show up in the main
+% references.
+\newrefsection
+\doublespacing
+\section{Introduction}
+
+This is the start of the main text.
+
+<< echo = F >>=
+this <- 1 + 1
+@
+
+The result of \enquote{this} is \Sexpr{this}
+
+% Main bibliography reference section
+\break
+\singlespacing
+\printbibliography
+\break
+
+% Set up formatting for Appendix section titles
+\appendixsetup{}
+
+\section{First Appendix}
+% Every Apendix section needs to be reset.
+\appendixreset{}
+First appendix text.
+
+% Appendix references
+\appendixref{}
+
+\end{document}
