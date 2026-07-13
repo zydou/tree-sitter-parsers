@@ -1,0 +1,11 @@
+node_modules/
+build/
+parser.exp
+parser.lib
+*.obj
+.vscode/
+Cargo.lock
+.node-version
+*.log
+target/
+.build/

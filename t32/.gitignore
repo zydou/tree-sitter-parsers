@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+#
+# SPDX-License-Identifier: MIT
+
+.pnp.*
+.yarn/*
+.yarn/cache
+.yarn/sdks
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+build/
+prebuilds/
+samples/
+src/*.o
+target/
+*.wasm

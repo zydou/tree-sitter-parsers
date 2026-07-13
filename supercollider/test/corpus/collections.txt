@@ -1,0 +1,580 @@
+==================
+Comma at end of collection
+==================
+(
+[1,2,3,]
+)
+---
+(source_file
+  (code_block
+    (collection
+      (literal
+        (number
+          (integer )))
+      (literal
+        (number
+          (integer )))
+      (literal
+        (number
+          (integer ))))))
+
+==================
+collection@|@1
+==================
+(
+var arr = [1,2,3];
+arr@|@1
+)
+---
+(source_file
+  (code_block
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (collection
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))))
+    (indexed_collection
+      (variable
+        (local_var
+          name: (identifier )))
+      index: (integer ))))
+
+==================
+collection@@1
+==================
+(
+var arr = [1,2,3];
+arr@@1
+)
+---
+(source_file
+  (code_block
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (collection
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))))
+    (indexed_collection
+      (variable
+        (local_var
+          name: (identifier )))
+      index: (integer ))))
+==================
+collection|@|1
+==================
+(
+var arr = [1,2,3];
+arr|@|1
+)
+---
+(source_file
+  (code_block
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (collection
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))))
+    (indexed_collection
+      (variable
+        (local_var
+          name: (identifier )))
+      index: (integer ))))
+
+==================
+10.do{|index| index.postln}
+==================
+(
+10.do{|index| index.postln}
+)
+---
+(source_file
+  (code_block
+    (function_call
+      (receiver
+        (literal
+          (number
+            (integer ))))
+      (method_call
+        name: (method_name )
+        (parameter_list
+          (argument
+            name: (identifier )))
+        (function_call
+          (receiver
+            (variable
+              (local_var
+                name: (identifier ))))
+          (method_call
+            name: (method_name )))))))
+
+==================
+10.do({|index| index.postln})
+==================
+(
+10.do({|index| index.postln})
+)
+---
+(source_file
+  (code_block
+    (function_call
+      (receiver
+        (literal
+          (number
+            (integer ))))
+      (method_call
+        name: (method_name )
+        (parameter_call_list
+          (argument_calls
+            (unnamed_argument
+              (function_block
+                (parameter_list
+                  (argument
+                    name: (identifier )))
+                (function_call
+                  (receiver
+                    (variable
+                      (local_var
+                        name: (identifier ))))
+                  (method_call
+                    name: (method_name )))))))))))
+
+==================
+arithmetic series (1.0, 1.0..2.0)
+==================
+
+(
+(1.0, 1.1 .. 2.0)
+)
+---
+(source_file
+  (code_block
+    (collection
+      (arithmetic_series
+        (number
+          (float ))
+        (number
+          (float ))
+        (number
+          (float ))))))
+
+==================
+arithmetic series (..1)
+==================
+(
+(..1)
+)
+---
+(source_file
+  (code_block
+    (collection
+      (arithmetic_series
+        (number
+          (integer ))))))
+
+==================
+arithmetic series (1..10)
+==================
+(
+(1..10)
+)
+---
+(source_file
+  (code_block
+    (collection
+      (arithmetic_series
+        (number
+          (integer ))
+        (number
+          (integer ))))))
+
+==================
+Variable as index in collection
+==================
+(
+var yo = 2;
+var array = [1,2,4];
+array[yo]
+)
+---
+(source_file
+  (code_block
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (literal
+        (number
+          (integer ))))
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (collection
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))))
+    (indexed_collection
+      (variable
+        (local_var
+          name: (identifier )))
+      index: (variable
+        (local_var
+          name: (identifier ))))))
+
+==================
+index_collection multidimensional array
+==================
+(
+var array = [
+	[1,2,3],
+	[4,5,6]
+];
+
+array[1][0].postln;
+)
+---
+(source_file
+  (code_block
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (collection
+        (collection
+          (literal
+            (number
+              (integer )))
+          (literal
+            (number
+              (integer )))
+          (literal
+            (number
+              (integer ))))
+        (collection
+          (literal
+            (number
+              (integer )))
+          (literal
+            (number
+              (integer )))
+          (literal
+            (number
+              (integer ))))))
+    (function_call
+      (receiver
+        (indexed_collection
+          (variable
+            (local_var
+              name: (identifier )))
+          index: (literal
+            (number
+              (integer )))
+          index: (literal
+            (number
+              (integer )))))
+      (method_call
+        name: (method_name )))))
+
+==================
+index_collection array[1..3]
+==================
+(
+var array = [1,2,3,4];
+array[1..3];
+)
+---
+(source_file
+  (code_block
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (collection
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))))
+    (indexed_collection
+      (variable
+        (local_var
+          name: (identifier )))
+      index: (integer )
+      index: (integer ))))
+
+==================
+index_collection array[1..]
+==================
+(
+var array = [1,2,3,4];
+array[..1];
+)
+---
+
+(source_file
+  (code_block
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (collection
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))))
+    (indexed_collection
+      (variable
+        (local_var
+          name: (identifier )))
+      index: (integer ))))
+
+==================
+index_collection array[..1]
+==================
+(
+var array = [1,2,3,4];
+array[..1];
+)
+---
+
+(source_file
+  (code_block
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (collection
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))))
+    (indexed_collection
+      (variable
+        (local_var
+          name: (identifier )))
+      index: (integer ))))
+
+==================
+class method call on collection type
+==================
+(
+var serve = Array.new;
+)
+
+---
+(source_file
+  (code_block
+    (variable_definition
+      name: (variable
+        (local_var
+          name: (identifier )))
+      value: (function_call
+        (receiver
+          (class ))
+        (method_call
+          name: (method_name ))))))
+
+==================
+integer array
+==================
+[1,2,3,4];
+
+---
+(source_file
+      (collection
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer )))
+        (literal
+          (number
+            (integer ))))
+    )
+
+==================
+Associative array
+==================
+(
+[\a -> 1, \b -> \symmysymmyya, \c -> 3.81];
+)
+---
+(source_file
+  (code_block
+    (collection
+      (associative_item
+        (association
+          (literal
+            (symbol
+              (identifier )))
+          (literal
+            (number
+              (integer )))))
+      (associative_item
+        (association
+          (literal
+            (symbol
+              (identifier )))
+          (literal
+            (symbol
+              (identifier )))))
+      (associative_item
+        (association
+          (literal
+            (symbol
+              (identifier )))
+          (literal
+            (number
+              (float ))))))))
+
+==================
+Assign array to variable
+==================
+var array = [1,2,3,4];
+
+---
+(source_file
+  (variable_definition
+    (variable
+      (local_var
+        (identifier )))
+    (collection
+      (literal
+        (number
+          (integer )))
+      (literal
+        (number
+          (integer )))
+      (literal
+        (number
+          (integer )))
+      (literal
+        (number
+          (integer )))
+      )))
+
+==================
+Simple event
+==================
+var event = (freq: 441.0, dur: 1.0);
+
+---
+(source_file
+  (variable_definition
+    (variable
+      (local_var
+        (identifier )))
+    (collection
+      (associative_item
+        (identifier )
+        (item
+          (literal
+            (number
+              (float )))))
+      (associative_item
+        (identifier )
+        (item
+          (literal
+            (number
+              (float ))))))))
+
+==================
+collection with type prefixed
+==================
+Bag[1,2,3];
+
+---
+(source_file
+  (collection
+    (collection_type )
+    (literal
+      (number
+        (integer )))
+    (literal
+      (number
+        (integer )))
+    (literal
+      (number
+        (integer)))))
+
+==================
+collection with type prefixed in variable declaration
+==================
+
+a = Set[1, 2, 3];
+---
+(source_file
+  (variable_definition
+    (variable
+      (environment_var (identifier)))
+    (collection
+      (collection_type )
+      (literal
+        (number
+          (integer )))
+      (literal
+        (number
+          (integer )))
+      (literal
+        (number
+          (integer ))))))

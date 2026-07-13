@@ -1,0 +1,180 @@
+name: Release
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-packages:
+    name: Cross-platform package build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v4
+      - name: Set Python package version
+        if: matrix.os != 'windows-latest'
+        run: sed -i -e "s/0\.0\.0/${{ github.ref_name }}/" pyproject.toml
+      - name: Set Python package version
+        if: matrix.os == 'windows-latest'
+        run: |
+          function Convert-PackageFile {
+            param($path, $source, $target)
+            $packageFile = Get-Content -Path $path -Raw
+            $updatedPackageFile = $packageFile -replace [Regex]::Escape($source), $target
+            Set-Content -Path $path -Value $updatedPackageFile
+            $updatedPackageFile
+          }
+          Convert-PackageFile 'pyproject.toml' '0.0.0' "${{ github.ref_name }}"
+      # Build Python wheels
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - name: Install setuptools for Windows build
+        if: matrix.os == 'windows-latest'
+        run: python -m pip install --upgrade setuptools
+      - name: Set up QEMU
+        if: matrix.os == 'ubuntu-latest'
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.16
+        with:
+          output-dir: dist
+        env:
+          CIBW_ARCHS_WINDOWS: AMD64
+          CIBW_ARCHS_LINUX: x86_64 aarch64
+          CIBW_ARCHS_MACOS: x86_64 arm64
+          CIBW_TEST_SKIP: "*arm64 *aarch64"
+      - name: Upload wheel artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: dist/*.whl
+          name: ${{matrix.os}}-wheels
+          retention-days: 2
+      # Build NPM prebuilds
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+      - name: Install NPM dependencies
+        run: npm install
+      - name: Build x64 binary
+        run: npm x -- prebuildify --strip --arch x64
+      - name: Build arm64 binary
+        if: runner.os == 'macOS'
+        run: npm x -- prebuildify --strip --arch arm64
+      - name: Upload prebuilds
+        uses: actions/upload-artifact@v4
+        with:
+          path: prebuilds/**
+          name: ${{matrix.os}}-prebuilds
+          retention-days: 2
+
+  publish-packages:
+    name: Publish all packages
+    needs: [build-packages]
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      # Permission for PyPI OIDC token
+      id-token: write
+    steps:
+      # Dependencies
+      - name: Clone repo
+        uses: actions/checkout@v4
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          # Parameter is necessary for NPM publishing to work
+          registry-url: 'https://registry.npmjs.org'
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - name: Setup rust
+        run: rustup default stable
+      - name: Install node.js dependencies
+        run: npm install
+      - name: Install Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 3.1.6
+          actions-cache-folder: 'emsdk-cache'
+      - name: Download Python wheel artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          pattern: "*-wheels"
+          merge-multiple: true
+      - name: Check Python wheels
+        run: ls -l dist
+      - name: Download NPM prebuild artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: prebuilds
+          pattern: "*-prebuilds"
+          merge-multiple: true
+      - name: Check NPM prebuilds
+        run: tree prebuilds
+      - name: Set package version
+        run: |
+          sed -i -e "s/0\.0\.0/${{ github.ref_name }}/" \
+            Cargo.toml package.json pyproject.toml
+          cat Cargo.toml
+          cat package.json
+          cat pyproject.toml
+
+      # Validation
+      - name: Generate parser WASM
+        run: npx tree-sitter build --wasm
+      - name: Check rust crate
+        run: cargo check
+      - name: Test NPM publish scoped package
+        run: npm publish --access=public --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Test crates.io publish
+        run: cargo publish --token ${{secrets.CRATES_AUTH_TOKEN}} --dry-run --allow-dirty
+
+      # Publishing
+      - name: Upload WASM to GitHub release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: tree-sitter-tlaplus.wasm
+          asset_name: tree-sitter-tlaplus.wasm
+          asset_content_type: application/octet-stream
+      - name: Publish scoped package to NPM
+        run: npm publish --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Change node package name
+        run: sed -i -e "s/@tlaplus\/tree-sitter-tlaplus/tree-sitter-tlaplus/" package.json
+      - name: Publish global package to NPM
+        run: npm publish --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Publish to crates.io
+        run: cargo publish --token ${{secrets.CRATES_AUTH_TOKEN}} --allow-dirty
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+      # Downstream Consumers
+      - name: Trigger playground update
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
+          repository: tlaplus-community/tlaplus-community.github.io
+          event-type: tree-sitter-tlaplus-release
+
+  trigger-canary:
+    name: Trigger canary workflow
+    needs: [publish-packages]
+    uses: tlaplus-community/tree-sitter-tlaplus/.github/workflows/canary.yml@main
+    with:
+      version: ${{ github.ref_name }}
+

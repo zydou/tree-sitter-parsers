@@ -1,0 +1,282 @@
+================================================================================
+Empty declarations
+================================================================================
+
+--------------------------------------------------------------------------------
+
+(source_file)
+
+================================================================================
+Type alias declaration
+================================================================================
+
+type alias = int
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (type_alias
+      (type_identifier))))
+
+================================================================================
+Record type declaration
+================================================================================
+
+type record = { a: int, b: str }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (record_type
+      name: (field_identifier)
+      type: (type_identifier)
+      name: (field_identifier)
+      type: (type_identifier))))
+
+================================================================================
+Record type declaration single field
+================================================================================
+
+type record = { a: int }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (record_type
+      name: (field_identifier)
+      type: (type_identifier))))
+
+================================================================================
+Record type declaration no fields
+================================================================================
+
+type record = { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (record_type)))
+
+================================================================================
+Record type declaration trailing comma
+================================================================================
+
+type record = { a: int, }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (record_type
+      name: (field_identifier)
+      type: (type_identifier)
+      (ERROR))))
+
+================================================================================
+Array type declaration
+================================================================================
+
+type array_of_int = array of int
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (array_type
+      element_type: (type_identifier))))
+
+================================================================================
+Array type declaration non-associativity
+================================================================================
+
+type array_of_array_of_int = array of array of int
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ERROR
+    (type_declaration
+      name: (identifier)
+      value: (array_type
+        element_type: (type_identifier)))
+    (identifier))
+  (identifier))
+
+================================================================================
+Function declaration
+================================================================================
+
+function func(a: int, b: int) = "string"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters
+      name: (identifier)
+      type: (type_identifier)
+      name: (identifier)
+      type: (type_identifier))
+    body: (string_literal)))
+
+================================================================================
+Function declaration return type
+================================================================================
+
+function func(a: int, b: int) : string = "string"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters
+      name: (identifier)
+      type: (type_identifier)
+      name: (identifier)
+      type: (type_identifier))
+    return_type: (type_identifier)
+    body: (string_literal)))
+
+================================================================================
+Function declaration single parameter
+================================================================================
+
+function func(a: int) = "string"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters
+      name: (identifier)
+      type: (type_identifier))
+    body: (string_literal)))
+
+================================================================================
+Function declaration no parameters
+================================================================================
+
+function func() = "string"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters)
+    body: (string_literal)))
+
+================================================================================
+Primitive declaration
+================================================================================
+
+primitive prim()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (primitive_declaration
+    name: (identifier)
+    parameters: (parameters)))
+
+================================================================================
+Primitive declaration with return type
+================================================================================
+
+primitive prim() : int
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (primitive_declaration
+    name: (identifier)
+    parameters: (parameters)
+    return_type: (type_identifier)))
+
+================================================================================
+Variable declaration
+================================================================================
+
+var a := 12
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    name: (identifier)
+    (operator)
+    value: (integer_literal)))
+
+================================================================================
+Variable declaration with type
+================================================================================
+
+var a : int := 27
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    name: (identifier)
+    type: (type_identifier)
+    (operator)
+    value: (integer_literal)))
+
+================================================================================
+Multiple variable declarations
+================================================================================
+
+var a := 12
+var b := 27
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    name: (identifier)
+    (operator)
+    value: (integer_literal))
+  (variable_declaration
+    name: (identifier)
+    (operator)
+    value: (integer_literal)))
+
+================================================================================
+Import
+================================================================================
+
+import "a.tih"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_declaration
+    file: (string_literal)))
+
+================================================================================
+Multiple imports
+================================================================================
+
+import "a.tih"
+import "b.tih"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_declaration
+    file: (string_literal))
+  (import_declaration
+    file: (string_literal)))

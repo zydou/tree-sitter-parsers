@@ -1,0 +1,251 @@
+======================
+preprocessor condition
+======================
+
+#if TEST
+
+---
+
+(source_file
+  (preproc_if
+    condition: (preproc_arg)
+  )
+)
+
+
+=========================================
+preprocessor condition - defined constant
+=========================================
+
+#if defined TEST
+
+---
+
+(source_file
+  (preproc_if
+    condition: (preproc_arg)
+  )
+)
+
+
+=============================================
+preprocessor condition - not defined constant
+=============================================
+
+#if !defined TEST
+
+---
+
+(source_file
+  (preproc_if
+    condition: (preproc_arg)
+  )
+)
+
+
+==========================================
+preprocessor condition - complex condition
+==========================================
+
+#if !(defined TEST) || (MAXPLAYERS+1==66) && (FOO==2)
+
+---
+
+(source_file
+  (preproc_if
+    (preproc_arg)
+  )
+)
+
+
+=======================================
+preprocessor assert - complex condition
+=======================================
+
+#assert !(defined TEST) || (MAXPLAYERS+1==66) && (FOO==2)
+
+---
+
+(source_file
+  (preproc_assert
+    (preproc_arg)
+  )
+)
+
+
+====
+else
+====
+
+#else
+
+---
+
+(source_file
+  (preproc_else)
+)
+
+
+=====
+endif
+=====
+
+#endif
+
+---
+
+(source_file
+  (preproc_endif)
+)
+
+
+====================================
+preprocessor condition in code block
+====================================
+
+void MyFunc() {
+    #if DEBUG
+    Debug();
+    #else
+    Production();
+    #endif
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (preproc_if
+        condition: (preproc_arg)
+      )
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          arguments: (call_arguments)
+        )
+      )
+      (preproc_else)
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          arguments: (call_arguments)
+        )
+      )
+      (preproc_endif)
+    )
+  )
+)
+
+
+==============================
+preprocessor condition in enum
+==============================
+
+enum
+{
+    Flag_Steam_ID,
+    #if defined _steamtools_included
+    Flag_MaxPlayers = 1,
+    #else
+    Flag_MaxPlayers = 2,
+    #endif
+};
+
+---
+
+(source_file
+  (enum
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+      )
+      (preproc_if
+        condition: (preproc_arg)
+      )
+      (enum_entry
+        name: (identifier)
+        value: (int_literal)
+      )
+      (preproc_else)
+      (enum_entry
+        name: (identifier)
+        value: (int_literal)
+      )
+      (preproc_endif)
+    )
+  )
+)
+
+
+==============================
+elseif condition in code block
+==============================
+
+void MyFunc() {
+    #if DEBUG
+    Debug();
+    #elseif DEBUG2
+    Production();
+    #endif
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (preproc_if
+        condition: (preproc_arg)
+      )
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          arguments: (call_arguments)
+        )
+      )
+      (preproc_elseif
+        condition: (preproc_arg)
+      )
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          arguments: (call_arguments)
+        )
+      )
+      (preproc_endif)
+    )
+  )
+)
+
+
+=========================
+preprocessor with comment
+=========================
+
+#if DEBUG /* Easy error tracing */
+#else /* production code */
+#endif /* finished */
+
+---
+
+(source_file
+  (preproc_if
+    condition: (preproc_arg)
+  )
+  (comment)
+  (preproc_else)
+  (comment)
+  (preproc_endif)
+  (comment)
+)

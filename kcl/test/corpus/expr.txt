@@ -1,0 +1,1030 @@
+================================================================================
+binary expression
+================================================================================
+
+1 ** 2 + 2 * 3
+
+--------------------------------------------------------------------------------
+
+(module
+  (binary_expr
+    (binary_expr
+      (integer)
+      (integer))
+    (binary_expr
+      (integer)
+      (integer))))
+
+================================================================================
+unary expression
+================================================================================
+
+~1
+
+--------------------------------------------------------------------------------
+
+(module
+  (unary_expr
+    (integer)))
+
+================================================================================
+Index expression
+================================================================================
+
+"abc"[1]
+
+--------------------------------------------------------------------------------
+
+(module
+  (subscript_expr
+    (string
+      (string_start)
+      (string_content)
+      (string_end))
+    (integer)))
+
+================================================================================
+slice expression
+================================================================================
+
+"abc"[1:2]
+
+--------------------------------------------------------------------------------
+
+(module
+  (subscript_expr
+    (string
+      (string_start)
+      (string_content)
+      (string_end))
+    (slice
+      (integer)
+      (integer))))
+
+================================================================================
+conditional expression
+================================================================================
+
+x = True if enabled else False
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (if_expr
+      (true)
+      (identifier)
+      (false))))
+
+================================================================================
+function invocation
+================================================================================
+
+print("hello world", end="")
+
+--------------------------------------------------------------------------------
+
+(module
+  (call_expr
+    (identifier)
+    (argument_list
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (keyword_argument
+        (identifier)
+        (string
+          (string_start)
+          (string_end))))))
+
+================================================================================
+List comprehensions
+================================================================================
+
+[x * x for x in range(5)] 
+
+--------------------------------------------------------------------------------
+
+(module
+  (list_comprehension
+    (binary_expr
+      (identifier)
+      (identifier))
+    (for_in_clause
+      (identifier)
+      (call_expr
+        (identifier)
+        (argument_list
+          (integer))))))
+
+================================================================================
+Dict comprehensions
+================================================================================
+
+{x: 1 for x in range(5)}
+
+--------------------------------------------------------------------------------
+
+(module
+  (config_comprehension
+    (identifier)
+    (integer)
+    (for_in_clause
+      (identifier)
+      (call_expr
+        (identifier)
+        (argument_list
+          (integer))))))
+
+================================================================================
+selector expression
+================================================================================
+
+myDict = {key = "value"}
+result = myDict.key
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (config_expr
+      (config_entries
+        (config_entry
+          (identifier)
+          (string
+            (string_start)
+            (string_content)
+            (string_end))))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (selector_expr
+      (identifier)
+      (select_suffix
+        (identifier)))))
+
+================================================================================
+selector expression with ? operator
+================================================================================
+
+data = {key = "value"}
+a = data?.key     
+b = data?.name
+c = data?.name + "value"
+d = data.name == "NONE" + " " + "ok"
+
+e = data?.name == "TRUE" if True else "None"
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (config_expr
+      (config_entries
+        (config_entry
+          (identifier)
+          (string
+            (string_start)
+            (string_content)
+            (string_end))))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (selector_expr
+      (identifier)
+      (select_suffix
+        (identifier))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (selector_expr
+      (identifier)
+      (select_suffix
+        (identifier))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (binary_expr
+      (selector_expr
+        (identifier)
+        (select_suffix
+          (identifier)))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (binary_expr
+      (binary_expr
+        (comparison_expr
+          (selector_expr
+            (identifier)
+            (select_suffix
+              (identifier)))
+          (string
+            (string_start)
+            (string_content)
+            (string_end)))
+        (string
+          (string_start)
+          (string_content)
+          (string_end)))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (if_expr
+      (comparison_expr
+        (selector_expr
+          (identifier)
+          (select_suffix
+            (identifier)))
+        (string
+          (string_start)
+          (string_content)
+          (string_end)))
+      (true)
+      (string
+        (string_start)
+        (string_content)
+        (string_end)))))
+
+================================================================================
+attribute expression
+================================================================================
+
+schema Person:
+  name: str
+
+person = Person {name: "Alice"}
+name1 = person.name
+
+--------------------------------------------------------------------------------
+
+(module
+  (schema_stmt
+    (identifier)
+    (block
+      (assign_stmt
+        (dotted_name
+          (identifier))
+        (basic_type))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (schema_expr
+      (identifier)
+      (config_expr
+        (config_entries
+          (config_entry
+            (identifier)
+            (string
+              (string_start)
+              (string_content)
+              (string_end)))))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (selector_expr
+      (identifier)
+      (select_suffix
+        (identifier)))))
+
+================================================================================
+optional attribute expression
+================================================================================
+
+schema Person:
+  name: str
+
+person = Person {name: "Alice"}
+name2 = person?.name
+
+--------------------------------------------------------------------------------
+
+(module
+  (schema_stmt
+    (identifier)
+    (block
+      (assign_stmt
+        (dotted_name
+          (identifier))
+        (basic_type))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (schema_expr
+      (identifier)
+      (config_expr
+        (config_entries
+          (config_entry
+            (identifier)
+            (string
+              (string_start)
+              (string_content)
+              (string_end)))))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (selector_expr
+      (identifier)
+      (select_suffix
+        (identifier)))))
+
+================================================================================
+optional item expression
+================================================================================
+
+datalist = [[1], 2, 3]
+item = datalist?[0]
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (list_expr
+      (list_expr
+        (integer))
+      (integer)
+      (integer)))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (subscript_expr
+      (identifier)
+      (integer))))
+
+================================================================================
+null coalesce expression
+================================================================================
+
+data = {"name": {"key": "value"}}
+name3 = data["name"] or "name3_value"
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (config_expr
+      (config_entries
+        (config_entry
+          (string
+            (string_start)
+            (string_content)
+            (string_end))
+          (config_expr
+            (config_entries
+              (config_entry
+                (string
+                  (string_start)
+                  (string_content)
+                  (string_end))
+                (string
+                  (string_start)
+                  (string_content)
+                  (string_end)))))))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (subscript_expr
+        (identifier)
+        (string
+          (string_start)
+          (string_content)
+          (string_end)))
+      (string
+        (string_start)
+        (string_content)
+        (string_end)))))
+
+================================================================================
+paren expression
+================================================================================
+
+(a + b) * c
+
+--------------------------------------------------------------------------------
+
+(module
+  (binary_expr
+    (paren_expr
+      (binary_expr
+        (identifier)
+        (identifier)))
+    (identifier)))
+
+================================================================================
+boolean expression with 'and' operator
+================================================================================
+
+x = True and False
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (true)
+      (false))))
+
+================================================================================
+boolean expression with 'or' operator
+================================================================================
+
+y = True or False
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (true)
+      (false))))
+
+================================================================================
+not operator with boolean expression
+================================================================================
+
+x = not True
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (unary_expr
+      (true))))
+
+================================================================================
+not operator with comparison expression
+================================================================================
+
+y = not (1 == 2)
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (unary_expr
+      (paren_expr
+        (comparison_expr
+          (integer)
+          (integer))))))
+
+================================================================================
+lambda expression
+================================================================================
+
+g = lambda x: str, y: int -> int { 
+  x * y
+}
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (lambda_expr
+      (typed_parameter
+        (identifier)
+        (type
+          (basic_type)))
+      (typed_parameter
+        (identifier)
+        (type
+          (basic_type)))
+      (type
+        (basic_type))
+      (block
+        (binary_expr
+          (identifier)
+          (identifier))))))
+
+================================================================================
+Sequence operations
+================================================================================
+
+["gg"] in ["gg","eggs"]
+["ab"] not in ["gg","eggs"]
+["kus"] + ["io","nstack"]
+["k", "c", "l"][0]
+["k", "c", "l"][0:2]
+["kub", "er", "ne", "tes"][0:3:2]
+min(["gg","eggs"])
+max(["gg","eggs"])
+
+--------------------------------------------------------------------------------
+
+(module
+  (comparison_expr
+    (list_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end)))
+    (list_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))))
+  (comparison_expr
+    (list_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end)))
+    (list_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))))
+  (binary_expr
+    (list_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end)))
+    (list_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))))
+  (subscript_expr
+    (list_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end)))
+    (integer))
+  (subscript_expr
+    (list_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end)))
+    (slice
+      (integer)
+      (integer)))
+  (subscript_expr
+    (list_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end)))
+    (slice
+      (integer)
+      (integer)
+      (integer)))
+  (call_expr
+    (identifier)
+    (argument_list
+      (list_expr
+        (string
+          (string_start)
+          (string_content)
+          (string_end))
+        (string
+          (string_start)
+          (string_content)
+          (string_end)))))
+  (call_expr
+    (identifier)
+    (argument_list
+      (list_expr
+        (string
+          (string_start)
+          (string_content)
+          (string_end))
+        (string
+          (string_start)
+          (string_content)
+          (string_end))))))
+
+================================================================================
+Comparison operators
+================================================================================
+
+a = 5 < 10
+b = "apple" == "orange"
+c = 3.14 > 3.14
+d = "hello" != "world"
+e = 10 <= 20
+f = 7 >= 7
+g = x in [1, 2, 3]
+h = y not in ["a", "b", "c"]
+i = x is None
+j = y is not None
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (integer)
+      (integer)))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (float)
+      (float)))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (string
+        (string_start)
+        (string_content)
+        (string_end))
+      (string
+        (string_start)
+        (string_content)
+        (string_end))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (integer)
+      (integer)))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (integer)
+      (integer)))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (identifier)
+      (list_expr
+        (integer)
+        (integer)
+        (integer))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (identifier)
+      (list_expr
+        (string
+          (string_start)
+          (string_content)
+          (string_end))
+        (string
+          (string_start)
+          (string_content)
+          (string_end))
+        (string
+          (string_start)
+          (string_content)
+          (string_end)))))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (identifier)
+      (none)))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (identifier)
+      (unary_expr
+        (none)))))
+
+================================================================================
+Smoke expression
+================================================================================
+
+"\"1\"\n"
+--------------------------------------------------------------------------------
+
+(module
+  (string
+    (string_start)
+    (string_content
+      (escape_sequence)
+      (escape_sequence)
+      (escape_sequence))
+    (string_end)))
+
+================================================================================
+Non-literal expressions
+================================================================================
+
+p = (a + b) * c  
+q = x and y       
+r = not x         
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (binary_expr
+      (paren_expr
+        (binary_expr
+          (identifier)
+          (identifier)))
+      (identifier)))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (comparison_expr
+      (identifier)
+      (identifier)))
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (unary_expr
+      (identifier))))
+
+================================================================================
+String literal expressions
+================================================================================
+
+"1234"
+--------------------------------------------------------------------------------
+
+(module
+  (string
+    (string_start)
+    (string_content)
+    (string_end)))
+
+================================================================================
+Number bin suffix expressions
+================================================================================
+
+1234Ki
+--------------------------------------------------------------------------------
+
+(module
+  (integer))
+
+================================================================================
+Config expressions
+================================================================================
+
+{
+  "name" = {
+    "name": "alice"
+  },
+  "gender" = "female"
+}
+--------------------------------------------------------------------------------
+
+(module
+  (config_expr
+    (config_entries
+      (config_entry
+        (string
+          (string_start)
+          (string_content)
+          (string_end))
+        (config_expr
+          (config_entries
+            (config_entry
+              (string
+                (string_start)
+                (string_content)
+                (string_end))
+              (string
+                (string_start)
+                (string_content)
+                (string_end))))))
+      (config_entry
+        (string
+          (string_start)
+          (string_content)
+          (string_end))
+        (string
+          (string_start)
+          (string_content)
+          (string_end))))))
+
+================================================================================
+Bracket expressions
+================================================================================
+
+[2 + 3]
+--------------------------------------------------------------------------------
+
+(module
+  (list_expr
+    (binary_expr
+      (integer)
+      (integer))))
+
+================================================================================
+Braces expressions
+================================================================================
+
+{ a = 2 }
+--------------------------------------------------------------------------------
+
+(module
+  (config_expr
+    (config_entries
+      (config_entry
+        (identifier)
+        (integer)))))
+
+================================================================================
+quantifier map expression
+================================================================================
+
+b = map k, v in {a = "foo", b = "bar"} { v } 
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (quant_expr
+      (quant_op)
+      (identifier)
+      (identifier)
+      (quant_target
+        (config_expr
+          (config_entries
+            (config_entry
+              (identifier)
+              (string
+                (string_start)
+                (string_content)
+                (string_end)))
+            (config_entry
+              (identifier)
+              (string
+                (string_start)
+                (string_content)
+                (string_end))))))
+      (identifier))))
+
+================================================================================
+quantifier filter expression
+================================================================================
+
+d = filter _, v in {a = "foo", b = "bar"} {v == "foo"}
+
+--------------------------------------------------------------------------------
+
+(module
+  (assign_stmt
+    (dotted_name
+      (identifier))
+    (quant_expr
+      (quant_op)
+      (identifier)
+      (identifier)
+      (quant_target
+        (config_expr
+          (config_entries
+            (config_entry
+              (identifier)
+              (string
+                (string_start)
+                (string_content)
+                (string_end)))
+            (config_entry
+              (identifier)
+              (string
+                (string_start)
+                (string_content)
+                (string_end))))))
+      (comparison_expr
+        (identifier)
+        (string
+          (string_start)
+          (string_content)
+          (string_end))))))
+
+================================================================================
+quantifier Any expression
+================================================================================
+
+schema Config:
+    volumes: [{str:}]
+
+    check:
+        any volume in volumes {
+            volume.mountPath in ["/home/admin", "/home/myapp"]
+        }
+
+--------------------------------------------------------------------------------
+
+(module
+  (schema_stmt
+    (identifier)
+    (block
+      (assign_stmt
+        (dotted_name
+          (identifier))
+        (list_type
+          (type
+            (dict_type
+              (type
+                (basic_type))))))
+      (check_stmt
+        (quant_expr
+          (quant_op)
+          (identifier)
+          (quant_target
+            (identifier))
+          (comparison_expr
+            (selector_expr
+              (identifier)
+              (select_suffix
+                (identifier)))
+            (list_expr
+              (string
+                (string_start)
+                (string_content)
+                (string_end))
+              (string
+                (string_start)
+                (string_content)
+                (string_end)))))))))

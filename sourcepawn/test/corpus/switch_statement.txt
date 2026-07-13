@@ -1,0 +1,305 @@
+================
+switch statement
+================
+
+public void OnPluginStart() {
+    switch(i) {
+        case 1:
+            i++;
+        case 2:
+            return;
+        case Plugin_Handled:
+        {
+            i++;
+            return;
+        }
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (switch_statement
+        condition: (identifier)
+        (switch_case
+          value: (int_literal)
+          body: (expression_statement
+            (update_expression
+              argument: (identifier)
+            )
+          )
+        )
+        (switch_case
+          value: (int_literal)
+          body: (return_statement)
+        )
+        (switch_case
+          value: (identifier)
+          body: (block
+            (expression_statement
+              (update_expression
+                argument: (identifier)
+              )
+            )
+            (return_statement)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+===============================
+switch statement - default case
+===============================
+
+public void OnPluginStart() {
+    switch(i) {
+        case 1:
+            i++;
+        case 2:
+            return;
+        default:
+        {
+            i++;
+            return;
+        }
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (switch_statement
+        condition: (identifier)
+        (switch_case
+          value: (int_literal)
+          body: (expression_statement
+            (update_expression
+              argument: (identifier)
+            )
+          )
+        )
+        (switch_case
+          value: (int_literal)
+          body: (return_statement)
+        )
+        (switch_case
+          body: (block
+            (expression_statement
+              (update_expression
+                argument: (identifier)
+              )
+            )
+            (return_statement)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+==============================================
+switch statement - multiple values in one case
+==============================================
+
+public void OnPluginStart() {
+    switch(i) {
+        case 1, 2, 3, 4, 5:
+            return;
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (switch_statement
+        condition: (identifier)
+        (switch_case
+          value: (int_literal)
+          value: (int_literal)
+          value: (int_literal)
+          value: (int_literal)
+          value: (int_literal)
+          body: (return_statement)
+        )
+      )
+    )
+  )
+)
+
+
+===========================
+switch statement - no cases
+===========================
+
+public void OnPluginStart() {
+    switch(i) {
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (switch_statement
+        condition: (identifier)
+      )
+    )
+  )
+)
+
+
+==============================
+switch statement - parenthesis
+==============================
+
+void foo()
+{
+	switch(bar)
+	{
+		case (BAZ):
+    {
+      return;
+    }
+    case ( 1 << 1 ):
+    {
+      return;
+    }
+	}
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (switch_statement
+        condition: (identifier)
+        (switch_case
+          value: (parenthesized_expression
+            expression: (identifier)
+          )
+          body: (block
+            (return_statement)
+          )
+        )
+        (switch_case
+          value: (parenthesized_expression
+            expression: (binary_expression
+              left: (int_literal)
+              right: (int_literal)
+            )
+          )
+          body: (block
+            (return_statement)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+=====================================
+switch statement - complex expression
+=====================================
+
+void foo()
+{
+	switch(true)
+	{
+	  case (Handle:1):
+        1+1;
+    case !1 + 1 * 1:
+        1+1;
+	}
+}
+
+---
+
+(source_file
+  (function_definition
+    (type
+      (builtin_type)
+    )
+    (identifier)
+    (parameter_declarations)
+    (block
+      (switch_statement
+        (bool_literal)
+        (switch_case
+          (parenthesized_expression
+            (old_type_cast
+              (old_type
+                (identifier)
+              )
+              (int_literal)
+            )
+          )
+          (expression_statement
+            (binary_expression
+              (int_literal)
+              (int_literal)
+            )
+          )
+        )
+        (switch_case
+          (case_binary_expression
+            (case_unary_expression
+              (int_literal)
+            )
+            (case_binary_expression
+              (int_literal)
+              (int_literal)
+            )
+          )
+          (expression_statement
+            (binary_expression
+              (int_literal)
+              (int_literal)
+            )
+          )
+        )
+      )
+    )
+  )
+)

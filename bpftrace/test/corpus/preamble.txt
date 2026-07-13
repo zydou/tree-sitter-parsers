@@ -1,0 +1,64 @@
+============================================
+Config parameters assigment
+============================================
+
+config = {
+  stack_mode = perf;
+  max_map_kays=2
+}
+
+---
+
+(source_file
+  (preamble
+    (config_block
+      (config_assignment
+        name: (identifier)
+        value: (identifier))
+      (config_assignment
+        name: (identifier)
+        value: (integer_literal)))))
+
+============================================
+Simple definitions
+============================================
+
+#define ENABLE_FEAT
+#define ADD(a, b) (a + b)
+#define PAGE_SIZE 4096
+
+---
+
+(source_file
+  (preamble
+     (c_preproc)
+     (c_preproc)
+     (c_preproc)))
+
+============================================
+Simple includes
+============================================
+
+ # include "net/sock.h"
+ #include <linux/socket.h>
+
+---
+
+(source_file
+  (preamble
+    (c_preproc)
+    (c_preproc)))
+
+============================================
+Map declaration
+============================================
+let @a = percpulruhash(2);
+---
+(source_file
+  (preamble
+    (map_declaration
+      (map_variable)
+      (call_expression
+        function: (identifier)
+        arguments: (arguments
+          (integer_literal))))))

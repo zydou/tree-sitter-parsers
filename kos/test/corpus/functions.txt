@@ -1,0 +1,214 @@
+=====================
+Function declarations
+=====================
+
+fun no_args
+{
+}
+
+fun zero_args()
+{
+}
+
+fun one_arg(arg)
+{
+}
+
+public fun two_args(arg1, arg2)
+{
+    return arg1
+}
+
+fun ellipsis(args...)
+{
+    return args
+}
+
+fun args_and_ellipsis(arg1, arg2, rest...)
+{
+    return arg1
+}
+
+fun defaults(arg1 = 1, arg2 = 2)
+{
+}
+
+fun mix_and_match(arg1, arg2, arg3 = 3, rest...)
+{
+    return arg3
+}
+
+---
+
+(source_file
+    (function_decl
+        name: (identifier)
+        (compound_statement))
+    (function_decl
+        name: (identifier)
+        parameters: (parameter_list)
+        (compound_statement))
+    (function_decl
+        name: (identifier)
+        parameters: (parameter_list
+            (parameter
+                parameter: (identifier)))
+        (compound_statement))
+    (public_statement
+        (function_decl
+            name: (identifier)
+            parameters: (parameter_list
+                (parameter
+                    parameter: (identifier))
+                (parameter
+                    parameter: (identifier)))
+            (compound_statement
+                (return_statement
+                    name: (identifier)))))
+    (function_decl
+        name: (identifier)
+        parameters: (parameter_list
+            (list_parameter
+                (parameter
+                    parameter: (identifier))))
+        (compound_statement
+            (return_statement
+                name: (identifier))))
+    (function_decl
+        name: (identifier)
+        parameters: (parameter_list
+            (parameter
+                parameter: (identifier))
+            (parameter
+                parameter: (identifier))
+            (list_parameter
+                (parameter
+                    parameter: (identifier))))
+        (compound_statement
+            (return_statement
+                name: (identifier))))
+    (function_decl
+        name: (identifier)
+        parameters: (parameter_list
+            (default_parameter
+                (parameter
+                    parameter: (identifier))
+                (number))
+            (default_parameter
+                (parameter
+                    parameter: (identifier))
+                (number)))
+        (compound_statement))
+    (function_decl
+        name: (identifier)
+        parameters: (parameter_list
+            (parameter
+                parameter: (identifier))
+            (parameter
+                parameter: (identifier))
+            (default_parameter
+                (parameter
+                    parameter: (identifier))
+                (number))
+            (list_parameter
+                (parameter
+                    parameter: (identifier))))
+        (compound_statement
+            (return_statement
+                name: (identifier)))))
+
+==================
+Class declarations
+==================
+
+class a { }
+
+class b {
+    var c = 1
+    fun d { }
+    constructor { }
+    constructor(x) { }
+}
+
+---
+
+(source_file
+    (class_decl
+        (identifier)
+        (class_body))
+    (class_decl
+        (identifier)
+        (class_body
+            (class_member
+                (data_member
+                    (identifier)
+                    (number)))
+            (class_member
+                (function_decl
+                    (identifier)
+                    (compound_statement)))
+            (class_member
+                (constructor_literal
+                    (compound_statement)))
+            (class_member
+                (constructor_literal
+                    (parameter_list
+                        (parameter
+                            (identifier)))
+                    (compound_statement))))))
+
+=================
+Function literals
+=================
+
+const a = fun { }
+
+const b = fun(x) { }
+
+---
+
+(source_file
+    (expression
+        (variable_definition
+            (const_list
+                (variable_decl (identifier)))
+            (function_literal
+                (compound_statement))))
+    (expression
+        (variable_definition
+            (const_list
+                (variable_decl (identifier)))
+            (function_literal
+                (parameter_list
+                    (parameter
+                        (identifier)))
+                (compound_statement)))))
+
+==============
+Class literals
+==============
+
+const a = class { }
+
+const b = class extends c { constructor { } }
+
+---
+
+(source_file
+    (expression
+        (variable_definition
+            (const_list
+                (variable_decl (identifier)))
+            (class_literal
+                (class_body))))
+    (expression
+        (variable_definition
+            (const_list
+                (variable_decl (identifier)))
+            (class_literal
+                (extends_decl
+                    (identifier))
+                (class_body
+                    (class_member
+                        (constructor_literal
+                            (compound_statement))))))))

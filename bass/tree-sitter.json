@@ -1,0 +1,40 @@
+{
+  "grammars": [
+    {
+      "name": "bass",
+      "camelcase": "Bass",
+      "scope": "source.bass",
+      "path": ".",
+      "file-types": [
+        "bass"
+      ],
+      "highlights": [
+        "queries/helix/highlights.scm"
+      ],
+      "injection-regex": "bass",
+      "first-line-regex": "#!.*\\bbass$"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.2",
+    "license": "MIT",
+    "description": "Bass grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Alex Suraci",
+        "email": "suraci.alex@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/amaanq/tree-sitter-bass"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

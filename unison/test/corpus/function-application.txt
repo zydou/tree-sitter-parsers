@@ -1,0 +1,52 @@
+===
+[Function Application] infix op
+===
+y = 5 + 2
+---
+(unison
+    (term_declaration
+        (term_definition
+            (regular_identifier)
+            (kw_equals)
+            (nat)
+            (operator)
+            (nat))))
+===
+[Function Application] prefix op
+===
+y = (+) 5 2
+---
+(unison
+    (term_declaration
+        (term_definition
+            (regular_identifier)
+            (kw_equals)
+            (prefix_operator)
+            (nat)
+            (nat))))
+===
+[Function Application] regular function
+===
+x = myFunc 1 2
+---
+(unison
+    (term_declaration
+        (term_definition
+            (regular_identifier)
+            (kw_equals)
+            (regular_identifier)
+            (nat)
+            (nat))))
+===
+[Function Application] infix operator function
+===
+x = 1 <<- 2
+---
+(unison
+    (term_declaration
+        (term_definition
+            (regular_identifier)
+            (kw_equals)
+            (nat)
+            (operator)
+            (nat))))

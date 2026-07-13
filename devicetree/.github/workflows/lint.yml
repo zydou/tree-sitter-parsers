@@ -1,0 +1,30 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - grammar.js
+      - package.json
+      - .github/**
+  pull_request:
+    paths:
+      - grammar.js
+      - package.json
+      - .github/**
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: ${{vars.NODE_VERSION}}
+      - name: Install modules
+        run: npm ci
+      - name: Run Prettier
+        run: npm run prettier:check
+      - name: Run ESLint
+        run: npm run lint

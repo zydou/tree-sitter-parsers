@@ -1,0 +1,39 @@
+{
+  "grammars": [
+    {
+      "name": "kdl",
+      "camelcase": "Kdl",
+      "scope": "source.kdl",
+      "path": ".",
+      "file-types": [
+        "kdl"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "kdl"
+    }
+  ],
+  "metadata": {
+    "version": "1.1.0",
+    "license": "MIT",
+    "description": "KDL grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Amaan Qureshi",
+        "email": "amaanq12@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/amaanq/tree-sitter-kdl"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

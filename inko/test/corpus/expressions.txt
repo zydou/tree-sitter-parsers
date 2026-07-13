@@ -1,0 +1,833 @@
+===
+Integers
+===
+
+100
+1_0_0
+0xab
+0xAB
+0xA_B
+-100
+
+---
+
+(source_file (integer) (integer) (integer) (integer) (integer) (integer))
+
+===
+Floats
+===
+
+1.2
+100.200
+1.1_2
+-1.2
+1e2
+1e+2
+1E+2
+
+---
+
+(source_file (float) (float) (float) (float) (float) (float) (float))
+
+===
+Keyword expressions
+===
+
+self
+nil
+true
+false
+
+---
+
+(source_file (self) (nil) (true) (false))
+
+===
+Blocks
+===
+
+{}
+{ true }
+{ return }
+A
+{}
+
+---
+
+(source_file (block) (block (true)) (block (return)) (constant) (block))
+
+===
+Single quoted strings
+===
+
+'hello'
+'a\nb'
+'a\tb'
+'a\u{AC}b'
+'a\u{FFFF}b'
+'a
+b'
+'a\${}b'
+'a${10}b'
+'a\'b'
+'a\"b'
+'a\\u'
+'a\0b'
+'a$10b'
+'a#bc'
+'#a'
+
+---
+
+(source_file
+  (string (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (interpolation (integer)) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (string_content) (string_content))
+  (string (string_content))
+  (string (string_content)))
+
+===
+Double quoted strings
+===
+
+"hello"
+"a\nb"
+"a\tb"
+"a\u{AC}b"
+"a\u{FFFF}b"
+"a
+b"
+"a\${}b"
+"a${10}b"
+"a\'b"
+"a\"b"
+"a$10b"
+"a#bc"
+"#a"
+
+---
+
+(source_file
+  (string (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (interpolation (integer)) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (escape_sequence) (string_content))
+  (string (string_content) (string_content) (string_content))
+  (string (string_content))
+  (string (string_content)))
+
+===
+Variable references
+===
+
+foo
+Foo
+@foo
+
+---
+
+(source_file (identifier) (constant) (field))
+
+===
+Binary operations
+===
+
+1 and 2
+1 or 2
+1 and 2 or 3
+1 + 2
+1 - 2
+1 / 2
+1 * 2
+1 ** 2
+1 % 2
+1 < 2
+1 > 2
+1 <= 2
+1 >= 2
+1 << 2
+1 >> 2
+1 >>> 2
+1 & 2
+1 | 2
+1 ^ 2
+1 == 2
+1 != 2
+1 + 2 and 3
+1 + 2 or 3
+
+---
+
+(source_file
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (binary (integer) (integer)) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (integer) (integer))
+  (binary (binary (integer) (integer)) (integer))
+  (binary (binary (integer) (integer)) (integer)))
+
+===
+Type casts
+===
+
+1 + 2 as A
+1 as A as B
+1 as A or 2 as B
+1 as A and 2 as B
+1 as A[ref B]
+1 as A[mut B]
+1 as A[uni B]
+
+---
+
+(source_file
+  (cast (binary (integer) (integer)) (type))
+  (cast (cast (integer) (type)) (type))
+  (binary (cast (integer) (type)) (cast (integer) (type)))
+  (binary (cast (integer) (type)) (cast (integer) (type)))
+  (cast (integer) (generic_type (constant) (type_arguments (ref_type (type)))))
+  (cast (integer) (generic_type (constant) (type_arguments (mut_type (type)))))
+  (cast (integer) (generic_type (constant) (type_arguments (uni_type (type))))))
+
+===
+Constant definitions
+===
+
+let A = 10
+let A = A + B
+let pub A = 10
+
+---
+
+(source_file
+  (define_constant name: (constant) value: (integer))
+  (define_constant
+    name: (constant) value: (binary left: (constant) right: (constant)))
+  (define_constant visibility: (visibility) name: (constant) value: (integer)))
+
+===
+Variable definitions
+===
+
+let a = 10
+let a: Int = 10
+let mut a = 10
+let a = 1 + 2
+
+---
+
+(source_file
+  (define_variable name: (identifier) value: (integer))
+  (define_variable name: (identifier) type: (type) value: (integer))
+  (define_variable modifier: (modifier) name: (identifier) value: (integer))
+  (define_variable
+    name: (identifier) value: (binary left: (integer) right: (integer))))
+
+===
+Grouped expressions
+===
+
+(1)
+(1 + 2)
+1 + (2 and 3)
+
+---
+
+(source_file
+  (grouped_expression (integer))
+  (grouped_expression (binary (integer) (integer)))
+  (binary (integer) (grouped_expression (binary (integer) (integer)))))
+
+===
+Tuples
+===
+
+(1,)
+(1,2)
+(1,2,3)
+(1,2,3,)
+
+---
+
+(source_file
+  (tuple (integer))
+  (tuple (integer) (integer))
+  (tuple (integer) (integer) (integer))
+  (tuple (integer) (integer) (integer)))
+
+===
+Arrays
+===
+
+[]
+[10]
+[10,20]
+[10,20,]
+
+---
+
+(source_file
+  (array)
+  (array (integer))
+  (array (integer) (integer))
+  (array (integer) (integer)))
+
+===
+Control flow expressions
+===
+
+break
+return
+10
+return 10
+return    10
+return return 10
+next
+try 10
+throw 10
+
+---
+
+(source_file
+  (break)
+  (return)
+  (integer)
+  (return (integer))
+  (return (integer))
+  (return (return (integer)))
+  (next)
+  (try (integer))
+  (throw (integer)))
+
+===
+Closures
+===
+
+fn {}
+fn { 10 }
+fn -> Int {}
+fn (a) {}
+fn (a: A) {}
+fn (a: A, b: B) {}
+fn (a: A, b: B) -> C {}
+fn move {}
+
+---
+
+(source_file
+  (closure body: (block))
+  (closure body: (block (integer)))
+  (closure returns: (type) body: (block))
+  (closure arguments: (arguments (argument name: (identifier))) body: (block))
+  (closure
+    arguments: (arguments (argument name: (identifier) type: (type)))
+    body: (block))
+  (closure
+    arguments: (arguments
+      (argument name: (identifier) type: (type))
+      (argument name: (identifier) type: (type)))
+    body: (block))
+  (closure
+    arguments: (arguments
+      (argument name: (identifier) type: (type))
+      (argument name: (identifier) type: (type)))
+    returns: (type)
+    body: (block))
+  (closure modifier: (modifier) body: (block)))
+
+===
+If expressions
+===
+
+if true {}
+if true {} else if true {}
+if true {} else if true {} else {}
+if A {}
+
+---
+
+(source_file
+  (if condition: (true) consequence: (block))
+  (if
+    condition: (true)
+    consequence: (block)
+    alternative: (else_if condition: (true) consequence: (block)))
+  (if
+    condition: (true)
+    consequence: (block)
+    alternative: (else_if condition: (true) consequence: (block))
+    alternative: (else body: (block)))
+  (if condition: (constant) consequence: (block)))
+
+===
+Loops
+===
+
+while true {}
+loop {}
+for num in nums { num }
+for (a, b) in foo { a }
+
+---
+
+(source_file
+  (while condition: (true) body: (block))
+  (loop body: (block))
+  (for
+    pattern: (identifier_pattern)
+    iterator: (identifier)
+    body: (block (identifier)))
+  (for
+    pattern: (tuple_pattern (identifier_pattern) (identifier_pattern))
+    iterator: (identifier)
+    body: (block (identifier))))
+
+===
+Pattern matching
+===
+
+match x {}
+match x { case _ -> true }
+match x { case _ -> true case _ -> false }
+match x { case _ -> true, case _ -> false, }
+match x { case a -> {} }
+match x { case mut a -> {} }
+match x { case 1 -> {} }
+match x { case 'a' -> {} }
+match x { case (1) -> {} }
+match x { case (1,2) -> {} }
+match x { case A -> {} }
+match x { case A() -> {} }
+match x { case A(1,2) -> {} }
+match x { case { @a = 1, @b = 2 } -> {} }
+match x { case 1 or 2 or 3 -> {} }
+match x { case 1 if true -> {} }
+match x { case true -> {} }
+match x { case false -> {} }
+match x { case a.B -> {} }
+
+---
+
+(source_file
+  (match value: (identifier))
+  (match
+    value: (identifier)
+    cases: (cases (case pattern: (wildcard_pattern) body: (true))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case pattern: (wildcard_pattern) body: (true))
+      (case pattern: (wildcard_pattern) body: (false))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case pattern: (wildcard_pattern) body: (true))
+      (case pattern: (wildcard_pattern) body: (false))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case pattern: (identifier_pattern) body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case pattern: (mutable_pattern (identifier_pattern)) body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case pattern: (integer_pattern) body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case pattern: (string_pattern (string_content)) body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case pattern: (tuple_pattern (integer_pattern)) body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case
+        pattern: (tuple_pattern (integer_pattern) (integer_pattern))
+        body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case pattern: (constant_pattern) body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case
+        pattern: (enum_pattern name: (constant) arguments: (arguments))
+        body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case
+        pattern: (enum_pattern
+          name: (constant)
+          arguments: (arguments (integer_pattern) (integer_pattern)))
+        body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case
+        pattern: (class_pattern
+          (field_pattern name: (field) pattern: (integer_pattern))
+          (field_pattern name: (field) pattern: (integer_pattern)))
+        body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case
+        pattern: (or_pattern
+          (or_pattern (integer_pattern) (integer_pattern)) (integer_pattern))
+        body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case
+        pattern: (integer_pattern)
+        guard: (true)
+        body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases (case pattern: (boolean_pattern) body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases (case pattern: (boolean_pattern) body: (block))))
+  (match
+    value: (identifier)
+    cases: (cases
+      (case
+        pattern: (constant_pattern receiver: (identifier) name: (constant))
+        body: (block)))))
+
+===
+Borrow expressions
+===
+
+ref 1
+mut 1
+recover 1
+recover { 1 }
+
+---
+
+(source_file
+  (ref (integer))
+  (mut (integer))
+  (recover (integer))
+  (recover (block (integer))))
+
+===
+Method calls
+===
+
+a()
+a(1)
+a(1,2)
+a(1,2,)
+10.a
+10.a(1,2)
+10.a.b
+1 + 2.a
+(1 + 2).a
+mut 1.a
+mut 1.a.b
+ref 1.a
+recover 1.a
+try 1.a
+throw 1.a
+{ 1 }.a
+1.A
+A()
+return 1.a
+a.0
+10()
+a.b?
+a?()
+A()
+foo?
+
+---
+
+(source_file
+  (call name: (name) arguments: (arguments))
+  (call name: (name) arguments: (arguments (integer)))
+  (call name: (name) arguments: (arguments (integer) (integer)))
+  (call name: (name) arguments: (arguments (integer) (integer)))
+  (call receiver: (integer) name: (name))
+  (call
+    receiver: (integer)
+    name: (name) arguments: (arguments (integer) (integer)))
+  (call
+    receiver: (call receiver: (integer) name: (name))
+    name: (name))
+  (binary left: (integer) right: (call receiver: (integer) name: (name)))
+  (call
+    receiver: (grouped_expression (binary left: (integer) right: (integer)))
+    name: (name))
+  (mut (call receiver: (integer) name: (name)))
+  (mut (call receiver: (call receiver: (integer) name: (name)) name: (name)))
+  (ref (call receiver: (integer) name: (name)))
+  (recover (call receiver: (integer) name: (name)))
+  (try (call receiver: (integer) name: (name)))
+  (throw (call receiver: (integer) name: (name)))
+  (call receiver: (block (integer)) name: (name))
+  (call receiver: (integer) name: (name))
+  (call name: (name) arguments: (arguments))
+  (return (call receiver: (integer) name: (name)))
+  (call receiver: (identifier) name: (integer))
+  (call name: (integer) arguments: (arguments))
+  (call receiver: (identifier) name: (name))
+  (call name: (name) arguments: (arguments))
+  (call name: (name) arguments: (arguments))
+  (call name: (name)))
+
+===
+Named arguments
+===
+
+a(num: 1)
+
+---
+
+(source_file
+  (call
+    name: (name)
+    arguments: (arguments
+      (named_argument name: (identifier) value: (integer)))))
+
+===
+Assignments
+===
+
+1.a = 2
+1.A = 2
+a.0 = 2
+a.a? = 2
+a = 1
+@a = 1
+a := 1
+@a := 1
+
+---
+
+(source_file
+  (assign_receiver_field receiver: (integer) name: (name) value: (integer))
+  (assign_receiver_field receiver: (integer) name: (name) value: (integer))
+  (assign_receiver_field
+    receiver: (identifier)
+    name: (integer)
+    value: (integer))
+  (assign_receiver_field receiver: (identifier) name: (name) value: (integer))
+  (assign_local name: (identifier) value: (integer))
+  (assign_field name: (field) value: (integer))
+  (replace_local name: (identifier) value: (integer))
+  (replace_field name: (field) value: (integer)))
+
+===
+Compound assignments
+===
+
+a += 2
+a -= 2
+a /= 2
+a *= 2
+a **= 2
+a %= 2
+a <<= 2
+a >>= 2
+a >>>= 2
+a &= 2
+a |= 2
+a ^= 2
+
+@a += 2
+@a -= 2
+@a /= 2
+@a *= 2
+@a **= 2
+@a %= 2
+@a <<= 2
+@a >>= 2
+@a >>>= 2
+@a &= 2
+@a |= 2
+@a ^= 2
+
+rec.a += 2
+rec.a -= 2
+rec.a /= 2
+rec.a *= 2
+rec.a **= 2
+rec.a %= 2
+rec.a <<= 2
+rec.a >>= 2
+rec.a >>>= 2
+rec.a &= 2
+rec.a |= 2
+rec.a ^= 2
+
+rec.A += 2
+rec.A -= 2
+rec.A /= 2
+rec.A *= 2
+rec.A **= 2
+rec.A %= 2
+rec.A <<= 2
+rec.A >>= 2
+rec.A >>>= 2
+rec.A &= 2
+rec.A |= 2
+rec.A ^= 2
+
+rec.0 += 2
+rec.0 -= 2
+rec.0 /= 2
+rec.0 *= 2
+rec.0 **= 2
+rec.0 %= 2
+rec.0 <<= 2
+rec.0 >>= 2
+rec.0 >>>= 2
+rec.0 &= 2
+rec.0 |= 2
+rec.0 ^= 2
+
+---
+
+(source_file
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+  (compound_assign_local name: (identifier) value: (integer))
+
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+  (compound_assign_field name: (field) value: (integer))
+
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (identifier) value: (integer))
+
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (constant) value: (integer))
+
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer))
+  (compound_assign_receiver_field
+    receiver: (identifier) name: (integer) value: (integer)))

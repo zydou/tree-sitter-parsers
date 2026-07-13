@@ -1,0 +1,159 @@
+==========
+while loop
+==========
+
+public void OnPluginStart() {
+    while(true) {
+
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (while_statement
+        condition: (bool_literal)
+        body: (block)
+      )
+    )
+  )
+)
+
+
+==========================
+while loop with expression
+==========================
+
+public void OnPluginStart() {
+    while(i < 10 && j < 2) {
+
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (while_statement
+        condition: (binary_expression
+          left: (binary_expression
+            left: (identifier)
+            right: (int_literal)
+          )
+          right: (binary_expression
+            left: (identifier)
+            right: (int_literal)
+          )
+        )
+        body: (block)
+      )
+    )
+  )
+)
+
+
+==================
+while loop - break
+==================
+
+public void OnPluginStart() {
+    while(true) {
+        break;
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (while_statement
+        condition: (bool_literal)
+        body: (block
+          (break_statement)
+        )
+      )
+    )
+  )
+)
+
+
+=====================
+while loop - continue
+=====================
+
+public void OnPluginStart() {
+    while(true) {
+        continue;
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (while_statement
+        condition: (bool_literal)
+        body: (block
+          (continue_statement)
+        )
+      )
+    )
+  )
+)
+
+
+=============================
+while loop - single statement
+=============================
+
+public void OnPluginStart() {
+    while(true) continue;
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (while_statement
+        condition: (bool_literal)
+        body: (continue_statement)
+      )
+    )
+  )
+)

@@ -1,0 +1,544 @@
+========
+for loop
+========
+
+public void OnPluginStart() {
+    for(int i = 0;i < 0; i++) {}
+    for(int i = 0; i < j; i++) {}
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        initialization: (variable_declaration_statement
+          type: (type
+            (builtin_type)
+          )
+          (variable_declaration
+            name: (identifier)
+            initialValue: (int_literal)
+          )
+        )
+        condition: (binary_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        iteration: (update_expression
+          argument: (identifier)
+        )
+        body: (block)
+      )
+      (for_statement
+        initialization: (variable_declaration_statement
+          type: (type
+            (builtin_type)
+          )
+          (variable_declaration
+            name: (identifier)
+            initialValue: (int_literal)
+          )
+        )
+        condition: (binary_expression
+          left: (identifier)
+          right: (identifier)
+        )
+        iteration: (update_expression
+          argument: (identifier)
+        )
+        body: (block)
+      )
+    )
+  )
+)
+
+
+===============================
+for loop without initialization
+===============================
+
+public void OnPluginStart() {
+    for(; i < 0; i++) {
+
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        condition: (binary_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        iteration: (update_expression
+          argument: (identifier)
+        )
+        body: (block)
+      )
+    )
+  )
+)
+
+
+==========================
+for loop without iteration
+==========================
+
+public void OnPluginStart() {
+    for(int i = 0 ;; i++) {
+
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        initialization: (variable_declaration_statement
+          type: (type
+            (builtin_type)
+          )
+          (variable_declaration
+            name: (identifier)
+            initialValue: (int_literal)
+          )
+        )
+        iteration: (update_expression
+          argument: (identifier)
+        )
+        body: (block)
+      )
+    )
+  )
+)
+
+
+===============================
+for loop without incrementation
+===============================
+
+public void OnPluginStart() {
+    for(int i = 0; i < 0; ) {
+
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        initialization: (variable_declaration_statement
+          type: (type
+            (builtin_type)
+          )
+          (variable_declaration
+            name: (identifier)
+            initialValue: (int_literal)
+          )
+        )
+        condition: (binary_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        body: (block)
+      )
+    )
+  )
+)
+
+
+========================
+for loop without control
+========================
+
+public void OnPluginStart() {
+    for(;;) {
+
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        body: (block)
+      )
+    )
+  )
+)
+
+
+================
+for loop - break
+================
+
+public void OnPluginStart() {
+    for(;;) {
+        break;
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        body: (block
+          (break_statement)
+        )
+      )
+    )
+  )
+)
+
+
+===================
+for loop - continue
+===================
+
+public void OnPluginStart() {
+    for(;;) {
+        continue;
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        body: (block
+          (continue_statement)
+        )
+      )
+    )
+  )
+)
+
+
+===========================
+for loop - single statement
+===========================
+
+public void OnPluginStart() {
+    for(;;) break;
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        body: (break_statement)
+      )
+    )
+  )
+)
+
+
+=======================================
+for loop - assignment as initialization
+=======================================
+
+public void OnPluginStart() {
+    for(i = 0; i < 3; i++) break;
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        initialization: (assignment_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        condition: (binary_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        iteration: (update_expression
+          argument: (identifier)
+        )
+        body: (break_statement)
+      )
+    )
+  )
+)
+
+
+=============================
+for loop - multiple variables
+=============================
+
+public void OnPluginStart() {
+    for(int i = 0, j = 0, k = 0; i < 3; i++) break;
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        initialization: (variable_declaration_statement
+          type: (type
+            (builtin_type)
+          )
+          (variable_declaration
+            name: (identifier)
+            initialValue: (int_literal)
+          )
+          (variable_declaration
+            name: (identifier)
+            initialValue: (int_literal)
+          )
+          (variable_declaration
+            name: (identifier)
+            initialValue: (int_literal)
+          )
+        )
+        condition: (binary_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        iteration: (update_expression
+          argument: (identifier)
+        )
+        body: (break_statement)
+      )
+    )
+  )
+)
+
+
+==================================
+for loop - complex multi variables
+==================================
+
+public void OnPluginStart() {
+    for(
+        int nade_output,
+            nade_slot_max[MAX_SLOT_MAX],
+                current_nade = filtered_items[current_team][LOADOUT_WEAPON_GRENADE].Length;
+        current_nade >= 0;
+        current_nade--
+        )
+        break;
+}
+
+---
+
+(source_file
+  (function_definition
+    (visibility)
+    (type
+      (builtin_type)
+    )
+    (identifier)
+    (parameter_declarations)
+    (block
+      (for_statement
+        (variable_declaration_statement
+          (type
+            (builtin_type)
+          )
+          (variable_declaration
+            (identifier)
+          )
+          (variable_declaration
+            (identifier)
+            (fixed_dimension
+              (identifier)
+            )
+          )
+          (variable_declaration
+            (identifier)
+            (field_access
+              (array_indexed_access
+                (array_indexed_access
+                  (identifier)
+                  (identifier)
+                )
+                (identifier)
+              )
+              (identifier)
+            )
+          )
+        )
+        (binary_expression
+          (identifier)
+          (int_literal)
+        )
+        (update_expression
+          (identifier)
+        )
+        (break_statement)
+      )
+    )
+  )
+)
+
+
+==============
+old - for loop
+==============
+
+public void OnPluginStart() {
+  for(new i = 0; i < 3; i++) break;
+  for (new entity=MaxClients+1; entity < maxEntities; entity++) {}
+  for (i = 0, ii = 0; i < 14; ++i, ii += 4) {
+		break;
+	}
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (for_statement
+        initialization: (old_for_loop_variable_declaration_statement
+          (old_variable_declaration
+            name: (identifier)
+            initialValue: (int_literal)
+          )
+        )
+        condition: (binary_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        iteration: (update_expression
+          argument: (identifier)
+        )
+        body: (break_statement)
+      )
+      (for_statement
+        initialization: (old_for_loop_variable_declaration_statement
+          (old_variable_declaration
+            name: (identifier)
+            initialValue: (binary_expression
+              left: (identifier)
+              right: (int_literal)
+            )
+          )
+        )
+        condition: (binary_expression
+          left: (identifier)
+          right: (identifier)
+        )
+        iteration: (update_expression
+          argument: (identifier)
+        )
+        body: (block)
+      )
+      (for_statement
+        initialization: (assignment_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        initialization: (assignment_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        condition: (binary_expression
+          left: (identifier)
+          right: (int_literal)
+        )
+        iteration: (comma_expression
+          left: (update_expression
+            argument: (identifier)
+          )
+          right: (assignment_expression
+            left: (identifier)
+            right: (int_literal)
+          )
+        )
+        body: (block
+          (break_statement)
+        )
+      )
+    )
+  )
+)

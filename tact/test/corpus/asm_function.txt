@@ -1,0 +1,238 @@
+============================================
+asm function
+============================================
+
+asm(-> 1_0_1) fun pushInt(): Int {
+    42 PUSHINT
+}
+
+asm fun sequences() {
+    <{ 42 PUSHINT }> PUSHCONT
+    <{ 42 PUSHINT }>CONT PUSHCONT
+}
+
+asm(x -> 000) fun inAndOut(x: Int): Int
+{
+NOP
+}
+
+asm fun noWhitespace() {b{00} PUSHSLICE}
+
+asm fun otherSamples() {
+    // comments
+    /* comments */
+
+    // string
+    "  YAYAYA  " DEBUGSTR
+
+    // hex bitstring
+    x{DEADBEEF_} PUSHSLICE
+    x{babecafe}  SLICE
+    x{}          SLICE
+
+    // binary bitstring
+    b{}  PUSHSLICE
+    b{1} SLICE
+
+    // BoC in hex
+    B{DEADBEEF_} B>boc PUSHSLICE
+    B{babecafe}  B>boc SLICE
+    B{}          B>boc SLICE
+    <b b> PUSHREF
+
+    // Control register
+    c0 PUSHCTR
+    c15 PUSH
+
+    // Stack register
+    s0  PUSH
+    s15 POP
+    16 s() PUSH
+
+    // Number
+    0    PUSHINT
+    500  INT
+    -42  INT
+    0b10 INT
+    0x0f INT
+    0xFF INT
+
+    // Calls
+    $global_contractBasechainAddress INLINECALLDICT
+    $Deploy$_load_without_opcode     CALLDICT
+    %lshift                          CALL
+    __tact_context                   JMP
+}
+
+---
+
+(source_file
+  (asm_function
+    arrangement: (asm_arrangement
+      returns: (asm_arrangement_rets
+        (integer)))
+    name: (identifier)
+    parameters: (parameter_list)
+    result: (type_identifier)
+    body: (asm_function_body
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_integer))
+        name: (tvm_instruction))))
+  (asm_function
+    name: (identifier)
+    parameters: (parameter_list)
+    body: (asm_function_body
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_sequence
+            (asm_expression
+              arguments: (asm_argument_list
+                (asm_integer))
+              name: (tvm_instruction))))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_sequence
+            (asm_expression
+              arguments: (asm_argument_list
+                (asm_integer))
+              name: (tvm_instruction))))
+        name: (tvm_instruction))))
+  (asm_function
+    arrangement: (asm_arrangement
+      arguments: (asm_arrangement_args
+        (identifier))
+      returns: (asm_arrangement_rets
+        (integer)))
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        name: (identifier)
+        type: (type_identifier)))
+    result: (type_identifier)
+    body: (asm_function_body
+      (asm_expression
+        name: (tvm_instruction))))
+  (asm_function
+    name: (identifier)
+    parameters: (parameter_list)
+    body: (asm_function_body
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_bin_bitstring))
+        name: (tvm_instruction))))
+  (asm_function
+    name: (identifier)
+    parameters: (parameter_list)
+    body: (asm_function_body
+      (comment)
+      (comment)
+      (comment)
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_string))
+        name: (tvm_instruction))
+      (comment)
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_hex_bitstring))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_hex_bitstring))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_hex_bitstring))
+        name: (tvm_instruction))
+      (comment)
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_bin_bitstring))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_bin_bitstring))
+        name: (tvm_instruction))
+      (comment)
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_boc_hex))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_boc_hex))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_boc_hex))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_boc_hex))
+        name: (tvm_instruction))
+      (comment)
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_control_register))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_control_register))
+        name: (tvm_instruction))
+      (comment)
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_stack_register))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_stack_register))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_stack_register))
+        name: (tvm_instruction))
+      (comment)
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_integer))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_integer))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_integer))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_integer))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_integer))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_integer))
+        name: (tvm_instruction))
+      (comment)
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_cont_name))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_cont_name))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_cont_name))
+        name: (tvm_instruction))
+      (asm_expression
+        arguments: (asm_argument_list
+          (asm_cont_name))
+        name: (tvm_instruction)))))

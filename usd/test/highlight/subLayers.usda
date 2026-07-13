@@ -1,0 +1,8 @@
+#usda 1.0
+(
+    subLayers = [
+    # <- variable
+        @./model_sub.usda@ (offset = 1)
+        # <- text.uri
+    ]
+)

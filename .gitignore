@@ -1,0 +1,15 @@
+# 构建产物 (由 build-vim-parsers.py 生成)
+parser/
+_build/
+_build_*/
+
+# 临时 fetch 脚本运行时产物
+tspfetch-*/
+
+# 临时文件
+*.log
+*.tmp
+
+# 编辑器
+*.swp
+.DS_Store

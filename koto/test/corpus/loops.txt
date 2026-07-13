@@ -1,0 +1,151 @@
+===========================================================================================
+for_single_arg
+===========================================================================================
+
+for i in foo
+
+for i in foo
+  i
+
+for i: String in foo
+  i
+  i
+
+---
+
+(module
+  (for
+    args: (for_args (variable (identifier)))
+    range: (identifier)
+  )
+  (for
+    args: (for_args (variable (identifier)))
+    range: (identifier)
+    body: (block (identifier))
+  )
+  (for
+    args: (for_args (variable (identifier) (type (identifier))))
+    range: (identifier)
+    body: (block
+      (identifier)
+      (identifier)
+    )
+  )
+)
+
+===========================================================================================
+for_multi_arg
+===========================================================================================
+
+for a, _, c in foo
+  a
+  c
+for a: String, _: Number in foo
+  c
+
+---
+
+(module
+  (for
+    args: (for_args
+      (variable (identifier))
+      (variable (identifier))
+      (variable (identifier))
+    )
+    range: (identifier)
+    body: (block (identifier) (identifier))
+  )
+  (for
+    args: (for_args
+      (variable (identifier) (type (identifier)))
+      (variable (identifier) (type (identifier)))
+    )
+    range: (identifier)
+    body: (block (identifier))
+  )
+)
+
+===========================================================================================
+until
+===========================================================================================
+
+until x
+
+until foo()
+  x += 1
+
+---
+
+(module
+  (until
+    condition: (identifier)
+  )
+  (until
+    condition: (chain start: (identifier) call: (tuple))
+    body: (block
+      (modify_assign (identifier) (number))
+    )
+  )
+)
+
+===========================================================================================
+while
+===========================================================================================
+
+while x
+
+while i > 0
+  print i
+  i -= 1
+
+---
+
+(module
+  (while 
+    condition: (identifier)
+  )
+  (while
+    condition: (comparison_op (identifier) (number))
+    body: (block
+      (call
+        function: (identifier)
+        (call_arg (identifier))
+      )
+      (modify_assign (identifier) (number))
+    )
+  )
+)
+
+===========================================================================================
+loop
+===========================================================================================
+
+loop
+
+loop
+  if i > 10
+    break
+  else
+    i += 1
+    continue
+
+---
+
+(module
+  (loop)
+  (loop
+    (block
+      (if
+        condition: (comparison_op
+          (identifier)
+          (number)
+        )
+        then: (block (break))
+      )
+      (else (block
+        (modify_assign (identifier) (number))
+        (continue)
+      ))
+    )
+  )
+)

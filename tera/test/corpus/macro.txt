@@ -1,0 +1,39 @@
+==================
+Macro statements
+==================
+
+{% macro factorial(n) %}
+  {% if n > 1 %}{{ n }} - {{ self::factorial(n=n-1) }}{% else %}1{% endif %}
+{% endmacro factorial %}
+
+---
+
+(source_file
+  (content)
+  (macro_statement
+    name: (identifier)
+    parameters: (parameter_list
+      parameter: (identifier))
+    body: (content)
+    body: (if_statement
+      condition: (binary_expression
+        left: (identifier)
+        right: (number))
+      consequence: (expression_tag
+        (identifier))
+      consequence: (content)
+      consequence: (expression_tag
+        (call_expression
+          scope: (identifier)
+          name: (identifier)
+          arguments: (argument_list
+            (keyword_argument
+              name: (identifier)
+              value: (binary_expression
+                left: (identifier)
+                right: (number))))))
+      alternative: (else_clause
+        consequence: (content)))
+    body: (content)
+    (identifier))
+  (content))

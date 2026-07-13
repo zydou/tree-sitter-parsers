@@ -1,0 +1,170 @@
+==================
+ternary expression
+==================
+
+int GetOppositeDirection() {
+    i < 0 ? Plugin_Handled : MyFunc();
+    return i < 0 ? 0 : i;
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (expression_statement
+        (ternary_expression
+          condition: (binary_expression
+            left: (identifier)
+            right: (int_literal)
+          )
+          consequence: (identifier)
+          alternative: (call_expression
+            function: (identifier)
+            arguments: (call_arguments)
+          )
+        )
+      )
+      (return_statement
+        expression: (ternary_expression
+          condition: (binary_expression
+            left: (identifier)
+            right: (int_literal)
+          )
+          consequence: (int_literal)
+          alternative: (identifier)
+        )
+      )
+    )
+  )
+)
+
+
+========================================
+ternary expression - old style type cast
+========================================
+
+int GetOppositeDirection() {
+    foo() ? USERMSG_RELIABLE : 0;
+    new Handle:userMessage = StartMessageOne("Fade", client, (reliable?USERMSG_RELIABLE:0));
+    return i < 0 ? (_:2.5) : (Action:0);
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (expression_statement
+        (ternary_expression
+          condition: (call_expression
+            function: (identifier)
+            arguments: (call_arguments)
+          )
+          consequence: (identifier)
+          alternative: (int_literal)
+        )
+      )
+      (old_variable_declaration_statement
+        (old_variable_declaration
+          type: (old_type
+            (identifier)
+          )
+          name: (identifier)
+          initialValue: (call_expression
+            function: (identifier)
+            arguments: (call_arguments
+              (string_literal)
+              (identifier)
+              (parenthesized_expression
+                expression: (ternary_expression
+                  condition: (identifier)
+                  consequence: (identifier)
+                  alternative: (int_literal)
+                )
+              )
+            )
+          )
+        )
+      )
+      (return_statement
+        expression: (ternary_expression
+          condition: (binary_expression
+            left: (identifier)
+            right: (int_literal)
+          )
+          consequence: (parenthesized_expression
+            expression: (old_type_cast
+              type: (old_type
+                (old_builtin_type)
+              )
+              value: (float_literal)
+            )
+          )
+          alternative: (parenthesized_expression
+            expression: (old_type_cast
+              type: (old_type
+                (identifier)
+              )
+              value: (int_literal)
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+
+==============================================
+ternary expression with conditional expression
+==============================================
+
+int GetOppositeDirection() {
+    return i < 0
+        ? 0
+        : i > 10
+            ? 10
+            : i;
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block
+      (return_statement
+        expression: (ternary_expression
+          condition: (binary_expression
+            left: (identifier)
+            right: (int_literal)
+          )
+          consequence: (int_literal)
+          alternative: (ternary_expression
+            condition: (binary_expression
+              left: (identifier)
+              right: (int_literal)
+            )
+            consequence: (int_literal)
+            alternative: (identifier)
+          )
+        )
+      )
+    )
+  )
+)

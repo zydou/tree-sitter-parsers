@@ -1,0 +1,167 @@
+======================
+Escape sequences in quoted string
+======================
+
+[
+  '\"\'\\\/\b\f\n\r\t\u'
+]
+
+---
+
+(document (array (string (quoted_string))))
+
+======================
+Object key without quotes
+======================
+
+{
+  "foo": "bar"
+}
+
+---
+
+(document (object (pair (string (quoted_string)) (string (quoted_string)))))
+
+======================
+Object value without quotes
+======================
+
+{
+  "foo": bar
+}
+
+---
+
+(document (object (pair (string (quoted_string)) (string (quoteless_string)))))
+
+
+======================
+Object without comma
+======================
+
+{
+  "foo": bar
+  "hello": world
+}
+
+---
+
+(document (object (pair (string (quoted_string)) (string (quoteless_string))) (pair (string (quoted_string)) (string (quoteless_string)))))
+
+
+======================
+Object with trailing comma
+======================
+
+{
+  "foo": bar,
+}
+
+---
+
+(document (object (pair (string (quoted_string)) (string (quoteless_string)))))
+
+======================
+Object of multiple fields with trailing comma
+======================
+
+{
+  "foo": "bar",
+  "hello": "world",
+}
+
+---
+
+(document (object (pair (string (quoted_string)) (string (quoted_string))) (pair (string (quoted_string)) (string (quoted_string)))))
+
+======================
+Array with trailing comma
+======================
+
+[
+  false,
+]
+
+---
+
+(document (array (false)))
+
+======================
+Array with multiple items with trailing comma
+======================
+
+[
+  false,
+  true,
+]
+
+---
+
+(document (array (false) (true)))
+
+======================
+Array with multiple items without comma
+======================
+
+[
+  false
+  null
+]
+
+---
+
+(document (array (false) (null)))
+
+======================
+Object of multiple fields without comma
+======================
+
+{
+  "foo": "bar"
+  "hello": "world"
+}
+
+---
+
+(document (object (pair (string (quoted_string)) (string (quoted_string))) (pair (string (quoted_string)) (string (quoted_string)))))
+
+======================
+Single quote string
+======================
+
+[
+  'hello'
+]
+
+---
+
+(document (array (string (quoted_string))))
+
+
+======================
+Multiline string
+======================
+
+{
+  "foo": '''
+  bar
+  '''
+}
+
+---
+
+(document (object (pair (string (quoted_string)) (string (multiline_string)))))
+
+====================
+Hash Comment inside array
+====================
+
+[
+  # Comment
+  "one"
+]
+
+---
+
+(document
+  (array (comment) (string (quoted_string))))

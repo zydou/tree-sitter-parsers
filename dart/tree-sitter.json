@@ -1,0 +1,34 @@
+{
+  "grammars": [
+    {
+      "name": "dart",
+      "camelcase": "Dart",
+      "scope": "source.dart",
+      "path": ".",
+      "file-types": [
+        "dart"
+      ],
+      "highlights": "queries/highlights.scm",
+      "tags": [
+        "queries/tags.scm"
+      ],
+      "injection-regex": "dart"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "ISC",
+    "description": "Dart grammar attempt for tree-sitter",
+    "links": {
+      "repository": "https://github.com/tree-sitter/tree-sitter-dart"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

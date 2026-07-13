@@ -1,0 +1,26 @@
+[package]
+name = "tree-sitter-inko"
+description = "Inko grammar for tree-sitter"
+version = "0.1.0"
+license = "MPL-2.0"
+readme = "README.md"
+keywords = ["incremental", "parsing", "tree-sitter", "inko"]
+categories = ["parsing", "text-editors"]
+repository = "https://github.com/inko-lang/tree-sitter-inko"
+edition = "2021"
+autoexamples = false
+
+build = "bindings/rust/build.rs"
+include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
+
+[lib]
+path = "bindings/rust/lib.rs"
+
+[dependencies]
+tree-sitter-language = "0.1.0"
+
+[build-dependencies]
+cc = "^1.0"
+
+[dev-dependencies]
+tree-sitter = "0.23"

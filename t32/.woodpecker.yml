@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+#
+# SPDX-License-Identifier: MIT
+
+matrix:
+  RUST: [stable]
+
+steps:
+  test-rust:
+    image: rust
+    environment:
+      CARGO_TERM_COLOR: always
+    commands:
+      - rustup default $RUST
+      - cargo check
+      - cargo test
+    when:
+      - event: [push, pull_request, tag]
+        path: ['src/*', 'test/*', 'grammar.js', 'package.json']
+        branch: [main, dev]
+
+  test-nodejs:
+    image: node:bookworm
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+    commands:
+      - apt-get update
+      - apt-get install --no-install-recommends --yes build-essential
+      - yarn install --immutable
+      - yarn run tree-sitter generate
+      - yarn run tree-sitter test
+    when:
+      - event: [push, pull_request, tag]
+        path: ['src/*', 'test/*', 'grammar.js', 'package.json']
+        branch: [main, dev]

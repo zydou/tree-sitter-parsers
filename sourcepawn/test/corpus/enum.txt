@@ -1,0 +1,380 @@
+===========
+simple enum
+===========
+
+enum NumberType
+{
+    NumberType_Int8,
+    NumberType_Int16,
+    NumberType_Int32
+}
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+    )
+  )
+)
+
+
+==========
+empty enum
+==========
+
+enum NumberType
+{
+}
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries)
+  )
+)
+
+
+=====================
+enum with start value
+=====================
+
+enum NumberType
+{
+    NumberType_Int8 = 1,
+    NumberType_Int16,
+    NumberType_Int32
+}
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+        value: (int_literal)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+    )
+  )
+)
+
+
+=========================
+enum with explicit values
+=========================
+
+enum NumberType
+{
+    NumberType_Int8 = 8,
+    NumberType_Int16 = 16,
+    NumberType_Int32 = 32
+}
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+        value: (int_literal)
+      )
+      (enum_entry
+        name: (identifier)
+        value: (int_literal)
+      )
+      (enum_entry
+        name: (identifier)
+        value: (int_literal)
+      )
+    )
+  )
+)
+
+
+============================
+enum with binary expressions
+============================
+
+enum NumberType
+{
+    NumberType_Int8 = (1<<4),
+    NumberType_Int16 = 1<<5,
+    NumberType_Int32 = 31 + 1
+}
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+        value: (parenthesized_expression
+          expression: (binary_expression
+            left: (int_literal)
+            right: (int_literal)
+          )
+        )
+      )
+      (enum_entry
+        name: (identifier)
+        value: (binary_expression
+          left: (int_literal)
+          right: (int_literal)
+        )
+      )
+      (enum_entry
+        name: (identifier)
+        value: (binary_expression
+          left: (int_literal)
+          right: (int_literal)
+        )
+      )
+    )
+  )
+)
+
+
+==============
+anonymous enum
+==============
+
+enum
+{
+    Int8,
+    Int16,
+    Int32
+}
+
+---
+
+(source_file
+  (enum
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+    )
+  )
+)
+
+
+=========================
+enum with trailing commas
+=========================
+
+enum NumberType
+{
+    NumberType_Int8,
+    NumberType_Int16,
+    NumberType_Int32,
+}
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+    )
+  )
+)
+
+
+=========================
+enum - optional semicolon
+=========================
+
+enum f_invulnmode {
+    INVULNMODE_MORTAL,
+};
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+      )
+    )
+  )
+)
+
+
+=====================
+enum - optional colon
+=====================
+
+enum FOO: {
+    test,
+};
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+      )
+    )
+  )
+)
+
+
+=======================
+array based enum struct
+=======================
+
+enum FOO
+{
+	qTARGETS[5],
+};
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+        (fixed_dimension
+          (int_literal)
+        )
+      )
+    )
+  )
+)
+
+
+======================
+enum with type casting
+======================
+
+enum ChatColorInfo
+{
+	ChatColorInfo_Code,
+	ChatColorInfo_Alternative,
+	bool:ChatColorInfo_Supported,
+	ChatColorSubjectType:ChatColorInfo_SubjectType
+};
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        type: (builtin_type)
+        name: (identifier)
+      )
+      (enum_entry
+        type: (identifier)
+        name: (identifier)
+      )
+    )
+  )
+)
+
+
+===============================
+enum with custom incrementation
+===============================
+
+enum FOO (<<= 1)
+{
+    CONSTANT1,
+    CONSTANT2,
+    CONSTANT3
+}
+
+enum (+= 1000)
+{
+    TASK_ID_1 = 1000,
+    TASK_ID_2,
+    TASK_ID_3
+}
+
+---
+
+(source_file
+  (enum
+    name: (identifier)
+    (int_literal)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+    )
+  )
+  (enum
+    (int_literal)
+    entries: (enum_entries
+      (enum_entry
+        name: (identifier)
+        value: (int_literal)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+      (enum_entry
+        name: (identifier)
+      )
+    )
+  )
+)

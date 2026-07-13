@@ -1,0 +1,35 @@
+{
+  "grammars": [
+    {
+      "name": "gleam",
+      "camelcase": "Gleam",
+      "scope": "source.gleam",
+      "path": ".",
+      "file-types": [
+        "gleam"
+      ],
+      "injection-regex": "^gleam$"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "description": "A tree-sitter grammar for the Gleam programming language",
+    "authors": [
+      {
+        "name": "Jonathan Arnett"
+      }
+    ],
+    "links": {
+      "repository": "git+ssh://git@github.com/J3RN/tree-sitter-gleam.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

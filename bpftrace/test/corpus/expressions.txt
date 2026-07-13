@@ -1,0 +1,463 @@
+============================================
+Division
+============================================
+
+kprobe:do_nanosleep / pid / 10 == 0 / { $x = 4 / 2; }
+
+---
+
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (kprobe_kretprobe_provider)
+        function: (wildcard_identifier)))
+    (predicate
+      (binary_expression
+        left: (binary_expression
+          left: (identifier)
+          right: (integer_literal))
+        right: (integer_literal)))
+    (action
+      (assignment_statement
+        left: (scratch_variable)
+        right: (binary_expression
+          left: (integer_literal)
+          right: (integer_literal))))))
+
+============================================
+Assignment
+============================================
+
+software:dummy { $i = 10 }
+
+---
+
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (software_event_provider)
+        event: (identifier_with_dash)))
+    (action
+      (assignment_statement
+        left: (scratch_variable)
+        right: (integer_literal)))))
+
+============================================
+Modulo division
+============================================
+
+software:dummy { 10 % 2 }
+
+---
+
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (software_event_provider)
+        event: (identifier_with_dash)))
+    (action
+      (expression_statement
+        (binary_expression
+          left: (integer_literal)
+          right: (integer_literal))))))
+
+============================================
+Relational less than
+============================================
+kprobe:vfs_read /arg2 < 16/ {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (kprobe_kretprobe_provider)
+        function: (wildcard_identifier)))
+    (predicate
+      (binary_expression
+        left: (identifier)
+        right: (integer_literal)))
+    (action)))
+
+============================================
+Relational equal 
+============================================
+kprobe:vfs_read /comm == "bash"/ {}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (kprobe_kretprobe_provider)
+        function: (wildcard_identifier)))
+    (predicate
+      (binary_expression
+        left: (identifier)
+        right: (string_literal
+          (string_content))))
+    (action)))
+
+============================================
+Tuple declaration
+============================================
+kprobe:vfs_read { $a = (1,2,3,"hello") }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (kprobe_kretprobe_provider)
+        function: (wildcard_identifier)))
+    (action
+      (assignment_statement
+        left: (scratch_variable)
+        right: (tuple_expression
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (string_literal
+            (string_content)))))))
+
+============================================
+Tuple indexing
+============================================
+software:dummy { $a = (1,"hello"); $b = $a.1; }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (software_event_provider)
+        event: (identifier_with_dash)))
+    (action
+      (assignment_statement
+        left: (scratch_variable)
+        right: (tuple_expression
+          (integer_literal)
+          (string_literal
+            (string_content))))
+        (assignment_statement
+          left: (scratch_variable)
+          right: (field_expression
+            argument: (scratch_variable)
+            field: (integer_literal))))))
+
+============================================
+Cast expression
+============================================
+kprobe:tcp_reset { $sk = (struct sock *) arg0; }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (kprobe_kretprobe_provider)
+        function: (wildcard_identifier)))
+    (action
+      (assignment_statement
+        left: (scratch_variable)
+        right: (cast_expression
+          type: (type_specifier
+            (pointer_type
+              (struct_type
+                (identifier))))
+          value: (identifier))))))
+
+============================================
+Field expression
+============================================
+kfunc:vmlinux:timer_show { args.dev->kobj.sd->id }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (fentry_fexit_provider)
+        module: (wildcard_identifier)
+        function: (wildcard_identifier)))
+    (action
+      (expression_statement
+        (field_expression
+          argument: (field_expression
+            argument: (field_expression
+              argument: (field_expression
+                argument: (args_keyword)
+                field: (identifier))
+              field: (identifier))
+            field: (identifier))
+          field: (identifier))))))
+
+============================================
+Offsetof expression
+============================================
+struct A {
+  int num;
+  struct B { int num; } bar;
+}
+
+begin {
+    offsetof(struct A, num);
+    offsetof(struct A, bar.num);
+}
+---
+(source_file
+  (preamble
+    (c_struct))
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (expression_statement
+        (offsetof_expression
+          type: (struct_type
+            (identifier))
+          member: (identifier)))
+      (expression_statement
+        (offsetof_expression
+          type: (struct_type
+            (identifier))
+          member: (identifier)
+          member: (identifier))))))
+
+============================================
+Sizeof expression for struct
+============================================
+struct Foo { int x; char c; }
+begin {
+  sizeof(struct Foo);
+  sizeof(struct Foo*);
+  sizeof((*(struct Foo*)0).c);
+}
+---
+(source_file
+  (preamble
+    (c_struct))
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (expression_statement
+        (sizeof_expression
+          type: (type_specifier
+            (struct_type
+              (identifier)))))
+      (expression_statement
+        (sizeof_expression
+          type: (type_specifier
+            (pointer_type
+              (struct_type
+                (identifier))))))
+      (expression_statement
+        (sizeof_expression
+          value: (field_expression
+            argument: (parenthesized_expression
+              (pointer_expression
+                argument: (cast_expression
+                  type: (type_specifier
+                    (pointer_type
+                      (struct_type
+                        (identifier))))
+                  value: (integer_literal))))
+            field: (identifier)))))))
+
+============================================
+Sizeof expression for integer types
+============================================
+begin {
+  sizeof(1 == 1);
+  sizeof(bool);
+  sizeof(uint8);
+  sizeof(int64);
+}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (expression_statement
+        (sizeof_expression
+          value: (binary_expression
+            left: (integer_literal)
+            right: (integer_literal))))
+      (expression_statement
+        (sizeof_expression
+          type: (type_specifier
+            (integer_type))))
+      (expression_statement
+        (sizeof_expression
+          type: (type_specifier
+            (integer_type))))
+      (expression_statement
+        (sizeof_expression
+          type: (type_specifier
+            (integer_type)))))))
+
+============================================
+Sizeof expression for variable
+============================================
+begin {
+  $x = 1;
+  sizeof($x);
+}
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (assignment_statement
+        left: (scratch_variable)
+        right: (integer_literal))
+      (expression_statement
+        (sizeof_expression
+          value: (scratch_variable))))))
+
+============================================
+If comptime expression
+============================================
+begin { if (comptime false) {} }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (if_statement
+        condition: (comptime_expression
+          (boolean_literal))
+        consequence: (block)))))
+
+============================================
+If comptime before expression
+============================================
+begin { if comptime (false) {  } }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (if_statement
+        condition: (boolean_literal)
+        consequence: (block)))))
+
+============================================
+If expression
+============================================
+kprobe:tcp_reset { $x = if ((uint64) arg0 > 0) { 10 } else { 20 }; }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (kprobe_kretprobe_provider)
+        function: (wildcard_identifier)))
+    (action
+      (assignment_statement
+        left: (scratch_variable)
+        right: (if_expression
+          condition: (binary_expression
+            left: (cast_expression
+              type: (type_specifier
+                (integer_type))
+              value: (identifier))
+            right: (integer_literal))
+          consequence: (integer_literal)
+          alternative: (else_expression
+            (integer_literal)))))))
+
+============================================
+Block expression
+============================================
+begin { $x = {$a = 10;  1 << $a} }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (assignment_statement
+        left: (scratch_variable)
+        right: (block_expression
+          (assignment_statement
+            left: (scratch_variable)
+            right: (integer_literal))
+          (binary_expression
+            left: (integer_literal)
+            right: (scratch_variable)))))))
+
+============================================
+Typeof expression for variable
+============================================
+begin { $x = (uint8)1; $y = (typeof($x))10; }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (assignment_statement
+        left: (scratch_variable)
+        right: (cast_expression
+          type: (type_specifier
+            (integer_type))
+          value: (integer_literal)))
+      (assignment_statement
+        left: (scratch_variable)
+        right: (cast_expression
+          type: (type_specifier
+            (typeof_expression
+              (scratch_variable)))
+          value: (integer_literal))))))
+
+============================================
+Typeof expression for C type
+============================================
+begin { let $a: typeof(size_t) = 1 }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (declaration_statement
+        name: (scratch_variable)
+        type: (type_specifier
+          (typeof_expression
+            (identifier)))
+        value: (integer_literal)))))
+
+============================================
+Typeof expression for pointer
+============================================
+begin { let $b: typeof(size_t*) = (size_t *) 0; }
+---
+(source_file
+  (action_block
+    (probes_list
+      (probe
+        provider: (begin_end_provider)))
+    (action
+      (declaration_statement
+        name: (scratch_variable)
+        type: (type_specifier
+          (typeof_expression
+            (pointer_type
+              (identifier))))
+        value: (cast_expression
+          type: (type_specifier
+            (pointer_type
+              (identifier)))
+          value: (integer_literal))))))

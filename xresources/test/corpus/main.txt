@@ -1,0 +1,390 @@
+==================================================
+Comments
+==================================================
+!Hello world
+! foo
+!bar   
+
+// C style comments
+
+/*
+ * Multiline comments
+ */
+
+--------------------------------------------------
+
+(resources
+  (comment)
+  (comment)
+  (comment)
+  (preprocessor_comment)
+  (preprocessor_comment))
+
+==================================================
+Resources with dot binding
+==================================================
+Hello.world: text
+foo.bar.baz: bon
+eggs: ham
+
+--------------------------------------------------
+
+(resources
+  (resource
+    name: (components
+      (component)
+      (binding)
+      (component))
+    value: (resource_value))
+  (resource
+    name: (components
+      (component)
+      (binding)
+      (component)
+      (binding)
+      (component))
+    value: (resource_value))
+  (resource
+    name: (components
+      (component))
+    value: (resource_value)))
+
+==================================================
+Resources with wildcards
+==================================================
+Hello*world: text
+foo.?.baz: bon
+*eggs: ham
+
+--------------------------------------------------
+
+(resources
+  (resource
+    name: (components
+      (component)
+      (binding)
+      (component))
+    value: (resource_value))
+  (resource
+    name: (components
+      (component)
+      (binding)
+      (any_component)
+      (binding)
+      (component))
+    value: (resource_value))
+  (resource
+    name: (components
+      (binding)
+      (component))
+    value: (resource_value)))
+
+==================================================
+Resources with a sequence of multiple bindings
+==================================================
+a.*.b: c
+f....g: c
+*.color: blue
+**.font: mono
+
+--------------------------------------------------
+
+(resources
+  (resource
+    name: (components
+      (component)
+      (binding)
+      (binding)
+      (binding)
+      (component))
+    value: (resource_value))
+  (resource
+    name: (components
+      (component)
+      (binding)
+      (binding)
+      (binding)
+      (binding)
+      (component))
+    value: (resource_value))
+  (resource
+    name: (components
+      (binding)
+      (binding)
+      (component))
+    value: (resource_value))
+  (resource
+    name: (components
+      (binding)
+      (binding)
+      (binding)
+      (component))
+    value: (resource_value)))
+
+==================================================
+Escape sequences
+==================================================
+space: \ a
+tab: \	t
+newline: \n\
+  more text
+backslash: \\
+octal: \033[31m
+
+--------------------------------------------------
+
+(resources
+  (resource
+    name: (components
+      (component))
+    value: (resource_value
+      (escape_sequence)))
+  (resource
+    name: (components
+      (component))
+    value: (resource_value
+      (escape_sequence)))
+  (resource
+    name: (components
+      (component))
+    value: (resource_value
+      (escape_sequence)
+      (escape_sequence)))
+  (resource
+    name: (components
+      (component))
+    value: (resource_value
+      (escape_sequence)))
+  (resource
+    name: (components
+      (component))
+    value: (resource_value
+      (escape_sequence))))
+
+==================================================
+#include directive
+==================================================
+#include "some/file"
+#include "defaults"
+
+--------------------------------------------------
+
+(resources
+  (include_directive
+    file: (string
+      (string_content)))
+  (include_directive
+    file: (string
+      (string_content))))
+
+==================================================
+#define directive (constant)
+==================================================
+#define SOME_CONSTANT 78
+#define COLOR4 #5665F2
+#define EMPTY
+#define EMPTY_SPACE   
+
+--------------------------------------------------
+
+(resources
+  (define_directive
+    name: (identifier)
+    value: (expansion))
+  (define_directive
+    name: (identifier)
+    value: (expansion))
+  (define_directive
+    name: (identifier))
+  (define_directive
+    name: (identifier)))
+
+==================================================
+#define directive (function)
+==================================================
+#define empty()   
+#define hello1()  Hello
+#define hello2(one)
+#define hello3(one, two) ((one) + (two))
+#define hello4(X, ...)  Hello __VA_ARGS__, I am X
+#define hello5(...) Hello __VA_ARGS__
+
+--------------------------------------------------
+
+(resources
+  (define_function_directive
+    name: (identifier)
+    parameters: (parameters))
+  (define_function_directive
+    name: (identifier)
+    parameters: (parameters)
+    value: (expansion))
+  (define_function_directive
+    name: (identifier)
+    parameters: (parameters
+      (identifier)))
+  (define_function_directive
+    name: (identifier)
+    parameters: (parameters
+      (identifier)
+      (identifier))
+    value: (expansion))
+  (define_function_directive
+    name: (identifier)
+    parameters: (parameters
+      (identifier))
+    value: (expansion))
+  (define_function_directive
+    name: (identifier)
+    parameters: (parameters)
+    value: (expansion)))
+
+==================================================
+#undef directive
+==================================================
+#undef SOME_CONSTANT
+#undef COLOR4
+
+--------------------------------------------------
+
+(resources
+  (undef_directive
+    name: (identifier))
+  (undef_directive
+    name: (identifier)))
+
+==================================================
+#if and #elif directive
+==================================================
+#if 0
+  *background: #43
+#elif 10
+  // No resouce
+#else
+  #ifdef color
+    // nested
+  #endif
+#endif
+
+--------------------------------------------------
+
+(resources
+  (if_directive
+    condition: (expansion)
+    consequence: (body
+      (resource
+        name: (components
+          (binding)
+          (component))
+        value: (resource_value)))
+    alternative: (elif_directive
+      condition: (expansion)
+      (preprocessor_comment))
+    alternative: (else_directive
+      (ifdef_directive
+        condition: (identifier)
+        (preprocessor_comment)
+        consequence: (body)))))
+
+==================================================
+#ifdef, #ifndef, #elifdef and #elifndef directive
+==================================================
+#ifdef SOME_MACRO_DEFINED
+Hello.world: 100
+#endif
+
+#  ifndef  HELLO
+
+#  endif
+
+#ifdef VAR_1
+  #define color #346
+#elifdef VAR_2
+  #define color #784
+#elifndef VAR_3
+  #define color #F59
+#else
+  #define color #389
+#endif
+
+--------------------------------------------------
+
+(resources
+  (ifdef_directive
+    condition: (identifier)
+    consequence: (body
+      (resource
+        name: (components
+          (component)
+          (binding)
+          (component))
+        value: (resource_value))))
+  (ifdef_directive
+    condition: (identifier)
+    consequence: (body))
+  (ifdef_directive
+    condition: (identifier)
+    consequence: (body
+      (define_directive
+        name: (identifier)
+        value: (expansion)))
+    alternative: (elifdef_directive
+      condition: (identifier)
+      (define_directive
+        name: (identifier)
+        value: (expansion)))
+    alternative: (elifdef_directive
+      condition: (identifier)
+      (define_directive
+        name: (identifier)
+        value: (expansion)))
+    alternative: (else_directive
+      (define_directive
+        name: (identifier)
+        value: (expansion)))))
+
+==================================================
+Simple directive
+==================================================
+#warning "Hello"
+#unsupported This is a simple macro
+#empty
+
+--------------------------------------------------
+
+(resources
+  (simple_directive
+    name: (directive)
+    value: (expansion))
+  (simple_directive
+    name: (directive)
+    value: (expansion))
+  (simple_directive
+    name: (directive)))
+
+==================================================
+Directive with whitespace
+==================================================
+# define hello world
+#ifdef hello
+    #define hello person
+#   else
+    # define hello world
+#	endif
+
+--------------------------------------------------
+
+(resources
+  (define_directive
+    name: (identifier)
+    value: (expansion))
+  (ifdef_directive
+    condition: (identifier)
+    consequence: (body
+      (define_directive
+        name: (identifier)
+        value: (expansion)))
+    alternative: (else_directive
+      (define_directive
+        name: (identifier)
+        value: (expansion)))))

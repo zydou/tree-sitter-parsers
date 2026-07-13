@@ -1,0 +1,77 @@
+==================
+assignment statement
+==================
+
+sub init()
+    x = "bruh"
+end sub
+---
+
+(source_file
+  (sub_statement
+    (sub_start)
+    (identifier)
+    (parameter_list)
+    (block
+      (assignment_statement
+        (variable_declarator
+          (identifier))
+        (literal
+          (string
+            (string_contents)))))
+    (end_statement
+      (end_sub))))
+
+==================
+property_access_expression
+==================
+
+sub init()
+    m.b = "y"
+end sub
+---
+
+(source_file
+  (sub_statement
+    (sub_start)
+    (identifier)
+    (parameter_list)
+    (block
+      (assignment_statement
+        (variable_declarator
+          (prefix_exp
+            (identifier))
+          (identifier))
+        (literal
+          (string
+            (string_contents)))))
+    (end_statement
+      (end_sub))))
+
+==================
+property_access_expression recursive
+==================
+
+sub init()
+    m.b.c = "y"
+end sub
+---
+
+(source_file
+  (sub_statement
+    (sub_start)
+    (identifier)
+    (parameter_list)
+    (block
+      (assignment_statement
+        (variable_declarator
+          (prefix_exp
+            (prefix_exp
+              (identifier))
+            (identifier))
+          (identifier))
+        (literal
+          (string
+            (string_contents)))))
+    (end_statement
+      (end_sub))))

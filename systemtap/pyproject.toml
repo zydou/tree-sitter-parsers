@@ -1,0 +1,30 @@
+[build-system]
+requires = [ "setuptools>=42", "wheel" ]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tree-sitter-systemtap"
+version = "0.2.0"
+description = "SystemTap grammar for tree-sitter"
+readme = "README.md"
+requires-python = ">=3.8"
+license.text = "MIT"
+authors = [ { name = "OK Ryoko", email = "ryoko@kyomu.jp.net" } ]
+keywords = [ "incremental", "parsing", "tree-sitter", "systemtap" ]
+classifiers = [
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Software Development :: Compilers",
+  "Topic :: Text Processing :: Linguistic",
+  "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/ok-ryoko/tree-sitter-systemtap"
+
+[project.optional-dependencies]
+core = [ "tree-sitter~=0.22" ]
+
+[tool.cibuildwheel]
+build = "cp38-*"
+build-frontend = "build"

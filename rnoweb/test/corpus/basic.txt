@@ -1,0 +1,186 @@
+==================
+hello world
+==================
+bit of latex
+
+---
+
+(source_file
+	(latex)
+)
+
+==================
+Add a real command
+==================
+
+a bit of	\textit{latex}
+
+---
+
+(source_file
+	(latex)
+)
+
+==================
+rnw signature
+==================
+
+a bit of \textit{latex}.
+
+We all know 2 > 1
+
+<<>>=
+@
+
+---
+
+(source_file
+	(latex)
+	(rchunk
+		(renv_content)
+	)
+)
+
+==================
+rnw signature - with option
+==================
+
+a bit of \textit{latex}.
+
+We all know 2 > 1
+
+<<echo=T>>=
+@
+
+---
+
+(source_file
+	(latex)
+	(rchunk
+        (renv_sig_options
+		    (renv_key_pair
+			    (renv_key)
+			    (renv_val)
+		    )
+		)
+		(renv_content)
+	)
+)
+
+==================
+rnw signature - with label
+==================
+
+a bit of \textit{latex}.
+
+We all know 2 > 1
+
+<<foo >>=
+@
+
+---
+
+(source_file
+	(latex)
+	(rchunk
+		(renv_sig_options
+            (renv_label)
+		)
+		(renv_content)
+	)
+)
+
+==================
+rnw signature - with label and option
+==================
+
+a bit of \textit{latex}.
+
+We all know 2 > 1
+
+<<foo, results = "asis">>=
+@
+
+---
+
+(source_file
+	(latex)
+	(rchunk
+		(renv_sig_options
+            (renv_label)
+            (renv_key_pair
+                (renv_key)
+                (renv_val)
+            )
+        )
+		(renv_content)
+	)
+)
+
+==================
+rnw signature - with options
+==================
+
+a bit of \textit{latex}.
+
+We all know 2 > 1
+
+<<echo = T, results = "asis">>=
+@
+
+---
+
+(source_file
+	(latex)
+	(rchunk
+		(renv_sig_options
+            (renv_key_pair
+                (renv_key)
+                (renv_val)
+            )
+            (renv_key_pair
+                (renv_key)
+                (renv_val)
+            )
+		)
+		(renv_content)
+	)
+)
+
+==================
+rnw signature - with text
+==================
+
+a bit of \textit{latex}.
+
+We all know 2 > 1
+
+<<echo = T, results = "asis", fig.height = 4>>=
+one <- 1 + 1
+@
+
+Back again!
+
+---
+
+(source_file
+	(latex)
+	(rchunk
+        (renv_sig_options
+            (renv_key_pair
+                (renv_key)
+                (renv_val)
+            )
+            (renv_key_pair
+                (renv_key)
+                (renv_val)
+            )
+            (renv_key_pair
+                (renv_key)
+                (renv_val)
+            )
+        )
+		(renv_content)
+	)
+	(latex)
+)

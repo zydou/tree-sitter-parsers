@@ -1,0 +1,31 @@
+===
+[misc] Watch expression
+===
+> square 4
+---
+(unison
+    (watch_expression
+        (regular_identifier)
+        (nat)))
+===
+[misc] Test watch expression
+===
+test> 5
+---
+(unison (test_watch_expression (nat)))
+===
+[misc] test.io watch expression
+===
+test.io> 5
+---
+(unison (test_watch_expression (nat)))
+===
+[Misc] force
+===
+> x()
+---
+(unison
+    (watch_expression
+        (force
+            (regular_identifier)
+            (unit))))

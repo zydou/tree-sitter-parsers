@@ -1,0 +1,38 @@
+{
+  "grammars": [
+    {
+      "name": "luap",
+      "camelcase": "Luap",
+      "scope": "source.luap",
+      "path": ".",
+      "file-types": [
+        "luap"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "luap"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "Lua Patterns grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Vhyrro <vhyrro@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/amaanq/tree-sitter-luap"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

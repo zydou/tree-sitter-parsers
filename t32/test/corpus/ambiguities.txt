@@ -1,0 +1,264 @@
+==================
+String literals with operators
+==================
+
+LINE "3*(32-bit)"
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string))))
+
+==================
+Path literals with operators
+==================
+
+DO ~~/demo/arm/hardware/zynq-7000/zc702/ps7_init.tcl "POST"
+Data.LOAD.Elf &workspace/ultra96-vx7vip64/default/vxWorks
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (path)
+      (string)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (macro)
+      (path))))
+
+==================
+Addresses with nested expressions
+==================
+
+&a = P:&HEAD
+&a = EA:&HEAD+0x4
+
+&b = NS:&nVmid:::0x0::0x0
+&b = N:&mid:::0
+
+---
+
+(script
+  (assignment_expression
+    left: (macro)
+    right: (address
+      access: (access_class)
+      location: (macro)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      access: (access_class)
+      location: (binary_expression
+        left: (macro)
+        right: (integer))))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      access: (access_class)
+      (memory_space
+        machine: (macro)
+        space: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      access: (access_class)
+      (memory_space
+        machine: (macro))
+      location: (integer))))
+
+==================
+Commands with multi-part names
+==================
+
+SYStem.CPU ZYNQ-7000
+SYStem.CONFIG L2CACHE Type L2C-310
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (identifier)
+      (identifier))))
+
+==================
+WHILE after RePeaT blocks
+==================
+
+rpt 10.
+(
+  s
+)
+
+WHILE &a
+(
+)
+
+RPT
+(
+  b
+)
+
+rpt
+(
+  s
+)
+WHILE &a
+
+---
+
+(script
+  (repeat_block
+    command: (identifier)
+    condition: (integer)
+    (block
+      (command_expression
+        command: (identifier))))
+  (while_block
+    command: (identifier)
+    condition: (macro)
+    (block))
+  (repeat_block
+    command: (identifier)
+    (block
+      (command_expression
+        command: (identifier))))
+  (repeat_block
+    command: (identifier)
+    (block
+      (command_expression
+        command: (identifier)))
+    command: (identifier)
+    condition: (macro)))
+
+==================
+Semicolon in HLL expression
+==================
+
+Var.TYPE ast->left;ast->count
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier)))
+    (comment)))
+
+==================
+Commands with device prefix
+==================
+
+B::WinPrint.Data.dump 0x1000 /Byte
+
+---
+
+(script
+(command_expression
+  command: (identifier)
+  arguments: (argument_list
+    (integer)
+    (option_expression
+      option: (identifier)))))
+
+==================
+Boolean Expressions with parentheses and macros
+==================
+
+IF (&selection>1.)&&(&selection<6.)
+(
+    PRINT %ERROR "ERROR!!"
+)
+
+---
+
+(script
+  (if_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (binary_expression
+        left: (macro)
+        right: (integer))
+      right: (binary_expression
+        left: (macro)
+        right: (integer)))
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (format_expression
+            value: (identifier))
+          (string))))))
+
+==================
+String/character literals with escape sequences and ampersand chars
+==================
+
+&a = "abc&macro""&"
+
+Var.NEWGLOBAL char[0xa] \str = "&abc\""
+Var.NEWGLOBAL char[5] \str = "&"
+
+Var.NEWLOCAL char \ch = '\''
+Var.NEWLOCAL char \ch = '&'
+
+---
+
+(script
+  (assignment_expression
+    left: (macro)
+    right: (string
+      (macro)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (hll_array_declarator
+          size: (hll_number_literal)
+          declarator: (trace32_hll_variable))))
+    value: (hll_string_literal
+      (hll_escape_sequence)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (hll_array_declarator
+          size: (hll_number_literal)
+          declarator: (trace32_hll_variable))))
+    value: (hll_string_literal))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable)))
+    value: (hll_char_literal
+      (hll_escape_sequence)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable)))
+    value: (hll_char_literal
+      (character))))
+

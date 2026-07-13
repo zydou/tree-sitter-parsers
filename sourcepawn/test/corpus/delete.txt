@@ -1,0 +1,210 @@
+======
+delete
+======
+
+void SaveClose(Handle myhandle) {
+    delete myhandle;
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (identifier)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block
+      (delete_statement
+        free: (identifier)
+      )
+    )
+  )
+)
+
+
+===========================
+delete - index array access
+===========================
+
+void SaveClose(Handle[] myhandle) {
+    delete myhandle[0];
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (identifier)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block
+      (delete_statement
+        free: (array_indexed_access
+          array: (identifier)
+          index: (int_literal)
+        )
+      )
+    )
+  )
+)
+
+
+================
+delete - view as
+================
+
+void SaveClose(Handle myhandle) {
+    delete view_as<DataPack>(myhandle);
+}
+
+---
+
+(source_file
+  (function_definition
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (identifier)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block
+      (delete_statement
+        free: (view_as
+          type: (type
+            (identifier)
+          )
+          value: (identifier)
+        )
+      )
+    )
+  )
+)
+
+
+=============
+delete - this
+=============
+
+methodmap Handle
+{
+  public void Dispose() {
+      delete this;
+  }
+}
+
+---
+
+(source_file
+  (methodmap
+    name: (identifier)
+    (methodmap_method
+      returnType: (type
+        (builtin_type)
+      )
+      name: (identifier)
+      parameters: (parameter_declarations)
+      body: (block
+        (delete_statement
+          free: (this)
+        )
+      )
+    )
+  )
+)
+
+
+=====================
+delete - field access
+=====================
+
+methodmap Handle
+{
+  public void Dispose() {
+      delete this.garbage;
+  }
+}
+
+---
+
+(source_file
+  (methodmap
+    name: (identifier)
+    (methodmap_method
+      returnType: (type
+        (builtin_type)
+      )
+      name: (identifier)
+      parameters: (parameter_declarations)
+      body: (block
+        (delete_statement
+          free: (field_access
+            target: (this)
+            field: (identifier)
+          )
+        )
+      )
+    )
+  )
+)
+
+
+======================
+delete - function call
+======================
+
+methodmap Handle
+{
+  public void Dispose() {
+      delete GetHandle();
+  }
+}
+
+---
+
+(source_file
+  (methodmap
+    name: (identifier)
+    (methodmap_method
+      returnType: (type
+        (builtin_type)
+      )
+      name: (identifier)
+      parameters: (parameter_declarations)
+      body: (block
+        (delete_statement
+          free: (call_expression
+            function: (identifier)
+            arguments: (call_arguments)
+          )
+        )
+      )
+    )
+  )
+)

@@ -1,0 +1,59 @@
+===
+unfinished tables
+===
+
+{&as}
+{lmao}
+{:k v
+ lmao-no}
+
+---
+
+(program
+  (table
+    item: (table_pair
+            key: (symbol_option)))
+  (table
+    item: (table_pair
+            key: (symbol)))
+  (table
+    item: (table_pair
+            key: (string
+                   content: (string_content))
+            value: (symbol))
+    item: (table_pair
+            key: (symbol))))
+
+===
+colon string + reader macros
+===
+
+(:lol)
+( :: )
+(:#lmao)
+(:#)
+(#:mia)
+
+---
+
+(program
+  (list (string (string_content)))
+  (list (string (string_content)))
+  (list (string (string_content)))
+  (list (string (string_content)))
+  (list (hashfn_reader_macro (string (string_content)))))
+
+===
+incorrect shebang
+===
+
+# !lol
+#!lol
+
+---
+
+(program
+  (symbol)
+  (symbol)
+  (hashfn_reader_macro
+    (symbol)))

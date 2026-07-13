@@ -1,0 +1,65 @@
+name: CI on PRs to main
+
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - binding.gyp
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Parser tests
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-14]
+    env:
+      TREE_SITTER_ABI_VERSION: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: tree-sitter/setup-action/cli@v2
+        with:
+          tree-sitter-ref: "v0.25.3"
+
+      - name: Check the ABI version
+        if: ${{ runner.os != 'Windows' }}
+        run: |
+          have_it=$(grep "^#define LANGUAGE_VERSION $TREE_SITTER_ABI_VERSION\s*$" src/parser.c -c)
+          test "$have_it" -eq 1
+
+      - name: Run all Tree-sitter tests
+        uses: tree-sitter/parser-test-action@v2
+        with:
+          generate: true
+          test-parser: true
+          # test-parser-cmd: tree-sitter test # default
+          test-rust: true
+          test-node: true
+          test-python: true
+          test-go: true
+          test-swift: false # temporarily disabled
+
+      - name: Run built-in Tree-sitter fuzzer
+        if: ${{ runner.os != 'Windows' }}
+        run:
+          npm run ts -- fuzz --edits 500000 --iterations 10000
+
+      - name: Check correspondence to compiler parsers
+        if: ${{ runner.os != 'Windows' }}
+        run: |
+          git clone https://github.com/tact-lang/tact.git -b "v$(jq -r '.version' < package.json)"
+          npm run parse -- -q tact/src/grammar/next/test/*.tact
+          # NOTE:
+          # excluding items-asm-funs.tact, because it contains Fift-specific things,
+          # such as macros (TRY:<{) or declarations and usage of new words ({ ... } : name)
+          tact_files="$(find tact/src/grammar/test -maxdepth 1 -type f -name '*.tact' | grep -v 'items-asm-funs.tact' | xargs)"
+          npm run parse -- -q $tact_files

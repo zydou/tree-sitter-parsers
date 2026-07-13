@@ -1,0 +1,34 @@
+==============
+escaped quotes
+==============
+
+void Test() {
+	LogToGame("\"%s<%i><%s><%s>\" %s \"%s\"");
+}
+
+---
+
+(source_file
+  (function_definition
+    (type
+      (builtin_type)
+    )
+    (identifier)
+    (parameter_declarations)
+    (block
+      (expression_statement
+        (call_expression
+          (identifier)
+          (call_arguments
+            (string_literal
+              (escape_sequence)
+              (escape_sequence)
+              (escape_sequence)
+              (escape_sequence)
+            )
+          )
+        )
+      )
+    )
+  )
+)

@@ -1,0 +1,382 @@
+======================================================
+Basic .editorconfig file
+======================================================
+
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+# test comment inside a section
+insert_final_newline = true
+
+------------------------------------------------------
+
+(document
+  (preamble
+    (comment)
+    (comment)
+    (pair
+      key: (identifier)
+      value: (boolean))
+    (comment))
+  (section
+    (section_name
+      (wildcard_characters))
+    (pair
+      key: (identifier)
+      value: (end_of_line))
+    (comment)
+    (pair
+      key: (identifier)
+      value: (boolean))))
+
+======================================================
+Supported values
+======================================================
+root = true
+
+[a]
+end_of_line = lf
+insert_final_newline = false
+indent_size = true
+charset = utf-8
+spelling_language = es-MX
+max_line_length = 100
+
+[b]
+end_of_line = crlf
+indent_style = space
+insert_final_newline = true
+
+[c]
+end_of_line = cr
+indent_style = tab
+indent_size = 4
+
+[d]
+max_line_length = off
+spelling_language = es
+------------------------------------------------------
+
+(document
+  (preamble
+    (pair
+      key: (identifier)
+      value: (boolean)))
+  (section
+    (section_name
+      (character))
+    (pair
+      key: (identifier)
+      value: (end_of_line))
+    (pair
+      key: (identifier)
+      value: (boolean))
+    (pair
+      key: (identifier)
+      value: (boolean))
+    (pair
+      key: (identifier)
+      value: (charset))
+    (pair
+      key: (identifier)
+      value: (spelling_language))
+    (pair
+      key: (identifier)
+      value: (integer)))
+  (section
+    (section_name
+      (character))
+    (pair
+      key: (identifier)
+      value: (end_of_line))
+    (pair
+      key: (identifier)
+      value: (indent_style))
+    (pair
+      key: (identifier)
+      value: (boolean)))
+  (section
+    (section_name
+      (character))
+    (pair
+      key: (identifier)
+      value: (end_of_line))
+    (pair
+      key: (identifier)
+      value: (indent_style))
+    (pair
+      key: (identifier)
+      value: (integer)))
+  (section
+    (section_name
+      (character))
+    (pair
+      key: (identifier)
+      value: (boolean))
+    (pair
+      key: (identifier)
+      value: (spelling_language))))
+
+======================================================
+Unsupported keys and values with spaces
+======================================================
+[a]
+# space should not matter
+  my_custom_key = myval
+key with spaces     = value with spaces
+    This [ also counts = also this =
+charset = utf-8
+key = # this is not a comment
+
+------------------------------------------------------
+
+(document
+  (section
+    (section_name
+      (character))
+    (comment)
+    (pair
+      key: (identifier)
+      value: (unknown))
+    (pair
+      key: (identifier)
+      value: (unknown))
+    (pair
+      key: (identifier)
+      value: (unknown))
+    (pair
+      key: (identifier)
+      value: (charset))
+    (pair
+      key: (identifier)
+      value: (unknown))))
+
+======================================================
+Properties with an empty value
+======================================================
+[a]
+a=
+b =
+ c=
+ d =  
+spaces =     
+------------------------------------------------------
+(document
+  (section
+    (section_name
+      (character))
+    (pair
+      key: (identifier))
+    (pair
+      key: (identifier))
+    (pair
+      key: (identifier))
+    (pair
+      key: (identifier))
+    (pair
+      key: (identifier))))
+
+======================================================
+Comments
+======================================================
+# Hash
+; Semicolon
+[#]
+;
+Key # = ; value
+#
+[;]
+;
+key ; = # value
+#
+------------------------------------------------------
+
+(document
+  (preamble
+    (comment)
+    (comment))
+  (section
+    (section_name
+      (character))
+    (comment)
+    (pair
+      key: (identifier)
+      value: (unknown))
+    (comment))
+  (section
+    (section_name
+      (character))
+    (comment)
+    (pair
+      key: (identifier)
+      value: (unknown))
+    (comment)))
+
+======================================================
+Case insensitive options
+======================================================
+[i]
+charset = UtF-8
+end_of_line = cRlF
+insert_final_newline = tRuE
+indent_style = sPAce
+
+------------------------------------------------------
+
+(document
+  (section
+    (section_name
+      (character))
+    (pair
+      key: (identifier)
+      value: (charset))
+    (pair
+      key: (identifier)
+      value: (end_of_line))
+    (pair
+      key: (identifier)
+      value: (boolean))
+    (pair
+      key: (identifier)
+      value: (indent_style))))
+
+======================================================
+Directory Separator
+======================================================
+[a/]
+[a/b]
+[/a/b]
+------------------------------------------------------
+(document
+  (section
+    (section_name
+      (character)
+      (path_separator)))
+  (section
+    (section_name
+      (character)
+      (path_separator)
+      (character)))
+  (section
+    (section_name
+      (path_separator)
+      (character)
+      (path_separator)
+      (character))))
+
+======================================================
+Back slash
+======================================================
+[a\b\c]
+------------------------------------------------------
+(document
+  (section
+    (section_name
+      (character)
+      (character)
+      (character)
+      (character)
+      (character))))
+
+======================================================
+Wildcards
+======================================================
+[*.py]
+[*.log_??]
+[src/**/*.c]
+[\*\?]
+------------------------------------------------------
+(document
+  (section
+    (section_name
+      (wildcard_characters)
+      (character)
+      (character)
+      (character)))
+  (section
+    (section_name
+      (wildcard_characters)
+      (character)
+      (character)
+      (character)
+      (character)
+      (character)
+      (wildcard_single_character)
+      (wildcard_single_character)))
+  (section
+    (section_name
+      (character)
+      (character)
+      (character)
+      (path_separator)
+      (wildcard_any_characters)
+      (path_separator)
+      (wildcard_characters)
+      (character)
+      (character)))
+  (section
+    (section_name
+      (escaped_character)
+      (escaped_character)))
+  )
+
+======================================================
+Without ending new line
+======================================================
+root = true
+------------------------------------------------------
+
+(document
+  (preamble
+    (pair
+      key: (identifier)
+      value: (boolean))))
+
+======================================================
+Empty file
+======================================================
+
+------------------------------------------------------
+(document)
+
+======================================================
+New line in section name
+:error
+======================================================
+[fai
+l]
+end_of_line = lf
+------------------------------------------------------
+
+======================================================
+Empty section name
+:error
+======================================================
+[]
+------------------------------------------------------
+
+======================================================
+Characters after section header
+:error
+======================================================
+[a] key = value
+------------------------------------------------------
+
+======================================================
+Property without '=' and value
+:error
+======================================================
+property
+------------------------------------------------------
+
+======================================================
+Comment after section header
+:error
+======================================================
+[a] # Comment
+------------------------------------------------------

@@ -1,0 +1,1328 @@
+================================================================================
+When with one branch
+================================================================================
+
+update msg =
+    when msg is
+        Nothing ->
+            Nothing
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (value_expr
+          (upper_case_qid
+            (upper_case_identifier)))))))
+
+================================================================================
+With with one branch and comment
+================================================================================
+
+update msg value =
+  when value is
+    S ->
+      value -- Debug
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (value_expr
+          (value_qid
+            (lower_case_identifier))))
+      (line_comment))))
+
+================================================================================
+With with one branch and comment on next line
+================================================================================
+
+update msg value =
+  when value is
+    S ->
+      value
+
+-- Debug
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (value_expr
+          (value_qid
+            (lower_case_identifier))))))
+  (line_comment))
+
+================================================================================
+With with two branches
+================================================================================
+
+update msg model =
+    when msg is
+        Increment ->
+            model + 1
+
+        Decrement ->
+            model - 1
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (bin_op_expr
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))
+          (operator
+            (operator_identifier))
+          (number_constant_expr
+            (number_literal))))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (bin_op_expr
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))
+          (operator
+            (operator_identifier))
+          (number_constant_expr
+            (number_literal)))))))
+
+================================================================================
+With with anonymous function
+================================================================================
+
+enum =
+    \stringList ->
+        when stringList is
+            [ str ] ->
+                get str dict
+
+            _ ->
+                Nothing
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier))
+    (eq)
+    (anonymous_function_expr
+      (backslash)
+      (pattern
+        (lower_pattern
+          (lower_case_identifier)))
+      (arrow)
+      (when_is_expr
+        (when)
+        (value_expr
+          (value_qid
+            (lower_case_identifier)))
+        (is)
+        (when_is_branch
+          (pattern
+            (list_pattern
+              (pattern
+                (lower_pattern
+                  (lower_case_identifier)))))
+          (arrow)
+          (function_call_expr
+            (value_expr
+              (value_qid
+                (lower_case_identifier)))
+            (value_expr
+              (value_qid
+                (lower_case_identifier)))
+            (value_expr
+              (value_qid
+                (lower_case_identifier)))))
+        (when_is_branch
+          (pattern
+            (anything_pattern
+              (underscore)))
+          (arrow)
+          (value_expr
+            (upper_case_qid
+              (upper_case_identifier))))))))
+
+================================================================================
+With with three branches
+================================================================================
+
+src : Avatar -> Attribute msg
+src (Avatar maybeUrl)=
+    when maybeUrl is
+        Nothing ->
+            Asset.src Asset.defaultAvatar
+
+        Just "" ->
+            Asset.src Asset.defaultAvatar
+
+        Just url ->
+            Html.Attributes.src url
+
+
+--------------------------------------------------------------------------------
+
+(file
+  (type_annotation
+    (lower_case_identifier)
+    (colon)
+    (type_expression
+      (type_ref
+        (upper_case_qid
+          (upper_case_identifier)))
+      (arrow)
+      (type_ref
+        (upper_case_qid
+          (upper_case_identifier))
+        (type_variable
+          (lower_case_identifier)))))
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (pattern
+        (union_pattern
+          (upper_case_qid
+            (upper_case_identifier))
+          (lower_pattern
+            (lower_case_identifier)))))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (function_call_expr
+          (value_expr
+            (value_qid
+              (upper_case_identifier)
+              (dot)
+              (lower_case_identifier)))
+          (value_expr
+            (value_qid
+              (upper_case_identifier)
+              (dot)
+              (lower_case_identifier)))))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (string_constant_expr
+              (open_quote)
+              (close_quote))))
+        (arrow)
+        (function_call_expr
+          (value_expr
+            (value_qid
+              (upper_case_identifier)
+              (dot)
+              (lower_case_identifier)))
+          (value_expr
+            (value_qid
+              (upper_case_identifier)
+              (dot)
+              (lower_case_identifier)))))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (lower_pattern
+              (lower_case_identifier))))
+        (arrow)
+        (function_call_expr
+          (value_expr
+            (value_qid
+              (upper_case_identifier)
+              (dot)
+              (upper_case_identifier)
+              (dot)
+              (lower_case_identifier)))
+          (value_expr
+            (value_qid
+              (lower_case_identifier))))))))
+
+================================================================================
+Function statement with nested when
+================================================================================
+
+map3 func ma mb mc =
+    when ma is
+        Nothing ->
+            Nothing
+
+        Just a ->
+            when mb is
+                Nothing ->
+                    Nothing
+
+                Just b ->
+                    b
+
+
+map4 func ma mb mc md =
+    when ma is
+        Nothing ->
+            Nothing
+
+        Just a ->
+            a
+
+
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (value_expr
+          (upper_case_qid
+            (upper_case_identifier))))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (lower_pattern
+              (lower_case_identifier))))
+        (arrow)
+        (when_is_expr
+          (when)
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))
+          (is)
+          (when_is_branch
+            (pattern
+              (union_pattern
+                (upper_case_qid
+                  (upper_case_identifier))))
+            (arrow)
+            (value_expr
+              (upper_case_qid
+                (upper_case_identifier))))
+          (when_is_branch
+            (pattern
+              (union_pattern
+                (upper_case_qid
+                  (upper_case_identifier))
+                (lower_pattern
+                  (lower_case_identifier))))
+            (arrow)
+            (value_expr
+              (value_qid
+                (lower_case_identifier))))))))
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (value_expr
+          (upper_case_qid
+            (upper_case_identifier))))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (lower_pattern
+              (lower_case_identifier))))
+        (arrow)
+        (value_expr
+          (value_qid
+            (lower_case_identifier)))))))
+
+================================================================================
+With int result
+================================================================================
+
+toIntResult s =
+    when String.toInt s is
+        Just i ->
+            Ok i
+        Nothing ->
+            Err <| "could not convert string '" ++ s ++ "' to an Int"
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (function_call_expr
+        (value_expr
+          (value_qid
+            (upper_case_identifier)
+            (dot)
+            (lower_case_identifier)))
+        (value_expr
+          (value_qid
+            (lower_case_identifier))))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (lower_pattern
+              (lower_case_identifier))))
+        (arrow)
+        (function_call_expr
+          (value_expr
+            (upper_case_qid
+              (upper_case_identifier)))
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (bin_op_expr
+          (value_expr
+            (upper_case_qid
+              (upper_case_identifier)))
+          (operator
+            (operator_identifier))
+          (string_constant_expr
+            (open_quote)
+            (regular_string_part)
+            (close_quote))
+          (operator
+            (operator_identifier))
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))
+          (operator
+            (operator_identifier))
+          (string_constant_expr
+            (open_quote)
+            (regular_string_part)
+            (close_quote)))))))
+
+================================================================================
+With with list
+================================================================================
+enum key dict =
+  custom key <| \stringList ->
+    when stringList is
+      [str] ->
+        Dict.get str dict
+
+      _ ->
+        Nothing
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (bin_op_expr
+      (function_call_expr
+        (value_expr
+          (value_qid
+            (lower_case_identifier)))
+        (value_expr
+          (value_qid
+            (lower_case_identifier))))
+      (operator
+        (operator_identifier))
+      (anonymous_function_expr
+        (backslash)
+        (pattern
+          (lower_pattern
+            (lower_case_identifier)))
+        (arrow)
+        (when_is_expr
+          (when)
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))
+          (is)
+          (when_is_branch
+            (pattern
+              (list_pattern
+                (pattern
+                  (lower_pattern
+                    (lower_case_identifier)))))
+            (arrow)
+            (function_call_expr
+              (value_expr
+                (value_qid
+                  (upper_case_identifier)
+                  (dot)
+                  (lower_case_identifier)))
+              (value_expr
+                (value_qid
+                  (lower_case_identifier)))
+              (value_expr
+                (value_qid
+                  (lower_case_identifier)))))
+          (when_is_branch
+            (pattern
+              (anything_pattern
+                (underscore)))
+            (arrow)
+            (value_expr
+              (upper_case_qid
+                (upper_case_identifier)))))))))
+
+================================================================================
+Nested when
+================================================================================
+
+func a b =
+    when a is
+        Nothing ->
+            when b is
+                1 ->
+                    ""
+                2 ->
+                    ""
+                3 ->
+                    ""
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (when_is_expr
+          (when)
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))
+          (is)
+          (when_is_branch
+            (pattern
+              (number_constant_expr
+                (number_literal)))
+            (arrow)
+            (string_constant_expr
+              (open_quote)
+              (close_quote)))
+          (when_is_branch
+            (pattern
+              (number_constant_expr
+                (number_literal)))
+            (arrow)
+            (string_constant_expr
+              (open_quote)
+              (close_quote)))
+          (when_is_branch
+            (pattern
+              (number_constant_expr
+                (number_literal)))
+            (arrow)
+            (string_constant_expr
+              (open_quote)
+              (close_quote))))))))
+
+================================================================================
+Nested when are all closed?
+================================================================================
+
+func a b =
+    when a is
+        Nothing ->
+            when b is
+                1 ->
+                    ""
+                2 ->
+                    ""
+                3 ->
+                    when b is
+                        1 ->
+                            ""
+                        2 ->
+                            ""
+                        3 ->
+                            when b is
+                                1 ->
+                                    ""
+                                2 ->
+                                    ""
+                                3 ->
+                                    ""
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (when_is_expr
+          (when)
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))
+          (is)
+          (when_is_branch
+            (pattern
+              (number_constant_expr
+                (number_literal)))
+            (arrow)
+            (string_constant_expr
+              (open_quote)
+              (close_quote)))
+          (when_is_branch
+            (pattern
+              (number_constant_expr
+                (number_literal)))
+            (arrow)
+            (string_constant_expr
+              (open_quote)
+              (close_quote)))
+          (when_is_branch
+            (pattern
+              (number_constant_expr
+                (number_literal)))
+            (arrow)
+            (when_is_expr
+              (when)
+              (value_expr
+                (value_qid
+                  (lower_case_identifier)))
+              (is)
+              (when_is_branch
+                (pattern
+                  (number_constant_expr
+                    (number_literal)))
+                (arrow)
+                (string_constant_expr
+                  (open_quote)
+                  (close_quote)))
+              (when_is_branch
+                (pattern
+                  (number_constant_expr
+                    (number_literal)))
+                (arrow)
+                (string_constant_expr
+                  (open_quote)
+                  (close_quote)))
+              (when_is_branch
+                (pattern
+                  (number_constant_expr
+                    (number_literal)))
+                (arrow)
+                (when_is_expr
+                  (when)
+                  (value_expr
+                    (value_qid
+                      (lower_case_identifier)))
+                  (is)
+                  (when_is_branch
+                    (pattern
+                      (number_constant_expr
+                        (number_literal)))
+                    (arrow)
+                    (string_constant_expr
+                      (open_quote)
+                      (close_quote)))
+                  (when_is_branch
+                    (pattern
+                      (number_constant_expr
+                        (number_literal)))
+                    (arrow)
+                    (string_constant_expr
+                      (open_quote)
+                      (close_quote)))
+                  (when_is_branch
+                    (pattern
+                      (number_constant_expr
+                        (number_literal)))
+                    (arrow)
+                    (string_constant_expr
+                      (open_quote)
+                      (close_quote))))))))))))
+
+================================================================================
+Complex when
+================================================================================
+
+makeEdit cursor desc =
+    when desc is
+        OneOf details ->
+            when cursor.makeEdit cursor.indentation (foundStart details.child) desc is
+                NoIdFound ->
+                    -- dive further
+                    when makeFoundEdit (increaseIndent cursor) details.child is
+                        EditMade maybeSeed maybePush newFound ->
+                            EditMade maybeSeed
+                                maybePush
+                                (OneOf
+                                    { details
+                                        | child = expandFound maybePush newFound
+                                    }
+                                )
+
+                        NoIdFound ->
+                            NoIdFound
+
+                        ErrorMakingEdit err ->
+                            ErrorMakingEdit err
+
+                otherwise ->
+                    otherwise
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (lower_pattern
+              (lower_case_identifier))))
+        (arrow)
+        (when_is_expr
+          (when)
+          (function_call_expr
+            (field_access_expr
+              (value_expr
+                (value_qid
+                  (lower_case_identifier)))
+              (dot)
+              (lower_case_identifier))
+            (field_access_expr
+              (value_expr
+                (value_qid
+                  (lower_case_identifier)))
+              (dot)
+              (lower_case_identifier))
+            (parenthesized_expr
+              (function_call_expr
+                (value_expr
+                  (value_qid
+                    (lower_case_identifier)))
+                (field_access_expr
+                  (value_expr
+                    (value_qid
+                      (lower_case_identifier)))
+                  (dot)
+                  (lower_case_identifier))))
+            (value_expr
+              (value_qid
+                (lower_case_identifier))))
+          (is)
+          (when_is_branch
+            (pattern
+              (union_pattern
+                (upper_case_qid
+                  (upper_case_identifier))))
+            (arrow)
+            (line_comment)
+            (when_is_expr
+              (when)
+              (function_call_expr
+                (value_expr
+                  (value_qid
+                    (lower_case_identifier)))
+                (parenthesized_expr
+                  (function_call_expr
+                    (value_expr
+                      (value_qid
+                        (lower_case_identifier)))
+                    (value_expr
+                      (value_qid
+                        (lower_case_identifier)))))
+                (field_access_expr
+                  (value_expr
+                    (value_qid
+                      (lower_case_identifier)))
+                  (dot)
+                  (lower_case_identifier)))
+              (is)
+              (when_is_branch
+                (pattern
+                  (union_pattern
+                    (upper_case_qid
+                      (upper_case_identifier))
+                    (lower_pattern
+                      (lower_case_identifier))
+                    (lower_pattern
+                      (lower_case_identifier))
+                    (lower_pattern
+                      (lower_case_identifier))))
+                (arrow)
+                (function_call_expr
+                  (value_expr
+                    (upper_case_qid
+                      (upper_case_identifier)))
+                  (value_expr
+                    (value_qid
+                      (lower_case_identifier)))
+                  (value_expr
+                    (value_qid
+                      (lower_case_identifier)))
+                  (parenthesized_expr
+                    (function_call_expr
+                      (value_expr
+                        (upper_case_qid
+                          (upper_case_identifier)))
+                      (record_expr
+                        (record_base_identifier
+                          (lower_case_identifier))
+                        (field
+                          (lower_case_identifier)
+                          (eq)
+                          (function_call_expr
+                            (value_expr
+                              (value_qid
+                                (lower_case_identifier)))
+                            (value_expr
+                              (value_qid
+                                (lower_case_identifier)))
+                            (value_expr
+                              (value_qid
+                                (lower_case_identifier))))))))))
+              (when_is_branch
+                (pattern
+                  (union_pattern
+                    (upper_case_qid
+                      (upper_case_identifier))))
+                (arrow)
+                (value_expr
+                  (upper_case_qid
+                    (upper_case_identifier))))
+              (when_is_branch
+                (pattern
+                  (union_pattern
+                    (upper_case_qid
+                      (upper_case_identifier))
+                    (lower_pattern
+                      (lower_case_identifier))))
+                (arrow)
+                (function_call_expr
+                  (value_expr
+                    (upper_case_qid
+                      (upper_case_identifier)))
+                  (value_expr
+                    (value_qid
+                      (lower_case_identifier)))))))
+          (when_is_branch
+            (pattern
+              (lower_pattern
+                (lower_case_identifier)))
+            (arrow)
+            (value_expr
+              (value_qid
+                (lower_case_identifier)))))))))
+
+================================================================================
+With with one line let
+================================================================================
+
+all = describe "parsering"
+  [ describe "builtin"
+    [ it "does handle suffixed int" <|
+      when (Parser.run parserInt "11h22m33s") is
+        Err err -> let _ = Debug.log "err" err in isTrue False
+        Ok i -> eql 11 i
+    ]
+  ]
+
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier))
+    (eq)
+    (function_call_expr
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (string_constant_expr
+        (open_quote)
+        (regular_string_part)
+        (close_quote))
+      (list_expr
+        (function_call_expr
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))
+          (string_constant_expr
+            (open_quote)
+            (regular_string_part)
+            (close_quote))
+          (list_expr
+            (bin_op_expr
+              (function_call_expr
+                (value_expr
+                  (value_qid
+                    (lower_case_identifier)))
+                (string_constant_expr
+                  (open_quote)
+                  (regular_string_part)
+                  (close_quote)))
+              (operator
+                (operator_identifier))
+              (when_is_expr
+                (when)
+                (parenthesized_expr
+                  (function_call_expr
+                    (value_expr
+                      (value_qid
+                        (upper_case_identifier)
+                        (dot)
+                        (lower_case_identifier)))
+                    (value_expr
+                      (value_qid
+                        (lower_case_identifier)))
+                    (string_constant_expr
+                      (open_quote)
+                      (regular_string_part)
+                      (close_quote))))
+                (is)
+                (when_is_branch
+                  (pattern
+                    (union_pattern
+                      (upper_case_qid
+                        (upper_case_identifier))
+                      (lower_pattern
+                        (lower_case_identifier))))
+                  (arrow)
+                  (let_in_expr
+                    (value_declaration
+                      (pattern
+                        (anything_pattern
+                          (underscore)))
+                      (eq)
+                      (function_call_expr
+                        (value_expr
+                          (value_qid
+                            (upper_case_identifier)
+                            (dot)
+                            (lower_case_identifier)))
+                        (string_constant_expr
+                          (open_quote)
+                          (regular_string_part)
+                          (close_quote))
+                        (value_expr
+                          (value_qid
+                            (lower_case_identifier)))))
+                    (function_call_expr
+                      (value_expr
+                        (value_qid
+                          (lower_case_identifier)))
+                      (value_expr
+                        (upper_case_qid
+                          (upper_case_identifier))))))
+                (when_is_branch
+                  (pattern
+                    (union_pattern
+                      (upper_case_qid
+                        (upper_case_identifier))
+                      (lower_pattern
+                        (lower_case_identifier))))
+                  (arrow)
+                  (function_call_expr
+                    (value_expr
+                      (value_qid
+                        (lower_case_identifier)))
+                    (number_constant_expr
+                      (number_literal))
+                    (value_expr
+                      (value_qid
+                        (lower_case_identifier)))))))))))))
+
+================================================================================
+With wrapped in parenthesis
+================================================================================
+
+flipBy how (Plane { width, height } as plane) =
+    plane |>
+        transform
+            (when how is
+                Horizontal -> \{x, y} ->
+                    { width = width - 1 - x
+                    , height = y
+                    }
+                Vertical -> \{x, y} ->
+                    { width = x
+                    , height = height - 1 - y
+                    })
+
+
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier))
+      (pattern
+        (union_pattern
+          (upper_case_qid
+            (upper_case_identifier))
+          (record_pattern
+            (lower_pattern
+              (lower_case_identifier))
+            (lower_pattern
+              (lower_case_identifier))))
+        (as)
+        (lower_pattern
+          (lower_case_identifier))))
+    (eq)
+    (bin_op_expr
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (operator
+        (operator_identifier))
+      (function_call_expr
+        (value_expr
+          (value_qid
+            (lower_case_identifier)))
+        (when_is_expr
+          (when)
+          (value_expr
+            (value_qid
+              (lower_case_identifier)))
+          (is)
+          (when_is_branch
+            (pattern
+              (union_pattern
+                (upper_case_qid
+                  (upper_case_identifier))))
+            (arrow)
+            (anonymous_function_expr
+              (backslash)
+              (pattern
+                (record_pattern
+                  (lower_pattern
+                    (lower_case_identifier))
+                  (lower_pattern
+                    (lower_case_identifier))))
+              (arrow)
+              (record_expr
+                (field
+                  (lower_case_identifier)
+                  (eq)
+                  (bin_op_expr
+                    (value_expr
+                      (value_qid
+                        (lower_case_identifier)))
+                    (operator
+                      (operator_identifier))
+                    (number_constant_expr
+                      (number_literal))
+                    (operator
+                      (operator_identifier))
+                    (value_expr
+                      (value_qid
+                        (lower_case_identifier)))))
+                (field
+                  (lower_case_identifier)
+                  (eq)
+                  (value_expr
+                    (value_qid
+                      (lower_case_identifier)))))))
+          (when_is_branch
+            (pattern
+              (union_pattern
+                (upper_case_qid
+                  (upper_case_identifier))))
+            (arrow)
+            (anonymous_function_expr
+              (backslash)
+              (pattern
+                (record_pattern
+                  (lower_pattern
+                    (lower_case_identifier))
+                  (lower_pattern
+                    (lower_case_identifier))))
+              (arrow)
+              (record_expr
+                (field
+                  (lower_case_identifier)
+                  (eq)
+                  (value_expr
+                    (value_qid
+                      (lower_case_identifier))))
+                (field
+                  (lower_case_identifier)
+                  (eq)
+                  (bin_op_expr
+                    (value_expr
+                      (value_qid
+                        (lower_case_identifier)))
+                    (operator
+                      (operator_identifier))
+                    (number_constant_expr
+                      (number_literal))
+                    (operator
+                      (operator_identifier))
+                    (value_expr
+                      (value_qid
+                        (lower_case_identifier)))))))))))))
+
+================================================================================
+When with is followed by comment
+================================================================================
+
+module Test exposing (..)
+type Maybe a = Just a | Nothing
+func result =
+    when result is
+    --^
+        Nothing ->
+            ""
+        Just (Just a) ->
+            a
+
+--------------------------------------------------------------------------------
+
+(file
+  (module_declaration
+    (module)
+    (upper_case_qid
+      (upper_case_identifier))
+    (exposing_list
+      (exposing)
+      (double_dot)))
+  (type_declaration
+    (type)
+    (upper_case_identifier)
+    (lower_type_name
+      (lower_case_identifier))
+    (eq)
+    (union_variant
+      (upper_case_identifier)
+      (type_variable
+        (lower_case_identifier)))
+    (union_variant
+      (upper_case_identifier)))
+  (value_declaration
+    (function_declaration_left
+      (lower_case_identifier)
+      (lower_pattern
+        (lower_case_identifier)))
+    (eq)
+    (when_is_expr
+      (when)
+      (value_expr
+        (value_qid
+          (lower_case_identifier)))
+      (is)
+      (line_comment)
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))))
+        (arrow)
+        (string_constant_expr
+          (open_quote)
+          (close_quote)))
+      (when_is_branch
+        (pattern
+          (union_pattern
+            (upper_case_qid
+              (upper_case_identifier))
+            (pattern
+              (union_pattern
+                (upper_case_qid
+                  (upper_case_identifier))
+                (lower_pattern
+                  (lower_case_identifier))))))
+        (arrow)
+        (value_expr
+          (value_qid
+            (lower_case_identifier)))))))

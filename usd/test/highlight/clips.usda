@@ -1,0 +1,50 @@
+def "World"
+{
+    over "points" (
+        clips = {
+        # <- variable
+            dictionary default = {
+            # <- type
+            #          ^ variable
+                asset manifestAssetPath = @./clip_manifest.usda@
+                # <- type
+                #     ^ variable
+                #                         ^ text.uri
+                asset[] assetPaths = [@./clip.usda@]
+                # <- type
+                #       ^ variable
+                #                     ^ text.uri
+                double templateEndTime   = 3
+                # <- type
+                #      ^ variable
+                #                          ^ number
+                double templateStartTime = 1
+                # <- type
+                #      ^ variable
+                #                          ^ number
+                double templateStride    = 1
+                # <- type
+                #      ^ variable
+                #                          ^ number
+                double2[] active = [(0, 0)]
+                # <- type
+                #         ^ variable
+                #                    ^ number
+                double2[] times = [(101, 101), (102, 102)]
+                # <- type
+                #         ^ variable
+                #                   ^ number
+                string primPath = "/points"
+                # <- type
+                #      ^ variable
+                #                 ^ string
+                string templateAssetPath = "./p.###.usda"
+                # <- type
+                #      ^ variable
+                #                          ^ string
+            }
+        }
+    )
+    {
+    }
+}

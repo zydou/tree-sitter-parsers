@@ -1,0 +1,108 @@
+=====================
+pragma for semicolons
+=====================
+
+#pragma semicolon 1
+#pragma semicolon 0
+
+---
+
+(source_file
+  (preproc_pragma
+    (preproc_arg)
+  )
+  (preproc_pragma
+    (preproc_arg)
+  )
+)
+
+
+==========================================
+pragma for semicolons - optional semicolon
+==========================================
+
+#pragma semicolon 1;
+#pragma semicolon 0;
+
+---
+
+(source_file
+  (preproc_pragma
+    (preproc_arg)
+  )
+  (preproc_pragma
+    (preproc_arg)
+  )
+)
+
+
+===========================
+pragma for new declarations
+===========================
+
+#pragma newdecls required
+#pragma newdecls optional
+
+---
+
+(source_file
+  (preproc_pragma
+    (preproc_arg)
+  )
+  (preproc_pragma
+    (preproc_arg)
+  )
+)
+
+
+================================================
+pragma for new declarations - optional semicolon
+================================================
+
+#pragma newdecls required;
+#pragma newdecls optional;
+
+---
+
+(source_file
+  (preproc_pragma
+    (preproc_arg)
+  )
+  (preproc_pragma
+    (preproc_arg)
+  )
+)
+
+
+=======================
+pragma for deprecations
+=======================
+
+#pragma deprecated
+#pragma deprecated Please use this alternative
+
+---
+
+(source_file
+  (preproc_pragma
+    (preproc_arg)
+  )
+  (preproc_pragma
+    (preproc_arg)
+  )
+)
+
+
+==================
+pragma for dynamic
+==================
+
+#pragma dynamic 32768
+
+---
+
+(source_file
+  (preproc_pragma
+    (preproc_arg)
+  )
+)

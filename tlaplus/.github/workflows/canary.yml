@@ -1,0 +1,84 @@
+name: Test Package Consumers
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+      fail-fast: false
+    steps:
+      # Dependencies
+      - name: Clone repo
+        uses: actions/checkout@v4
+      - name: Setup rust
+        run: rustup default stable
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      # Input release version into package files
+      - name: Modify package files (Linux & macOS)
+        if: matrix.os != 'windows-latest'
+        working-directory: test/consumers
+        shell: bash
+        run: |
+          sed -i -e "s/{path = \"..\/..\/..\"}/\"${{ inputs.version }}\"/" rust/Cargo.toml
+          cat rust/Cargo.toml
+          sed -i -e "s/file:..\/..\/../${{ inputs.version }}/" node/package.json
+          cat node/package.json
+          sed -i -e "s/file:..\/..\/../${{ inputs.version }}/" typescript/package.json
+          cat typescript/package.json
+          sed -i -e "s/..\/..\/../tree-sitter-tlaplus==${{ inputs.version }}/" python/requirements.txt
+          cat python/requirements.txt
+      - name: Modify package files (Windows)
+        if: matrix.os == 'windows-latest'
+        working-directory: test/consumers
+        shell: pwsh
+        run: |
+          function Convert-PackageFile {
+            param($path, $source, $target)
+            $packageFile = Get-Content -Path $path -Raw
+            $updatedPackageFile = $packageFile -replace [Regex]::Escape($source), $target
+            Set-Content -Path $path -Value $updatedPackageFile
+            $updatedPackageFile
+          }
+          Convert-PackageFile 'rust\Cargo.toml'         '{path = "../../.."}' """${{ inputs.version }}"""
+          Convert-PackageFile 'node\package.json'       'file:../../..'       "${{ inputs.version }}"
+          Convert-PackageFile 'typescript\package.json' 'file:../../..'       "${{ inputs.version }}"
+          Convert-PackageFile 'python\requirements.txt' '../../..'            "tree-sitter-tlaplus==${{ inputs.version }}"
+
+      # Test consumers using actual published packages
+      - name: Test rust consumer
+        working-directory: test/consumers/rust
+        run: cargo run
+      - name: Test node.js consumer
+        working-directory: test/consumers/node
+        run: |
+          npm install
+          node index.js
+      - name: Test TypeScript consumer
+        working-directory: test/consumers/typescript
+        run: |
+          npm install
+          npx tsx app.ts
+      - name: Test python consumer
+        working-directory: test/consumers/python
+        run: |
+          pip install -r requirements.txt
+          python main.py
+

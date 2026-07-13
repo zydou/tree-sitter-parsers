@@ -1,0 +1,27 @@
+[package]
+name = "tree-sitter-xresources"
+description = "Xresources grammar for tree-sitter"
+version = "0.1.2"
+authors = ["Omar Valdez <omarantoniovaldezf2@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["incremental", "parsing", "tree-sitter", "xresources"]
+categories = ["parsing", "text-editors"]
+repository = "https://github.com/valdezfomar/tree-sitter-xresources"
+edition = "2021"
+autoexamples = false
+
+build = "bindings/rust/build.rs"
+include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*", "tree-sitter.json"]
+
+[lib]
+path = "bindings/rust/lib.rs"
+
+[dependencies]
+tree-sitter-language = "0.1"
+
+[build-dependencies]
+cc = "1.2.10"
+
+[dev-dependencies]
+tree-sitter = "0.24.7"

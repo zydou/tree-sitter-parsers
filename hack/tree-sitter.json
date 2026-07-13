@@ -1,0 +1,35 @@
+{
+  "grammars": [
+    {
+      "name": "hacklang",
+      "camelcase": "Hacklang",
+      "scope": "source.hack",
+      "path": ".",
+      "file-types": [
+        "hack"
+      ],
+      "first-line-regex": "^((<\\?hh.*)|(#!.+ hhvm))"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.4",
+    "license": "MIT",
+    "description": "Hack grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Antonio de Jesus Ochoa Solano"
+      }
+    ],
+    "links": {
+      "repository": "git+https://github.com/slackhq/tree-sitter-hack.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

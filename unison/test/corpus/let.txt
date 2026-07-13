@@ -1,0 +1,27 @@
+===
+Let block
+===
+x = let y = 5
+        z = 1
+        y + z
+---
+(unison
+    (term_declaration
+        (term_definition
+            (regular_identifier)
+            (kw_equals)
+            (exp_let
+                (kw_let)
+                (term_declaration
+                    (term_definition
+                        (regular_identifier)
+                        (kw_equals)
+                        (nat)))
+                (term_declaration
+                    (term_definition
+                        (regular_identifier)
+                        (kw_equals)
+                        (nat)))
+                (regular_identifier)
+                (operator)
+                (regular_identifier)))))

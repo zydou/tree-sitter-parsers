@@ -1,0 +1,521 @@
+==================
+implement callback
+==================
+
+public void OnPluginStart() {
+
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+=================================
+implement callback - one argument
+=================================
+
+public void OnClientDisconnected(int client) {
+
+}
+
+public void OnSoundPlayed(char[] sound) {
+
+}
+
+public void OnPluginStart(bool lazystart) {
+
+}
+
+public void OnThingHappen(float value) {
+
+}
+
+public void OnRebuildAdminCache(AdminCachePart part) {
+
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (identifier)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+=======================================
+implement callback - multiple arguments
+=======================================
+
+public void OnClientSayCommand_Post(int client, const char[] command, char[] sArgs, float time, bool teamchat, float vec[3]) {
+
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (array_type
+          (type
+            (builtin_type)
+          )
+          (dimension)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (type
+          (builtin_type)
+        )
+        name: (identifier)
+        (fixed_dimension
+          (int_literal)
+        )
+      )
+    )
+    body: (block)
+  )
+)
+
+
+===========================================
+implement callback - different return types
+===========================================
+
+public int Callback1() {}
+public float Callback2() {}
+public char Callback3() {}
+public bool Callback4() {}
+public Action Callback5() {}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (type
+      (identifier)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+========================
+old - implement callback
+========================
+
+public OnPluginStart() {
+
+}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+=======================================
+old - implement callback with arguments
+=======================================
+
+public Callback1(client) {}
+public Callback2(_:client) {}
+public Callback3(Float:value) {}
+public Callback4(String:type) {}
+public Callback5(const String:name[]) {}
+public Callback6(Handle:handle) {}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        storage_class: (variable_storage_class)
+        type: (old_type
+          (old_builtin_type)
+        )
+        name: (identifier)
+        (dimension)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (identifier)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+==========================================
+old - implement callback with any argument
+==========================================
+
+public Callback1(any:data) {}
+public Callback2(args, any:data) {}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        type: (old_type
+          (any_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations
+      (parameter_declaration
+        name: (identifier)
+      )
+      (parameter_declaration
+        type: (old_type
+          (any_type)
+        )
+        name: (identifier)
+      )
+    )
+    body: (block)
+  )
+)
+
+
+====================================================
+old - implement callback with different return types
+====================================================
+
+public Callback1() {}
+public _:Callback2() {}
+public Float:Callback3() {}
+public String:Callback4() {}
+public bool:Callback5() {}
+public Action:Callback6() {}
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (old_type
+      (old_builtin_type)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+  (function_definition
+    visibility: (visibility)
+    returnType: (old_type
+      (identifier)
+    )
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (block)
+  )
+)
+
+
+=========================================
+old - implement callback single statement
+=========================================
+
+public Callback1() return 2;
+public Callback1() Test();
+
+---
+
+(source_file
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (return_statement
+      expression: (int_literal)
+    )
+  )
+  (function_definition
+    visibility: (visibility)
+    name: (identifier)
+    parameters: (parameter_declarations)
+    body: (expression_statement
+      (call_expression
+        function: (identifier)
+        arguments: (call_arguments)
+      )
+    )
+  )
+)

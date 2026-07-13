@@ -1,0 +1,33 @@
+{
+  "grammars": [
+    {
+      "name": "comment",
+      "camelcase": "Comment",
+      "scope": "source.comment",
+      "path": ".",
+      "file-types": null,
+      "injection-regex": "^comment$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Grammar for code tags like TODO:, FIXME(user): for the tree-sitter parsing library",
+    "authors": [
+      {
+        "name": "Santos Gallegos"
+      }
+    ],
+    "links": {
+      "repository": "https://gihub.com/stsewd/tree-sitter-comment"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

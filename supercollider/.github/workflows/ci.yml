@@ -1,0 +1,30 @@
+# When anything is pushed, install tree-sitter and run the command `tree-sitter generate && tree-sitter test` in the root directory of the repository.
+name: Tree-sitter Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TREE_SITTER_VERSION: v0.22.5
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Download and Install Tree-sitter
+      run: |
+        wget https://github.com/tree-sitter/tree-sitter/releases/download/${{ env.TREE_SITTER_VERSION }}/tree-sitter-linux-x64.gz
+        gunzip tree-sitter-linux-x64.gz
+        chmod +x tree-sitter-linux-x64
+        sudo mv tree-sitter-linux-x64 /usr/local/bin/tree-sitter
+
+    - name: Generate and Test
+      run: |
+        /usr/local/bin/tree-sitter generate
+        /usr/local/bin/tree-sitter test

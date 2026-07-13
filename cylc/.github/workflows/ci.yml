@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: ["*"]
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - examples/**
+      - bindings/**
+      - binding.gyp
+      - .github/workflows/ci.yml
+  pull_request:
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - examples/**
+      - bindings/**
+      - binding.gyp
+      - .github/workflows/ci.yml
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test parser
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-14]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up tree-sitter
+        uses: tree-sitter/setup-action/cli@v1
+      - name: Run tests
+        uses: tree-sitter/parser-test-action@v2
+        with:
+          test-python: ${{runner.os == 'Linux'}}
+      - name: Set up examples
+        run: |-
+          git clone https://github.com/cylc/cylc-flow examples/cylc-flow --single-branch --depth=1 --filter=blob:none
+          rm -f examples/cylc-flow/tests/{f,i,k,u}
+          rm -f examples/cylc-flow/etc/syntax/reference-files/*.cylc
+          xargs rm -f < .github/workflows/parse-blacklist.txt
+        shell: bash
+      - name: Parse examples
+        uses: tree-sitter/parse-action@v4
+        with:
+          files: examples/**/*.cylc

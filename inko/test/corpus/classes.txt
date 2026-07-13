@@ -1,0 +1,164 @@
+===
+Classes
+===
+
+type A {}
+type pub A {}
+type async A {}
+type builtin A {}
+type extern A {}
+type enum A {}
+type pub async A {}
+type A[A] {}
+type A[A: B + C + mut + copy + D[A], C] {}
+type A {
+  # test
+}
+type copy A {}
+type pub copy A {}
+type pub copy enum A {}
+type inline A {}
+type pub inline A {}
+type pub inline enum A {}
+
+----
+
+(source_file
+  (class name: (constant) body: (class_body))
+  (class visibility: (visibility) name: (constant) body: (class_body))
+  (class modifier: (modifier) name: (constant) body: (class_body))
+  (class modifier: (modifier) name: (constant) body: (class_body))
+  (class modifier: (modifier) name: (constant) body: (class_body))
+  (class modifier: (modifier) name: (constant) body: (class_body))
+  (class
+    visibility: (visibility)
+    modifier: (modifier)
+    name: (constant)
+    body: (class_body))
+  (class
+    name: (constant)
+    type_parameters: (type_parameters (type_parameter name: (constant)))
+    body: (class_body))
+  (class
+    name: (constant)
+    type_parameters: (type_parameters
+      (type_parameter
+        name: (constant)
+        requirements: (requirements
+          (type)
+          (type)
+          (mutable)
+          (copy)
+          (generic_type name: (constant) arguments: (type_arguments (type)))))
+      (type_parameter name: (constant)))
+    body: (class_body))
+  (class name: (constant) body: (class_body (line_comment)))
+  (class modifier: (modifier) name: (constant) body: (class_body))
+  (class visibility: (visibility) modifier: (modifier) name: (constant) body: (class_body))
+  (class visibility: (visibility) modifier: (modifier) name: (constant) body: (class_body))
+  (class modifier: (modifier) name: (constant) body: (class_body))
+  (class visibility: (visibility) modifier: (modifier) name: (constant) body: (class_body))
+  (class visibility: (visibility) modifier: (modifier) name: (constant) body: (class_body)))
+
+===
+Classes with fields
+===
+
+type A {
+  let @a: A
+  let @b: B
+  let pub @c: C
+}
+
+---
+
+(source_file
+  (class
+    name: (constant)
+    body: (class_body
+      (define_field name: (field) type: (type))
+      (define_field name: (field) type: (type))
+      (define_field visibility: (visibility) name: (field) type: (type)))))
+
+===
+Classes with methods
+===
+
+type A {
+  fn example {}
+  fn pub example {}
+  fn pub static example {}
+  fn pub async example {}
+  fn pub async mut example {}
+  fn pub move example {}
+  fn example[A: B + C + mut + D[A]] {}
+  fn inline example {}
+  fn inline mut example {}
+  fn inline move example {}
+  fn inline async example {}
+  fn pub inline example {}
+}
+
+---
+
+(source_file
+  (class
+    name: (constant)
+    body: (class_body
+      (method name: (identifier) body: (block))
+      (method visibility: (visibility) name: (identifier) body: (block))
+      (method
+        visibility: (visibility)
+        modifier: (modifier)
+        name: (identifier)
+        body: (block))
+      (method
+        visibility: (visibility)
+        modifier: (modifier)
+        name: (identifier)
+        body: (block))
+      (method
+        visibility: (visibility)
+        modifier: (modifier)
+        name: (identifier)
+        body: (block))
+      (method
+        visibility: (visibility)
+        modifier: (modifier)
+        name: (identifier)
+        body: (block))
+      (method
+        name: (identifier)
+        type_parameters: (type_parameters
+          (type_parameter
+            name: (constant)
+            requirements: (requirements
+              (type)
+              (type)
+              (mutable)
+              (generic_type name: (constant) arguments: (type_arguments (type))))))
+        body: (block))
+      (method modifier: (modifier) name: (identifier) body: (block))
+      (method modifier: (modifier) name: (identifier) body: (block))
+      (method modifier: (modifier) name: (identifier) body: (block))
+      (method modifier: (modifier) name: (identifier) body: (block))
+      (method
+        visibility: (visibility)
+        modifier: (modifier)
+        name: (identifier)
+        body: (block)))))
+===
+Classes with cases
+===
+
+type A {
+  case A
+  case B(A, B,)
+}
+
+---
+
+(source_file
+  (class name: (constant) body: (class_body
+    (define_case name: (constant))
+    (define_case name: (constant) arguments: (arguments (type) (type))))))

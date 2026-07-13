@@ -1,0 +1,144 @@
+================================================================================
+record_basic
+================================================================================
+a = {b:10,c:inp,d}
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (record_expr
+        (record_field_expr
+          (field_name)
+          (expr_body
+            (const
+              (int))))
+        (record_field_expr
+          (field_name)
+          (expr_body
+            (variable_expr
+              (identifier))))
+        (record_field_expr
+          (field_name))))))
+
+================================================================================
+record_expr
+================================================================================
+a = 
+  {
+    b:10,
+    c:
+      if a then
+        d
+      else
+        v
+  }
+--------------------------------------------------------------------------------
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (record_expr
+        (record_field_expr
+          (field_name)
+          (expr_body
+            (const
+              (int))))
+        (record_field_expr
+          (field_name)
+          (expr_body
+            (if_expr
+              (variable_expr
+                (identifier))
+              (then
+                (expr_body
+                  (variable_expr
+                    (identifier))))
+              (else
+                (expr_body
+                  (variable_expr
+                    (identifier)))))))))))
+
+====
+record_spread_pattern
+====
+
+when a is
+	{a,b}-> a
+	{a,b,..}-> a
+ 	{a,b,.. as rest}-> a
+ 
+----
+
+(file
+  (expr_body
+    (when_is_expr
+      (when)
+      (variable_expr
+        (identifier))
+      (is)
+      (when_is_branch
+        (record_pattern
+          (record_field_pattern
+            (field_name))
+          (record_field_pattern
+            (field_name)))
+        (arrow)
+        (expr_body
+          (variable_expr
+            (identifier))))
+      (when_is_branch
+        (record_pattern
+          (record_field_pattern
+            (field_name))
+          (record_field_pattern
+            (field_name))
+          (spread_pattern))
+        (arrow)
+        (expr_body
+          (variable_expr
+            (identifier))))
+      (when_is_branch
+        (record_pattern
+          (record_field_pattern
+            (field_name))
+          (record_field_pattern
+            (field_name))
+          (spread_pattern
+            (identifier)))
+        (arrow)
+        (expr_body
+          (variable_expr
+            (identifier)))))))
+
+====
+record_spread
+====
+
+a={a,a:b,..b}
+ 
+----
+
+(file
+  (value_declaration
+    (decl_left
+      (identifier_pattern
+        (identifier)))
+    (expr_body
+      (record_expr
+        (record_field_expr
+          (field_name))
+        (record_field_expr
+          (field_name)
+          (expr_body
+            (variable_expr
+              (identifier))))
+        (spread_expr
+          (variable_expr
+            (identifier)))))))

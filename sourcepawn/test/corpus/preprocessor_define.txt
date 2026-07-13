@@ -1,0 +1,228 @@
+===============
+define constant
+===============
+
+#define START_INDEX -1
+#define ZERO 0.0
+#define VERSION "1.0.0"
+#define ACTIVATED true
+#define DONE Plugin_Handled
+
+---
+
+(source_file
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+)
+
+
+=================
+define expression
+=================
+
+#define START (1 << 2)
+#define SOUND_INTV GetRandomFloat(1.5, 3.0)
+
+---
+
+(source_file
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+)
+
+
+==========================
+define handles spaces/tabs
+==========================
+
+#define		Test		    "Hello"
+
+---
+
+(source_file
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+)
+
+
+============================
+define with trailing comment
+============================
+
+#define MAXPLAYERS 65 /**< Maximum number of players SourceMod supports */
+#define MAXPLAYERS 65 // Maximum number of players SourceMod supports
+#define MAXPLAYERS 65 /**< Maximum number of \
+                        players SourceMod supports */
+#define MAXPLAYERS 65 /**< Maximum number of 
+                        players SourceMod supports */
+#define MAXPLAYERS 65 /*\
+*/+1
+#define MAXPLAYERS 65+\
+1
+#define MAXPLAYERS 65 /**/ +1
+
+---
+
+(source_file
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (comment)
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (comment)
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (comment)
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (comment)
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)
+  )
+)
+
+
+============================
+non valid expression defines
+============================
+
+#define FOO view_as<int>(
+#define elif else if
+#define FOO view_as<int>( //
+#define FOO view_as<int>(
+// unrelated comment
+
+---
+
+(source_file
+  (preproc_define
+    (identifier)
+    (preproc_arg)
+  )
+  (preproc_define
+    (identifier)
+    (preproc_arg)
+  )
+  (preproc_define
+    (identifier)
+    (preproc_arg)
+  )
+  (comment)
+  (preproc_define
+    (identifier)
+    (preproc_arg)
+  )
+  (comment)
+)
+
+
+================================
+define with trailing parenthesis
+================================
+
+#define FOO() (test)
+
+---
+
+(source_file
+  (preproc_macro
+    (identifier)
+    (preproc_arg)
+  )
+)
+
+
+============
+define macro
+============
+
+#define LOOP_CLIENTS(%1,%2) for (int %1=Client_GetNext(%2); %1 >= 1 && %1 <= MaxClients; %1=Client_GetNext(%2, ++%1))
+
+---
+
+(source_file
+  (preproc_macro
+    name: (identifier)
+    parameters: (macro_param)
+    parameters: (macro_param)
+    value: (preproc_arg)
+  )
+)
+
+
+======================
+define macro multiline
+======================
+
+#define LOOP_CLIENTS(%1,%2) for (int %1=Client_GetNext(%2);\
+                            %1 >= 1 && %1 <= MaxClients;\
+                            %1=Client_GetNext(%2, ++%1))
+
+---
+
+(source_file
+  (preproc_macro
+    name: (identifier)
+    parameters: (macro_param)
+    parameters: (macro_param)
+    value: (preproc_arg)
+  )
+)
+
+
+========
+undefine
+========
+
+#undef Test
+
+---
+
+(source_file
+  (preproc_undefine
+    name: (identifier)
+  )
+)

@@ -1,0 +1,34 @@
+{
+  "grammars": [
+    {
+      "name": "ebnf",
+      "camelcase": "Ebnf",
+      "scope": "source.ebnf",
+      "path": ".",
+      "file-types": [
+        "ebnf"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "EBNF grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "RubixDev"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/RubixDev/ebnf.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
