@@ -38,7 +38,8 @@ module.exports = grammar({
         optional(
           seq(alias(choice('fixup!', 'amend!'), $.subject_prefix), WHITESPACE)
         ),
-        choice(seq(NOT_A_COMMENT, ANYTHING_OR_NONE), seq($.prefix, ANYTHING))
+        choice(seq(NOT_A_COMMENT, ANYTHING_OR_NONE), seq($.prefix, ANYTHING)),
+        optional(alias(ANYTHING, $.overflow))
       ),
 
     prefix: ($) =>
@@ -52,12 +53,13 @@ module.exports = grammar({
     _body_line: ($) =>
       choice($.message_line, $.breaking_change, $.trailer, $.comment, NEWLINE),
 
-    message_line: () => seq(seq(NOT_A_COMMENT, ANYTHING_OR_NONE)),
+    message_line: ($) => seq(seq(NOT_A_COMMENT, ANYTHING_OR_NONE), optional(alias(ANYTHING, $.overflow))),
 
     trailer: ($) =>
       seq(
         alias(TRAILER_TOKEN, $.token),
-        optional(alias(TRAILER_VALUE, $.value))
+        optional(alias(TRAILER_VALUE, $.value)),
+        optional(alias(ANYTHING, $.overflow))
       ),
 
     breaking_change: ($) =>
@@ -65,7 +67,8 @@ module.exports = grammar({
         // BREAKING_CHANGE conflicts with TRAILER_TOKEN, an so requires higher
         // lexical precedence
         alias(token(prec(1, BREAKING_CHANGE)), $.token),
-        optional(alias(BREAKING_CHANGE_VALUE, $.value))
+        optional(alias(BREAKING_CHANGE_VALUE, $.value)),
+        optional(alias(ANYTHING, $.overflow))
       ),
 
     comment: ($) =>
