@@ -1,30 +1,24 @@
-#!/home/linuxbrew/micromamba/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""build-vim-parsers.py — 并行编译 nvim-treesitter parsers (.so).
+"""build.py — 并行编译 treesitter parsers (.so).
 
 依赖:
   - tree-sitter CLI v0.24.7  (ABI 14, nvim v0.10.x 兼容)
-  - neovim v0.10.4
   - curl
+  - neovim
   - gcc / g++ / cc
   - $GITHUB_TOKEN 环境变量 (绕过 rate limit)
 
 用法:
-  JOBS=16 python3 build-vim-parsers.py                 # 全量编译
-  JOBS=8  python3 build-vim-parsers.py --limit 10      # 测试: 只跑前 10 个
-  JOBS=8  python3 build-vim-parsers.py --list-only     # 列出所有 parser
+  JOBS=16 python3 build.py                 # 全量编译
+  JOBS=8  python3 build.py --limit 10      # 测试: 只跑前 10 个
+  JOBS=8  python3 build.py --list-only     # 列出所有 parser
 
 产物:
-  <REPO_ROOT>/parser/<lang>.so      (默认, 仓库内)
-
-源码目录:
-  <REPO_ROOT>/<lang>/               (每个 parser 预置在此, 由 fetch_sources.py 下载 pinned commit)
-  lock.json                         (pinned 清单)
+  ./dist/<lang>.so
 """
 
 # ruff: noqa: RUF002,RUF003,S603,BLE001,PLR0911, PLR0912,PLR0915,PLW1510
-from __future__ import annotations
-
 import argparse
 import json
 import os
@@ -38,24 +32,21 @@ from pathlib import Path
 from typing import Literal
 
 # ----- 配置 ---------------------------------------------------------------
-# 仓库根目录：脚本所在位置（本仓库根目录）。
-REPO_ROOT = Path(__file__).resolve().parent
-# .so 编译产物输出目录（可按需改为指向 Neovim 运行时路径）。
-TARGET = REPO_ROOT / "parser"
-NVIM = "/home/linuxbrew/.local/neovim/bin/nvim"
-CLI = "/home/linuxbrew/.local/bin/tree-sitter"  # tree-sitter CLI v0.24.7
+TARGET = str(Path(__file__).parent / "dist")
+CLI = str(Path.home() / ".local/bin/tree-sitter")  # tree-sitter CLI v0.24.7
+NVIM = str(Path.home() / ".local/neovim/bin/nvim")
 CXX = shutil.which("g++") or shutil.which("cc") or ""
 CC = shutil.which("cc") or ""
 ABI_VERSION = 14
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 JOBS = min(os.cpu_count() or 1, 16)  # 默认等于CPU个数，最多 16 个并发
-# 临时构建目录（源码已在本仓库,<lang>/ 目录预置；构建中间产物放这里）
-WORKDIR = REPO_ROOT / "_build"
+LOCKFILE = str(Path(__file__).parent / "lock.json")
+WORKDIR = Path(tempfile.mkdtemp(prefix="ntbuild-"))
 
 
 # ----- 主流程 -------------------------------------------------------------
 def main():
-    p = argparse.ArgumentParser(description="Build nvim-treesitter parsers (tree-sitter v0.24.7)")
+    p = argparse.ArgumentParser(description="Build treesitter parsers (tree-sitter v0.24.7)")
     p.add_argument("--jobs", type=int, default=JOBS)
     p.add_argument("--limit", type=int, default=0, help="只处理前 N 个")
     p.add_argument("--list-only", action="store_true", help="只列出 parser")
@@ -76,12 +67,12 @@ def main():
         print("  [ERROR] 缺失必要的工具链")
         return
 
-    # 1. 清单（内嵌字典）
+    # 1. 清单
     print("\n=== 获取 parser 清单 ===")
     logdir = WORKDIR / "log"
     logdir.mkdir(parents=True, exist_ok=True)
 
-    parsers = load_parsers(REPO_ROOT / "lock.json")
+    parsers = get_parsers(LOCKFILE)
     print(f"  共 {len(parsers)} 个 parser")
     if args.langs:
         # 过滤指定语言
@@ -103,14 +94,11 @@ def main():
         return
 
     # 2. 并行编译
-    # 源码目录 <REPO_ROOT>/<lang>/ 已由 fetch 预置; _build 仅用作临时工件存放点.
-    TARGET.mkdir(parents=True, exist_ok=True)
-    WORKDIR.mkdir(parents=True, exist_ok=True)
+    (WORKDIR / "archive").mkdir(parents=True, exist_ok=True)
     print(f"\n=== 启动并行编译 ({args.jobs} 并发) ===")
-    print(f"  源码目录: {REPO_ROOT}/<lang>/ (每个 parser 一个目录)")
     print(f"  输出目录: {TARGET}")
-    print(f"  临时目录: {WORKDIR}")
-    print()
+    print(f"  工作目录: {WORKDIR}")
+    Path(TARGET).mkdir(parents=True, exist_ok=True)
 
     start = time.time()
     results = []
@@ -166,45 +154,12 @@ def download(url: str, dest: Path) -> bool:
     cmd = ["curl", "-sL", "--retry", "3", "--retry-delay", "2"]
     if GITHUB_TOKEN:
         cmd += ["-H", f"Authorization: token {GITHUB_TOKEN}"]
-    cmd += ["-o", str(dest), f"{url}"]
+    cmd += ["-o", str(dest), url]
     try:
         r = subprocess.run(cmd, capture_output=True, timeout=90)
         return r.returncode == 0 and dest.stat().st_size > 100
     except Exception:
         return False
-
-
-def nvim_verify(lang: str, so_path: Path) -> str:
-    """Nvim 原生 API 验证, 直接指定 lang (不设 filetype).
-
-    并行 verify 时需要隔离 ShaDa 写入路径 (-i <tmpfile>),避免 16 个 nvim 同时写
-    ~/.local/state/nvim/shada/main.shada 互相踩踏 E138 错误。
-    """
-    # 用 NamedTemporaryFile(delete=False) 替代不安全的 mktemp: mktemp 只返回路径而不创建文件,
-    # 存在 TOCTOU 竞争. 这里用 mkstemp 语义安全地创建临时文件供 nvim -i 写入 shada.
-    with tempfile.NamedTemporaryFile(prefix="nvim-shada-", suffix=".tmp", delete=False) as shada_fh:
-        shada_tmp = shada_fh.name
-    shada_parent = Path(shada_tmp).parent
-    lua_code = (
-        f'local so="{so_path}"; '
-        f'pcall(function() vim.treesitter.language.add("{lang}",{{path=so}}) end); '
-        f"local buf=vim.api.nvim_create_buf(false,true); "
-        f'vim.api.nvim_buf_set_lines(buf,0,-1,false,{{"x"}}); '
-        f'local ok,p=pcall(vim.treesitter.get_parser,buf,"{lang}"); '
-        f'if ok and p then local t,_=pcall(function()return p:parse()[1]end); print(t and "PARSE_OK" or "PARSE_FAIL") else print("LOAD_FAIL") end'
-    )
-    # +S 让退出时把 shada 写入 -i 指定的临时文件,不与其他进程冲突
-    cmd = [str(NVIM), "--headless", "-i", shada_tmp, "-c", f"lua {lua_code}", "-c", "qa!"]
-    try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-        out = r.stderr.strip() or r.stdout.strip() or "NO_RESULT"
-        return out.split("\n")[-1].strip()
-    except Exception:
-        return "NO_RESULT"
-    finally:
-        # +S 可能还会生成 .tmp.bak / .tmp.shada 等伴随文件, 一并清理
-        for sibling in shada_parent.glob(Path(shada_tmp).name + "*"):
-            sibling.unlink(missing_ok=True)
 
 
 def compile_one(lang: str, meta: dict[str, str], logdir: Path) -> tuple[str, Literal["OK", "FAIL", "SKIP"], str]:
@@ -213,6 +168,7 @@ def compile_one(lang: str, meta: dict[str, str], logdir: Path) -> tuple[str, Lit
     Returns:
         (str, str, str): (lang, status, note)
     """
+    Path(logdir).mkdir(parents=True, exist_ok=True)
     out_so = Path(TARGET) / f"{lang}.so"
     if out_so.exists():
         return (lang, "SKIP", f"exists {out_so.stat().st_size // 1024}K")
@@ -220,42 +176,41 @@ def compile_one(lang: str, meta: dict[str, str], logdir: Path) -> tuple[str, Lit
     revision = meta["revision"]
     url = meta["url"]
     location = meta.get("location", "")
-    # 源码已在本仓库预置: <REPO_ROOT>/<lang>/ (fetch_sources 使用 --strip-components=1 直接解压到此处)
-    srcdir = REPO_ROOT / lang
     logfile = logdir / f"{lang}.log"
+    srcdir = Path(__file__).parent / lang
+    archive_file = WORKDIR / "archive" / f"{lang}.tar.gz"
 
     def log(msg):
         with logfile.open("a") as f:
             f.write(msg + "\n")
 
-    # 1. 检查预置源码;若缺失则尝试回退下载到临时目录(不影响仓库目录).
-    meta_source = meta.get("source")          # lock.json 中的 tarball 直链(稳)
-    if not srcdir.is_dir() or not (srcdir / "src" / "parser.c").exists():
-        archive_file = WORKDIR / "archive" / f"{lang}.tar.gz"
+    if not srcdir.is_dir():
+        # 1. 下载 tarball
+        srcdir.mkdir(parents=True, exist_ok=True)
         archive_file.parent.mkdir(parents=True, exist_ok=True)
-        archive_url = meta_source if meta_source else (
-            f"{url}/-/archive/{revision}/{url.split('/')[-1]}-{revision}.tar.gz" if "gitlab.com" in url
-            else f"{url}/archive/{revision}.tar.gz")
-        log(f"source missing, download: {archive_url}")
+        archive_url = f"{url}/-/archive/{revision}/{url.split('/')[-1]}-{revision}.tar.gz" if "gitlab.com" in url else f"{url}/archive/{revision}.tar.gz"
+        log(f"download: {archive_url}")
         ok = download(archive_url, archive_file)
         if not ok:
             return (lang, "FAIL", "download")
         if "gzip" not in subprocess.run(["/usr/bin/file", str(archive_file)], capture_output=True, text=True).stdout:
             return (lang, "FAIL", "not-gzip")
+
+        # 2. 解压
         srcdir.mkdir(parents=True, exist_ok=True)
         r = subprocess.run(["/usr/bin/tar", "xzf", str(archive_file), "-C", str(srcdir), "--strip-components=1"], capture_output=True, text=True)
         if r.returncode != 0:
             log(f"extract err: {r.stderr}")
             return (lang, "FAIL", f"extract rc={r.returncode}")
 
-    # 2. build_dir (location 子目录型)
+    # 3. build_dir (location 子目录型)
     build_dir = srcdir
     if location:
         build_dir = srcdir / location
     if not build_dir.is_dir():
         return (lang, "FAIL", f"no-dir {build_dir}")
 
-    # 4. generate (无预生成 / 预生成 ABI 不是 13 或 14 时)
+    # 4. generate
     # ABI 13 和 14 都能在 nvim 0.10.4 加载,其他 ABI (如 15) 必须 regenerate
     need_gen = False
     parser_c = build_dir / "src" / "parser.c"
@@ -314,17 +269,48 @@ def compile_one(lang: str, meta: dict[str, str], logdir: Path) -> tuple[str, Lit
         out_so.unlink(missing_ok=True)
         return (lang, "FAIL", "not-so")
 
-    # 6. nvim 验证
+    # 7. nvim 验证
     vfy = nvim_verify(lang, out_so)
     if vfy == "PARSE_OK":
         size = out_so.stat().st_size
-        # 不删除 srcdir: 源码预置在本仓库 <REPO_ROOT>/<lang>/. 仅清理回退下载的临时产物.
-        archive_file = WORKDIR / "archive" / f"{lang}.tar.gz"
         rmrf(archive_file)
         rmrf(logfile)
         return (lang, "OK", f"{size // 1024}K")
     out_so.unlink(missing_ok=True)
     return (lang, "FAIL", f"verify:{vfy}")
+
+
+def nvim_verify(lang: str, so_path: Path) -> str:
+    """Nvim 原生 API 验证, 直接指定 lang (不设 filetype).
+
+    并行 verify 时需要隔离 ShaDa 写入路径 (-i <tmpfile>),避免 16 个 nvim 同时写
+    ~/.local/state/nvim/shada/main.shada 互相踩踏 E138 错误。
+    """
+    # 用 NamedTemporaryFile(delete=False) 替代不安全的 mktemp: mktemp 只返回路径而不创建文件,
+    # 存在 TOCTOU 竞争. 这里用 mkstemp 语义安全地创建临时文件供 nvim -i 写入 shada.
+    with tempfile.NamedTemporaryFile(prefix="nvim-shada-", suffix=".tmp", delete=False) as shada_fh:
+        shada_tmp = shada_fh.name
+    shada_parent = Path(shada_tmp).parent
+    lua_code = (
+        f'local so="{so_path}"; '
+        f'pcall(function() vim.treesitter.language.add("{lang}",{{path=so}}) end); '
+        f"local buf=vim.api.nvim_create_buf(false,true); "
+        f'vim.api.nvim_buf_set_lines(buf,0,-1,false,{{"x"}}); '
+        f'local ok,p=pcall(vim.treesitter.get_parser,buf,"{lang}"); '
+        f'if ok and p then local t,_=pcall(function()return p:parse()[1]end); print(t and "PARSE_OK" or "PARSE_FAIL") else print("LOAD_FAIL") end'
+    )
+    # +S 让退出时把 shada 写入 -i 指定的临时文件,不与其他进程冲突
+    cmd = [str(NVIM), "--headless", "-i", shada_tmp, "-c", f"lua {lua_code}", "-c", "qa!"]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+        out = r.stderr.strip() or r.stdout.strip() or "NO_RESULT"
+        return out.split("\n")[-1].strip()
+    except Exception:
+        return "NO_RESULT"
+    finally:
+        # +S 可能还会生成 .tmp.bak / .tmp.shada 等伴随文件, 一并清理
+        for sibling in shada_parent.glob(Path(shada_tmp).name + "*"):
+            sibling.unlink(missing_ok=True)
 
 
 def rmrf(path: Path | str):
@@ -334,12 +320,15 @@ def rmrf(path: Path | str):
         Path(path).unlink(missing_ok=True)
 
 
-def load_parsers(lock_path) -> dict[str, dict[str, str]]:
-    """从 lock.json 加载 parser 清单，返回 {lang: {revision, url, location}} 。
+def get_parsers(path: Path | str) -> dict[str, dict[str, str]]:
+    """从 lock.json 加载 parser 清单.
 
     lock.json 字段: owner/repo/host/commit/location/url/source。
+
+    Returns:
+        {lang: {revision, url, location}}
     """
-    raw = json.loads(Path(lock_path).read_text(encoding="utf-8"))
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
     entries = raw["parsers"]
     out: dict[str, dict[str, str]] = {}
     for lang, e in entries.items():
@@ -348,8 +337,6 @@ def load_parsers(lock_path) -> dict[str, dict[str, str]]:
             "url": e["url"],
             "location": e.get("location", ""),
         }
-        if e.get("source"):
-            meta["source"] = e["source"]
         out[lang] = meta
     return out
 
