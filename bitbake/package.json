@@ -25,5 +25,24 @@
     "test": "tree-sitter test && script/parse-examples",
     "test-windows": "tree-sitter test"
   },
-  "repository": "https://github.com/amaanq/tree-sitter-bitbake"
+  "repository": "https://github.com/amaanq/tree-sitter-bitbake",
+  "tree-sitter": [
+    {
+      "scope": "source.bitbake",
+      "file-types": [
+        "bb",
+        "bbclass"
+      ],
+      "injection-regex": "^(bb|bbclass)$",
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injections": [
+        "queries/injections.scm"
+      ],
+      "locals": [
+        "queries/locals.scm"
+      ]
+    }
+  ]
 }

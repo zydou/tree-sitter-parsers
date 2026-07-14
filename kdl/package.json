@@ -33,5 +33,17 @@
     "parse": "tree-sitter parse",
     "test": "tree-sitter test && script/parse-examples",
     "test-windows": "tree-sitter test"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.kdl",
+      "injection-regex": "kdl",
+      "file-types": [
+        "kdl"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ]
 }

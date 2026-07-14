@@ -1,64 +1,28 @@
-name: CI
-
+name: Build/test
 on:
   push:
-    branches: [main]
-    paths:
-      - grammar.js
-      - src/**
-      - test/**
-      - .github/**
-      - bindings/**
-      - binding.gyp
-  pull_request:
-    paths:
-      - grammar.js
-      - src/**
-      - test/**
-      - .github/**
-      - bindings/**
-      - binding.gyp
-
-concurrency:
-  group: ${{github.workflow}}-${{github.ref}}
-  cancel-in-progress: true
-
+    branches:
+      - "**"
 jobs:
   test:
-    name: Test parser
-    runs-on: ${{matrix.os}}
+    runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-14]
+        os: [macos-latest, ubuntu-latest]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-      - name: Set up tree-sitter
-        uses: tree-sitter/setup-action/cli@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          tree-sitter-ref: v0.26.3
-      - name: Run tests
-        uses: tree-sitter/parser-test-action@v3
-        with:
-          test-rust: true
-          test-python: true
-          test-go: true
-          test-swift: false
-          test-node: false
-          go-version: "1.26"
-
-  query:
-    name: Validate queries
-    runs-on: ubuntu-latest
+          node-version: 14
+      - run: npm install
+      - run: npm test
+  test_windows:
+    runs-on: windows-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-      - name: Set up tree-sitter
-        uses: tree-sitter/setup-action/cli@v2
-      - name: Build parser
-        run: tree-sitter build
-      - name: Set up ts_query_ls
-        run: curl -fL https://github.com/ribru17/ts_query_ls/releases/latest/download/ts_query_ls-x86_64-unknown-linux-gnu.tar.gz | tar -xz
-      - name: Check queries
-        run: ./ts_query_ls check -f queries/
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: npm install
+      - run: npm run-script test-windows

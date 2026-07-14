@@ -30,5 +30,17 @@
     "test": "tree-sitter test && script/parse-examples",
     "parse": "tree-sitter parse",
     "test-windows": "tree-sitter test"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.sum",
+      "injection-regex": "gosum",
+      "file-types": [
+        "sum"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ]
 }

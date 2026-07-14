@@ -1,0 +1,19 @@
+property = afx`
+  <!-- some comment -->
+<!--   ^@comment -->
+
+    <div attribute="value">text</div>
+<!-- ^@tag -->
+<!--     ^@tag.attribute -->
+<!--                ^@string -->
+<!--                           ^@punctuation.bracket -->
+<!--                             ^@tag -->
+
+    <Namespace:Type {...spread} some={(a) => true} />
+<!-- ^@tag -->
+<!--                    ^@variable -->
+<!--                                   ^@variable -->
+<!--                                          ^@boolean -->
+<!--                                               ^@punctuation.bracket -->
+<!--                                                ^@punctuation.bracket -->
+`

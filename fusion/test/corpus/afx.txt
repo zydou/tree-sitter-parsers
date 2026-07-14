@@ -1,0 +1,188 @@
+================================================================================
+afx comment
+================================================================================
+property = afx`
+  <!-- some comment -->
+  <!-- multible in one line --><!-- other -->
+  <!-- <some> {comment} -->
+`
+
+--------------------------------------------------------------------------------
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (afx_text)
+        (afx_comment)
+        (afx_text)
+        (afx_comment)
+        (afx_comment)
+        (afx_text)
+        (afx_comment)
+        (afx_text)))))
+
+================================================================================
+afx simple tags
+================================================================================
+
+property = afx`
+  <div>text</div>
+  <ul>
+    <li>text</li>
+    <li>text</li>
+  </ul>
+  <br/>
+  <div some='value' other-prop="value" prop.path="is ok">text</div>
+`
+
+--------------------------------------------------------------------------------
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (afx_text)
+        (afx_element
+          (afx_opening_element
+            (afx_identifier))
+          (afx_text)
+          (afx_closing_element
+            (afx_identifier)))
+        (afx_text)
+        (afx_element
+          (afx_opening_element
+            (afx_identifier))
+          (afx_text)
+          (afx_element
+            (afx_opening_element
+              (afx_identifier))
+            (afx_text)
+            (afx_closing_element
+              (afx_identifier)))
+          (afx_text)
+          (afx_element
+            (afx_opening_element
+              (afx_identifier))
+            (afx_text)
+            (afx_closing_element
+              (afx_identifier)))
+          (afx_text)
+          (afx_closing_element
+            (afx_identifier)))
+        (afx_text)
+        (afx_element_self_closing
+          (afx_identifier))
+        (afx_text)
+        (afx_element
+          (afx_opening_element
+            (afx_identifier)
+            (afx_attribute
+              (afx_property_identifier)
+              (string))
+            (afx_attribute
+              (afx_property_identifier)
+              (string))
+            (afx_attribute
+              (afx_property_identifier)
+              (afx_property_path)
+              (string)))
+          (afx_text)
+          (afx_closing_element
+            (afx_identifier)))
+        (afx_text)))))
+
+================================================================================
+afx complex tags
+================================================================================
+
+property = afx`
+  <some @meta.prop='value' @other="value" />
+  <some @meta.prop={some.thing ? true : false} />
+  <some prop={...some.thing}>
+    {value}
+  </some>
+  <Type:Name {...props} />
+`
+property = afx`
+  {eel}
+  some text
+  <div>or node on top level</div>
+`
+
+--------------------------------------------------------------------------------
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (afx_text)
+        (afx_element_self_closing
+          (afx_identifier)
+          (afx_attribute
+            (afx_meta_property_identifier)
+            (afx_property_path)
+            (string))
+          (afx_attribute
+            (afx_meta_property_identifier)
+            (string)))
+        (afx_text)
+        (afx_element_self_closing
+          (afx_identifier)
+          (afx_attribute
+            (afx_meta_property_identifier)
+            (afx_property_path)
+            (eel_ternary_expression
+              (eel_object_path
+                (eel_path_identifier)
+                (eel_path_identifier))
+              (boolean)
+              (boolean))))
+        (afx_text)
+        (afx_element
+          (afx_opening_element
+            (afx_identifier)
+            (afx_attribute
+              (afx_property_identifier)
+              (afx_spread
+                (eel_object_path
+                  (eel_path_identifier)
+                  (eel_path_identifier)))))
+          (afx_text)
+          (eel_object_path
+            (eel_path_identifier))
+          (afx_text)
+          (afx_closing_element
+            (afx_identifier)))
+        (afx_text)
+        (afx_element_self_closing
+          (afx_identifier
+            (afx_type
+              (afx_package_name)
+              (afx_type_name)))
+          (afx_spread
+            (eel_object_path
+              (eel_path_identifier))))
+        (afx_text))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (afx_text)
+        (eel_object_path
+          (eel_path_identifier))
+        (afx_text)
+        (afx_element
+          (afx_opening_element
+            (afx_identifier))
+          (afx_text)
+          (afx_closing_element
+            (afx_identifier)))
+        (afx_text)))))

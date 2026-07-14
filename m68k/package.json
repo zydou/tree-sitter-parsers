@@ -24,5 +24,20 @@
   "devDependencies": {
     "tree-sitter-cli": "^0.20.8"
   },
-  "repository": "https://github.com/grahambates/tree-sitter-m68k"
+  "repository": "https://github.com/grahambates/tree-sitter-m68k",
+  "tree-sitter": [
+    {
+      "scope": "source.m68k",
+      "file-types": [
+        "asm",
+        "ASM",
+        "s",
+        "S",
+        "i",
+        "I"
+      ],
+      "highlights": "queries/highlights.scm",
+      "folds": "queries/folds.scm"
+    }
+  ]
 }

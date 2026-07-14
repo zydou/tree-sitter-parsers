@@ -24,6 +24,20 @@
       "optional": true
     }
   },
+  "tree-sitter": [
+    {
+      "scope": "source.lalrpop",
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "file-types": [
+        "lalrpop"
+      ]
+    }
+  ],
+  "devDependencies": {
+    "prebuildify": "^6.0.0"
+  },
   "files": [
     "grammar.js",
     "binding.gyp",
@@ -31,8 +45,5 @@
     "bindings/node/*",
     "queries/*",
     "src/**"
-  ],
-  "devDependencies": {
-    "prebuildify": "^6.0.0"
-  }
+  ]
 }

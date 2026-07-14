@@ -4,13 +4,17 @@
   "main": "bindings/node",
   "types": "bindings/node",
   "license": "MIT",
-  "files": [
-    "grammar.js",
-    "binding.gyp",
-    "prebuilds/**",
-    "bindings/node/*",
-    "queries/*",
-    "src/**"
+  "tree-sitter": [
+    {
+      "scope": "source.js",
+      "file-types": [
+        "corn"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "^corn$"
+    }
   ],
   "dependencies": {
     "node-addon-api": "^7.1.0",
@@ -31,5 +35,13 @@
   "scripts": {
     "install": "node-gyp-build",
     "prebuildify": "prebuildify --napi --strip"
-  }
+  },
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ]
 }

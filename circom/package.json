@@ -35,5 +35,17 @@
     "bindings/node/*",
     "queries/*",
     "src/**"
+  ],
+  "tree-sitter": [
+    {
+      "scope": "source.circom",
+      "injection-regex": "^circom$",
+      "file-types": [
+        "circom"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
   ]
 }

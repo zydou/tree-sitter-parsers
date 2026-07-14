@@ -51,5 +51,12 @@
     "prettier": "^2.5.1",
     "tree-sitter-cli": "^0.23.0",
     "prebuildify": "^6.0.1"
-  }
+  },
+  "tree-sitter": [
+    {
+      "file-types": [
+        "diff"
+      ]
+    }
+  ]
 }

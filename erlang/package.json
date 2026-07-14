@@ -30,6 +30,25 @@
   },
   "main": "bindings/node",
   "types": "bindings/node",
+  "tree-sitter": [
+    {
+      "scope": "source.erlang",
+      "file-types": [
+        "erl",
+        "hrl",
+        "app.src",
+        "app",
+        "escript",
+        "rebar.config"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "devDependencies": {
+    "prebuildify": "^6.0.1"
+  },
   "files": [
     "grammar.js",
     "binding.gyp",
@@ -37,8 +56,5 @@
     "bindings/node/*",
     "queries/*",
     "src/**"
-  ],
-  "devDependencies": {
-    "prebuildify": "^6.0.1"
-  }
+  ]
 }

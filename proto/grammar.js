@@ -1,22 +1,9 @@
-/**
- * @file Parser for proto2 and proto3 files
- * @author Mohammad Ashar Khan <ashar786khan@gmail.com>
- * @license MIT
- */
-
-/// <reference types="tree-sitter-cli/dsl" />
-// @ts-check
-
 const
-  letter = /[a-zA-Z]/;
-const decimal_digit = /[0-9]/;
-const octal_digit = /[0-7]/;
-const hex_digit = /[0-9A-Fa-f]/;
+  letter = /[a-zA-Z]/,
+  decimal_digit = /[0-9]/
+  octal_digit = /[0-7]/
+  hex_digit = /[0-9A-Fa-f]/
 
-/**
- *
- * @param {any} content
- */
 function array_of(content) {
   return seq(
     '[',
@@ -34,7 +21,7 @@ module.exports = grammar({
     // proto = syntax { import | package | option | topLevelDef | emptyStatement }
     // topLevelDef = message | enum | service
     source_file: $ => seq(
-      optional(choice($.syntax, $.edition)),
+      optional($.syntax),
       optional(repeat(choice(
         $.import,
         $.package,
@@ -49,15 +36,13 @@ module.exports = grammar({
 
     empty_statement: _ => ';',
 
-    // edition  = "edition" "=" quote numeric quote ";"
-    edition: $ => seq('edition', '=', field('year', $.string), ';'),
     // syntax = "syntax" "=" quote "proto3" quote ";"
     syntax: $ => seq('syntax', '=', choice('"proto3"', '"proto2"'), ';'),
 
-    // import = "import" [ "weak" | "public" | "option" ] strLit ";"
+    // import = "import" [ "weak" | "public" ] strLit ";"
     import: $ => seq(
       'import',
-      optional(choice('weak', 'public', 'option')),
+      optional(choice('weak', 'public')),
       field('path', $.string),
       ';',
     ),
@@ -94,9 +79,7 @@ module.exports = grammar({
     // enumBody = "{" { option | enumField | emptyStatement } "}"
     // enumField = ident "=" [ "-" ] intLit [ "[" enumValueOption { ","  enumValueOption } "]" ]";"
     // enumValueOption = optionName "=" constant
-    // edition 2024: optional "export" | "local" visibility modifier
     enum: $ => seq(
-      optional(choice('export', 'local')),
       'enum',
       $.enum_name,
       $.enum_body,
@@ -137,9 +120,7 @@ module.exports = grammar({
 
     // message = "message" messageName messageBody
     // messageBody = "{" { field | enum | message | option | oneof | mapField | reserved | emptyStatement } "}"
-    // edition 2024: optional "export" | "local" visibility modifier
     message: $ => seq(
-      optional(choice('export', 'local')),
       'message',
       $.message_name,
       $.message_body,
@@ -157,7 +138,6 @@ module.exports = grammar({
         $.reserved,
         $.extensions,
         $.extend,
-        $.group,
         $.empty_statement,
       )),
       '}',
@@ -171,25 +151,13 @@ module.exports = grammar({
       $.message_body,
     ),
 
-    // group = label "group" groupName "=" fieldNumber messageBody
-    // label = "required" | "optional" | "repeated"
-    // Proto2 only; deprecated but still valid.
-    group: $ => seq(
-      optional(choice('optional', 'required', 'repeated')),
-      'group',
-      $.message_name,
-      '=',
-      $.field_number,
-      $.message_body,
-    ),
-
     // field = [ "repeated" ] type fieldName "=" fieldNumber [ "[" fieldOptions "]" ] ";"
     // fieldOptions = fieldOption { ","  fieldOption }
     // fieldOption = optionName "=" constant
     field: $ => seq(
       // This isn't allowed according to the spec and yet the proto3 compiler
       // accepts it so we put it here for parsing.
-      optional(choice('optional', 'required')),
+      optional(choice('optional','required')),
 
       optional('repeated'),
       $.type,
@@ -293,7 +261,7 @@ module.exports = grammar({
     // fieldNames = fieldName { "," fieldName }
     reserved: $ => seq(
       'reserved',
-      choice($.ranges, $.reserved_field_names),
+      choice($.ranges, $.field_names),
       ';',
     ),
 
@@ -316,11 +284,6 @@ module.exports = grammar({
     field_names: $ => seq(
       $._identifier_or_string,
       repeat(seq(',', $._identifier_or_string)),
-    ),
-
-    reserved_field_names: $ => seq(
-      $.reserved_identifier,
-      repeat(seq(',', $.reserved_identifier)),
     ),
 
     // messageType = [ "." ] { ident "." } messageName
@@ -420,7 +383,7 @@ module.exports = grammar({
       '}',
     ),
 
-    // identifier = letter { letter | decimalDigit | "_" }
+    // ident = letter { letter | decimalDigit | "_" }
     identifier: $ => token(seq(
       choice(letter, '_'),
       optional(repeat(choice(
@@ -430,27 +393,6 @@ module.exports = grammar({
       ))),
     )),
 
-    // reserved_identifier = \" | ' letter { letter | decimalDigit | "_" } ' | \"
-    reserved_identifier: $ => token(
-      choice(
-        seq(
-          '"',
-          letter,
-          optional(repeat(choice(letter, decimal_digit, '_'))),
-          '"',
-        ),
-        seq(
-          '\'',
-          letter,
-          optional(repeat(choice(letter, decimal_digit, '_'))),
-          '\'',
-        ),
-        seq(
-          letter,
-          optional(repeat(choice(letter, decimal_digit, '_'))),
-        ),
-      ),
-    ),
     _identifier_or_string: $ => choice($.identifier, $.string),
 
     // fullIdent = ident { "." ident }
@@ -533,20 +475,20 @@ module.exports = grammar({
           '"',
           repeat(choice(
             token.immediate(prec(1, /[^"\\]+/)),
-            $.escape_sequence,
+            $.escape_sequence
           )),
-          '"',
+          '"'
         ),
 
         seq(
-          '\'',
+          "'",
           repeat(choice(
             token.immediate(prec(1, /[^'\\]+/)),
-            $.escape_sequence,
+            $.escape_sequence
           )),
-          '\'',
+          "'",
         ),
-      ),
+      )
     ),
 
     escape_sequence: $ => token.immediate(seq(
@@ -556,8 +498,8 @@ module.exports = grammar({
         /\d{2,3}/,
         /x[0-9a-fA-F]{2,}/,
         /u[0-9a-fA-F]{4}/,
-        /U[0-9a-fA-F]{8}/,
-      ),
+        /U[0-9a-fA-F]{8}/
+      )
     )),
 
     comment: $ => token(choice(
@@ -565,8 +507,8 @@ module.exports = grammar({
       seq(
         '/*',
         /[^*]*\*+([^/*][^*]*\*+)*/,
-        '/',
-      ),
-    )),
-  },
+        '/'
+      )
+    ))
+  }
 });

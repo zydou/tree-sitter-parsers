@@ -9,6 +9,7 @@
   "bugs": {
     "url": "https://github.com/alemuller/tree-sitter-ninja/issues"
   },
+  "homepage": "https://github.com/alemuller/tree-sitter-ninja#readme",
   "keywords": [
     "parsing",
     "incremental",
@@ -23,5 +24,13 @@
   },
   "scripts": {
     "test": "tree-sitter test"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.ninja",
+      "file-types": [
+        "ninja"
+      ]
+    }
+  ]
 }

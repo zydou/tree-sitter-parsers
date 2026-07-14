@@ -1,0 +1,601 @@
+================================================================================
+property assignment primitives
+================================================================================
+
+property=true
+property = true
+property = null
+property = 1
+property = 1.1
+property = 'some string'
+property = 'some \'string'
+property = "some other string"
+property = "some \"other string"
+property = 'some\\path\\to\\file.php'
+prototype = 'possible'
+'prototype' = 'possible'
+"prototype" = 'possible'
+
+--------------------------------------------------------------------------------
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (boolean)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (boolean)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (null)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (number)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (number)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (string))
+    (assignment
+      (string)))
+  (property
+    (path
+      (string))
+    (assignment
+      (string))))
+
+================================================================================
+property path-name variations
+================================================================================
+
+test = Text
+test.value = 23
+test.value-with-dash = 42
+test.value:with:colon = 59
+test.10.value = 59
+test.1.2 = 59
+
+--------------------------------------------------------------------------------
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (type_name)))))
+  (property
+    (path
+      (path_part)
+      (path_part))
+    (assignment
+      (number)))
+  (property
+    (path
+      (path_part)
+      (path_part))
+    (assignment
+      (number)))
+  (property
+    (path
+      (path_part)
+      (path_part))
+    (assignment
+      (number)))
+  (property
+    (path
+      (path_part)
+      (path_part)
+      (path_part))
+    (assignment
+      (number)))
+  (property
+    (path
+      (path_part)
+      (path_part)
+      (path_part))
+    (assignment
+      (number))))
+
+================================================================================
+property assignment type
+================================================================================
+
+property = Type
+property = 1Type
+property = Type2
+property = Package:Type2
+property = Package12.34Sub:Type2.Sub2
+property = 1Package.Sub2:Type
+
+--------------------------------------------------------------------------------
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (type_name)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (type_name)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (type_name)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (package_name)
+          (type_name)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (package_name)
+          (type_name)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (package_name)
+          (type_name))))))
+
+================================================================================
+property assignment complex
+================================================================================
+
+prototype(Foo).bar = 'string'
+foo.prototype(Bar).buz = 'string'
+prototype(Foo).prototype(Bar).buzz = 'string'
+property = Foo.Bar:Baz
+property = Foo.Bar:Baz {
+  field = 'value'
+}
+property = afx`
+   <some>code</some>
+`
+property = dsl1`content`
+property = dsl2.bla`content`
+object.@meta = 'string'
+object.@meta.name = 'string'
+object {
+	some = true
+    @other = false
+    inner {
+    	block = 'string'
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(program
+  (property
+    (path
+      (prototype_signature
+        (type
+          (type_name)))
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (path_part)
+      (prototype_signature
+        (type
+          (type_name)))
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (prototype_signature
+        (type
+          (type_name)))
+      (prototype_signature
+        (type
+          (type_name)))
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (package_name)
+          (type_name)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (package_name)
+          (type_name))
+        (block
+          (property
+            (path
+              (path_part))
+            (assignment
+              (string)))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (afx_text)
+        (afx_element
+          (afx_opening_element
+            (afx_identifier))
+          (afx_text)
+          (afx_closing_element
+            (afx_identifier)))
+        (afx_text))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (dsl_start)
+        (dsl_content))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (dsl_start)
+        (dsl_content))))
+  (property
+    (path
+      (path_part)
+      (meta_property))
+    (assignment
+      (string)))
+  (property
+    (path
+      (path_part)
+      (meta_property)
+      (path_part))
+    (assignment
+      (string)))
+  (property
+    (path
+      (path_part))
+    (block
+      (property
+        (path
+          (path_part))
+        (assignment
+          (boolean)))
+      (property
+        (path
+          (meta_property))
+        (assignment
+          (boolean)))
+      (property
+        (path
+          (path_part))
+        (block
+          (property
+            (path
+              (path_part))
+            (assignment
+              (string))))))))
+
+================================================================================
+property copy / delete
+================================================================================
+
+property >
+property < true
+property < 'some string'
+property < null
+property < 666
+property < Foo.Bar:Baz
+prototype(Foo.Bar:Baz) < prototype(Super.Bar:Baz)
+prototype(Foo.Bar:Baz) < prototype(Super.Bar:Baz) {
+  inner = 'value'
+}
+
+--------------------------------------------------------------------------------
+
+(program
+  (property
+    (path
+      (path_part))
+    (deletion))
+  (property
+    (path
+      (path_part))
+    (copy
+      (boolean)))
+  (property
+    (path
+      (path_part))
+    (copy
+      (string)))
+  (property
+    (path
+      (path_part))
+    (copy
+      (null)))
+  (property
+    (path
+      (path_part))
+    (copy
+      (number)))
+  (property
+    (path
+      (path_part))
+    (copy
+      (prototype_instance
+        (type
+          (package_name)
+          (type_name)))))
+  (property
+    (path
+      (prototype_signature
+        (type
+          (package_name)
+          (type_name))))
+    (copy
+      (prototype_signature
+        (type
+          (package_name)
+          (type_name)))))
+  (property
+    (path
+      (prototype_signature
+        (type
+          (package_name)
+          (type_name))))
+    (copy
+      (prototype_signature
+        (type
+          (package_name)
+          (type_name)))
+      (block
+        (property
+          (path
+            (path_part))
+          (assignment
+            (string)))))))
+
+================================================================================
+dsl variations
+================================================================================
+
+property = some`simple value`
+property = some`{}`
+property = some`String:value`
+property = afx`
+ <div>value</div>
+`
+
+--------------------------------------------------------------------------------
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (dsl_start)
+        (dsl_content))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (dsl_start)
+        (dsl_content))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (dsl_start)
+        (dsl_content))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_dsl
+        (afx_text)
+        (afx_element
+          (afx_opening_element
+            (afx_identifier))
+          (afx_text)
+          (afx_closing_element
+            (afx_identifier)))
+        (afx_text)))))
+
+================================================================================
+include statement
+================================================================================
+
+include: some/path.fusion
+include: resource://Package.Name/some/path.fusion
+include: resource://Package.Name/some/path/*.fusion
+include: resource://Package.Name/some/path/**/*.fusion
+include: resource://Package.Name/some/path/*.fusion
+include: resource://Package.Name/some/path/**/*.fusion
+
+include: 'resource://Package.Name/some/path/**/*.fusion'
+include: "resource://Package.Name/some/path/**/*.fusion"
+
+include: some/path.fusion
+include: ./some/../relative.fusion
+include: some/*.fusion
+include: 'some/path.fusion'
+include: "some/path.fusion"
+
+--------------------------------------------------------------------------------
+
+(program
+  (include_statement
+    (source_file
+      (filepath)))
+  (include_statement
+    (source_file
+      (resource
+        (package_name)
+        (filepath))))
+  (include_statement
+    (source_file
+      (resource
+        (package_name)
+        (fileglobbing))))
+  (include_statement
+    (source_file
+      (resource
+        (package_name)
+        (fileglobbing))))
+  (include_statement
+    (source_file
+      (resource
+        (package_name)
+        (fileglobbing))))
+  (include_statement
+    (source_file
+      (resource
+        (package_name)
+        (fileglobbing))))
+  (include_statement
+    (source_file
+      (resource
+        (package_name)
+        (fileglobbing))))
+  (include_statement
+    (source_file
+      (resource
+        (package_name)
+        (fileglobbing))))
+  (include_statement
+    (source_file
+      (filepath)))
+  (include_statement
+    (source_file
+      (filepath)))
+  (include_statement
+    (source_file
+      (fileglobbing)))
+  (include_statement
+    (source_file
+      (filepath)))
+  (include_statement
+    (source_file
+      (filepath))))
+
+================================================================================
+namespace
+================================================================================
+
+namespace: alias = Some.NameSpace
+property = alias:TypeName
+property = Some.NameSpace:TypeName
+
+--------------------------------------------------------------------------------
+
+(program
+  (namespace_declaration
+    (alias_namespace)
+    (package_name))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (package_name)
+          (type_name)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (prototype_instance
+        (type
+          (package_name)
+          (type_name))))))
+
+================================================================================
+comments
+================================================================================
+
+// single line comment
+  // indent comment
+
+# alternate single line comment
+
+/*
+* multiline
+* comment
+*/
+
+--------------------------------------------------------------------------------
+
+(program
+  (comment)
+  (comment)
+  (comment)
+  (comment))

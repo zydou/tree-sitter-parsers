@@ -12,10 +12,7 @@
     "url": "https://github.com/RubixDev/ebnf.git",
     "directory": "packages/tree-sitter-ebnf"
   },
-  "keywords": [
-    "parser",
-    "lexer"
-  ],
+  "keywords": ["parser", "lexer"],
   "author": "RubixDev",
   "license": "MIT",
   "bugs": {
@@ -27,5 +24,9 @@
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.20.7"
-  }
+  },
+  "tree-sitter": [{
+    "scope": "source.ebnf",
+    "file-types": ["ebnf"]
+  }]
 }

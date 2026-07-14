@@ -49,5 +49,11 @@
     "tree_sitter": {
       "optional": true
     }
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.comment",
+      "injection-regex": "^comment$"
+    }
+  ]
 }

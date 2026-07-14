@@ -45,5 +45,14 @@
     "tree_sitter": {
       "optional": true
     }
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.idl",
+      "file-types": [
+        "idl"
+      ],
+      "highlights": "queries/highlights.scm"
+    }
+  ]
 }

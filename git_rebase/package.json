@@ -54,5 +54,13 @@
     "prettier": "^2.5.1",
     "tree-sitter-cli": "^0.22.6",
     "prebuildify": "^6.0.1"
-  }
+  },
+  "tree-sitter": [
+    {
+      "file-types": [
+        "git-rebase-todo"
+      ],
+      "highlights": "queries/highlights.scm"
+    }
+  ]
 }

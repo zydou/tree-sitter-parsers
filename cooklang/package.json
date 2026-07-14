@@ -27,6 +27,15 @@
     "tree-sitter-cli": "^0.20.8",
     "prebuildify": "^6.0.0"
   },
+  "tree-sitter": [
+    {
+    "scope": "source.cook",
+    "file-types": [
+      "cook"
+    ],
+    "injection-regex": "cook"
+    }
+  ],
   "files": [
     "grammar.js",
     "binding.gyp",

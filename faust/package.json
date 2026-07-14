@@ -9,10 +9,17 @@
     "test": "tree-sitter test",
     "parse": "tree-sitter parse"
   },
-  "devDependencies": {
-    "tree-sitter-cli": "^0.20.8",
-    "node-gyp": "^10.0.1"
-  },
+  "tree-sitter": [
+    {
+      "scope": "source.faust",
+      "file-types": [
+        "dsp"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khiner/tree-sitter-faust.git"
@@ -32,5 +39,9 @@
   "homepage": "https://github.com/khiner/tree-sitter-faust#readme",
   "dependencies": {
     "nan": "^2.18.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8",
+    "node-gyp": "^10.0.1"
   }
 }

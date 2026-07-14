@@ -29,6 +29,17 @@
     "tree-sitter-cli": "^0.20.8",
     "prebuildify": "^6.0.0"
   },
+  "tree-sitter": [
+    {
+      "scope": "source.leo",
+      "file-types": [
+        "leo"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ],
   "files": [
     "grammar.js",
     "binding.gyp",

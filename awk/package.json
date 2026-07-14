@@ -53,5 +53,14 @@
     "tree-sitter-cli": "0.22.1"
   },
   "main": "bindings/node",
-  "types": "bindings/node"
+  "types": "bindings/node",
+  "tree-sitter": [
+    {
+      "scope": "source.awk",
+      "file-types": [
+        "awk",
+        "gawk"
+      ]
+    }
+  ]
 }

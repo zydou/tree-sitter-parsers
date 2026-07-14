@@ -1,60 +1,31 @@
 {
   "name": "tree-sitter-proto",
-  "version": "0.4.0",
-  "description": "Parser for proto2 and proto3 files",
-  "repository": "github:tree-sitter/tree-sitter-proto",
-  "license": "MIT",
-  "author": {
-    "name": "Mohammad Ashar Khan",
-    "email": "ashar786khan@gmail.com"
-  },
+  "version": "0.1.0",
+  "description": "A tree-sitter grammar for protocol buffers (proto3)",
   "main": "bindings/node",
-  "types": "bindings/node",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test",
+    "test-windows": "tree-sitter test"
+  },
   "keywords": [
-    "incremental",
-    "parsing",
     "tree-sitter",
     "proto"
   ],
-  "files": [
-    "grammar.js",
-    "binding.gyp",
-    "prebuilds/**",
-    "bindings/node/*",
-    "queries/*",
-    "src/**",
-    "*.wasm"
-  ],
+  "author": "Mitchell Hashimoto <xmitchx@gmail.com>",
+  "license": "MIT",
   "dependencies": {
-    "node-addon-api": "^8.1.0",
-    "node-gyp-build": "^4.8.2"
+    "nan": "^2.14.0"
   },
   "devDependencies": {
-    "eslint": "^9.12.0",
-    "eslint-config-treesitter": "^1.0.2",
-    "prebuildify": "^6.0.1",
-    "tree-sitter-cli": "0.26.3"
-  },
-  "peerDependencies": {
-    "tree-sitter": "^0.21.1"
-  },
-  "peerDependenciesMeta": {
-    "tree-sitter": {
-      "optional": true
-    }
-  },
-  "scripts": {
-    "install": "node-gyp-build",
-    "lint": "eslint grammar.js",
-    "lint-fix": "eslint grammar.js --fix",
-    "prestart": "tree-sitter build --wasm",
-    "start": "tree-sitter playground",
-    "test": "node --test bindings/node/*_test.js"
+    "tree-sitter-cli": "^0.19.1"
   },
   "tree-sitter": [
     {
       "scope": "source.proto",
-      "injection-regex": "^proto$"
+      "file-types": [
+        "proto"
+      ]
     }
   ]
 }

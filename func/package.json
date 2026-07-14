@@ -32,5 +32,17 @@
     "parse": "tree-sitter parse",
     "test": "tree-sitter test && script/parse-examples",
     "test-windows": "tree-sitter test"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.func",
+      "injection-regex": "^(fc|func)$",
+      "file-types": [
+        "fc"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ]
 }

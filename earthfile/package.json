@@ -36,5 +36,16 @@
     "queries/*",
     "src/**"
   ],
-  "repository": "https://github.com/glehmann/tree-sitter-earthfile"
+  "repository": "https://github.com/glehmann/tree-sitter-earthfile",
+  "tree-sitter": [
+    {
+      "scope": "source.earthfile",
+      "file-types": [
+        "Earthfile"
+      ],
+      "injection-regex": "earthfile",
+      "injections": "queries/injections.scm",
+      "highlights": "queries/highlights.scm"
+    }
+  ]
 }

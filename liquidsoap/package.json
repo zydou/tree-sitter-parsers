@@ -27,6 +27,14 @@
     "tree-sitter-cli": "^0.22.2",
     "prebuildify": "^6.0.0"
   },
+  "tree-sitter": [
+    {
+      "scope": "source.liq",
+      "file-types": [
+        "liq"
+      ]
+    }
+  ],
   "files": [
     "grammar.js",
     "binding.gyp",

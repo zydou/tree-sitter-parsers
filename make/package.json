@@ -6,9 +6,12 @@
   "license": "MIT",
   "main": "bindings/node",
   "homepage": "https://github.com/alemuller/tree-sitter-make#readme",
+
   "bugs": {
     "url": "https://github.com/alemuller/tree-sitter-make/issues"
   },
+  "homepage": "https://github.com/alemuller/tree-sitter-make#readme",
+
   "keywords": [
     "parsing",
     "incremental",
@@ -25,5 +28,19 @@
   },
   "scripts": {
     "test": "tree-sitter test"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.mk",
+      "file-types": [
+        "makefile",
+        "Makefile",
+        "MAKEFILE",
+        "GNUmakefile",
+        "mk",
+        "mak",
+        "dsp"
+      ]
+    }
+  ]
 }

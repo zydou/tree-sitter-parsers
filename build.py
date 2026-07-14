@@ -165,6 +165,10 @@ def download(url: str, dest: Path) -> bool:
 def compile_one(lang: str, meta: dict[str, str], logdir: Path) -> tuple[str, Literal["OK", "FAIL", "SKIP"], str]:
     """编译 + 验证 单个 parser（已存在 .so 则跳过）.
 
+    设计: 把提交的 <lang>/ 当作只读 pristine 存档, 绝不修改.
+    所有 generate / build 都在临时工作目录 (WORKDIR/<lang>/) 里进行,
+    这样离线机 clone 仓库后源码保持原始存档不变.
+
     Returns:
         (str, str, str): (lang, status, note)
     """
@@ -177,36 +181,39 @@ def compile_one(lang: str, meta: dict[str, str], logdir: Path) -> tuple[str, Lit
     url = meta["url"]
     location = meta.get("location", "")
     logfile = logdir / f"{lang}.log"
-    srcdir = Path(__file__).parent / lang
+    srcdir = Path(__file__).parent / lang  # 只读 pristine 存档
+    workdir = WORKDIR / lang  # 临时工作目录(可任意修改)
+    build_dir = workdir / location if location else workdir
     archive_file = WORKDIR / "archive" / f"{lang}.tar.gz"
 
     def log(msg):
         with logfile.open("a") as f:
             f.write(msg + "\n")
 
-    if not srcdir.is_dir():
-        # 1. 下载 tarball
-        srcdir.mkdir(parents=True, exist_ok=True)
+    # --- 准备工作目录: 优先从已提交的 pristine 存档复制, 否则在线下载 ---
+    if srcdir.is_dir():
+        # 离线/已提交: 复制只读存档到工作目录 (不修改原存档)
+        log(f"copy pristine src {srcdir} -> {workdir}")
+        shutil.copytree(srcdir, workdir)
+    else:
+        # 在线懒加载 (源码未提交时): 直接下载解压到工作目录
+        workdir.mkdir(parents=True, exist_ok=True)
         archive_file.parent.mkdir(parents=True, exist_ok=True)
-        archive_url = f"{url}/-/archive/{revision}/{url.split('/')[-1]}-{revision}.tar.gz" if "gitlab.com" in url else f"{url}/archive/{revision}.tar.gz"
+        # Gitlab archive name strips the ".git" suffix: repo-<rev>.tar.gz (NOT repo.git-<rev>.tar.gz)
+        repo_name = url.split("/")[-1]
+        archive_url = f"{url.removesuffix('.git')}/-/archive/{revision}/{repo_name.removesuffix('.git')}-{revision}.tar.gz" if "gitlab.com" in url else f"{url}/archive/{revision}.tar.gz"
         log(f"download: {archive_url}")
         ok = download(archive_url, archive_file)
         if not ok:
             return (lang, "FAIL", "download")
         if "gzip" not in subprocess.run(["/usr/bin/file", str(archive_file)], capture_output=True, text=True).stdout:
             return (lang, "FAIL", "not-gzip")
-
-        # 2. 解压
-        srcdir.mkdir(parents=True, exist_ok=True)
-        r = subprocess.run(["/usr/bin/tar", "xzf", str(archive_file), "-C", str(srcdir), "--strip-components=1"], capture_output=True, text=True)
+        log(f"extract to {workdir}")
+        r = subprocess.run(["/usr/bin/tar", "xzf", str(archive_file), "-C", str(workdir), "--strip-components=1"], capture_output=True, text=True)
         if r.returncode != 0:
             log(f"extract err: {r.stderr}")
             return (lang, "FAIL", f"extract rc={r.returncode}")
 
-    # 3. build_dir (location 子目录型)
-    build_dir = srcdir
-    if location:
-        build_dir = srcdir / location
     if not build_dir.is_dir():
         return (lang, "FAIL", f"no-dir {build_dir}")
 

@@ -26,5 +26,14 @@
     "eslint": "^8.45.0",
     "eslint-config-google": "^0.14.0",
     "tree-sitter-cli": "^0.20.8"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.zed",
+      "file-types": [
+        "authzed",
+        "zed"
+      ]
+    }
+  ]
 }

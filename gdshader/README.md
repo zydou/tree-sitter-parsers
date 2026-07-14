@@ -1,13 +1,20 @@
-# tree-sitter-gdshader
+### Introduction
+This is a tree-sitter grammar for the Godot shading language GDShader. This allows for syntax highlighting in text editors outside of Godot's own text editor (most notably, for Neovim). I wrote this in conjunction with the [gdshader-lsp](https://github.com/GodOfAvacyn/gdshader-lsp), which allows for more advanced things like error messages and code completion.
 
-GDShader grammer for tree-sitter.
+### Usage
+This tree-sitter grammar is not yet automatically availabe in any editors. Until I figure out how to get in contact with the nvim-treesitter maintaier, I will go over steps to setting it up inside of Neovim manually. 
+1. Clone this repo.
+2. Add the following somewhere in your neovim configuration (this requires [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)):
+   ```
+   local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+   parser_config.gdshader = {
+       install_info = {
+           url = "<path to the treesitter directory>",
+           files = {"src/parser.c"},
+       },
+       filetype = "gdshader"
+   }
 
-Inspired by the tree-sitter-c grammer.
-
-## Implementation
-
-The GDShader does not have an official syntax specification but it is based on the GLSL ES 3.0 specification with 
-some differences and restrictions. 
-
-The grammer and node names are intended to be fairly similar to other tree-sitter grammers so you should feel right at home.
-
+   ```
+3. Inside a 'queries' folder located at the top level of your nvim config directory, add a new folder called 'gdshader'.
+4. Copy the 'highlights.scm' file located the 'queries' directory in the repo into your newly created folder described above.

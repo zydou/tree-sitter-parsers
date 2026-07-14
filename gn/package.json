@@ -26,5 +26,20 @@
     "test": "tree-sitter test && script/parse-examples",
     "test-windows": "tree-sitter test"
   },
-  "repository": "https://github.com/amaanq/tree-sitter-gn"
+  "repository": "https://github.com/amaanq/tree-sitter-gn",
+  "tree-sitter": [
+    {
+      "scope": "source.gn",
+      "file-types": [
+        "gn"
+      ],
+      "injection-regex": "gn",
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injections": [
+        "queries/injections.scm"
+      ]
+    }
+  ]
 }

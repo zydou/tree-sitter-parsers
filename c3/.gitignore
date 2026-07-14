@@ -1,8 +1,0 @@
-node_modules
-build
-log.html
-
-# Grammar volatiles
-/*.wasm
-/*.obj
-/*.o

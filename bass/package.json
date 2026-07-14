@@ -32,5 +32,22 @@
     "parse": "tree-sitter parse",
     "test": "tree-sitter test && script/parse-examples",
     "test-windows": "tree-sitter test"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.bass",
+      "injection-regex": "bass",
+      "first-line-regex": "#!.*\\bbass$",
+      "file-types": [
+        "bass"
+      ],
+      "//": "We use the helix query for testing because its precedence rules are compatible with tree-sitter test.",
+      "highlights": [
+        "queries/helix/highlights.scm"
+      ],
+      "indents": [
+        "queries/nvim/indents.scm"
+      ]
+    }
+  ]
 }

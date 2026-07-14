@@ -56,5 +56,13 @@
   "homepage": "https://github.com/ram02z/tree-sitter-fish#readme",
   "bugs": {
     "url": "https://github.com/ram02z/tree-sitter-fish/issues"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.fish",
+      "file-types": [
+        "fish"
+      ]
+    }
+  ]
 }

@@ -19,5 +19,17 @@
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.20.1"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.forth",
+      "file-types": [
+        "fs",
+        "forth",
+        "fth",
+        "f",
+        "4th"
+      ]
+    }
+  ]
 }

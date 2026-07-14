@@ -39,5 +39,14 @@
     "build-test": "tree-sitter generate && node-gyp build && tree-sitter test",
     "install": "node-gyp-build",
     "prebuildify": "prebuildify --napi --strip"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.jsonnet",
+      "file-types": [
+        "jsonnet"
+      ],
+      "injection-regex": "jsonnet"
+    }
+  ]
 }

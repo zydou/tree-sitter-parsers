@@ -17,5 +17,13 @@
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.20.7"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.fsh",
+      "file-types": [
+        "fsh"
+      ]
+    }
+  ]
 }

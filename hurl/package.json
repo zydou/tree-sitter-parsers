@@ -28,6 +28,14 @@
     "tree-sitter-cli": "^0.20.7",
     "prebuildify": "^6.0.0"
   },
+  "tree-sitter": [
+    {
+      "scope": "source.hurl",
+      "file-types": [
+        "hurl"
+      ]
+    }
+  ],
   "files": [
     "grammar.js",
     "binding.gyp",

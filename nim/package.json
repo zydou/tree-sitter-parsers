@@ -38,5 +38,12 @@
     "bindings/node/*",
     "queries/*",
     "src/**"
+  ],
+  "tree-sitter": [
+    {
+      "scope": "source.nim",
+      "file-types": ["nim", "nimble", "nims"],
+      "highlights": "queries/highlights.scm"
+    }
   ]
 }

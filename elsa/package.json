@@ -31,5 +31,16 @@
     "test": "tree-sitter test && script/parse-examples",
     "parse": "tree-sitter parse",
     "test-windows": "tree-sitter test"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.lc",
+      "file-types": [
+        "lc"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ]
 }

@@ -27,5 +27,23 @@
     "build": "tree-sitter generate && node-gyp build",
     "lint": "eslint grammar.js",
     "test": "tree-sitter test"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.nqc",
+      "file-types": [
+        "nqc"
+      ],
+      "injection-regex": "nqc",
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injections": [
+        "queries/injections.scm"
+      ],
+      "locals": [
+        "queries/locals.scm"
+      ]
+    }
+  ]
 }

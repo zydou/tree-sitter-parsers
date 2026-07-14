@@ -1,0 +1,356 @@
+==================
+expression basic types
+==================
+
+string = ${'foo'}
+string = ${'foo \'bar\' baz'}
+string = ${"foo"}
+string = ${"foo ${test}"}
+boolean = ${true}
+number = ${1}
+number = ${1.2}
+propertyPath = ${property.path}
+
+---
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (string))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (string))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (string))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (string))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (boolean))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (number))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (number))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_object_path
+          (eel_path_identifier)
+          (eel_path_identifier))))))
+
+==================
+expression complex types
+==================
+
+array = ${[]}
+array = ${[true, 'string', 1]}
+array = ${[1, 2, [3, 4]]}
+object = ${{}}
+object = ${{first: 'value', second: true, third: []}}
+result = ${methodCall()}
+result = ${Some.methodCall(param, param)}
+offsetValue = ${Some.prop['param']}
+arrowFunction =  ${map(foo, (bar, buz) => bar * buz)}
+
+-----
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_array))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_array
+          (boolean)
+          (string)
+          (number)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_array
+          (number)
+          (number)
+          (eel_array
+            (number)
+            (number))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_object))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_object
+          (eel_object_pair
+            (eel_property_name)
+            (string))
+          (eel_object_pair
+            (eel_property_name)
+            (boolean))
+          (eel_object_pair
+            (eel_property_name)
+            (eel_array))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_object_path
+          (eel_method_call
+            (eel_method_name))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_object_path
+          (eel_path_identifier)
+          (eel_method_call
+            (eel_method_name)
+            (eel_object_path
+              (eel_path_identifier))
+            (eel_object_path
+              (eel_path_identifier)))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_object_path
+          (eel_path_identifier)
+          (eel_path_identifier)
+          (eel_offset_access
+            (string))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_object_path
+          (eel_method_call
+            (eel_method_name)
+            (eel_object_path
+              (eel_path_identifier))
+            (eel_arrow_function
+              (eel_parameter)
+              (eel_parameter)
+              (eel_binary_expression
+                (eel_object_path
+                  (eel_path_identifier))
+                (eel_object_path
+                  (eel_path_identifier))))))))))
+
+
+
+===========
+expression logic
+===========
+logic = ${foo && bar || baz}
+logic = ${foo && (bar || baz)}
+logic = ${foo == 'foo'}
+negation = ${not true}
+negation = ${! false}
+logic = ${!foo && !(bar || baz) and not 'string'}
+ternary = ${ check ? true : false}
+
+----------
+
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_binary_expression
+          (eel_binary_expression
+            (eel_object_path
+              (eel_path_identifier))
+            (eel_object_path
+              (eel_path_identifier)))
+          (eel_object_path
+            (eel_path_identifier))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_binary_expression
+          (eel_object_path
+            (eel_path_identifier))
+          (eel_parenthesized_expression
+            (eel_binary_expression
+              (eel_object_path
+                (eel_path_identifier))
+              (eel_object_path
+                (eel_path_identifier))))))))
+ (property
+   (path
+     (path_part))
+   (assignment
+     (value_expression
+       (eel_binary_expression
+         (eel_object_path
+           (eel_path_identifier))
+         (string)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_not_expression
+          (boolean)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_not_expression
+          (boolean)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_binary_expression
+          (eel_binary_expression
+            (eel_not_expression
+              (eel_object_path
+                (eel_path_identifier)))
+            (eel_not_expression
+              (eel_parenthesized_expression
+                (eel_binary_expression
+                  (eel_object_path
+                    (eel_path_identifier))
+                  (eel_object_path
+                    (eel_path_identifier))))))
+          (eel_not_expression
+            (string))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_ternary_expression
+          (eel_object_path
+            (eel_path_identifier))
+          (boolean)
+          (boolean))))))
+
+===========
+expression calculation
+===========
+
+concat = ${'foo' + this.bar}
+math = ${1 * (2 + 2 - 1) / 1 - -2.5}
+helper = ${Type.isArray(['Foo', 1 + 2])}
+arrayAccess = ${foo[0] + bar['baz'] + baz[0][0] + foo[0].bar}
+
+---
+(program
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_binary_expression
+          (string)
+          (eel_object_path
+            (eel_path_identifier)
+            (eel_path_identifier))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_binary_expression
+          (eel_binary_expression
+            (eel_binary_expression
+              (number)
+              (eel_parenthesized_expression
+                (eel_binary_expression
+                  (eel_binary_expression
+                    (number)
+                    (number))
+                  (number))))
+            (number))
+          (number)))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_object_path
+          (eel_path_identifier)
+          (eel_method_call
+            (eel_method_name)
+            (eel_array
+              (string)
+              (eel_binary_expression
+                (number)
+                (number))))))))
+  (property
+    (path
+      (path_part))
+    (assignment
+      (value_expression
+        (eel_binary_expression
+          (eel_binary_expression
+            (eel_binary_expression
+              (eel_object_path
+                (eel_path_identifier)
+                (eel_offset_access
+                  (number)))
+              (eel_object_path
+                (eel_path_identifier)
+                (eel_offset_access
+                  (string))))
+            (eel_object_path
+              (eel_path_identifier)
+              (eel_offset_access
+                (number))
+              (eel_offset_access
+                (number))))
+          (eel_object_path
+            (eel_path_identifier)
+            (eel_offset_access
+              (number))
+            (eel_path_identifier)))))))
