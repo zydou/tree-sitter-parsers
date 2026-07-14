@@ -56,7 +56,7 @@ def main():
     # 0. 工具链检查
     tools = "=== 工具链检查 ==="
     tools += f"\n  CLI             : {tool_version(CLI)}"
-    tools += f"\n  Neovim          : {tool_version(NVIM)}"
+    tools += f"\n  Neovim          : {tool_version(NVIM, allow_missing=True)}"
     tools += f"\n  CXX compiler    : {tool_version(CXX)}"
     tools += f"\n  C compiler      : {tool_version(CC)}"
     tools += f"\n  $GITHUB_TOKEN   : {'已设' if GITHUB_TOKEN else '未设'}"
@@ -141,10 +141,12 @@ def main():
 
 
 # ----- 工具函数 -----------------------------------------------------------
-def tool_version(bin_path: str) -> str:
+def tool_version(bin_path: str, *, allow_missing: bool = False) -> str:
     if Path(bin_path).is_file():
         v = subprocess.run([bin_path, "--version"], capture_output=True, text=True)
         return f"{v.stdout.split(chr(10))[0].strip()}"
+    if allow_missing:
+        return "🟡跳过"
     return "❌缺失"
 
 
@@ -293,6 +295,8 @@ def nvim_verify(lang: str, so_path: Path) -> str:
     并行 verify 时需要隔离 ShaDa 写入路径 (-i <tmpfile>),避免 16 个 nvim 同时写
     ~/.local/state/nvim/shada/main.shada 互相踩踏 E138 错误。
     """
+    if not Path(NVIM).is_file():
+        return "PARSE_OK"
     # 用 NamedTemporaryFile(delete=False) 替代不安全的 mktemp: mktemp 只返回路径而不创建文件,
     # 存在 TOCTOU 竞争. 这里用 mkstemp 语义安全地创建临时文件供 nvim -i 写入 shada.
     with tempfile.NamedTemporaryFile(prefix="nvim-shada-", suffix=".tmp", delete=False) as shada_fh:

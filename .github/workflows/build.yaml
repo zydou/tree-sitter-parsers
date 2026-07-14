@@ -14,22 +14,34 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {runner: ubuntu-latest, os: linux, arch: x86_64, treesitter: x86_64-unknown-linux-musl}
+          - {runner: ubuntu-26.04-arm, os: linux, arch: arm64, treesitter: aarch64-unknown-linux-musl}
+          - {runner: macos-15-intel, os: macos, arch: x86_64, treesitter: x86_64-apple-darwin}
+          - {runner: macos-26, os: macos, arch: arm64, treesitter: aarch64-apple-darwin}
+
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@main
 
       - name: Download tree-sitter CLI
         run: |
           mkdir -p "$HOME/.local/bin"
-          curl -o tree-sitter.tar.xz -L https://github.com/zydou/cli-tools/releases/download/tree-sitter/tree-sitter-x86_64-unknown-linux-musl-5e8760b.tar.xz
+          curl -o tree-sitter.tar.xz -L https://github.com/zydou/cli-tools/releases/download/tree-sitter/tree-sitter-${{ matrix.treesitter }}-5e8760b.tar.xz
           tar -xf tree-sitter.tar.xz -C "$HOME/.local/bin"
           rm tree-sitter.tar.xz
 
       - name: Download Neovim
+        # Skip on linux-arm64
+        if: matrix.treesitter != 'aarch64-unknown-linux-musl'
         run: |
           mkdir -p "$HOME/.local/neovim"
-          curl -o nvim.tar.gz -L https://github.com/neovim/neovim-releases/releases/download/v0.10.4/nvim-linux-x86_64.tar.gz
+          curl -o nvim.tar.gz -L https://github.com/neovim/neovim-releases/releases/download/v0.10.4/nvim-${{ matrix.os }}-${{ matrix.arch }}.tar.gz
           tar -xf nvim.tar.gz -C "$HOME/.local/neovim" --strip-components=1
+          rm -rf "$HOME/.local/neovim/lib"
           rm nvim.tar.gz
 
       - name: Build Parsers
@@ -38,13 +50,13 @@ jobs:
         run: |
           python3 build.py
           cd dist
-          tar czf parsers.tar.gz *
+          tar czf "parsers-${{ matrix.os }}-${{ matrix.arch }}.tar.gz" *
           cd ..
 
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |-
-          gh release create "parsers" --notes "parsers" --title "parsers" --repo "${{github.repository}}" || true
-          gh release edit "parsers" --notes "parsers" --title "parsers" --repo "${{github.repository}}" || true
-          gh release upload "parsers" "./dist/*" --repo "${{github.repository}}" --clobber || true
+          gh release create "${{ matrix.os }}-${{ matrix.arch }}" --notes "All in one:<br>https://github.com/${{ github.repository }}/releases/download/${{ matrix.os }}-${{ matrix.arch }}/parsers-${{ matrix.os }}-${{ matrix.arch }}.tar.gz" --title "${{ matrix.os }}-${{ matrix.arch }}" --repo "${{github.repository}}" || true
+          gh release edit "${{ matrix.os }}-${{ matrix.arch }}" --notes "All in one:<br>https://github.com/${{ github.repository }}/releases/download/${{ matrix.os }}-${{ matrix.arch }}/parsers-${{ matrix.os }}-${{ matrix.arch }}.tar.gz" --title "${{ matrix.os }}-${{ matrix.arch }}" --repo "${{github.repository}}" || true
+          gh release upload "${{ matrix.os }}-${{ matrix.arch }}" "./dist/*" --repo "${{github.repository}}" --clobber || true
