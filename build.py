@@ -237,7 +237,7 @@ def compile_one(lang: str, meta: dict[str, str], logdir: Path) -> tuple[str, Lit
         log(f"tree-sitter generate --abi {ABI_VERSION}")
         print(f"[{lang}] tree-sitter generate --abi {ABI_VERSION}")
         rmrf(parser_c)
-        r = subprocess.run([CLI, "generate", "--abi", str(ABI_VERSION)], cwd=build_dir, capture_output=True, text=True, timeout=120)
+        r = subprocess.run([CLI, "generate", "--abi", str(ABI_VERSION)], cwd=build_dir, capture_output=True, text=True, timeout=600)
         log(r.stdout + r.stderr)
         if r.returncode != 0:
             return (lang, "FAIL", f"generate rc={r.returncode}")
@@ -245,7 +245,7 @@ def compile_one(lang: str, meta: dict[str, str], logdir: Path) -> tuple[str, Lit
     # 5. tree-sitter build (自动链接 parser.c + scanner.cc)
     out_so.unlink(missing_ok=True)
     log("tree-sitter build ...")
-    r = subprocess.run([CLI, "build", "-o", str(out_so), "."], cwd=build_dir, capture_output=True, text=True, timeout=120)
+    r = subprocess.run([CLI, "build", "-o", str(out_so), "."], cwd=build_dir, capture_output=True, text=True, timeout=600)
     log(r.stdout + r.stderr)
     if r.returncode != 0 or not out_so.exists():
         # 备选: 手动 cc (可能 external scanner 有 g++ 链接问题)
